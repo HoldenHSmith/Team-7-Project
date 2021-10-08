@@ -21,10 +21,21 @@ public class WaypointManager : MonoBehaviour
 	
 	private void OnEnable()
 	{
+		Initialize();
+	}
+
+	private void Reset()
+	{
+		Initialize();
+	}
+
+	private void Initialize()
+	{
+
 		if (Waypoints == null)
 			Waypoints = new List<Waypoint>();
 	}
-
+	
 	public void AddNewWaypoint()
 	{
 		Waypoints.Add(new Waypoint(transform.position));

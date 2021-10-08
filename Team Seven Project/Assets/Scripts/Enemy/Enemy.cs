@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(EnemySettings))]
+[RequireComponent(typeof(WaypointManager))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
 	public float DetectRange; //Move these to a radar type script
@@ -37,7 +39,7 @@ public class Enemy : MonoBehaviour
 	//Add this to it's own class
 	public void SetWalkAnimation(bool value)
 	{
-		animator.SetBool(walkHash, value);
+		//animator.SetBool(walkHash, value);
 	}
 
 	public EnemyStates States { get => m_States; }
