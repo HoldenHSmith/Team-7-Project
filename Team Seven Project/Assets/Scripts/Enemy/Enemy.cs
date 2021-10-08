@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 	//Add this to it's own class
 	public void SetWalkAnimation(bool value)
 	{
-		//animator.SetBool(walkHash, value);
+		animator.SetBool(walkHash, value);
 	}
 
 	public EnemyStates States { get => m_States; }
