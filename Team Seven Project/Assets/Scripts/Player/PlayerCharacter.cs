@@ -22,8 +22,10 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	private void Update()
 	{
+		UpdateInputs();
 		UpdateRotation();
 		UpdateAnimations();
+		UpdateThrow();
 	}
 
 	private void FixedUpdate()

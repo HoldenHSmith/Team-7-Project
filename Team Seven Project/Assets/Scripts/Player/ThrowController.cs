@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ThrowController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField] private float m_RotationSpeed;
+	[SerializeField] private float m_ThrowPower;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[SerializeField] private GameObject m_Projectile;
+	[SerializeField] private Transform m_ThrowPoint;
+
+	public void ThrowObject()
+	{
+		GameObject spawnedProjectile = Instantiate(m_Projectile, m_ThrowPoint.position, m_ThrowPoint.rotation);
+		spawnedProjectile.GetComponent<Rigidbody>().velocity = m_ThrowPoint.transform.up * m_ThrowPower;
+	}
 }

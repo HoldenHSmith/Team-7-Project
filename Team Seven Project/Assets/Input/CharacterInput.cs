@@ -41,6 +41,14 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Aiming/Throwing"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d725a3b-c425-4899-9a96-8ce2b003fae1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -186,6 +194,17 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""action"": ""Test"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acafebc7-b843-4a9c-a8ed-62d9e8d72d9b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Aiming/Throwing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -225,6 +244,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Test = m_Player.FindAction("Test", throwIfNotFound: true);
+        m_Player_AimingThrowing = m_Player.FindAction("Aiming/Throwing", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -277,6 +297,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Test;
+    private readonly InputAction m_Player_AimingThrowing;
     public struct PlayerActions
     {
         private @CharacterInput m_Wrapper;
@@ -284,6 +305,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Test => m_Wrapper.m_Player_Test;
+        public InputAction @AimingThrowing => m_Wrapper.m_Player_AimingThrowing;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -302,6 +324,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Test.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTest;
                 @Test.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTest;
                 @Test.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTest;
+                @AimingThrowing.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
+                @AimingThrowing.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
+                @AimingThrowing.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -315,6 +340,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Test.started += instance.OnTest;
                 @Test.performed += instance.OnTest;
                 @Test.canceled += instance.OnTest;
+                @AimingThrowing.started += instance.OnAimingThrowing;
+                @AimingThrowing.performed += instance.OnAimingThrowing;
+                @AimingThrowing.canceled += instance.OnAimingThrowing;
             }
         }
     }
@@ -342,5 +370,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnTest(InputAction.CallbackContext context);
+        void OnAimingThrowing(InputAction.CallbackContext context);
     }
 }

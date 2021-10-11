@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Aiming/Throwing",
+                    "type": "Button",
+                    "id": "5d725a3b-c425-4899-9a96-8ce2b003fae1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -171,6 +179,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Test",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "acafebc7-b843-4a9c-a8ed-62d9e8d72d9b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "Aiming/Throwing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
