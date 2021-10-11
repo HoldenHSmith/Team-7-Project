@@ -6,7 +6,7 @@ public partial class PlayerCharacter : MonoBehaviour
 {
 	public ushort playerID { get { return m_PlayerID; } }
 	public bool respawning { get { return m_Respawning; } }
-
+	
 	protected ushort m_PlayerID;                            //Current ID of the player
 	protected CharacterInput m_Input;                       //Reference to Input System
 	protected bool m_Respawning;                            //Whether the character is respawning
@@ -18,6 +18,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		SetupInput();
 		SetupMovement();
 		SetupAnimator();
+		SetupThrow();
 	}
 
 	private void Update()
@@ -26,6 +27,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		UpdateRotation();
 		UpdateAnimations();
 		UpdateThrow();
+		EndInputUpdate();
 	}
 
 	private void FixedUpdate()

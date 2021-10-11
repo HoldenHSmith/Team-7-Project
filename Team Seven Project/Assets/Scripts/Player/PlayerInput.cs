@@ -14,8 +14,9 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected bool m_ExternalInputBlocked;
 	protected bool m_CrouchPressed;
 	protected bool m_LeftMouseDown;
-	protected bool m_LeftMouseDownPrevious;
 	protected float m_LeftMouseDownTime;
+
+	protected Mouse m_CurrentMouse;
 
 	protected void SetupInput()
 	{
@@ -34,19 +35,23 @@ public partial class PlayerCharacter : MonoBehaviour
 		m_Input.Player.AimingThrowing.started += ctx => OnLeftMouse(ctx);
 		m_Input.Player.AimingThrowing.performed += ctx => OnLeftMouse(ctx);
 		m_Input.Player.AimingThrowing.canceled += ctx => OnLeftMouse(ctx);
+		m_CurrentMouse = Mouse.current;
 	}
 
 	protected void UpdateInputs()
 	{
 		if (m_LeftMouseDown)
 			m_LeftMouseDownTime += Time.deltaTime;
-		else
+	}
+
+	protected void EndInputUpdate()
+	{
+		if (m_CurrentMouse.leftButton.wasReleasedThisFrame)
 			m_LeftMouseDownTime = 0;
 	}
 
 	//Update movement inputs
 	protected void OnMovementInput(InputAction.CallbackContext context) => m_MovementInput = context.ReadValue<Vector2>();
-
 
 	//Update crouch input
 	protected void OnCrouchInput(InputAction.CallbackContext context) => m_CrouchPressed = context.ReadValueAsButton();
