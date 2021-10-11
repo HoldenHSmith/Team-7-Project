@@ -32,7 +32,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		if (m_CanThrow && m_LeftMouseDownTime >= m_MinimumMouseHoldTime && m_CurrentMouse.leftButton.wasReleasedThisFrame)
 		{
-			ThrowObject();
+			//ThrowObject();
 		}
 	}
 
