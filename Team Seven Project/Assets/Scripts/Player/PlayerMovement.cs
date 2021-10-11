@@ -4,14 +4,15 @@ using UnityEngine.InputSystem;
 
 public partial class PlayerCharacter : MonoBehaviour
 {
+	[Space,Header("Movement Mechanics")]
 	[Tooltip("The maximum move speed that the character can move")]
-	public float MaxVelocity;           //How fast the character can move
+	[SerializeField] private float m_MaxVelocity;           //How fast the character can move
 	[Tooltip("The maximum move speed that the character can move while crouching")]
-	public float MaxCrouchVelocity;           //How fast the character can move while crouching
+	[SerializeField] private float m_MaxCrouchVelocity;           //How fast the character can move while crouching
 	[Tooltip("Time in seconds it takes the character to reach max speed")]
-	public float TimeToMaxSpeed;        //Time in seconds to reach max speed
+	[SerializeField] private float m_TimeToMaxSpeed;        //Time in seconds to reach max speed
 	[Tooltip("Time in seconds it takes the character to stop")]
-	public float TimeToZero;            //Time in seconds to stop
+	[SerializeField] private float m_TimeToZero;            //Time in seconds to stop
 
 	protected float m_Acceleration; //Acceleration rate of the character
 	protected float m_Deceleration; //Acceleration rate of the character
@@ -19,8 +20,8 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void SetupMovement()
 	{
-		m_Acceleration = MaxVelocity / TimeToMaxSpeed;
-		m_Deceleration = -MaxVelocity / TimeToZero;
+		m_Acceleration = m_MaxVelocity / m_TimeToMaxSpeed;
+		m_Deceleration = -m_MaxVelocity / m_TimeToZero;
 		m_Velocity = Vector3.zero;
 	}
 
@@ -36,9 +37,9 @@ public partial class PlayerCharacter : MonoBehaviour
 
 		//Change this to use state machine for player
 		if (!m_CrouchPressed)
-			targetVelocity = direction * MaxVelocity;
+			targetVelocity = direction * m_MaxVelocity;
 		else
-			targetVelocity = direction * MaxCrouchVelocity;
+			targetVelocity = direction * m_MaxCrouchVelocity;
 
 		Vector3 difference = targetVelocity - m_Velocity;
 
@@ -54,16 +55,16 @@ public partial class PlayerCharacter : MonoBehaviour
 		//Limit the character's velocity
 		if (!m_CrouchPressed)
 		{
-			if (m_Velocity.magnitude > MaxVelocity)
+			if (m_Velocity.magnitude > m_MaxVelocity)
 			{
-				m_Velocity = m_Velocity.normalized * MaxVelocity;
+				m_Velocity = m_Velocity.normalized * m_MaxVelocity;
 			}
 		}
 		else
 		{
-			if(m_Velocity.magnitude > MaxCrouchVelocity)
+			if(m_Velocity.magnitude > m_MaxCrouchVelocity)
 			{
-				m_Velocity = m_Velocity.normalized * MaxCrouchVelocity;
+				m_Velocity = m_Velocity.normalized * m_MaxCrouchVelocity;
 			}
 		}
 
