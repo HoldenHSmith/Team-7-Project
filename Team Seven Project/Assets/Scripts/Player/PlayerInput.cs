@@ -20,6 +20,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void SetupInput()
 	{
+
 		m_Input = new CharacterInput();
 
 		//Subscribe movement inputs
