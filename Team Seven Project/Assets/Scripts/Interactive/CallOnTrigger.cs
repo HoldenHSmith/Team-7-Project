@@ -10,7 +10,6 @@ public class CallOnTrigger : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("Event Called");
 		if (m_Event != null && (other.tag == m_CompareTag))
 			m_Event.Invoke();
 	}
