@@ -1,29 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.AI;
 using UnityEngine;
 
 public class TestGuardDistract : MonoBehaviour
 {
-	public float evaluation;
-	public float speed;
-	private Renderer _renderer;
-	private MaterialPropertyBlock _propBlock;
-
-    // Start is called before the first frame update
-    void Awake()
+	private NavMeshAgent m_NavMesh;
+	private EnemyAlertState m_Alertness;
+	protected Animator animator;
+	private int walkHash;
+	private Vector3 destination;
+	// Start is called before the first frame update
+	void Awake()
     {
-		_propBlock = new MaterialPropertyBlock();
-		_renderer = GetComponent<Renderer>();
-    }
+		m_NavMesh = GetComponent<NavMeshAgent>();
+		m_Alertness = GetComponent<EnemyAlertState>();
+		animator = GetComponentInChildren<Animator>();
+		walkHash = Animator.StringToHash("Walking");
+		destination = transform.position;
+	}
 
 	private void Update()
 	{
-		//Get the current value of the material properties in the renderer.
-		_renderer.GetPropertyBlock(_propBlock);
-		//Assign our new value
-		_propBlock.SetFloat("_Evaluation", evaluation);
-		_propBlock.SetFloat("_Speed", speed);
-		_renderer.SetPropertyBlock(_propBlock);
+		
+		animator.SetBool(walkHash, Vector3.Distance(transform.position,destination) > 0.25f);
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.tag == "Projectile")
+		{
+			Debug.Log("ALERT!");
+			m_Alertness.SetAlertLevel(EnemyAlertState.AlertLevel.Investigating);
+			destination = other.transform.position;
+			destination.y = 0;
+			m_NavMesh.SetDestination(destination);
+
+		}
 	}
 
 }
