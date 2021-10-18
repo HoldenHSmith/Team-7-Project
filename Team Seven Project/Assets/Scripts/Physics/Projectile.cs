@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast(camRay, out hit, 100f, m_Layer))
 		{
-			m_LandingZoneSprite.SetActive(true);
+			//m_LandingZoneSprite.SetActive(true);
 			//Debug.Log(Mouse.current.position.ReadValue());
 			m_LandingZoneSprite.transform.position = hit.point + Vector3.up * 0.1f;
 
@@ -47,6 +47,7 @@ public class Projectile : MonoBehaviour
 	}
 	private void Visualize(Vector3 velocity)
 	{
+		
 		for(int i = 0; i < m_LineSegments;i++)
 		{
 			Vector3 pos = MathJ.CalculatePositionInTime(velocity, m_StartPoint.position, i / (float)m_LineSegments);
@@ -57,6 +58,16 @@ public class Projectile : MonoBehaviour
 	private void Update()
 	{
 		LaunchProjectile();
+		if (Mouse.current.leftButton.wasPressedThisFrame)
+		{
+			m_LineRenderer.enabled = true;
+			m_LandingZoneSprite.SetActive(true);
+		}
+		else if (Mouse.current.leftButton.wasReleasedThisFrame)
+		{
+			m_LineRenderer.enabled = false;
+			m_LandingZoneSprite.SetActive(false);
+		}
 	}
 
 
