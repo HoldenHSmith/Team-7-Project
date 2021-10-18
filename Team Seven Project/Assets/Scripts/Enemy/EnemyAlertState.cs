@@ -26,12 +26,12 @@ public class EnemyAlertState : MonoBehaviour
 			case AlertLevel.None:
 				break;
 			case AlertLevel.Investigating:
-				//evaluation = 0.35f;
-				//speed = 5.0f;
+				evaluation = 0.35f;
+				speed = 5.0f;
 				break;
 			case AlertLevel.FoundPlayer:
-				//evaluation = 1.0f;
-				//speed = 15.0f;
+				evaluation = 1.0f;
+				speed = 15.0f;
 				break;
 			default:
 				break;
