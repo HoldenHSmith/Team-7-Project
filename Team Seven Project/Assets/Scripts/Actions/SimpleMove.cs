@@ -1,17 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using static EnumsJ;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 public class SimpleMove : MonoBehaviour
 {
-	public enum LoopType
-	{
-		Once,
-		PingPong,
-		Repeat
-	}
+	
 	[SerializeField] private LoopType m_LoopType;
 	[SerializeField] private Vector3 m_StartPosition;
 	[SerializeField] private Vector3 m_FinalPosition;
