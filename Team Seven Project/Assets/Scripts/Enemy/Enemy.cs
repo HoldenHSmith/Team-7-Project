@@ -53,6 +53,16 @@ public class Enemy : MonoBehaviour
 			AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.None);
 	}
 
+	public void OnEnable()
+	{
+		EnemyManager._enemyList.Add(this);
+	}
+
+	public void OnDisable()
+	{
+		EnemyManager._enemyList.Remove(this);
+	}
+
 	public EnemyStates EnemyStates { get => States; }
 	public StateMachine EnemyStateMachine { get => StateMachine; }
 	public EnemySettings Settings { get => EnemySettings; }
