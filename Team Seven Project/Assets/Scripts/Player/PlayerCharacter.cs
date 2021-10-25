@@ -19,11 +19,6 @@ public partial class PlayerCharacter : MonoBehaviour
 		SetupThrow();
 	}
 
-	private void Start()
-	{
-		
-	}
-
 	private void Update()
 	{
 		
