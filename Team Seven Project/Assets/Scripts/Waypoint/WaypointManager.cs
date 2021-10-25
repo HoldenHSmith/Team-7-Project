@@ -1,18 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum WPPathType
-{
-	PingPong,
-	Loop,
-	Once
-}
+using static EnumsJ;
 
 [Serializable]
 public class WaypointManager : MonoBehaviour
 {
-	public WPPathType Type;
+	public LoopType Type;
 	public bool Finished = false;
 	public List<Waypoint> Waypoints;
 
@@ -84,11 +78,11 @@ public class WaypointManager : MonoBehaviour
 		{
 			switch (Type)
 			{
-				case WPPathType.PingPong:
+				case LoopType.PingPong:
 					return GetNextWaypointPingPong(out waypoint);
-				case WPPathType.Loop:
+				case LoopType.Repeat:
 					return GetWaypointLoop(out waypoint);
-				case WPPathType.Once:
+				case LoopType.Once:
 					return GetWaypointOnce(out waypoint);
 
 				default:

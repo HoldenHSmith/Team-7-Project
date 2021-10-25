@@ -4,6 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EnemySettings))]
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(EnemyAlertState))]
 public class Enemy : MonoBehaviour
 {
 	public float DetectRange; //Move these to a radar type script
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
 	protected EnemyStates m_States;
 	protected StateMachine m_StateMachine;
 	protected EnemySettings m_EnemySettings;
+	protected EnemyAlertState m_AlertState;
 
 	//Move to separate class
 	protected Animator animator;
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour
 		m_States.OnStart(m_StateMachine, this);
 		m_StateMachine.RequestStateChange(m_States.StatePatrol);
 		m_EnemySettings = GetComponent<EnemySettings>();
+		m_AlertState = GetComponent<EnemyAlertState>();
 		//Test
 		animator = GetComponentInChildren<Animator>();
 		walkHash = Animator.StringToHash("Walking");
@@ -40,6 +43,14 @@ public class Enemy : MonoBehaviour
 	public void SetWalkAnimation(bool value)
 	{
 		animator.SetBool(walkHash, value);
+
+		//REMOVE THIS
+		if(value)
+		{
+			m_AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.Investigating);
+		}
+		else
+			m_AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.None);
 	}
 
 	public EnemyStates States { get => m_States; }
