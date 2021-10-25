@@ -9,19 +9,19 @@ public class EnemyAlertState : MonoBehaviour
 		FoundPlayer
 	}
 
-	[SerializeField] private AlertLevel m_Alertness;
-	private EnemyMaterialBlockHandler m_propertyBlock;
+	[SerializeField] private AlertLevel _alertness;
+	private EnemyMaterialBlockHandler _propertyBlock;
 
 	private void Awake()
 	{
-		m_propertyBlock = GetComponentInChildren<EnemyMaterialBlockHandler>();
+		_propertyBlock = GetComponentInChildren<EnemyMaterialBlockHandler>();
 	}
 
 	private void OnAlertChanged()
 	{
 		float evaluation = 0.0f;
 		float speed = 0.0f;
-		switch (m_Alertness)
+		switch (_alertness)
 		{
 			case AlertLevel.None:
 				break;
@@ -37,12 +37,12 @@ public class EnemyAlertState : MonoBehaviour
 				break;
 		}
 
-		m_propertyBlock.SetProperties(evaluation, speed);
+		_propertyBlock.SetProperties(evaluation, speed);
 	}
 
 	public void SetAlertLevel(AlertLevel level)
 	{
-		m_Alertness = level;
+		_alertness = level;
 		OnAlertChanged();
 	}
 }

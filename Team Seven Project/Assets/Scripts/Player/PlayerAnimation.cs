@@ -2,20 +2,20 @@ using UnityEngine;
 
 public partial class PlayerCharacter : MonoBehaviour
 {
-	protected int m_AnimCrouchHash;
-	protected int m_AnimWalkHash;
-	protected Animator m_Animator;
+	protected int AnimCrouchHash;
+	protected int AnimWalkHash;
+	protected Animator Animator;
 
 	protected void SetupAnimator()
 	{
-		m_Animator = GetComponentInChildren<Animator>();
-		m_AnimCrouchHash = Animator.StringToHash("Crouching");
-		m_AnimWalkHash = Animator.StringToHash("Walking");
+		Animator = GetComponentInChildren<Animator>();
+		AnimCrouchHash = Animator.StringToHash("Crouching");
+		AnimWalkHash = Animator.StringToHash("Walking");
 	}
 
 	protected void UpdateAnimations()
 	{
-		m_Animator.SetBool(m_AnimCrouchHash, IsCrouchInput);
-		m_Animator.SetBool(m_AnimWalkHash, IsMoveInput);
+		Animator.SetBool(AnimCrouchHash, IsCrouchInput);
+		Animator.SetBool(AnimWalkHash, IsMoveInput);
 	}
 }

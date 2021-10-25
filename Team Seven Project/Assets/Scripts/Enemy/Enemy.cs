@@ -10,11 +10,11 @@ public class Enemy : MonoBehaviour
 	public float DetectRange; //Move these to a radar type script
 	public float DetectAngle; //Move these to a radar type script
 
-	protected NavMeshAgent m_Agent;
-	protected EnemyStates m_States;
-	protected StateMachine m_StateMachine;
-	protected EnemySettings m_EnemySettings;
-	protected EnemyAlertState m_AlertState;
+	protected NavMeshAgent Agent;
+	protected EnemyStates States;
+	protected StateMachine StateMachine;
+	protected EnemySettings EnemySettings;
+	protected EnemyAlertState AlertState;
 
 	//Move to separate class
 	protected Animator animator;
@@ -22,13 +22,13 @@ public class Enemy : MonoBehaviour
 
 	private void Awake()
 	{
-		m_Agent = GetComponent<NavMeshAgent>();
-		m_StateMachine = new StateMachine();
-		m_States = new EnemyStates();
-		m_States.OnStart(m_StateMachine, this);
-		m_StateMachine.RequestStateChange(m_States.StatePatrol);
-		m_EnemySettings = GetComponent<EnemySettings>();
-		m_AlertState = GetComponent<EnemyAlertState>();
+		Agent = GetComponent<NavMeshAgent>();
+		StateMachine = new StateMachine();
+		States = new EnemyStates();
+		States.OnStart(StateMachine, this);
+		StateMachine.RequestStateChange(States.StatePatrol);
+		EnemySettings = GetComponent<EnemySettings>();
+		AlertState = GetComponent<EnemyAlertState>();
 		//Test
 		animator = GetComponentInChildren<Animator>();
 		walkHash = Animator.StringToHash("Walking");
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
 
 	private void Update()
 	{
-		m_StateMachine.MyUpdate();
+		StateMachine.MyUpdate();
 	}
 
 	//Add this to it's own class
@@ -47,14 +47,14 @@ public class Enemy : MonoBehaviour
 		//REMOVE THIS
 		if(value)
 		{
-			m_AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.Investigating);
+			AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.Investigating);
 		}
 		else
-			m_AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.None);
+			AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.None);
 	}
 
-	public EnemyStates States { get => m_States; }
-	public StateMachine StateMachine { get => m_StateMachine; }
-	public EnemySettings Settings { get => m_EnemySettings; }
+	public EnemyStates EnemyStates { get => States; }
+	public StateMachine EnemyStateMachine { get => StateMachine; }
+	public EnemySettings Settings { get => EnemySettings; }
 }
 

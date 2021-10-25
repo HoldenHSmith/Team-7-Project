@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class CallOnTrigger : MonoBehaviour
 {
-	[SerializeField] private string m_CompareTag;
-	[SerializeField] private UnityEvent m_Event = null;
+	[SerializeField] private string _compareTag;
+	[SerializeField] private UnityEvent _event = null;
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (m_Event != null && (other.tag == m_CompareTag))
-			m_Event.Invoke();
+		if (_event != null && (other.tag == _compareTag))
+			_event.Invoke();
 	}
 }

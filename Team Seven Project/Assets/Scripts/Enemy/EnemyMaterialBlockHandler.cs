@@ -5,21 +5,21 @@ using UnityEngine;
 public class EnemyMaterialBlockHandler : MonoBehaviour
 {
 
-	[SerializeField] private Renderer m_Renderer;
-	[SerializeField] private MaterialPropertyBlock m_MaterialPropertyBlock;
+	[SerializeField] private Renderer _renderer;
+	[SerializeField] private MaterialPropertyBlock _materialPropertyBlock;
 
 	private void Awake()
 	{
-		m_MaterialPropertyBlock = new MaterialPropertyBlock();
-		m_Renderer = GetComponent<Renderer>();
+		_materialPropertyBlock = new MaterialPropertyBlock();
+		_renderer = GetComponent<Renderer>();
 	}
 
 	public void SetProperties(float evaluation, float speed)
 	{
-		m_Renderer.GetPropertyBlock(m_MaterialPropertyBlock);
-		m_MaterialPropertyBlock.SetFloat("_Evaluation", evaluation);
-		m_MaterialPropertyBlock.SetFloat("_Speed", speed);
-		m_Renderer.SetPropertyBlock(m_MaterialPropertyBlock);
+		_renderer.GetPropertyBlock(_materialPropertyBlock);
+		_materialPropertyBlock.SetFloat("_Evaluation", evaluation);
+		_materialPropertyBlock.SetFloat("_Speed", speed);
+		_renderer.SetPropertyBlock(_materialPropertyBlock);
 	}
 
 }
