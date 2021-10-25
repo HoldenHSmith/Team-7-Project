@@ -8,12 +8,12 @@ using UnityEditor;
 public class SimpleMove : MonoBehaviour
 {
 	
-	[SerializeField] private LoopType _loopType;
-	[SerializeField] private Vector3 _startPosition;
-	[SerializeField] private Vector3 _finalPosition;
-	[SerializeField] private float _travelTime;
-	[SerializeField] private AnimationCurve _accelerationCurve;
-	[SerializeField] private Rigidbody _objectToMove;
+	[SerializeField] private LoopType _loopType = LoopType.Repeat;
+	[SerializeField] private Vector3 _startPosition = Vector3.zero;
+	[SerializeField] private Vector3 _finalPosition = Vector3.zero;
+	[SerializeField] private float _travelTime = 1.0f;
+	[SerializeField] private AnimationCurve _accelerationCurve = null;
+	[SerializeField] private Rigidbody _objectToMove = null;
 	[SerializeField] private bool _active = false;
 
 	[SerializeField, Range(0, 1)] public float PreviewPosition;

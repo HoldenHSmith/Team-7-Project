@@ -3,7 +3,7 @@ using UnityEngine;
 public partial class PlayerCharacter : MonoBehaviour
 {
 	[Tooltip("The speed in which the character rotates")]
-	[SerializeField] private float _rotationSpeed;
+	[SerializeField] private float _rotationSpeed = 10.0f;
 
 	protected void UpdateRotation()
 	{

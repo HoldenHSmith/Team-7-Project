@@ -6,13 +6,13 @@ public partial class PlayerCharacter : MonoBehaviour
 {
 	[Space,Header("Movement Mechanics")]
 	[Tooltip("The maximum move speed that the character can move")]
-	[SerializeField] private float _maxVelocity;           //How fast the character can move
+	[SerializeField] private float _maxVelocity = 0;           //How fast the character can move
 	[Tooltip("The maximum move speed that the character can move while crouching")]
-	[SerializeField] private float _maxCrouchVelocity;           //How fast the character can move while crouching
+	[SerializeField] private float _maxCrouchVelocity = 0;           //How fast the character can move while crouching
 	[Tooltip("Time in seconds it takes the character to reach max speed")]
-	[SerializeField] private float _timeToMaxSpeed;        //Time in seconds to reach max speed
+	[SerializeField] private float _timeToMaxSpeed = 0;        //Time in seconds to reach max speed
 	[Tooltip("Time in seconds it takes the character to stop")]
-	[SerializeField] private float _timeToZero;            //Time in seconds to stop
+	[SerializeField] private float _timeToZero = 0;            //Time in seconds to stop
 
 	protected float Acceleration; //Acceleration rate of the character
 	protected float Deceleration; //Acceleration rate of the character

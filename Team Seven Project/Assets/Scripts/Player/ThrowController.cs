@@ -2,11 +2,10 @@
 
 public class ThrowController : MonoBehaviour
 {
-	[SerializeField] private float _rotationSpeed;
-	[SerializeField] private float _throwPower;
+	[SerializeField] private float _throwPower = 1.0f;
 
-	[SerializeField] private GameObject _projectile;
-	[SerializeField] private Transform _throwPoint;
+	[SerializeField] private GameObject _projectile = null;
+	[SerializeField] private Transform _throwPoint = null;
 
 	public void ThrowObject()
 	{

@@ -3,12 +3,12 @@ using UnityEngine.InputSystem;
 
 public class Projectile : MonoBehaviour
 {
-	[SerializeField] private Rigidbody _projectile;
-	[SerializeField] private GameObject _landingZoneSprite;
-	[SerializeField] private LayerMask _layer;
-	[SerializeField] private float _travelDuration;
-	[SerializeField] private Transform _startPoint;
-	[SerializeField] private LineRenderer _lineRenderer;
+	[SerializeField] private Rigidbody _projectile = null;
+	[SerializeField] private GameObject _landingZoneSprite = null;
+	[SerializeField] private LayerMask _layer = -1;
+	[SerializeField] private float _travelDuration = 0;
+	[SerializeField] private Transform _startPoint = null;
+	[SerializeField] private LineRenderer _lineRenderer = null;
 	[SerializeField] private int _lineSegments = 10;
 
 	private Vector3 _lastProjectileVelocity;

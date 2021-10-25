@@ -7,7 +7,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Space, Header("Player Inputs")]
 
 	[Tooltip("Checks if the player's Input is blocked")]
-	[SerializeField] private bool _playerInputBlocked;
+	[SerializeField] private bool _playerInputBlocked = false;
 
 	protected Vector2 MovementInput;                      //Stores movement input values by the player
 
