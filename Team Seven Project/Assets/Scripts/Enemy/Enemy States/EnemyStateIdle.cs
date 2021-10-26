@@ -14,7 +14,7 @@ public class EnemyStateIdle : EnemyState
 
 	}
 
-	public override void OnUpdate()
+	public override void OnUpdate(float deltaTime)
 	{
 
 	}

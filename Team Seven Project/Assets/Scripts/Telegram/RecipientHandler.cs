@@ -17,7 +17,7 @@ public class RecipientHandler : MonoBehaviour
 		foreach (GameObject obj in _recipients)
 		{
 			if (obj != null)
-				GizmosJ.DrawDirectionalLine(transform.position, obj.transform.position, Color.red, 1);
+				GizmosJ.DrawDirectionalLine(transform.position, obj.transform.position, Color.red);
 		}
 	}
 #endif

@@ -28,7 +28,7 @@ public class EnemyStatePatrol : EnemyState
 
 	}
 
-	public override void OnUpdate()
+	public override void OnUpdate(float deltaTime)
 	{
 		//Get Distance to Current Waypoint
 		float distance = Vector3.Distance(Enemy.transform.position, _currentWaypoint.Position);

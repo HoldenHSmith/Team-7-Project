@@ -37,12 +37,12 @@ public class StateMachine : IMessageReceiver
 	{
 		if (CurrentState != null)
 		{
-			CurrentState.OnUpdate();
+			CurrentState.OnUpdate(Time.deltaTime);
 		}
 
 		if(GlobalState != null)
 		{
-			GlobalState.OnUpdate();
+			GlobalState.OnUpdate(Time.deltaTime);
 		}
 	}
 
