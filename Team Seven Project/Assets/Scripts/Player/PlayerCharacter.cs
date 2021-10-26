@@ -16,7 +16,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		SetupInput();
 		SetupMovement();
 		SetupAnimator();
-		SetupThrow();
+		SetupPlayerThrow();
 	}
 
 	private void Update()
