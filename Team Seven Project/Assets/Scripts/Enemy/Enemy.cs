@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+
 [RequireComponent(typeof(EnemySettings))]
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(NavMeshAgent))]
@@ -30,7 +31,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		StateMachine.SetGlobalState(new EnemyGlobalState(StateMachine, this));
 		//StateMachine.
 		States.OnStart(StateMachine, this);
-		StateMachine.RequestStateChange(States.StatePatrol);
+		
 		EnemySettings = GetComponent<EnemySettings>();
 		AlertState = GetComponent<EnemyAlertState>();
 		//Test
@@ -38,6 +39,11 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		walkHash = Animator.StringToHash("Walking");
 	}
 
+	private void Start()
+	{
+		StateMachine.RequestStateChange(States.StatePatrol);
+	}
+	
 	private void Update()
 	{
 		StateMachine.MyUpdate();
@@ -64,6 +70,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	{
 		return StateMachine.ReceiveMessage(message);
 	}
+
 
 	public EnemyStates EnemyStates { get => States; }
 	public StateMachine EnemyStateMachine { get => StateMachine; }

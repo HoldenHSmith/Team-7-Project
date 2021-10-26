@@ -19,4 +19,10 @@ public class EnemySettings : MonoBehaviour
 
 	[Tooltip("Dictates how long the guard will search for the player before resuming their patrol.")]
 	public float InvestigationTime;
+
+	[Tooltip("Radius in which the guard will search for the Player.")]
+	public float InvestigationRadius = 5;
+
+	[Tooltip("Time until it randomizes another investigation location within radius.")]
+	public float InvestigationDelay = 1;
 }

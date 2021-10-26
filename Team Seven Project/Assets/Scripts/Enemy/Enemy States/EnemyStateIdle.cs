@@ -7,6 +7,8 @@ public class EnemyStateIdle : EnemyState
 	public override void OnEnter()
 	{
 		Enemy.SetWalkAnimation(false);
+		Enemy.AlertnessState.SetAlertLevel(EnemyAlertState.AlertLevel.None);
+		Enemy.NavAgent.speed = Enemy.Settings.WalkSpeed;
 	}
 
 	public override void OnExit()
