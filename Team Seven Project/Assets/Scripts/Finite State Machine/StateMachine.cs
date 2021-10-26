@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class StateMachine
 {
-	protected Dictionary<string, CharacterState> m_StateDict;
-	protected GameObject m_Owner;
+	public Dictionary<string, CharacterState> States { get => StateDictionary; }
 
-	public GameObject Owner { get => m_Owner; }
-	public Dictionary<string, CharacterState> States { get => m_StateDict; }
-
-	protected CharacterState m_CurrentState;
-	protected CharacterState m_PreviousState;
+	protected Dictionary<string, CharacterState> StateDictionary;
+	protected GameObject Owner;
+	protected CharacterState CurrentState;
+	protected CharacterState PreviousState;
 
 	public void RequestStateChange(CharacterState state)
 	{
@@ -19,29 +17,29 @@ public class StateMachine
 			return;
 
 		//Exit Current State
-		if (m_CurrentState != null)
-			m_CurrentState.OnExit();
+		if (CurrentState != null)
+			CurrentState.OnExit();
 
 		//Set Previous state to Current State
-		m_PreviousState = m_CurrentState;
+		PreviousState = CurrentState;
 
 		//Set the new Current State
-		m_CurrentState = state;
+		CurrentState = state;
 
 		//Enter the Current State
-		m_CurrentState.OnEnter();
+		CurrentState.OnEnter();
 
 	}
 
 	//Updates the Finite State Machine and processes the Current State's logic
 	public void MyUpdate()
 	{
-		if (m_CurrentState != null)
+		if (CurrentState != null)
 		{
-			m_CurrentState.OnUpdate();
+			CurrentState.OnUpdate();
 		}
 	}
 
-	public CharacterState CurrentState { get => m_CurrentState; }
+	public CharacterState StateCurrent { get => StateCurrent; }
 
 }

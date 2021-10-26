@@ -2,15 +2,14 @@
 
 public class ThrowController : MonoBehaviour
 {
-	[SerializeField] private float m_RotationSpeed;
-	[SerializeField] private float m_ThrowPower;
+	[SerializeField] private float _throwPower = 1.0f;
 
-	[SerializeField] private GameObject m_Projectile;
-	[SerializeField] private Transform m_ThrowPoint;
+	[SerializeField] private GameObject _projectile = null;
+	[SerializeField] private Transform _throwPoint = null;
 
 	public void ThrowObject()
 	{
-		GameObject spawnedProjectile = Instantiate(m_Projectile, m_ThrowPoint.position, m_ThrowPoint.rotation);
-		spawnedProjectile.GetComponent<Rigidbody>().velocity = m_ThrowPoint.transform.up * m_ThrowPower;
+		GameObject spawnedProjectile = Instantiate(_projectile, _throwPoint.position, _throwPoint.rotation);
+		spawnedProjectile.GetComponent<Rigidbody>().velocity = _throwPoint.transform.up * _throwPower;
 	}
 }
