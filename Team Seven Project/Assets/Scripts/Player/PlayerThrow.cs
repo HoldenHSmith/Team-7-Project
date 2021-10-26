@@ -9,7 +9,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Tooltip("Amount of time it takes to reach the landing zone.")]
 	[SerializeField] private float _travelDuration = 1.0f;
 	[Tooltip("The projectile that will be thrown.")]
-	[SerializeField] private GameObject _projectile = null;
+	[SerializeField] private Rigidbody _projectile = null;
 	[Tooltip("The point in which the projectile is fired from.")]
 	[SerializeField] private Transform _throwPoint = null;
 	[Tooltip("Minimum hold time before throwing is allowed.")]
@@ -24,7 +24,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	[SerializeField] private int _lineSegments = 10;
 
 	private Vector3 _lastProjectileVelocity;
-
+	private bool _validThrow = false;
 
 
 	protected void SetupPlayerThrow()
@@ -35,7 +35,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void UpdateThrow()
 	{
-		if (LeftMouseDown && LeftMouseDownTime >= _minimumMouseHoldTime)
+		if (_canThrow && LeftMouseDown && LeftMouseDownTime >= _minimumMouseHoldTime)
 		{
 			//Get ray from camera to mouse as a point;
 			Ray screenToPointRay = Camera.main.ScreenPointToRay(CurrentMouse.position.ReadValue());
@@ -52,26 +52,60 @@ public partial class PlayerCharacter : MonoBehaviour
 				_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(rayHit.point, _throwPoint.position, _travelDuration);
 
 				//Visualize the trajectory
+				EnableThrowVisuals();
 				VisualizeTrajectory(_lastProjectileVelocity);
+				_validThrow = true;
 			}
-		}
-	}
+			else
+			{
+				DisableThrowVisuals();
+				_validThrow = false;
+			}
 
-	protected void CheckThrowObject()
-	{
-		if (_canThrow && LeftMouseDownTime >= _minimumMouseHoldTime && CurrentMouse.leftButton.wasReleasedThisFrame)
+
+		}
+		else
+		{
+			DisableThrowVisuals();
+		}
+
+		if(_validThrow && CurrentMouse.leftButton.wasReleasedThisFrame)
 		{
 			ThrowObject();
 		}
+
 	}
 
 	protected void ThrowObject()
 	{
+		Animator.Play("Throw");
+	}
 
+	public void SpawnProjectile()
+	{
+		Rigidbody obj = Instantiate(_projectile, _throwPoint.position, Quaternion.identity);
+		obj.velocity = _lastProjectileVelocity;
+	}
+
+	private void DisableThrowVisuals()
+	{
+		_lineRenderer.enabled = false;
+		_landingZoneSprite.SetActive(false);
+	}
+
+	private void EnableThrowVisuals()
+	{
+		_lineRenderer.enabled = true;
+		_landingZoneSprite.SetActive(true);
 	}
 
 	private void VisualizeTrajectory(Vector3 velocity)
 	{
 
+		for (int i = 0; i < _lineSegments; i++)
+		{
+			Vector3 position = MathJ.CalculatePositionInTime(velocity, _throwPoint.position, i / (float)_lineSegments);
+			_lineRenderer.SetPosition(i, position);
+		}
 	}
 }
