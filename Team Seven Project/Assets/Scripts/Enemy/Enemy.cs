@@ -5,7 +5,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyAlertState))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IMessageReceiver
 {
 	public float DetectRange; //Move these to a radar type script
 	public float DetectAngle; //Move these to a radar type script
@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
 		Agent = GetComponent<NavMeshAgent>();
 		StateMachine = new StateMachine();
 		States = new EnemyStates();
+		StateMachine.SetGlobalState(new EnemyGlobalState(StateMachine, this));
+		//StateMachine.
 		States.OnStart(StateMachine, this);
 		StateMachine.RequestStateChange(States.StatePatrol);
 		EnemySettings = GetComponent<EnemySettings>();
@@ -45,7 +47,7 @@ public class Enemy : MonoBehaviour
 		animator.SetBool(walkHash, value);
 
 		//REMOVE THIS
-		if(value)
+		if (value)
 		{
 			AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.Investigating);
 		}
@@ -55,12 +57,17 @@ public class Enemy : MonoBehaviour
 
 	public void OnEnable()
 	{
-		EnemyManager._enemyList.Add(this);
+		EnemyManager.RegisterEnemy(this);
 	}
 
 	public void OnDisable()
 	{
-		EnemyManager._enemyList.Remove(this);
+		EnemyManager.RemoveEnemy(this);
+	}
+
+	public bool ReceiveMessage(Telegram message)
+	{
+		return StateMachine.ReceiveMessage(message);
 	}
 
 	public EnemyStates EnemyStates { get => States; }
