@@ -3,6 +3,7 @@ public class EnemyStatePlayerDetected : EnemyState
 {
 	public EnemyStatePlayerDetected(StateMachine stateMachine, Enemy enemy) : base(stateMachine, enemy)
 	{
+
 	}
 
 	public override void OnEnter()

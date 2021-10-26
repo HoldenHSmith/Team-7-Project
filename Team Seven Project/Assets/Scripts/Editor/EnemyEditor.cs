@@ -49,7 +49,7 @@ public class EnemyEditor : Editor
 				GUILayout.BeginHorizontal();
 				{
 					GUILayout.Space(12);
-					GUILayout.Label($"Current State: {m_Enemy.StateMachine.CurrentState}");
+					GUILayout.Label($"Current State: {m_Enemy.EnemyStateMachine.StateCurrent}");
 				}
 				GUILayout.EndHorizontal();
 
