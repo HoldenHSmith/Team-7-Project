@@ -6,7 +6,7 @@ public class EnemyStateIdle : EnemyState
 
 	public override void OnEnter()
 	{
-		m_Enemy.SetWalkAnimation(false);
+		Enemy.SetWalkAnimation(false);
 	}
 
 	public override void OnExit()
