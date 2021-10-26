@@ -46,8 +46,8 @@ public partial class PlayerCharacter : MonoBehaviour
 			if (Physics.Raycast(screenToPointRay, out rayHit, 100f, _layer))
 			{
 				//Move landing zone sprite to position
-				_landingZoneSprite.transform.position = rayHit.point + Vector3.up * 0.1f;
-
+				_landingZoneSprite.transform.position = rayHit.point +( rayHit.normal * 0.1f);
+				_landingZoneSprite.transform.rotation = Quaternion.FromToRotation(Vector3.forward, rayHit.normal);
 				//Calculate the projectile velocity
 				_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(rayHit.point, _throwPoint.position, _travelDuration);
 
