@@ -80,7 +80,7 @@ public partial class PlayerCharacter : MonoBehaviour
 			DisableThrowVisuals();
 		}
 
-		if (_validThrow && CurrentMouse.leftButton.wasReleasedThisFrame)
+		if (_validThrow && CurrentMouse.leftButton.wasReleasedThisFrame && _hasBeaker)
 		{
 			ThrowObject();
 			_hasBeaker = false;

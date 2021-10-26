@@ -68,4 +68,9 @@ public class EnemyStatePatrol : EnemyState
 
 		return false;
 	}
+
+	public override bool ReceiveMessage(Telegram message)
+	{
+		return false;
+	}
 }

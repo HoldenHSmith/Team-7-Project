@@ -18,4 +18,9 @@ public class EnemyStateIdle : EnemyState
 	{
 
 	}
+
+	public override bool ReceiveMessage(Telegram message)
+	{
+		return false;
+	}
 }

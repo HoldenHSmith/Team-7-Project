@@ -17,6 +17,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		SetupMovement();
 		SetupAnimator();
 		SetupPlayerThrow();
+
 	}
 
 	private void Update()

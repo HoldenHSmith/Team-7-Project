@@ -9,6 +9,4 @@ public abstract class EnemyState  : CharacterState
 		Enemy = enemy;
 	}
 
-
-	
 }
