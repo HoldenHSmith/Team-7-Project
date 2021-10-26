@@ -14,15 +14,15 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Tooltip("Time in seconds it takes the character to stop")]
 	[SerializeField] private float _timeToZero = 0;            //Time in seconds to stop
 
-	protected float Acceleration; //Acceleration rate of the character
-	protected float Deceleration; //Acceleration rate of the character
-	protected Vector3 Velocity; //Character's current velocity
+	private float _acceleration; //Acceleration rate of the character
+	private float _deceleration; //Acceleration rate of the character
+	private Vector3 _velocity; //Character's current velocity
 	
 	protected void SetupMovement()
 	{
-		Acceleration = _maxVelocity / _timeToMaxSpeed;
-		Deceleration = -_maxVelocity / _timeToZero;
-		Velocity = Vector3.zero;
+		_acceleration = _maxVelocity / _timeToMaxSpeed;
+		_deceleration = -_maxVelocity / _timeToZero;
+		_velocity = Vector3.zero;
 	}
 
 	//Updates the character's velocity based on player input
@@ -46,30 +46,30 @@ public partial class PlayerCharacter : MonoBehaviour
 		else
 			targetVelocity = direction * _maxCrouchVelocity;
 
-		Vector3 difference = targetVelocity - Velocity;
+		Vector3 difference = targetVelocity - _velocity;
 
 		if (targetVelocity.magnitude == 0)
 		{
-			Velocity -= (difference * Deceleration) * Time.deltaTime;
+			_velocity -= (difference * _deceleration) * Time.deltaTime;
 		}
 		else
 		{
-			Velocity += (difference * Acceleration) * Time.deltaTime;
+			_velocity += (difference * _acceleration) * Time.deltaTime;
 		}
 
 		//Limit the character's velocity
 		if (!CrouchPressed)
 		{
-			if (Velocity.magnitude > _maxVelocity)
+			if (_velocity.magnitude > _maxVelocity)
 			{
-				Velocity = Velocity.normalized * _maxVelocity;
+				_velocity = _velocity.normalized * _maxVelocity;
 			}
 		}
 		else
 		{
-			if(Velocity.magnitude > _maxCrouchVelocity)
+			if(_velocity.magnitude > _maxCrouchVelocity)
 			{
-				Velocity = Velocity.normalized * _maxCrouchVelocity;
+				_velocity = _velocity.normalized * _maxCrouchVelocity;
 			}
 		}
 
