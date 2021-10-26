@@ -17,6 +17,9 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected bool InteractionKeyPressed;
 	protected Mouse CurrentMouse;
 
+	protected bool InteractKeyReleasedThisFrame;
+	
+
 	protected void SetupInput()
 	{
 
@@ -42,6 +45,8 @@ public partial class PlayerCharacter : MonoBehaviour
 		Input.Player.Interaction.performed += ctx => OnInteractionKey(ctx);
 		Input.Player.Interaction.canceled += ctx => OnInteractionKey(ctx);
 
+		Input.Player.Interaction.canceled += ctx => OnInteractionReleased(ctx);
+
 		CurrentMouse = Mouse.current;
 	}
 
@@ -55,6 +60,12 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		if (CurrentMouse.leftButton.wasReleasedThisFrame)
 			LeftMouseDownTime = 0;
+	}
+
+
+	protected void ResetInputs()
+	{
+		InteractKeyReleasedThisFrame = false;
 	}
 
 	//Update movement inputs
@@ -71,6 +82,8 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	//Reads true if interaction key is pressed
 	protected void OnInteractionKey(InputAction.CallbackContext context) => InteractionKeyPressed = context.ReadValueAsButton();
+
+	protected void OnInteractionReleased(InputAction.CallbackContext context) => InteractKeyReleasedThisFrame = !context.ReadValueAsButton();
 
 	//Checks if movement input is pressed
 	public bool IsMoveInput

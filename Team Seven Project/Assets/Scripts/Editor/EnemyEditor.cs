@@ -6,11 +6,11 @@ using UnityEngine;
 [Serializable]
 public class EnemyEditor : Editor
 {
-	private Enemy m_Enemy;
+	private Enemy _enemy;
 
 	private void OnEnable()
 	{
-		m_Enemy = (Enemy)target;
+		_enemy = (Enemy)target;
 		RequiresConstantRepaint();
 	}
 
@@ -23,9 +23,22 @@ public class EnemyEditor : Editor
 	private void OnSceneGUI()
 	{
 		if (Application.isPlaying)
+		{
 			OnDrawWindow();
+			OnDrawEnemyNavData();
+		}
 
 		SceneView.RepaintAll();
+	}
+
+	private void OnDrawEnemyNavData()
+	{
+		Vector3 navMeshDestination = _enemy.NavAgent.destination;
+
+		
+		Debug.DrawLine(_enemy.transform.position, navMeshDestination,Color.blue);
+		Handles.color = Color.blue;
+		Handles.DrawWireDisc(navMeshDestination,Vector3.up, 0.25f);
 	}
 
 	private void OnDrawWindow()
@@ -49,7 +62,7 @@ public class EnemyEditor : Editor
 				GUILayout.BeginHorizontal();
 				{
 					GUILayout.Space(12);
-					GUILayout.Label($"Current State: {m_Enemy.EnemyStateMachine.StateCurrent}");
+					GUILayout.Label($"Current State: {_enemy.EnemyStateMachine.StateCurrent}");
 				}
 				GUILayout.EndHorizontal();
 

@@ -30,6 +30,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		UpdateInteractions();
 		EndInputUpdate();
 		MoveCharacter(_velocity);
+		ResetInputs();
 	}
 
 	private void FixedUpdate()
