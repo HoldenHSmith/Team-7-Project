@@ -7,7 +7,26 @@ using UnityEditor;
 
 public class EnemyManager : MonoBehaviour
 {
-	public static readonly List<Enemy> _enemyList = new List<Enemy>();
+	private static readonly List<Enemy> _enemyList = new List<Enemy>();
+
+	public static void RegisterEnemy(Enemy enemy)
+	{
+		if (_enemyList.Contains(enemy))
+			return;
+
+		_enemyList.Add(enemy);
+	}
+
+	public static void RemoveEnemy(Enemy enemy)
+	{
+		if (!_enemyList.Contains(enemy))
+			return;
+
+		_enemyList.Remove(enemy);
+	}
+
+	public int EnemyCount { get => _enemyList.Count; }
+	public List<Enemy> Enemies { get => _enemyList; }
 
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()
@@ -24,7 +43,4 @@ public class EnemyManager : MonoBehaviour
 		}
 	}
 #endif
-
-	public List<Enemy> Enemies { get => _enemyList; }
-	public int EnemyCount { get => _enemyList.Count; }
 }

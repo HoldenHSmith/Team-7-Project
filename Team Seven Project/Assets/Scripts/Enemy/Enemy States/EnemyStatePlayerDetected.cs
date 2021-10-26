@@ -21,4 +21,8 @@ public class EnemyStatePlayerDetected : EnemyState
 		throw new System.NotImplementedException();
 	}
 
+	public override bool ReceiveMessage(Telegram message)
+	{
+		return false;
+	}
 }
