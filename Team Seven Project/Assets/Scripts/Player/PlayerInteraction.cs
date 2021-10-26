@@ -26,6 +26,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	private void OnInteractionPressed()
 	{
+
 		//Get an array of interactable colliders within interaction radius
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, _interactionRange, _interactionLayer);
 		foreach(Collider hitCollider in hitColliders)
