@@ -10,12 +10,11 @@ public partial class PlayerCharacter : MonoBehaviour
 	[SerializeField] private bool _playerInputBlocked = false;
 
 	protected Vector2 MovementInput;                      //Stores movement input values by the player
-
 	protected bool ExternalInputBlocked;
 	protected bool CrouchPressed;
 	protected bool LeftMouseDown;
 	protected float LeftMouseDownTime;
-
+	protected bool InteractionKeyPressed;
 	protected Mouse CurrentMouse;
 
 	protected void SetupInput()
@@ -33,9 +32,16 @@ public partial class PlayerCharacter : MonoBehaviour
 		Input.Player.Crouch.performed += ctx => OnCrouchInput(ctx);
 		Input.Player.Crouch.canceled += ctx => OnCrouchInput(ctx);
 
+		//Subscribe to Left Mouse
 		Input.Player.AimingThrowing.started += ctx => OnLeftMouse(ctx);
 		Input.Player.AimingThrowing.performed += ctx => OnLeftMouse(ctx);
 		Input.Player.AimingThrowing.canceled += ctx => OnLeftMouse(ctx);
+
+		//Subscripe to interaction key
+		Input.Player.Interaction.started += ctx => OnInteractionKey(ctx);
+		Input.Player.Interaction.performed += ctx => OnInteractionKey(ctx);
+		Input.Player.Interaction.canceled += ctx => OnInteractionKey(ctx);
+
 		CurrentMouse = Mouse.current;
 	}
 
@@ -62,6 +68,9 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	//Reads the Left Mouse Button Input
 	protected void OnLeftMouse(InputAction.CallbackContext context) => LeftMouseDown = context.ReadValueAsButton();
+
+	//Reads true if interaction key is pressed
+	protected void OnInteractionKey(InputAction.CallbackContext context) => InteractionKeyPressed = context.ReadValueAsButton();
 
 	//Checks if movement input is pressed
 	public bool IsMoveInput
