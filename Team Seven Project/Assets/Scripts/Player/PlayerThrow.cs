@@ -46,7 +46,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void UpdateThrow()
 	{
-		if (_throwEnabled && LeftMouseDown && LeftMouseDownTime >= _minimumMouseHoldTime)
+		if (_throwEnabled && _hasBeaker &&LeftMouseDown && LeftMouseDownTime >= _minimumMouseHoldTime)
 		{
 			//Get ray from camera to mouse as a point;
 			Ray screenToPointRay = Camera.main.ScreenPointToRay(CurrentMouse.position.ReadValue());
@@ -83,6 +83,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		if (_validThrow && CurrentMouse.leftButton.wasReleasedThisFrame)
 		{
 			ThrowObject();
+			_hasBeaker = false;
 		}
 
 	}
