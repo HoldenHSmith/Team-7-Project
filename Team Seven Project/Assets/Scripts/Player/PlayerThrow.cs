@@ -5,24 +5,24 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Space, Header("Throwing Mechanics")]
 
 	[Tooltip("If the player can currently throw.")]
-	[SerializeField] private bool m_CanThrow;
+	[SerializeField] private bool _canThrow = false;
 	[Tooltip("Amount of power given to a throw.")]
-	[SerializeField] private float m_ThrowPower;
+	[SerializeField] private float _throwPower = 1.0f;
 	[Tooltip("The projectile that will be thrown.")]
-	[SerializeField] private GameObject m_Projectile;
+	[SerializeField] private GameObject _projectile = null;
 	[Tooltip("The point in which the projectile is fired from.")]
-	[SerializeField] private Transform m_ThrowPoint;
+	[SerializeField] private Transform _throwPoint = null;
 	[Tooltip("Minimum hold time before throwing is allowed.")]
-	[SerializeField] private float m_MinimumMouseHoldTime;
+	[SerializeField] private float _minimumMouseHoldTime = 0.1f;
 
 	protected void SetupThrow()
 	{
-		m_CanThrow = true;
+		_canThrow = true;
 	}
 
 	protected void UpdateThrow()
 	{
-		if(m_CurrentMouse.leftButton.wasReleasedThisFrame)
+		if(CurrentMouse.leftButton.wasReleasedThisFrame)
 		{
 			CheckThrowObject();
 		}
@@ -30,7 +30,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void CheckThrowObject()
 	{
-		if (m_CanThrow && m_LeftMouseDownTime >= m_MinimumMouseHoldTime && m_CurrentMouse.leftButton.wasReleasedThisFrame)
+		if (_canThrow && LeftMouseDownTime >= _minimumMouseHoldTime && CurrentMouse.leftButton.wasReleasedThisFrame)
 		{
 			//ThrowObject();
 		}
@@ -38,7 +38,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void ThrowObject()
 	{
-		GameObject spawnedProjectile = Instantiate(m_Projectile, m_ThrowPoint.position, m_ThrowPoint.rotation);
-		spawnedProjectile.GetComponent<Rigidbody>().velocity = m_ThrowPoint.transform.up * m_ThrowPower;
+		GameObject spawnedProjectile = Instantiate(_projectile, _throwPoint.position, _throwPoint.rotation);
+		spawnedProjectile.GetComponent<Rigidbody>().velocity = _throwPoint.transform.up * _throwPower;
 	}
 }

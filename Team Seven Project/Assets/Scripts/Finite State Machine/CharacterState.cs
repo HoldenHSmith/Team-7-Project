@@ -1,10 +1,10 @@
 public abstract class CharacterState
 {
-	protected StateMachine m_StateMachine;
+	protected StateMachine StateMachine;
 
 	public CharacterState(StateMachine stateMachine)
 	{
-		m_StateMachine = stateMachine;
+		StateMachine = stateMachine;
 	}
 
 	public abstract void OnEnter();
