@@ -29,8 +29,6 @@ public class Projectile : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast(camRay, out hit, 100f, _layer))
 		{
-			//m_LandingZoneSprite.SetActive(true);
-			//Debug.Log(Mouse.current.position.ReadValue());
 			_landingZoneSprite.transform.position = hit.point + Vector3.up * 0.1f;
 
 			_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(hit.point, _startPoint.position, _travelDuration);
