@@ -49,6 +49,14 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""26360fac-8e8c-406d-8882-f1f49f3b67bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -205,6 +213,17 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""action"": ""Aiming/Throwing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbc0483c-708d-4c40-9197-d139ebe60021"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -245,6 +264,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Test = m_Player.FindAction("Test", throwIfNotFound: true);
         m_Player_AimingThrowing = m_Player.FindAction("Aiming/Throwing", throwIfNotFound: true);
+        m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -298,6 +318,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Test;
     private readonly InputAction m_Player_AimingThrowing;
+    private readonly InputAction m_Player_Interaction;
     public struct PlayerActions
     {
         private @CharacterInput m_Wrapper;
@@ -306,6 +327,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Test => m_Wrapper.m_Player_Test;
         public InputAction @AimingThrowing => m_Wrapper.m_Player_AimingThrowing;
+        public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,6 +349,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @AimingThrowing.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
                 @AimingThrowing.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
                 @AimingThrowing.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
+                @Interaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -343,6 +368,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @AimingThrowing.started += instance.OnAimingThrowing;
                 @AimingThrowing.performed += instance.OnAimingThrowing;
                 @AimingThrowing.canceled += instance.OnAimingThrowing;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
             }
         }
     }
@@ -371,5 +399,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnTest(InputAction.CallbackContext context);
         void OnAimingThrowing(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
     }
 }
