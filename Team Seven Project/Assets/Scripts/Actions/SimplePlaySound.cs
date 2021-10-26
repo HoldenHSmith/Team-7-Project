@@ -5,41 +5,41 @@ using UnityEngine.InputSystem;
 
 public class SimplePlaySound : MonoBehaviour
 {
-	private CharacterInput m_Input;
-	private AudioSource m_AudioSource;
 	public List<AudioClip> SoundClips;
+	private CharacterInput _input;
+	private AudioSource _audioSource;
 
-	private int index = 0;
+	private int _index = 0;
 
 	private void Awake()
 	{
 		if (SoundClips == null)
 			SoundClips = new List<AudioClip>();
 
-		m_AudioSource = GetComponent<AudioSource>();
-		m_Input = new CharacterInput();
+		_audioSource = GetComponent<AudioSource>();
+		_input = new CharacterInput();
 
-		m_Input.Player.Test.started += ctx => OnInputButton(ctx);
+		_input.Player.Test.started += ctx => OnInputButton(ctx);
 	}
 
 	void OnInputButton(InputAction.CallbackContext context)
 	{
-		if (index > SoundClips.Count - 1)
-			index = 0;
-		if (m_AudioSource.isPlaying)
-			m_AudioSource.Stop();
+		if (_index > SoundClips.Count - 1)
+			_index = 0;
+		if (_audioSource.isPlaying)
+			_audioSource.Stop();
 
-		m_AudioSource.PlayOneShot(SoundClips[index]);
-		index++;
+		_audioSource.PlayOneShot(SoundClips[_index]);
+		_index++;
 	}
 
 	private void OnEnable()
 	{
-		m_Input.Enable();
+		_input.Enable();
 	}
 
 	private void nDisable()
 	{
-		m_Input.Disable();
+		_input.Disable();
 	}
 }

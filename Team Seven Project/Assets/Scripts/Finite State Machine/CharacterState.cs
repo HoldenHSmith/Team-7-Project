@@ -1,10 +1,10 @@
-public abstract class CharacterState
+public abstract class CharacterState : IMessageReceiver
 {
-	protected StateMachine m_StateMachine;
+	protected StateMachine StateMachine;
 
 	public CharacterState(StateMachine stateMachine)
 	{
-		m_StateMachine = stateMachine;
+		StateMachine = stateMachine;
 	}
 
 	public abstract void OnEnter();
@@ -13,5 +13,5 @@ public abstract class CharacterState
 
 	public abstract void OnExit();
 
-
+	public abstract bool ReceiveMessage(Telegram message);
 }

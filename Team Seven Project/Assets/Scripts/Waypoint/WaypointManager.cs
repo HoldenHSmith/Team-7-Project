@@ -1,23 +1,17 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum WPPathType
-{
-	PingPong,
-	Loop,
-	Once
-}
+using static EnumsJ;
 
 [Serializable]
 public class WaypointManager : MonoBehaviour
 {
-	public WPPathType Type;
+	public LoopType Type;
 	public bool Finished = false;
 	public List<Waypoint> Waypoints;
 
-	private bool m_Forward = true;
-	private int m_CurrentIndex = 0;
+	private bool _forward = true;
+	private int _currentIndex = 0;
 	
 	private void OnEnable()
 	{
@@ -84,11 +78,11 @@ public class WaypointManager : MonoBehaviour
 		{
 			switch (Type)
 			{
-				case WPPathType.PingPong:
+				case LoopType.PingPong:
 					return GetNextWaypointPingPong(out waypoint);
-				case WPPathType.Loop:
+				case LoopType.Repeat:
 					return GetWaypointLoop(out waypoint);
-				case WPPathType.Once:
+				case LoopType.Once:
 					return GetWaypointOnce(out waypoint);
 
 				default:
@@ -100,35 +94,35 @@ public class WaypointManager : MonoBehaviour
 
 	private bool GetNextWaypointPingPong(out Waypoint waypoint)
 	{
-		if (m_Forward)
+		if (_forward)
 		{
-			if (m_CurrentIndex < Waypoints.Count)
+			if (_currentIndex < Waypoints.Count)
 			{
-				waypoint = Waypoints[m_CurrentIndex];
-				m_CurrentIndex++;
+				waypoint = Waypoints[_currentIndex];
+				_currentIndex++;
 				return true;
 			}
 			else
 			{
-				m_Forward = false;
-				m_CurrentIndex--;
-				waypoint = Waypoints[m_CurrentIndex];
+				_forward = false;
+				_currentIndex--;
+				waypoint = Waypoints[_currentIndex];
 				return true;
 			}
 		}
 		else
 		{
-			if (m_CurrentIndex >= 0)
+			if (_currentIndex >= 0)
 			{
-				waypoint = Waypoints[m_CurrentIndex];
-				m_CurrentIndex--;
+				waypoint = Waypoints[_currentIndex];
+				_currentIndex--;
 				return true;
 			}
 			else
 			{
-				m_Forward = true;
-				m_CurrentIndex++;
-				waypoint = Waypoints[m_CurrentIndex];
+				_forward = true;
+				_currentIndex++;
+				waypoint = Waypoints[_currentIndex];
 				return true;
 			}
 		}
@@ -136,27 +130,27 @@ public class WaypointManager : MonoBehaviour
 
 	private bool GetWaypointLoop(out Waypoint waypoint)
 	{
-		if (m_CurrentIndex < Waypoints.Count)
+		if (_currentIndex < Waypoints.Count)
 		{
-			waypoint = Waypoints[m_CurrentIndex];
-			m_CurrentIndex++;
+			waypoint = Waypoints[_currentIndex];
+			_currentIndex++;
 			return true;
 		}
 		else
 		{
-			m_CurrentIndex = 0;
-			waypoint = Waypoints[m_CurrentIndex];
-			m_CurrentIndex++;
+			_currentIndex = 0;
+			waypoint = Waypoints[_currentIndex];
+			_currentIndex++;
 			return true;
 		}
 	}
 
 	private bool GetWaypointOnce(out Waypoint waypoint)
 	{
-		if (m_CurrentIndex < Waypoints.Count)
+		if (_currentIndex < Waypoints.Count)
 		{
-			waypoint = Waypoints[m_CurrentIndex];
-			m_CurrentIndex++;
+			waypoint = Waypoints[_currentIndex];
+			_currentIndex++;
 			return true;
 		}
 		else

@@ -1,42 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using static EnumsJ;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
 public class SimpleMove : MonoBehaviour
 {
-	public enum LoopType
-	{
-		Once,
-		PingPong,
-		Repeat
-	}
-	[SerializeField] private LoopType m_LoopType;
-	[SerializeField] private Vector3 m_StartPosition;
-	[SerializeField] private Vector3 m_FinalPosition;
-	[SerializeField] private float m_TravelTime;
-	[SerializeField] private AnimationCurve m_AccelerationCurve;
-	[SerializeField] private Rigidbody m_ObjectToMove;
-	[SerializeField] private bool m_Active = false;
+	
+	[SerializeField] private LoopType _loopType = LoopType.Repeat;
+	[SerializeField] private Vector3 _startPosition = Vector3.zero;
+	[SerializeField] private Vector3 _finalPosition = Vector3.zero;
+	[SerializeField] private float _travelTime = 1.0f;
+	[SerializeField] private AnimationCurve _accelerationCurve = null;
+	[SerializeField] private Rigidbody _objectToMove = null;
+	[SerializeField] private bool _active = false;
 
-	[SerializeField, Range(0, 1)] public float previewPosition;
+	[SerializeField, Range(0, 1)] public float PreviewPosition;
 
-	private float m_Position = 0f;
-	private float m_Time = 0f;
-	private float m_Direction = 1f;
+	private float _position = 0f;
+	private float _time = 0f;
+	private float _direction = 1f;
 
 	public void Activate()
 	{
-		m_Active = true;
+		_active = true;
 	}
 
 	private void Update()
 	{
-		if (m_Active)
+		if (_active)
 		{
-			m_Time = m_Time + (m_Direction * Time.deltaTime / m_TravelTime);
-			switch (m_LoopType)
+			_time = _time + (_direction * Time.deltaTime / _travelTime);
+			switch (_loopType)
 			{
 				case LoopType.Once:
 					LoopOnce();
@@ -50,40 +46,40 @@ public class SimpleMove : MonoBehaviour
 				default:
 					break;
 			}
-			PerformTransform(m_Position);
+			PerformTransform(_position);
 		}
 	}
 
 	private void LoopOnce()
 	{
-		m_Position = Mathf.Clamp01(m_Time);
-		if (m_Position >= 1)
+		_position = Mathf.Clamp01(_time);
+		if (_position >= 1)
 		{
-			m_Active = false;
-			m_Direction *= -1;
+			_active = false;
+			_direction *= -1;
 		}
 	}
 
 	private void LoopPingPong()
 	{
-		m_Position = Mathf.PingPong(m_Time, 1f);
+		_position = Mathf.PingPong(_time, 1f);
 	}
 
 	private void LoopRepeat()
 	{
-		m_Position = Mathf.Repeat(m_Time, 1f);
+		_position = Mathf.Repeat(_time, 1f);
 	}
 
 	public void PerformTransform(float position)
 	{
 
-		float curvePosition = m_AccelerationCurve.Evaluate(position);
-		Vector3 nextPosition = transform.TransformPoint(Vector3.Lerp(m_StartPosition, m_FinalPosition, curvePosition));
+		float curvePosition = _accelerationCurve.Evaluate(position);
+		Vector3 nextPosition = transform.TransformPoint(Vector3.Lerp(_startPosition, _finalPosition, curvePosition));
 
 		if (Application.isEditor && !Application.isPlaying)
-			m_ObjectToMove.transform.position = nextPosition;
+			_objectToMove.transform.position = nextPosition;
 
-		m_ObjectToMove.MovePosition(nextPosition);
+		_objectToMove.MovePosition(nextPosition);
 
 	}
 
@@ -99,7 +95,7 @@ public class SimpleMove : MonoBehaviour
 				if (cc.changed)
 				{
 					var pt = target as SimpleMove;
-					pt.PerformTransform(pt.previewPosition);
+					pt.PerformTransform(pt.PreviewPosition);
 					Debug.Log("Performing Transform");
 				}
 			}

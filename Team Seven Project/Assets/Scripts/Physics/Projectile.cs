@@ -3,61 +3,73 @@ using UnityEngine.InputSystem;
 
 public class Projectile : MonoBehaviour
 {
-	[SerializeField] private Rigidbody m_Projectile;
-	[SerializeField] private GameObject m_LandingZoneSprite;
-	[SerializeField] private LayerMask m_Layer;
-	[SerializeField] private float m_TravelDuration;
-	[SerializeField] private Transform m_StartPoint;
-	[SerializeField] private LineRenderer m_LineRenderer;
-	[SerializeField] private int m_LineSegments = 10;
+	[SerializeField] private Rigidbody _projectile = null;
+	[SerializeField] private GameObject _landingZoneSprite = null;
+	[SerializeField] private LayerMask _layer = -1;
+	[SerializeField] private float _travelDuration = 0;
+	[SerializeField] private Transform _startPoint = null;
+	[SerializeField] private LineRenderer _lineRenderer = null;
+	[SerializeField] private int _lineSegments = 10;
 
-	private Vector3 m_LastProjectileVelocity;
-	private Camera m_Camera;
+	private Vector3 _lastProjectileVelocity;
+	private Camera _camera;
+
 	//TEMP
-	public Animator animator;
+	public Animator Animator;
+
 	private void Awake()
 	{
-		m_Camera = Camera.main;
-		m_LineRenderer.positionCount = m_LineSegments;
+		_camera = Camera.main;
+		_lineRenderer.positionCount = _lineSegments;
 	}
 
 	private void LaunchProjectile()
 	{
-		Ray camRay = m_Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+		Ray camRay = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 		RaycastHit hit;
-		if (Physics.Raycast(camRay, out hit, 100f, m_Layer))
+		if (Physics.Raycast(camRay, out hit, 100f, _layer))
 		{
-			m_LandingZoneSprite.SetActive(true);
-			//Debug.Log(Mouse.current.position.ReadValue());
-			m_LandingZoneSprite.transform.position = hit.point + Vector3.up * 0.1f;
+			_landingZoneSprite.transform.position = hit.point + Vector3.up * 0.1f;
 
-			m_LastProjectileVelocity = MathJ.CalculateProjectileVelocity(hit.point, m_StartPoint.position, m_TravelDuration);
-			Visualize(m_LastProjectileVelocity);
+			_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(hit.point, _startPoint.position, _travelDuration);
+			Visualize(_lastProjectileVelocity);
 			if (Mouse.current.leftButton.wasReleasedThisFrame)
 			{
-				animator.Play("Throw");
+				Animator.Play("Throw");
 			}
-			
+
 		}
 	}
+
 	public void SpawnProjectile()
 	{
-		Rigidbody obj = Instantiate(m_Projectile, m_StartPoint.position, Quaternion.identity);
-		obj.velocity = m_LastProjectileVelocity;
+		Rigidbody obj = Instantiate(_projectile, _startPoint.position, Quaternion.identity);
+		obj.velocity = _lastProjectileVelocity;
 	}
+
 	private void Visualize(Vector3 velocity)
 	{
-		for(int i = 0; i < m_LineSegments;i++)
+
+		for (int i = 0; i < _lineSegments; i++)
 		{
-			Vector3 pos = MathJ.CalculatePositionInTime(velocity, m_StartPoint.position, i / (float)m_LineSegments);
-			m_LineRenderer.SetPosition(i, pos);
+			Vector3 pos = MathJ.CalculatePositionInTime(velocity, _startPoint.position, i / (float)_lineSegments);
+			_lineRenderer.SetPosition(i, pos);
 		}
 	}
 
 	private void Update()
 	{
 		LaunchProjectile();
+		if (Mouse.current.leftButton.wasPressedThisFrame)
+		{
+			_lineRenderer.enabled = true;
+			_landingZoneSprite.SetActive(true);
+		}
+		else if (Mouse.current.leftButton.wasReleasedThisFrame)
+		{
+			_lineRenderer.enabled = false;
+			_landingZoneSprite.SetActive(false);
+		}
 	}
-
 
 }

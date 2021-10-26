@@ -2,13 +2,11 @@
 
 public abstract class EnemyState  : CharacterState
 {
-	protected Enemy m_Enemy;
+	protected Enemy Enemy;
 
 	public EnemyState(StateMachine stateMachine, Enemy enemy) : base(stateMachine)
 	{
-		m_Enemy = enemy;
+		Enemy = enemy;
 	}
 
-
-	
 }

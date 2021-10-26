@@ -5,16 +5,16 @@ using UnityEngine;
 public class FollowLookAt : MonoBehaviour
 {
 	[Tooltip("Target to follow")]
-	public GameObject target;
+	public GameObject Target;
 
 	[Tooltip("How far offset the camera is from the Target")]
-	public Vector3 offSet;
+	public Vector3 Offset;
 
 	private void Update()
 	{
-		if(target != null)
+		if(Target != null)
 		{
-			transform.position = target.transform.position + offSet;
+			transform.position = Target.transform.position + Offset;
 		}
 	}
 }

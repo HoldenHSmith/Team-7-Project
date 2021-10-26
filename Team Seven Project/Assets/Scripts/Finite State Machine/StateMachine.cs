@@ -2,46 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine
+public class StateMachine : IMessageReceiver
 {
-	protected Dictionary<string, CharacterState> m_StateDict;
-	protected GameObject m_Owner;
+	public Dictionary<string, CharacterState> States { get => StateDictionary; }
 
-	public GameObject Owner { get => m_Owner; }
-	public Dictionary<string, CharacterState> States { get => m_StateDict; }
-
-	protected CharacterState m_CurrentState;
-	protected CharacterState m_PreviousState;
+	protected Dictionary<string, CharacterState> StateDictionary;
+	protected GameObject Owner;
+	protected CharacterState CurrentState;
+	protected CharacterState PreviousState;
+	protected CharacterState GlobalState;
 
 	public void RequestStateChange(CharacterState state)
 	{
 		if (state == null)
 			return;
 
-		//Exit Current State
-		if (m_CurrentState != null)
-			m_CurrentState.OnExit();
+		// Exit Current State.
+		if (CurrentState != null)
+			CurrentState.OnExit();
 
-		//Set Previous state to Current State
-		m_PreviousState = m_CurrentState;
+		// Set Previous state to Current State.
+		PreviousState = CurrentState;
 
-		//Set the new Current State
-		m_CurrentState = state;
+		// Set the new Current State.
+		CurrentState = state;
 
-		//Enter the Current State
-		m_CurrentState.OnEnter();
+		// Enter the Current State.
+		CurrentState.OnEnter();
 
 	}
 
-	//Updates the Finite State Machine and processes the Current State's logic
+	// Updates the Finite State Machine and processes the Current State's logic.
 	public void MyUpdate()
 	{
-		if (m_CurrentState != null)
+		if (CurrentState != null)
 		{
-			m_CurrentState.OnUpdate();
+			CurrentState.OnUpdate();
+		}
+
+		if(GlobalState != null)
+		{
+			GlobalState.OnUpdate();
 		}
 	}
 
-	public CharacterState CurrentState { get => m_CurrentState; }
+	public bool ReceiveMessage(Telegram message)
+	{
+		// Check that the current state is valid and can handle the message.
+		if (CurrentState != null && CurrentState.ReceiveMessage(message))
+		{
+			return true;
+		}
+		if(GlobalState != null && GlobalState.ReceiveMessage(message))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public void SetGlobalState(CharacterState state)
+	{
+		GlobalState = state;
+	}
+
+	public CharacterState StateCurrent { get => StateCurrent; }
 
 }
