@@ -5,7 +5,7 @@ using UnityEngine;
 public partial class PlayerCharacter : MonoBehaviour
 {
 	public bool IsRespawning { get { return Respawning; } }
-	
+
 	protected CharacterInput Input;                       //Reference to Input System
 	protected bool Respawning;                            //Whether the character is respawning
 	protected CharacterController CharacterController;    //Characters controller
@@ -21,14 +21,14 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	private void Update()
 	{
-		
 		UpdateInputs();
 		UpdateRotation();
 		UpdateAnimations();
 		UpdateVelocity();
 		UpdateThrow();
+		UpdateInteractions();
 		EndInputUpdate();
-		MoveCharacter(Velocity);
+		MoveCharacter(_velocity);
 	}
 
 	private void FixedUpdate()
