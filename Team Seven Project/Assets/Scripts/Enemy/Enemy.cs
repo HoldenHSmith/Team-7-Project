@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	protected EnemyAlertState AlertState;
 
 	private Vector3 _lastKnownPlayerPosition = Vector3.zero;
+	private GameManager _gameManager;
 
 	//Move to separate class
 	protected Animator animator;
@@ -78,5 +79,6 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	public EnemyAlertState AlertnessState { get => AlertState; }
 	public NavMeshAgent NavAgent { get => Agent; }
 	public Vector3 LastKnownPlayerPos { get => _lastKnownPlayerPosition; set => _lastKnownPlayerPosition = value; }
+	public GameManager GameManager { get => _gameManager; set => _gameManager = value; }
 }
 

@@ -50,8 +50,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkSpeed: 1
-  WalkInspectSpeed: 0
+  WalkInspectSpeed: 1
+  WalkCameraAlertSpeed: 1.5
   DistanceToWaypointSatisfaction: 0.1
+  DistanceToLastKnownPlayerPosition: 0.5
+  InvestigationTime: 15
+  InvestigationRadius: 5
+  InvestigationDelay: 1
+  ViewConeAngle: 90
 --- !u!114 &5853570717598125805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,18 +70,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3acfd8692da23478de4f85d70fc1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 2
   Finished: 0
   Waypoints:
-  - Position: {x: -10.983258, y: 0.068, z: 5.8156567}
+  - Position: {x: -5.9760013, y: 0, z: 7.4187493}
     HasWaitTime: 0
     WaitTime: 3
-  - Position: {x: -10.981482, y: 0.068, z: 9.912504}
+  - Position: {x: -11.28398, y: 0, z: 10.994704}
     HasWaitTime: 0
-    WaitTime: 3
-  - Position: {x: -15.0579, y: 0.068, z: 9.970914}
+    WaitTime: 0
+  - Position: {x: -13.014523, y: 0, z: 4.617485}
     HasWaitTime: 0
-    WaitTime: 3
+    WaitTime: 0
 --- !u!114 &5853570717598125802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +115,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.53
-  m_BaseOffset: -0.11
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &5853570717598125793
