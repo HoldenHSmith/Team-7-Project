@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+
 [RequireComponent(typeof(EnemySettings))]
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(NavMeshAgent))]
@@ -16,10 +17,12 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	protected EnemySettings EnemySettings;
 	protected EnemyAlertState AlertState;
 
+	private Vector3 _lastKnownPlayerPosition = Vector3.zero;
+
 	//Move to separate class
 	protected Animator animator;
 	private int walkHash;
-
+	
 	private void Awake()
 	{
 		Agent = GetComponent<NavMeshAgent>();
@@ -28,7 +31,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		StateMachine.SetGlobalState(new EnemyGlobalState(StateMachine, this));
 		//StateMachine.
 		States.OnStart(StateMachine, this);
-		StateMachine.RequestStateChange(States.StatePatrol);
+		
 		EnemySettings = GetComponent<EnemySettings>();
 		AlertState = GetComponent<EnemyAlertState>();
 		//Test
@@ -36,6 +39,11 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		walkHash = Animator.StringToHash("Walking");
 	}
 
+	private void Start()
+	{
+		StateMachine.RequestStateChange(States.StatePatrol);
+	}
+	
 	private void Update()
 	{
 		StateMachine.MyUpdate();
@@ -46,13 +54,6 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	{
 		animator.SetBool(walkHash, value);
 
-		//REMOVE THIS
-		if (value)
-		{
-			AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.Investigating);
-		}
-		else
-			AlertState.SetAlertLevel(EnemyAlertState.AlertLevel.None);
 	}
 
 	public void OnEnable()
@@ -70,8 +71,12 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		return StateMachine.ReceiveMessage(message);
 	}
 
+
 	public EnemyStates EnemyStates { get => States; }
 	public StateMachine EnemyStateMachine { get => StateMachine; }
 	public EnemySettings Settings { get => EnemySettings; }
+	public EnemyAlertState AlertnessState { get => AlertState; }
+	public NavMeshAgent NavAgent { get => Agent; }
+	public Vector3 LastKnownPlayerPos { get => _lastKnownPlayerPosition; set => _lastKnownPlayerPosition = value; }
 }
 

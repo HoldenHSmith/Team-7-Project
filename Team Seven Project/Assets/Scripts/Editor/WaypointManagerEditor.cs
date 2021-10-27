@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -29,12 +28,15 @@ public class WaypointManagerEditor : Editor
 
 	private void OnSceneGUI()
 	{
+
+		DrawWaypoints();
+
 		if (!Application.isPlaying)
 		{
-			DrawWaypoints();
 			OnDrawWindow();
 		}
 	}
+
 
 	private void DrawWaypoints()
 	{
@@ -64,6 +66,8 @@ public class WaypointManagerEditor : Editor
 
 				if (CheckUpdateWaypoints(i))
 					m_SelectedIndex = i;
+
+
 			}
 		}
 	}
@@ -160,14 +164,14 @@ public class WaypointManagerEditor : Editor
 				GUILayout.EndHorizontal();
 
 				GUILayout.Space(12);
-				if(m_WaypointManager.Waypoints != null && m_WaypointManager.Waypoints.Count > 0 && m_SelectedIndex < m_WaypointManager.Waypoints.Count)
+				if (m_WaypointManager.Waypoints != null && m_WaypointManager.Waypoints.Count > 0 && m_SelectedIndex < m_WaypointManager.Waypoints.Count)
 				{
 					GUILayout.BeginVertical();
 					{
 						GUILayout.BeginHorizontal();
 						{
 							GUILayout.FlexibleSpace();
-							GUILayout.Label($"WP Selected: {m_SelectedIndex+1}");
+							GUILayout.Label($"WP Selected: {m_SelectedIndex + 1}");
 							GUILayout.FlexibleSpace();
 						}
 						GUILayout.EndHorizontal();
@@ -176,7 +180,7 @@ public class WaypointManagerEditor : Editor
 						{
 							GUILayout.FlexibleSpace();
 							GUILayout.Label("Wait Time:");
-							m_WaypointManager.Waypoints[m_SelectedIndex].WaitTime = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].WaitTime,GUILayout.Width(45));
+							m_WaypointManager.Waypoints[m_SelectedIndex].WaitTime = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].WaitTime, GUILayout.Width(45));
 							GUILayout.FlexibleSpace();
 						}
 						GUILayout.EndHorizontal();
@@ -185,7 +189,7 @@ public class WaypointManagerEditor : Editor
 						{
 							GUILayout.FlexibleSpace();
 							GUILayout.Label("X:");
-							m_WaypointManager.Waypoints[m_SelectedIndex].Position.x = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.x,GUILayout.Width(35));
+							m_WaypointManager.Waypoints[m_SelectedIndex].Position.x = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.x, GUILayout.Width(35));
 							GUILayout.Label("Y:");
 							m_WaypointManager.Waypoints[m_SelectedIndex].Position.y = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.y, GUILayout.Width(35));
 							GUILayout.Label("Z:");
@@ -227,7 +231,7 @@ public class WaypointManagerEditor : Editor
 		if (m_WaypointManager.Waypoints.Count == 0)
 			m_WaypointManager.AddNewWaypoint();
 		else
-			m_WaypointManager.InsertWaypoint(m_SelectedIndex+1, new Waypoint(m_WaypointManager.Waypoints[m_SelectedIndex].Position + Vector3.left));
+			m_WaypointManager.InsertWaypoint(m_SelectedIndex + 1, new Waypoint(m_WaypointManager.Waypoints[m_SelectedIndex].Position + Vector3.left));
 
 		UpdateWaypoints();
 		m_SelectedIndex++;

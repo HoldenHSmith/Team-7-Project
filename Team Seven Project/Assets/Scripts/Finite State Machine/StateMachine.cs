@@ -37,12 +37,12 @@ public class StateMachine : IMessageReceiver
 	{
 		if (CurrentState != null)
 		{
-			CurrentState.OnUpdate();
+			CurrentState.OnUpdate(Time.deltaTime);
 		}
 
 		if(GlobalState != null)
 		{
-			GlobalState.OnUpdate();
+			GlobalState.OnUpdate(Time.deltaTime);
 		}
 	}
 
@@ -53,6 +53,7 @@ public class StateMachine : IMessageReceiver
 		{
 			return true;
 		}
+
 		if(GlobalState != null && GlobalState.ReceiveMessage(message))
 		{
 			return true;
@@ -65,6 +66,6 @@ public class StateMachine : IMessageReceiver
 		GlobalState = state;
 	}
 
-	public CharacterState StateCurrent { get => StateCurrent; }
+	public CharacterState StateCurrent { get => CurrentState; }
 
 }

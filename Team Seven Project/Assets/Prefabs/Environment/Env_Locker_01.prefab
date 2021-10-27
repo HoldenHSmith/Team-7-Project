@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 3917399307534860546}
   - component: {fileID: 5497636759485431302}
   - component: {fileID: 1097243580948217362}
-  m_Layer: 0
+  - component: {fileID: 5106250631763913020}
+  m_Layer: 13
   m_Name: Env_Locker_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,3 +113,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5106250631763913020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253611570074234545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45870748, y: 1.9, z: 0.678204}
+  m_Center: {x: 0.21454005, y: 0.95, z: 0.339102}
