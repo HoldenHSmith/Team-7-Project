@@ -5,6 +5,7 @@ public class EnemyStates
 	public EnemyStateInvestigate StateInvestigate;
 	public EnemyStatePatrol StatePatrol;
 	public EnemyStatePlayerDetected StatePlayerDetected;
+	public EnemyStateCameraDetectedPlayer StateCameraDetectedPlayer;
 
 	public void OnStart(StateMachine stateMachine,Enemy enemy)
 	{
@@ -12,6 +13,7 @@ public class EnemyStates
 		StateInvestigate = new EnemyStateInvestigate(stateMachine, enemy);
 		StatePatrol = new EnemyStatePatrol(stateMachine, enemy,enemy.GetComponent<WaypointManager>());
 		StatePlayerDetected = new EnemyStatePlayerDetected(stateMachine, enemy);
+		StateCameraDetectedPlayer = new EnemyStateCameraDetectedPlayer(stateMachine, enemy);
 	}
 
 }

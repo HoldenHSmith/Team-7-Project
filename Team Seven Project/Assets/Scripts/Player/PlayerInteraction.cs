@@ -17,7 +17,9 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void UpdateInteractions()
 	{
-		if (InteractionKeyPressed && _interactionTimer <= 0)
+		_interactionTimer -= Time.deltaTime;
+
+		if (InteractKeyReleasedThisFrame && _interactionTimer <= 0)
 		{
 			_interactionTimer = _interactionCooldown;
 			OnInteractionPressed();

@@ -16,7 +16,7 @@ public class EnemyStatePlayerDetected : EnemyState
 		throw new System.NotImplementedException();
 	}
 
-	public override void OnUpdate()
+	public override void OnUpdate(float deltaTime)
 	{
 		throw new System.NotImplementedException();
 	}
