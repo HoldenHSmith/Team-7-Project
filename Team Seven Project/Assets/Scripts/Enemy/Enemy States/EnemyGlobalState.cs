@@ -11,17 +11,17 @@ public class EnemyGlobalState : EnemyState
 
 	public override void OnEnter()
 	{
-		
+
 	}
 
 	public override void OnExit()
 	{
-		
+
 	}
 
-	public override void OnUpdate()
+	public override void OnUpdate(float deltaTime)
 	{
-		
+
 	}
 
 	public override bool ReceiveMessage(Telegram message)
@@ -30,9 +30,10 @@ public class EnemyGlobalState : EnemyState
 		{
 			case MessageType.Msg_PlayerSpotted:
 				//Set state to go to position
-				Debug.Log("Player Was Spotted! (Called by Enemy Global State");
+				Enemy.LastKnownPlayerPos = (Vector3)message.ExtraInfo;
+				StateMachine.RequestStateChange(Enemy.EnemyStates.StateCameraDetectedPlayer);
 				return true;
-	
+
 			case MessageType.Msg_Reset:
 				StateMachine.RequestStateChange(Enemy.EnemyStates.StateIdle);
 				return true;

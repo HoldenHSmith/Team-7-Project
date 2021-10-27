@@ -9,7 +9,7 @@ public abstract class CharacterState : IMessageReceiver
 
 	public abstract void OnEnter();
 
-	public abstract void OnUpdate();
+	public abstract void OnUpdate(float deltaTime);
 
 	public abstract void OnExit();
 

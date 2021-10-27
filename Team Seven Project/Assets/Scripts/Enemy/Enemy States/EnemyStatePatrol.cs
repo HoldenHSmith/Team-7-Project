@@ -12,6 +12,7 @@ public class EnemyStatePatrol : EnemyState
 	{
 		_waypointManager = Enemy.GetComponent<WaypointManager>();
 		_navMeshAgent = Enemy.GetComponent<NavMeshAgent>();
+
 	}
 
 	public override void OnEnter()
@@ -21,6 +22,12 @@ public class EnemyStatePatrol : EnemyState
 			StateMachine.RequestStateChange(Enemy.EnemyStates.StateIdle);
 			return;
 		}
+
+		Enemy.AlertnessState.SetAlertLevel(EnemyAlertState.AlertLevel.None);
+		Enemy.NavAgent.speed = Enemy.Settings.WalkSpeed;
+
+		_navMeshAgent.SetDestination(_currentWaypoint.Position);
+		_navMeshAgent.isStopped = false;
 	}
 
 	public override void OnExit()
@@ -28,7 +35,7 @@ public class EnemyStatePatrol : EnemyState
 
 	}
 
-	public override void OnUpdate()
+	public override void OnUpdate(float deltaTime)
 	{
 		//Get Distance to Current Waypoint
 		float distance = Vector3.Distance(Enemy.transform.position, _currentWaypoint.Position);
