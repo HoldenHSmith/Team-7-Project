@@ -2,7 +2,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(RecipientHandler))]
-[RequireComponent(typeof(Light))]
 public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 {
 	[SerializeField] private float _viewConeAngle = 25;
@@ -12,6 +11,7 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 	[SerializeField] private bool _followPlayer = true;
 	[SerializeField] private float _maxFollowDistance = 5.0f;
 	[SerializeField] private float _messageDelay = 0.25f;
+	[SerializeField] private float _lightSoftness = 0.0f;
 
 	private bool _playerSeen = false;
 	private SimpleRotate _simpleRotate;
@@ -116,9 +116,10 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 		if (_spotLight.type != LightType.Spot)
 			_spotLight.type = LightType.Spot;
 
-		_spotLight.innerSpotAngle = _viewConeAngle;
+		_spotLight.innerSpotAngle = _viewConeAngle - _lightSoftness;
 		_spotLight.spotAngle = _viewConeAngle;
 		_spotLight.range = _distance;
+
 	}
 
 	public void SendMessage()
