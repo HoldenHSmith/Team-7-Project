@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour, IMessageSender
@@ -20,6 +21,16 @@ public class GameManager : MonoBehaviour, IMessageSender
 		_messageDispatcher = MessageDispatcher.Instance;
 	}
 
+	private void Start()
+	{
+		List<Enemy> enemies = _enemyManager.Enemies;
+
+		for(int i =0; i< enemies.Count;i++)
+		{
+			enemies[i].GameManager = this;
+		}
+	}
+
 	private void Update()
 	{
 		if(Keyboard.current.rightBracketKey.wasPressedThisFrame)
@@ -27,4 +38,6 @@ public class GameManager : MonoBehaviour, IMessageSender
 			SendMessage();
 		}
 	}
+
+	public PlayerCharacter Player { get => _playerCharacter; }
 }
