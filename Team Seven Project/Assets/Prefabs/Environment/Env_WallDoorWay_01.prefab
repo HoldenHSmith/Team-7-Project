@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 917413656922666170}
   - component: {fileID: 132851432021706676}
   - component: {fileID: 5087909867263445558}
+  - component: {fileID: 4074608637000199015}
+  - component: {fileID: 7443426290418729910}
   m_Layer: 13
   m_Name: Env_WallDoorWay_01
   m_TagString: Untagged
@@ -92,7 +94,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 3451474555548596306, guid: ce391a55f81348c4a928f40af25bc6f3, type: 3}
-  - {fileID: -978160288850237216, guid: ce391a55f81348c4a928f40af25bc6f3, type: 3}
+  - {fileID: 2100000, guid: 1082bd43818b19544a68cddbefa966ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,5 +127,31 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.722412, y: 2.5984924, z: 0.6023465}
-  m_Center: {x: 1.861206, y: 1.2992462, z: 0.053567737}
+  m_Size: {x: 0.8325362, y: 2.5984924, z: 0.6023465}
+  m_Center: {x: 0.4162681, y: 1.2992462, z: 0.053567737}
+--- !u!65 &4074608637000199015
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351814149414279577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.802299, y: 2.0658813, z: 0.6023465}
+  m_Center: {x: 2.6009157, y: 1.0329406, z: 0.053567737}
+--- !u!65 &7443426290418729910
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351814149414279577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8884573, y: 0.54024506, z: 0.6023465}
+  m_Center: {x: 2.2876477, y: 2.3283696, z: 0.053567737}
