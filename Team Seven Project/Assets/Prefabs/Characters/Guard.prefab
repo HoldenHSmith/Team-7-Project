@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990360863}
-  m_LocalRotation: {x: 0.23853342, y: 0, z: 0, w: 0.9711343}
-  m_LocalPosition: {x: 0.011, y: 0.421, z: 0.366}
+  m_LocalRotation: {x: 0.2601675, y: 0, z: 0, w: 0.96556354}
+  m_LocalPosition: {x: 0.011, y: 0.69, z: 0.366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5853570717598125807}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 27.6, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30.16, y: 0, z: 0}
 --- !u!108 &990360864
 Light:
   m_ObjectHideFlags: 0
@@ -43,10 +43,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 26.95
-  m_Range: 6.36
-  m_SpotAngle: 58.6
-  m_InnerSpotAngle: 58.6
+  m_Intensity: 34.07
+  m_Range: 7.5
+  m_SpotAngle: 56.08
+  m_InnerSpotAngle: 56.08
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   InvestigationTime: 15
   InvestigationRadius: 5
   InvestigationDelay: 1
-  ViewConeAngle: 55
+  ViewConeAngle: 56.08
 --- !u!114 &5853570717598125805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,14 +260,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coneDetectionTransform: {fileID: 990360865}
-  _viewConeAngle: 58.6
-  _distance: 6.36
+  _viewConeAngle: 56.08
+  _distance: 6
   _followPlayer: 1
   _maxFollowDistance: 5
   _messageDelay: 0.25
-  _lightSoftness: -7.78
+  _lightSoftness: 0
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
-  _lightIntensity: 26.95
+  _lightIntensity: 34.07
   _spotLight: {fileID: 990360864}
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}

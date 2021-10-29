@@ -36,6 +36,12 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		Animator = new EnemyAnimator(EnemySettings, GetComponentInChildren<Animator>());
 	}
 
+	private void OnDrawGizmos()
+	{
+		if (Application.isPlaying)
+			DebugEx.DrawViewArch(transform.position, transform.rotation, Settings.ViewConeAngle, 10, Color.red);
+	}
+
 	private void Start()
 	{
 		StateMachine.RequestStateChange(States.StatePatrol);

@@ -46,7 +46,7 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 		_recipientHandler = GetComponent<RecipientHandler>();
 	}
 
-	private void OnDrawGizmosSelected()
+	private void OnDrawGizmos()
 	{
 		if (_debugCone && _coneDetectionTransform != null)
 			DebugEx.DrawViewCone(_coneDetectionTransform.position, _coneDetectionTransform.rotation, _coneDetectionTransform.forward, _viewConeAngle * 0.5f, _distance, _debugColor);
@@ -97,9 +97,9 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 			//Check if target is inside the cone
 			if (playerDotProd >= coneValue)
 			{
-				Debug.Log("Camera Spotted Player!");
 				if (Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position) < _distance)
 				{
+					Debug.Log("Camera Spotted Player!");
 					//Do raycast
 					//_playerSeen = true;
 					return true;
@@ -125,7 +125,7 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 
 		_spotLight.innerSpotAngle = _viewConeAngle - _lightSoftness;
 		_spotLight.spotAngle = _viewConeAngle;
-		_spotLight.range = _distance;
+		_spotLight.range = _distance * 1.25f;
 		_spotLight.color = _lightColor;
 		_spotLight.intensity = _lightIntensity;
 
