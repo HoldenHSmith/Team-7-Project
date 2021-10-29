@@ -113,7 +113,6 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	private void VisualizeTrajectory(Vector3 velocity)
 	{
-
 		for (int i = 0; i < _lineSegments; i++)
 		{
 			Vector3 position = MathJ.CalculatePositionInTime(velocity, _throwPoint.position, i / (float)_lineSegments);

@@ -14,8 +14,8 @@ public class EnemySettings : MonoBehaviour
 	[Tooltip("The speed in which the enemy will walk when the camera has alerted them to the player's position.")]
 	public float WalkCameraAlertSpeed;
 
-	[Tooltip("Distance the Enemy can spot the player.")]
-	public float SpotPlayerDistance = 10f;
+	//[Tooltip("Distance the Enemy can spot the player.")]
+	//public float SpotPlayerDistance = 10f;
 
 	[Tooltip("Used to determine what minimum distance is required until the player is 'at' the waypoint.")]
 	public float DistanceToWaypointSatisfaction = 0.1f;
@@ -32,6 +32,6 @@ public class EnemySettings : MonoBehaviour
 	[Tooltip("Time until it randomizes another investigation location within radius.")]
 	public float InvestigationDelay = 1;
 
-	[Tooltip("Angle of the view Cone in which the guard can spot the player.")]
-	public float ViewConeAngle = 25;
+	//[Tooltip("Angle of the view Cone in which the guard can spot the player.")]
+	//public float ViewConeAngle = 25;
 }

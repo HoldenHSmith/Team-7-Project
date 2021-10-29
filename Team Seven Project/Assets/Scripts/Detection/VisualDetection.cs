@@ -2,20 +2,19 @@
 using UnityEngine;
 
 [RequireComponent(typeof(RecipientHandler))]
-public class PlayerDetectionCone : MonoBehaviour, IMessageSender
+public class VisualDetection : MonoBehaviour, IMessageSender
 {
 	[Tooltip("The transform from which the cone and light will originate from.")]
-	[SerializeField] private Transform _coneDetectionTransform;
+	[SerializeField] private Transform _coneDetectionTransform = null;
 
 	[SerializeField] private float _viewConeAngle = 25;
 	[SerializeField] private float _distance = 25;
-	[SerializeField] private bool _followPlayer = true;
 	[SerializeField] private float _maxFollowDistance = 5.0f;
 	[SerializeField] private float _messageDelay = 0.25f;
 	[SerializeField] private float _lightSoftness = 0.0f;
 	[SerializeField] private Color _lightColor = Color.red;
 	[SerializeField] private float _lightIntensity = 25.0f;
-	[SerializeField] private Light _spotLight;
+	[SerializeField] private Light _spotLight = null;
 
 	private GameManager _gameManager;
 	private PlayerCharacter _player;
@@ -25,8 +24,6 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 	//Debugging
 	[SerializeField] private bool _debugCone = true;
 	[SerializeField] private Color _debugColor = Color.red;
-
-
 
 	private void Start()
 	{
@@ -42,11 +39,12 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 
 		if (_coneDetectionTransform == null)
 			Debug.LogError("Cone detection transform not assigned.");
-		//_simpleRotate = GetComponent<SimpleRotate>();
+
 		_recipientHandler = GetComponent<RecipientHandler>();
+
 	}
 
-	private void OnDrawGizmosSelected()
+	private void OnDrawGizmos()
 	{
 		if (_debugCone && _coneDetectionTransform != null)
 			DebugEx.DrawViewCone(_coneDetectionTransform.position, _coneDetectionTransform.rotation, _coneDetectionTransform.forward, _viewConeAngle * 0.5f, _distance, _debugColor);
@@ -54,29 +52,11 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 
 	private void Update()
 	{
+
 		if (PlayerDetected())
 		{
 			SendMessage();
 		}
-	}
-
-	private void FollowPlayer()
-	{
-		//float distanceToPlayer = Vector3.Distance(_coneDetectionTransform.position, _player.transform.position);
-		//if (distanceToPlayer < _maxFollowDistance)
-		//{
-		//	//transform.LookAt(_player.transform.position);
-		//	//if (_simpleRotate != null)
-		//	//	_simpleRotate.enabled = false;
-		//	//_spotLight.range = distanceToPlayer * 2;
-		//}
-		//else
-		//{
-		//	_playerSeen = false;
-		//	//if (_simpleRotate != null)
-		//	//	_simpleRotate.enabled = true;
-
-		//}
 	}
 
 	public bool PlayerDetected()
@@ -97,9 +77,9 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 			//Check if target is inside the cone
 			if (playerDotProd >= coneValue)
 			{
-				Debug.Log("Camera Spotted Player!");
 				if (Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position) < _distance)
 				{
+					Debug.Log($"{gameObject.name} Spotted Player!");
 					//Do raycast
 					//_playerSeen = true;
 					return true;
@@ -125,7 +105,7 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 
 		_spotLight.innerSpotAngle = _viewConeAngle - _lightSoftness;
 		_spotLight.spotAngle = _viewConeAngle;
-		_spotLight.range = _distance;
+		_spotLight.range = _distance * 1.25f;
 		_spotLight.color = _lightColor;
 		_spotLight.intensity = _lightIntensity;
 

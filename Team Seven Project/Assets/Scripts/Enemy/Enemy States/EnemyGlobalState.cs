@@ -6,6 +6,7 @@ public class EnemyGlobalState : EnemyState
 {
 	public EnemyGlobalState(StateMachine stateMachine, Enemy enemy) : base(stateMachine, enemy)
 	{
+
 	}
 
 
@@ -21,49 +22,9 @@ public class EnemyGlobalState : EnemyState
 
 	public override void OnUpdate(float deltaTime)
 	{
-		if (PlayerDetected())
-		{
-
-		}
-
-		DebugEx.DrawViewArch(Enemy.transform.position, Enemy.transform.rotation, Enemy.Settings.ViewConeAngle, 10, Color.red);
+		
 	}
 
-
-	private bool PlayerDetected()
-	{
-		// Get the direction from the enemy to the player and normalize it.
-		Transform playerTransform = Enemy.GameManager.Player.transform;
-		Vector3 playerPos = playerTransform.position;
-		Vector3 directionToPlayer = playerPos - Enemy.transform.position;
-		directionToPlayer.Normalize();
-
-		//Conver the cone's field of view into the same unit type that is returned by a  dot product.
-		float coneValue = Mathf.Cos((Enemy.Settings.ViewConeAngle * Mathf.Deg2Rad) * 0.5f);
-
-		//Check if target is inside the cone
-		if (Vector3.Dot(directionToPlayer, Enemy.transform.forward) >= coneValue)
-		{
-			//Player is inside the cone
-			float distanceToPlayer = Vector3.Distance(Enemy.transform.position, playerPos + Vector3.up);
-			if (distanceToPlayer <= Enemy.Settings.SpotPlayerDistance)
-			{
-				//Raycast
-				Vector3 rayDirection = playerPos - Enemy.transform.position;
-				if(Physics.Raycast(Enemy.transform.position+Vector3.up,rayDirection,out RaycastHit hit, Enemy.Settings.SpotPlayerDistance))
-				{
-					if(hit.transform == playerTransform)
-					{
-						Debug.Log("Player Spotted by Enemy");
-					}
-				}
-
-				return true;
-			}
-		}
-
-		return false;
-	}
 
 	public override bool ReceiveMessage(Telegram message)
 	{
@@ -77,6 +38,11 @@ public class EnemyGlobalState : EnemyState
 
 			case MessageType.Msg_Reset:
 				StateMachine.RequestStateChange(Enemy.EnemyStates.StateIdle);
+				return true;
+
+			case MessageType.Msg_Sound:
+				SoundEmission sound = (SoundEmission)message.ExtraInfo;
+				Debug.Log($"Sound Heard... Volume: {sound.Volume}  |  Position: {sound.Position}  |  Distance Falloff: {sound.DistanceFalloff}");
 				return true;
 
 			default:
