@@ -8,6 +8,9 @@ public class EnemySettings : MonoBehaviour
 	[Tooltip("The speed in which the enemy will go an investigate a sound.")]
 	public float WalkInspectSpeed;
 
+	[Tooltip("The speed in which the enemy will run.")]
+	public float RunSpeed;
+
 	[Tooltip("The speed in which the enemy will walk when the camera has alerted them to the player's position.")]
 	public float WalkCameraAlertSpeed;
 

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyAlertState))]
+[RequireComponent(typeof(EnemyAnimator))]
 public class Enemy : MonoBehaviour, IMessageReceiver
 {
 	public float DetectRange; //Move these to a radar type script
@@ -16,13 +17,12 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	protected StateMachine StateMachine;
 	protected EnemySettings EnemySettings;
 	protected EnemyAlertState AlertState;
+	protected EnemyAnimator Animator;
 
 	private Vector3 _lastKnownPlayerPosition = Vector3.zero;
 	private GameManager _gameManager;
 
-	//Move to separate class
-	protected Animator animator;
-	private int walkHash;
+
 	
 	private void Awake()
 	{
@@ -35,8 +35,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		
 		EnemySettings = GetComponent<EnemySettings>();
 		AlertState = GetComponent<EnemyAlertState>();
-		//Test
-		animator = GetComponentInChildren<Animator>();
+		Animator = GetComponent<EnemyAnimator>();
 	}
 
 	private void Start()
@@ -78,5 +77,6 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	public NavMeshAgent NavAgent { get => Agent; }
 	public Vector3 LastKnownPlayerPos { get => _lastKnownPlayerPosition; set => _lastKnownPlayerPosition = value; }
 	public GameManager GameManager { get => _gameManager; set => _gameManager = value; }
+	public EnemyAnimator AnimationHandler { get => Animator; }
 }
 

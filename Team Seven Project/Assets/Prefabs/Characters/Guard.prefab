@@ -74,18 +74,18 @@ MonoBehaviour:
   Type: 2
   Finished: 0
   Waypoints:
-  - Position: {x: 6.6400566, y: 0, z: -10.669514}
+  - Position: {x: 18.202326, y: 0, z: -22.430712}
     HasWaitTime: 0
-    WaitTime: 1
-  - Position: {x: 30.79942, y: 0, z: -10.20499}
+    WaitTime: 2
+  - Position: {x: 17.832064, y: 0, z: -28.63586}
     HasWaitTime: 0
-    WaitTime: 1
-  - Position: {x: 30.576271, y: 0, z: -3.1359897}
+    WaitTime: 0
+  - Position: {x: -0.70453835, y: 0, z: -28.0389}
     HasWaitTime: 0
-    WaitTime: 1
-  - Position: {x: 6.772196, y: 0, z: -3.2048955}
+    WaitTime: 0
+  - Position: {x: -0.7357712, y: 0, z: -22.201393}
     HasWaitTime: 0
-    WaitTime: 1
+    WaitTime: 2
 --- !u!114 &5853570717598125802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +170,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1807178347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923500499119152016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57b12c9cd31b0c4597c3a13445f275a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 5848078532513529459}
 --- !u!1001 &5966118265451126989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -239,5 +252,15 @@ GameObject:
 --- !u!4 &6143281039764768550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+  m_PrefabInstance: {fileID: 5966118265451126989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6923500499119152016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3665613395724581725, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+  m_PrefabInstance: {fileID: 5966118265451126989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5848078532513529459 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8943193921205215554, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
   m_PrefabInstance: {fileID: 5966118265451126989}
   m_PrefabAsset: {fileID: 0}
