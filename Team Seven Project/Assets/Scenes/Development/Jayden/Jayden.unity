@@ -18039,7 +18039,6 @@ MonoBehaviour:
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 25
   _spotLight: {fileID: 1633824823}
-  _detectionRate: 0.2
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &1646748927
@@ -19507,7 +19506,6 @@ MonoBehaviour:
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 25
   _spotLight: {fileID: 1825273685}
-  _detectionRate: 0.2
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1825273684
@@ -22596,7 +22594,6 @@ MonoBehaviour:
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 25
   _spotLight: {fileID: 2122155343}
-  _detectionRate: 0.2
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2122155345
@@ -22760,6 +22757,10 @@ PrefabInstance:
     - target: {fileID: 1061227274, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: _hideMeshes
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061227274, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
+      propertyPath: _hideSamplePoints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965508, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: _landingZoneSprite

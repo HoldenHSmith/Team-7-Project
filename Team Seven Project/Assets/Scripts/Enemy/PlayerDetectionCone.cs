@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 {
 	[Tooltip("The transform from which the cone and light will originate from.")]
-	[SerializeField] private Transform _coneDetectionTransform;
+	[SerializeField] private Transform _coneDetectionTransform = null;
 
 	[SerializeField] private float _viewConeAngle = 25;
 	[SerializeField] private float _distance = 25;
@@ -15,10 +15,7 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 	[SerializeField] private float _lightSoftness = 0.0f;
 	[SerializeField] private Color _lightColor = Color.red;
 	[SerializeField] private float _lightIntensity = 25.0f;
-	[SerializeField] private Light _spotLight;
-
-	[Tooltip("How often the detection is called.")]
-	[SerializeField] private float _detectionRate = 0.2f;
+	[SerializeField] private Light _spotLight = null;
 
 	private GameManager _gameManager;
 	private PlayerCharacter _player;
@@ -28,8 +25,6 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 	//Debugging
 	[SerializeField] private bool _debugCone = true;
 	[SerializeField] private Color _debugColor = Color.red;
-
-
 
 	private void Start()
 	{
@@ -45,8 +40,9 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 
 		if (_coneDetectionTransform == null)
 			Debug.LogError("Cone detection transform not assigned.");
-		//_simpleRotate = GetComponent<SimpleRotate>();
+
 		_recipientHandler = GetComponent<RecipientHandler>();
+
 	}
 
 	private void OnDrawGizmos()
@@ -57,29 +53,11 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 
 	private void Update()
 	{
+
 		if (PlayerDetected())
 		{
 			SendMessage();
 		}
-	}
-
-	private void FollowPlayer()
-	{
-		//float distanceToPlayer = Vector3.Distance(_coneDetectionTransform.position, _player.transform.position);
-		//if (distanceToPlayer < _maxFollowDistance)
-		//{
-		//	//transform.LookAt(_player.transform.position);
-		//	//if (_simpleRotate != null)
-		//	//	_simpleRotate.enabled = false;
-		//	//_spotLight.range = distanceToPlayer * 2;
-		//}
-		//else
-		//{
-		//	_playerSeen = false;
-		//	//if (_simpleRotate != null)
-		//	//	_simpleRotate.enabled = true;
-
-		//}
 	}
 
 	public bool PlayerDetected()
