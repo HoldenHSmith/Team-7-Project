@@ -26,7 +26,7 @@ public class EnemyManager : MonoBehaviour
 	}
 
 	public int EnemyCount { get => _enemyList.Count; }
-	public List<Enemy> Enemies { get => _enemyList; }
+	public static List<Enemy> Enemies { get => _enemyList; }
 
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()

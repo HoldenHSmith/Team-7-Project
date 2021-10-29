@@ -2,14 +2,13 @@
 using UnityEngine;
 
 [RequireComponent(typeof(RecipientHandler))]
-public class PlayerDetectionCone : MonoBehaviour, IMessageSender
+public class VisualDetection : MonoBehaviour, IMessageSender
 {
 	[Tooltip("The transform from which the cone and light will originate from.")]
 	[SerializeField] private Transform _coneDetectionTransform = null;
 
 	[SerializeField] private float _viewConeAngle = 25;
 	[SerializeField] private float _distance = 25;
-	[SerializeField] private bool _followPlayer = true;
 	[SerializeField] private float _maxFollowDistance = 5.0f;
 	[SerializeField] private float _messageDelay = 0.25f;
 	[SerializeField] private float _lightSoftness = 0.0f;

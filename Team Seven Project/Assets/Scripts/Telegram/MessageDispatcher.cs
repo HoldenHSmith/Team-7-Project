@@ -4,7 +4,9 @@ using System.Collections.Generic;
 public enum MessageType
 {
 	Msg_PlayerSpotted,
-	Msg_Reset
+	Msg_Reset,
+	Msg_PlayerHeard,
+	Msg_Sound
 }
 
 public sealed class MessageDispatcher

@@ -6,6 +6,7 @@ public class EnemyGlobalState : EnemyState
 {
 	public EnemyGlobalState(StateMachine stateMachine, Enemy enemy) : base(stateMachine, enemy)
 	{
+
 	}
 
 
@@ -37,6 +38,11 @@ public class EnemyGlobalState : EnemyState
 
 			case MessageType.Msg_Reset:
 				StateMachine.RequestStateChange(Enemy.EnemyStates.StateIdle);
+				return true;
+
+			case MessageType.Msg_Sound:
+				SoundEmission sound = (SoundEmission)message.ExtraInfo;
+				Debug.Log($"Sound Heard... Volume: {sound.Volume}  |  Position: {sound.Position}  |  Distance Falloff: {sound.DistanceFalloff}");
 				return true;
 
 			default:
