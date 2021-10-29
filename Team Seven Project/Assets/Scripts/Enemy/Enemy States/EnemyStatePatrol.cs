@@ -61,7 +61,7 @@ public class EnemyStatePatrol : EnemyState
 		}
 
 		//Set Enemy's walking animation
-		Enemy.SetWalkAnimation(!Mathf.Approximately(_navMeshAgent.velocity.magnitude, 0));
+		Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.normal);
 	}
 
 	private bool GetNextWaypoint()

@@ -26,14 +26,16 @@ public class EnemyGlobalState : EnemyState
 
 		}
 
-		//DebugEx.DrawViewArch(Enemy.transform.position, Enemy.transform.rotation, Enemy.Settings.ViewConeAngle, 10, Color.red);
+		DebugEx.DrawViewArch(Enemy.transform.position, Enemy.transform.rotation, Enemy.Settings.ViewConeAngle, 10, Color.red);
 	}
 
 
 	private bool PlayerDetected()
 	{
 		// Get the direction from the enemy to the player and normalize it.
-		Vector3 directionToPlayer = Enemy.GameManager.Player.transform.position - Enemy.transform.position;
+		Transform playerTransform = Enemy.GameManager.Player.transform;
+		Vector3 playerPos = playerTransform.position;
+		Vector3 directionToPlayer = playerPos - Enemy.transform.position;
 		directionToPlayer.Normalize();
 
 		//Conver the cone's field of view into the same unit type that is returned by a  dot product.
@@ -42,9 +44,22 @@ public class EnemyGlobalState : EnemyState
 		//Check if target is inside the cone
 		if (Vector3.Dot(directionToPlayer, Enemy.transform.forward) >= coneValue)
 		{
-			Debug.Log("Player Detected!");
 			//Player is inside the cone
-			return true;
+			float distanceToPlayer = Vector3.Distance(Enemy.transform.position, playerPos + Vector3.up);
+			if (distanceToPlayer <= Enemy.Settings.SpotPlayerDistance)
+			{
+				//Raycast
+				Vector3 rayDirection = playerPos - Enemy.transform.position;
+				if(Physics.Raycast(Enemy.transform.position+Vector3.up,rayDirection,out RaycastHit hit, Enemy.Settings.SpotPlayerDistance))
+				{
+					if(hit.transform == playerTransform)
+					{
+						Debug.Log("Player Spotted by Enemy");
+					}
+				}
+
+				return true;
+			}
 		}
 
 		return false;

@@ -1,7 +1,9 @@
 //Written by Jayden Hunter
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PointSampler))]
 public partial class PlayerCharacter : MonoBehaviour
 {
 	public bool IsRespawning { get { return Respawning; } }
@@ -9,6 +11,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected CharacterInput Input;                       //Reference to Input System
 	protected bool Respawning;                            //Whether the character is respawning
 	protected CharacterController CharacterController;    //Characters controller
+	protected PointSampler PointSampler;
 
 	private void Awake()
 	{
@@ -48,6 +51,8 @@ public partial class PlayerCharacter : MonoBehaviour
 	private void GetRequiredComponents()
 	{
 		CharacterController = GetComponent<CharacterController>();
+		PointSampler = GetComponent<PointSampler>();
 	}
 
+	public List<Transform> SamplePoints { get => PointSampler.SamplePoints; }
 }
