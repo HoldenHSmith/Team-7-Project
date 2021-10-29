@@ -22,36 +22,28 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	private Vector3 _lastKnownPlayerPosition = Vector3.zero;
 	private GameManager _gameManager;
 
-
-	
 	private void Awake()
 	{
 		Agent = GetComponent<NavMeshAgent>();
+
 		StateMachine = new StateMachine();
 		States = new EnemyStates();
 		StateMachine.SetGlobalState(new EnemyGlobalState(StateMachine, this));
-		//StateMachine.
 		States.OnStart(StateMachine, this);
-		
+
 		EnemySettings = GetComponent<EnemySettings>();
 		AlertState = GetComponent<EnemyAlertState>();
-		Animator = GetComponent<EnemyAnimator>();
+		Animator = new EnemyAnimator(EnemySettings, GetComponentInChildren<Animator>());
 	}
 
 	private void Start()
 	{
 		StateMachine.RequestStateChange(States.StatePatrol);
 	}
-	
+
 	private void Update()
 	{
 		StateMachine.MyUpdate();
-	}
-
-	//Add this to it's own class
-	public void SetWalkAnimation(bool value)
-	{
-
 	}
 
 	public void OnEnable()
@@ -69,6 +61,11 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		return StateMachine.ReceiveMessage(message);
 	}
 
+	private void OnValidate()
+	{
+		if (Application.isPlaying && Application.isEditor && Animator != null)
+			Animator.CalculateRemapvalues();
+	}
 
 	public EnemyStates EnemyStates { get => States; }
 	public StateMachine EnemyStateMachine { get => StateMachine; }
@@ -78,5 +75,13 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	public Vector3 LastKnownPlayerPos { get => _lastKnownPlayerPosition; set => _lastKnownPlayerPosition = value; }
 	public GameManager GameManager { get => _gameManager; set => _gameManager = value; }
 	public EnemyAnimator AnimationHandler { get => Animator; }
+}
+
+public enum EnemyWalkSpeed
+{
+	idle,
+	normal,
+	investigate,
+	run
 }
 

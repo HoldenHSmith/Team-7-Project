@@ -4621,7 +4621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &374390174
 Transform:
   m_ObjectHideFlags: 0
@@ -9094,13 +9094,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125804, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: RunSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5853570717598125807, guid: a86766725d0644545a9061b9171f9de1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.73
+      value: 12.11
       objectReference: {fileID: 0}
     - target: {fileID: 5853570717598125807, guid: a86766725d0644545a9061b9171f9de1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9108,7 +9104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5853570717598125807, guid: a86766725d0644545a9061b9171f9de1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.95
+      value: -26.23
       objectReference: {fileID: 0}
     - target: {fileID: 5853570717598125807, guid: a86766725d0644545a9061b9171f9de1, type: 3}
       propertyPath: m_LocalRotation.x
@@ -11631,7 +11627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1109679189
 Transform:
   m_ObjectHideFlags: 0
@@ -17936,7 +17932,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633824819}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c1c0d954bad8b14b9a673de0c2cccf4, type: 3}
   m_Name: 
@@ -17951,7 +17947,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633824819}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -18012,20 +18008,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633824819}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22ea8d446920bc145a4f3241bf18960b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coneDetectionTransform: {fileID: 0}
   _viewConeAngle: 42.2
   _distance: 10.16
-  _debugCone: 1
-  _debugColor: {r: 1, g: 0, b: 0, a: 1}
   _followPlayer: 1
   _maxFollowDistance: 5
   _messageDelay: 0.25
   _lightSoftness: 5.28
+  _lightColor: {r: 1, g: 0, b: 0, a: 1}
+  _lightIntensity: 25
   _spotLight: {fileID: 1633824823}
+  _debugCone: 1
+  _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &1646748927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19481,15 +19480,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ea8d446920bc145a4f3241bf18960b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coneDetectionTransform: {fileID: 0}
   _viewConeAngle: 48.5
   _distance: 8.8
-  _debugCone: 1
-  _debugColor: {r: 1, g: 0, b: 0, a: 1}
   _followPlayer: 1
   _maxFollowDistance: 5
   _messageDelay: 0.25
   _lightSoftness: 1
+  _lightColor: {r: 1, g: 0, b: 0, a: 1}
+  _lightIntensity: 25
   _spotLight: {fileID: 1825273685}
+  _debugCone: 1
+  _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1825273684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19514,8 +19516,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.2783019, b: 0.2783019, a: 1}
-  m_Intensity: 316.27
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 25
   m_Range: 8.8
   m_SpotAngle: 48.5
   m_InnerSpotAngle: 47.5
@@ -22477,7 +22479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2122155342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22566,15 +22568,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ea8d446920bc145a4f3241bf18960b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coneDetectionTransform: {fileID: 0}
   _viewConeAngle: 33.4
   _distance: 10.16
-  _debugCone: 1
-  _debugColor: {r: 1, g: 0, b: 0, a: 1}
   _followPlayer: 1
   _maxFollowDistance: 5
   _messageDelay: 0.25
   _lightSoftness: 0
+  _lightColor: {r: 1, g: 0, b: 0, a: 1}
+  _lightIntensity: 25
   _spotLight: {fileID: 2122155343}
+  _debugCone: 1
+  _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2122155345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22759,7 +22764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965511, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.75
+      value: 4.95
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965511, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22767,7 +22772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965511, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.28
+      value: -23.48
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965511, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_LocalRotation.x
