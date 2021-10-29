@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		AlertState = GetComponent<EnemyAlertState>();
 		//Test
 		animator = GetComponentInChildren<Animator>();
-		walkHash = Animator.StringToHash("Walking");
 	}
 
 	private void Start()
@@ -53,7 +52,6 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	//Add this to it's own class
 	public void SetWalkAnimation(bool value)
 	{
-		animator.SetBool(walkHash, value);
 
 	}
 

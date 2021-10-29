@@ -11503,6 +11503,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6277637493052462597, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.35383824
+      objectReference: {fileID: 0}
+    - target: {fileID: -6277637493052462597, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7473631
+      objectReference: {fileID: 0}
+    - target: {fileID: -6277637493052462597, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.11387389
+      objectReference: {fileID: 0}
+    - target: {fileID: -6277637493052462597, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5507084
+      objectReference: {fileID: 0}
+    - target: {fileID: -6277637493052462597, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 34.051
+      objectReference: {fileID: 0}
+    - target: {fileID: -6277637493052462597, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 116.331
+      objectReference: {fileID: 0}
+    - target: {fileID: -6277637493052462597, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 29.141
+      objectReference: {fileID: 0}
     - target: {fileID: -4514431237216071138, guid: ba452e2036e68b9479d63974aa2b8fea, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.8383231
@@ -20142,117 +20170,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1764229845566097579, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 663e21d19581ae348b23c8b7bd462896, type: 2}
-    - target: {fileID: 1764229845566097579, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 7692285236298230448, guid: 97674c8a1823a7b47af3d49754770c73, type: 3}
     - target: {fileID: 5853570717598125803, guid: a86766725d0644545a9061b9171f9de1, type: 3}
       propertyPath: m_Name
       value: Enemy (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125803, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125804, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: InvestigationTime
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125804, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: WalkInspectSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125804, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: WalkCameraAlertSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125804, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: DistanceToLastKnownPlayerPosition
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125804, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: InvestigationDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125804, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: ViewConeAngle
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125804, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: SpotPlayerDistance
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[0].Position.x
-      value: 6.6400566
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[0].Position.z
-      value: -10.669514
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[1].Position.x
-      value: 30.79942
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[1].Position.z
-      value: -10.20499
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[1].WaitTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[2].Position.x
-      value: 30.576271
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[2].WaitTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[2].Position.z
-      value: -3.1359897
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[1].Position.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[0].Position.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[2].Position.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[0].WaitTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[3].Position.x
-      value: 6.772196
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[3].Position.z
-      value: -3.2048955
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
-      propertyPath: Waypoints.Array.data[3].WaitTime
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5853570717598125807, guid: a86766725d0644545a9061b9171f9de1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20598,14 +20518,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ea8d446920bc145a4f3241bf18960b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewConeAngle: 49.9
-  _distance: 10.1
+  _viewConeAngle: 48.5
+  _distance: 8.8
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
   _followPlayer: 1
   _maxFollowDistance: 5
   _messageDelay: 0.25
-  _lightSoftness: -7.91
+  _lightSoftness: 1
   _spotLight: {fileID: 1825273685}
 --- !u!114 &1825273684
 MonoBehaviour:
@@ -20631,11 +20551,11 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 7.1
-  m_Range: 10.1
-  m_SpotAngle: 49.9
-  m_InnerSpotAngle: 49.9
+  m_Color: {r: 1, g: 0.2783019, b: 0.2783019, a: 1}
+  m_Intensity: 316.27
+  m_Range: 8.8
+  m_SpotAngle: 48.5
+  m_InnerSpotAngle: 47.5
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -24135,6 +24055,10 @@ PrefabInstance:
       propertyPath: _landingZoneSprite
       value: 
       objectReference: {fileID: 111071366}
+    - target: {fileID: 5651522275257965508, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
+      propertyPath: _maxVelocity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965509, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_Height
       value: 1.55
@@ -24149,7 +24073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965511, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.29
+      value: 13.75
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965511, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24157,7 +24081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965511, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.27
+      value: 16.28
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965511, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: m_LocalRotation.x

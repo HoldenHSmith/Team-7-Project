@@ -60,13 +60,15 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 		if (distanceToPlayer < _maxFollowDistance)
 		{
 			transform.LookAt(_player.transform.position);
-			_simpleRotate.enabled = false;
+			if (_simpleRotate != null)
+				_simpleRotate.enabled = false;
 			_spotLight.range = distanceToPlayer * 2;
 		}
 		else
 		{
 			_playerSeen = false;
-			_simpleRotate.enabled = true;
+			if (_simpleRotate != null)
+				_simpleRotate.enabled = true;
 
 		}
 	}
@@ -105,7 +107,6 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 	private void OnValidate()
 	{
 		AdjustLight();
-
 	}
 
 	private void AdjustLight()
