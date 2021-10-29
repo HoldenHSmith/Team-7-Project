@@ -9094,6 +9094,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
+      propertyPath: Waypoints.Array.data[2].Position.x
+      value: 4.9199533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
+      propertyPath: Waypoints.Array.data[2].Position.z
+      value: -27.98299
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
+      propertyPath: Waypoints.Array.data[1].Position.x
+      value: 12.287432
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853570717598125805, guid: a86766725d0644545a9061b9171f9de1, type: 3}
+      propertyPath: Waypoints.Array.data[1].Position.z
+      value: -27.93783
+      objectReference: {fileID: 0}
     - target: {fileID: 5853570717598125807, guid: a86766725d0644545a9061b9171f9de1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.11
@@ -18023,6 +18039,7 @@ MonoBehaviour:
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 25
   _spotLight: {fileID: 1633824823}
+  _detectionRate: 0.2
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &1646748927
@@ -19490,6 +19507,7 @@ MonoBehaviour:
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 25
   _spotLight: {fileID: 1825273685}
+  _detectionRate: 0.2
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1825273684
@@ -22578,6 +22596,7 @@ MonoBehaviour:
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 25
   _spotLight: {fileID: 2122155343}
+  _detectionRate: 0.2
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2122155345

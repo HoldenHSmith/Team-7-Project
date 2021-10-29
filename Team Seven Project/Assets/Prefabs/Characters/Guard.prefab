@@ -148,13 +148,11 @@ MonoBehaviour:
   WalkInspectSpeed: 1
   RunSpeed: 2
   WalkCameraAlertSpeed: 1.5
-  SpotPlayerDistance: 8
   DistanceToWaypointSatisfaction: 0.1
   DistanceToLastKnownPlayerPosition: 0.5
   InvestigationTime: 15
   InvestigationRadius: 5
   InvestigationDelay: 1
-  ViewConeAngle: 56.08
 --- !u!114 &5853570717598125805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +267,7 @@ MonoBehaviour:
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 34.07
   _spotLight: {fileID: 990360864}
+  _detectionRate: 0.2
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &80831813

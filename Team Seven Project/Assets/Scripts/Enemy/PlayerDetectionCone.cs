@@ -17,6 +17,9 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 	[SerializeField] private float _lightIntensity = 25.0f;
 	[SerializeField] private Light _spotLight;
 
+	[Tooltip("How often the detection is called.")]
+	[SerializeField] private float _detectionRate = 0.2f;
+
 	private GameManager _gameManager;
 	private PlayerCharacter _player;
 	private RecipientHandler _recipientHandler;
@@ -99,7 +102,7 @@ public class PlayerDetectionCone : MonoBehaviour, IMessageSender
 			{
 				if (Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position) < _distance)
 				{
-					Debug.Log("Camera Spotted Player!");
+					Debug.Log($"{gameObject.name} Spotted Player!");
 					//Do raycast
 					//_playerSeen = true;
 					return true;
