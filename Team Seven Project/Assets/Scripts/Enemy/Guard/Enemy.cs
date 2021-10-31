@@ -6,6 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(WaypointManager))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyAlertState))]
+[RequireComponent(typeof(EnemyAnimator))]
+[RequireComponent(typeof(AudioDetection))]
 public class Enemy : MonoBehaviour, IMessageReceiver
 {
 	public float DetectRange; //Move these to a radar type script
@@ -16,45 +18,42 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	protected StateMachine StateMachine;
 	protected EnemySettings EnemySettings;
 	protected EnemyAlertState AlertState;
+	protected EnemyAnimator Animator;
+	protected AudioDetection AudioDetection;
 
 	private Vector3 _lastKnownPlayerPosition = Vector3.zero;
 	private GameManager _gameManager;
+	private EnemyWalkSpeed _walkState;
 
-	//Move to separate class
-	protected Animator animator;
-	private int walkHash;
-	
 	private void Awake()
 	{
 		Agent = GetComponent<NavMeshAgent>();
+
 		StateMachine = new StateMachine();
 		States = new EnemyStates();
 		StateMachine.SetGlobalState(new EnemyGlobalState(StateMachine, this));
-		//StateMachine.
 		States.OnStart(StateMachine, this);
-		
+
 		EnemySettings = GetComponent<EnemySettings>();
 		AlertState = GetComponent<EnemyAlertState>();
-		//Test
-		animator = GetComponentInChildren<Animator>();
-		walkHash = Animator.StringToHash("Walking");
+		Animator = new EnemyAnimator(EnemySettings, GetComponentInChildren<Animator>());
+		AudioDetection = GetComponent<AudioDetection>();
+	}
+
+	private void OnDrawGizmos()
+	{
+		//if (Application.isPlaying)
+		//	DebugEx.DrawViewArch(transform.position, transform.rotation, Settings.ViewConeAngle, 10, Color.red);
 	}
 
 	private void Start()
 	{
 		StateMachine.RequestStateChange(States.StatePatrol);
 	}
-	
+
 	private void Update()
 	{
 		StateMachine.MyUpdate();
-	}
-
-	//Add this to it's own class
-	public void SetWalkAnimation(bool value)
-	{
-		animator.SetBool(walkHash, value);
-
 	}
 
 	public void OnEnable()
@@ -72,6 +71,11 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		return StateMachine.ReceiveMessage(message);
 	}
 
+	private void OnValidate()
+	{
+		if (Application.isPlaying && Application.isEditor && Animator != null)
+			Animator.CalculateRemapvalues();
+	}
 
 	public EnemyStates EnemyStates { get => States; }
 	public StateMachine EnemyStateMachine { get => StateMachine; }
@@ -80,5 +84,17 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	public NavMeshAgent NavAgent { get => Agent; }
 	public Vector3 LastKnownPlayerPos { get => _lastKnownPlayerPosition; set => _lastKnownPlayerPosition = value; }
 	public GameManager GameManager { get => _gameManager; set => _gameManager = value; }
+	public EnemyAnimator AnimationHandler { get => Animator; }
+	public EnemyWalkSpeed WalkState { get => _walkState; set => _walkState = value; }
+	public AudioDetection AudioDetector { get => AudioDetection; }
+
+}
+
+public enum EnemyWalkSpeed
+{
+	idle,
+	normal,
+	investigate,
+	run
 }
 

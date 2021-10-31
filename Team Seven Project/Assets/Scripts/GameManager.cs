@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour, IMessageSender
 
 	public void SendMessage()
 	{
-		_messageDispatcher.DispatchMessage(0, this, _enemyManager.Enemies[0], MessageType.Msg_PlayerSpotted, _playerCharacter.transform.position);
-		_messageDispatcher.DispatchMessage(0, this, _enemyManager.Enemies[1], MessageType.Msg_PlayerSpotted, _playerCharacter.transform.position);
+
 	}
 
 	private void Awake()
@@ -23,7 +22,7 @@ public class GameManager : MonoBehaviour, IMessageSender
 
 	private void Start()
 	{
-		List<Enemy> enemies = _enemyManager.Enemies;
+		List<Enemy> enemies = EnemyManager.Enemies;
 
 		for(int i =0; i< enemies.Count;i++)
 		{

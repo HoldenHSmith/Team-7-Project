@@ -12,11 +12,14 @@ public class EnemyStatePatrol : EnemyState
 	{
 		_waypointManager = Enemy.GetComponent<WaypointManager>();
 		_navMeshAgent = Enemy.GetComponent<NavMeshAgent>();
-
+		
 	}
 
 	public override void OnEnter()
 	{
+		Enemy.WalkState = EnemyWalkSpeed.normal;
+		Enemy.NavAgent.acceleration = Enemy.Settings.WalkAcceleration;
+		Enemy.NavAgent.angularSpeed = Enemy.Settings.WalkTurnSpeed;
 		if (!GetNextWaypoint())
 		{
 			StateMachine.RequestStateChange(Enemy.EnemyStates.StateIdle);
@@ -60,8 +63,7 @@ public class EnemyStatePatrol : EnemyState
 			}
 		}
 
-		//Set Enemy's walking animation
-		Enemy.SetWalkAnimation(!Mathf.Approximately(_navMeshAgent.velocity.magnitude, 0));
+		
 	}
 
 	private bool GetNextWaypoint()
