@@ -146,9 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkSpeed: 1
-  WalkInspectSpeed: 1
-  RunSpeed: 2
-  WalkCameraAlertSpeed: 1.5
+  WalkAcceleration: 0.5
+  WalkTurnSpeed: 810
+  WalkInspectSpeed: 1.5
+  InspectAcceleration: 1
+  InspectTurnSpeed: 810
+  RunSpeed: 3.5
+  RunAcceleration: 5
+  RunTurnSpeed: 2160
+  WalkCameraAlertSpeed: 3.5
+  WalkCameraAlertAcceleration: 5
+  WalkCameraAlertTurnSpeed: 2160
+  FollowPlayerDistance: 10
   DistanceToWaypointSatisfaction: 0.1
   DistanceToLastKnownPlayerPosition: 0.5
   InvestigationTime: 15
@@ -169,18 +178,18 @@ MonoBehaviour:
   Type: 2
   Finished: 0
   Waypoints:
-  - Position: {x: 12.184453, y: 0, z: -22.685755}
+  - Position: {x: 13.002457, y: 0, z: -23.000673}
     HasWaitTime: 0
     WaitTime: 3
-  - Position: {x: 12.287432, y: 0, z: -27.93783}
+  - Position: {x: 12.999369, y: 0, z: -27.998352}
     HasWaitTime: 0
     WaitTime: 3
-  - Position: {x: 4.9199533, y: 0, z: -27.98299}
+  - Position: {x: 6.9987698, y: 0, z: -28.00828}
     HasWaitTime: 0
     WaitTime: 3
-  - Position: {x: 5.003762, y: 0, z: -22.711273}
+  - Position: {x: 6.999929, y: 0, z: -23.006084}
     HasWaitTime: 0
-    WaitTime: 3
+    WaitTime: 0
 --- !u!114 &5853570717598125802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +218,7 @@ NavMeshAgent:
   m_Acceleration: 0.5
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 0.25
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -267,7 +276,8 @@ MonoBehaviour:
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 34.07
   _spotLight: {fileID: 990360864}
-  _debugCone: 0
+  _detectorType: 0
+  _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &80831813
 MonoBehaviour:
@@ -281,7 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecee8f93b7f32e2468d5eac70884ffe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recipients: []
+  _recipients:
+  - {fileID: 5853570717598125803}
 --- !u!114 &532837724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,9 +305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343f9b83f26fb424ab5c0ae2db4f59c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionRange: 11
+  _detectionRange: 10
   _alertnessReductionPerSecond: 2.5
   _startReducingCooldown: 1
+  _alertnessThreshold: 100
 --- !u!95 &6388373618504540739
 Animator:
   serializedVersion: 3

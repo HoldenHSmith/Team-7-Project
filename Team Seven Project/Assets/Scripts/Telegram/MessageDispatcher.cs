@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public enum MessageType
 {
-	Msg_PlayerSpotted,
+	Msg_PlayerSpottedByCamera,
+	Msg_PlayerSpottedByGuard,
 	Msg_Reset,
 	Msg_PlayerHeard,
 	Msg_Sound
