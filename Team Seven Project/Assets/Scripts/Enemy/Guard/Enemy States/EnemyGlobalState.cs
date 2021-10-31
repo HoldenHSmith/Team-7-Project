@@ -40,10 +40,13 @@ public class EnemyGlobalState : EnemyState
 		switch (message.MessageType)
 		{
 			case MessageType.Msg_PlayerSpottedByCamera:
-				Enemy.LastKnownPlayerPos = (Vector3)message.ExtraInfo;
-				StateMachine.RequestStateChange(Enemy.EnemyStates.StateCameraDetectedPlayer);
-				return true;
-
+				if (StateMachine.StateCurrent != Enemy.EnemyStates.StatePlayerDetected)
+				{
+					Enemy.LastKnownPlayerPos = (Vector3)message.ExtraInfo;
+					StateMachine.RequestStateChange(Enemy.EnemyStates.StateCameraDetectedPlayer);
+					return true;
+				}
+				return false;
 			case MessageType.Msg_PlayerSpottedByGuard:
 				StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
 				return true;
@@ -53,10 +56,18 @@ public class EnemyGlobalState : EnemyState
 				return true;
 
 			case MessageType.Msg_Sound:
-				SoundEmission sound = (SoundEmission)message.ExtraInfo;
-				Enemy.LastKnownPlayerPos = sound.Position;
-				StateMachine.RequestStateChange(Enemy.EnemyStates.StateInvestigate);
-				return true;
+				if (StateMachine.StateCurrent != Enemy.EnemyStates.StatePlayerDetected)
+				{
+					SoundEmission sound = (SoundEmission)message.ExtraInfo;
+					Enemy.AudioDetector.ProcessSound(sound);
+					if (Enemy.AudioDetector.ThresholdReached())
+					{
+						Enemy.LastKnownPlayerPos = sound.Position;
+						StateMachine.RequestStateChange(Enemy.EnemyStates.StateInvestigate);
+						return true;
+					}
+				}
+				return false;
 
 			default:
 				return false;

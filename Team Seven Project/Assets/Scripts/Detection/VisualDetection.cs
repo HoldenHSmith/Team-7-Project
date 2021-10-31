@@ -80,9 +80,15 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 			{
 				if (Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position) < _distance)
 				{
-					Debug.Log($"{gameObject.name} Spotted Player!");
+					if (Physics.Raycast(transform.position + Vector3.up, directionToPlayer, out RaycastHit hit))
+					{
+						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+						{
+							Debug.Log($"{gameObject.name} Spotted Player!");
+							return true;
+						}
+					}
 
-					return true;
 				}
 			}
 		}
