@@ -7,6 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyAlertState))]
 [RequireComponent(typeof(EnemyAnimator))]
+[RequireComponent(typeof(AudioDetection))]
 public class Enemy : MonoBehaviour, IMessageReceiver
 {
 	public float DetectRange; //Move these to a radar type script
@@ -18,9 +19,11 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	protected EnemySettings EnemySettings;
 	protected EnemyAlertState AlertState;
 	protected EnemyAnimator Animator;
+	protected AudioDetection AudioDetection;
 
 	private Vector3 _lastKnownPlayerPosition = Vector3.zero;
 	private GameManager _gameManager;
+	private EnemyWalkSpeed _walkState;
 
 	private void Awake()
 	{
@@ -34,6 +37,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		EnemySettings = GetComponent<EnemySettings>();
 		AlertState = GetComponent<EnemyAlertState>();
 		Animator = new EnemyAnimator(EnemySettings, GetComponentInChildren<Animator>());
+		AudioDetection = GetComponent<AudioDetection>();
 	}
 
 	private void OnDrawGizmos()
@@ -81,6 +85,9 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	public Vector3 LastKnownPlayerPos { get => _lastKnownPlayerPosition; set => _lastKnownPlayerPosition = value; }
 	public GameManager GameManager { get => _gameManager; set => _gameManager = value; }
 	public EnemyAnimator AnimationHandler { get => Animator; }
+	public EnemyWalkSpeed WalkState { get => _walkState; set => _walkState = value; }
+	public AudioDetection AudioDetector { get => AudioDetection; }
+
 }
 
 public enum EnemyWalkSpeed

@@ -14,6 +14,9 @@ public class EnemyStateCameraDetectedPlayer : EnemyState
 		Enemy.AlertnessState.SetAlertLevel(EnemyAlertState.AlertLevel.FoundPlayer);
 		Enemy.NavAgent.speed = Enemy.Settings.WalkCameraAlertSpeed;
 		Enemy.NavAgent.destination = Enemy.LastKnownPlayerPos;
+		Enemy.WalkState = EnemyWalkSpeed.run;
+		Enemy.NavAgent.acceleration = Enemy.Settings.WalkCameraAlertAcceleration;
+		Enemy.NavAgent.angularSpeed = Enemy.Settings.WalkCameraAlertTurnSpeed;
 	}
 
 	public override void OnExit()

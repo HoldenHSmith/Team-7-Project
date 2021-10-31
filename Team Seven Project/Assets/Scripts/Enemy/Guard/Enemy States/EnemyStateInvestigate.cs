@@ -13,13 +13,18 @@ public class EnemyStateInvestigate : EnemyState
 
 	public override void OnEnter()
 	{
-		ChooseNextDestination();
+		//ChooseNextDestination();
 
 		Enemy.AlertnessState.SetAlertLevel(EnemyAlertState.AlertLevel.Investigating);
 		Enemy.NavAgent.speed = Enemy.Settings.WalkInspectSpeed;
 		Enemy.NavAgent.isStopped = false;
 
 		_investigationTimer = Enemy.Settings.InvestigationTime;
+		_investigatePosition = Enemy.LastKnownPlayerPos;
+		Enemy.NavAgent.destination = _investigatePosition;
+		Enemy.WalkState = EnemyWalkSpeed.investigate;
+		Enemy.NavAgent.acceleration = Enemy.Settings.InspectAcceleration;
+		Enemy.NavAgent.angularSpeed = Enemy.Settings.InspectTurnSpeed;
 	}
 
 	public override void OnExit()
@@ -45,6 +50,8 @@ public class EnemyStateInvestigate : EnemyState
 			if (_investigationDelayTimer <= 0)
 				ChooseNextDestination();
 		}
+
+		Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.investigate);
 	}
 
 	private void ChooseNextDestination()

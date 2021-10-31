@@ -25,7 +25,6 @@ public class WaypointManager : MonoBehaviour
 
 	private void Initialize()
 	{
-
 		if (Waypoints == null)
 			Waypoints = new List<Waypoint>();
 	}
