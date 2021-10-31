@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public class EnemyStatePlayerDetected : EnemyState
 {
@@ -8,17 +9,29 @@ public class EnemyStatePlayerDetected : EnemyState
 
 	public override void OnEnter()
 	{
-		throw new System.NotImplementedException();
+		Enemy.AlertnessState.SetAlertLevel(EnemyAlertState.AlertLevel.FoundPlayer);
+		Enemy.NavAgent.speed = Enemy.Settings.RunSpeed;
+		Enemy.NavAgent.acceleration = Enemy.Settings.RunAcceleration;
+		Enemy.NavAgent.angularSpeed = Enemy.Settings.RunTurnSpeed;
 	}
 
 	public override void OnExit()
 	{
-		throw new System.NotImplementedException();
+
 	}
 
 	public override void OnUpdate(float deltaTime)
 	{
-		throw new System.NotImplementedException();
+		Vector3 playerPos = Enemy.GameManager.Player.transform.position;
+		float distanceToPlayer = Vector3.Distance(Enemy.transform.position, playerPos);
+
+		if (distanceToPlayer <= Enemy.Settings.FollowPlayerDistance)
+			Enemy.NavAgent.destination = playerPos;
+		else
+		{
+			StateMachine.RequestStateChange(Enemy.EnemyStates.StateInvestigate);
+			Enemy.LastKnownPlayerPos = playerPos;
+		}
 	}
 
 	public override bool ReceiveMessage(Telegram message)

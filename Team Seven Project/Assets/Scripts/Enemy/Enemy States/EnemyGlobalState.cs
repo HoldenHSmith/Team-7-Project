@@ -22,18 +22,30 @@ public class EnemyGlobalState : EnemyState
 
 	public override void OnUpdate(float deltaTime)
 	{
-		
+		UpdateAnimations();
 	}
 
+	private void UpdateAnimations()
+	{
+		//Set Enemy's walking animation
+		//if (StateMachine.StateCurrent == Enemy.EnemyStates.StatePatrol)
+		//	Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.normal);
+		//else if(StateMachine.StateCurrent == Enemy.EnemyStates.StateInvestigate)
+		//	Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.investigate);
+		Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, Enemy.WalkState);
+	}
 
 	public override bool ReceiveMessage(Telegram message)
 	{
 		switch (message.MessageType)
 		{
-			case MessageType.Msg_PlayerSpotted:
-				//Set state to go to position
+			case MessageType.Msg_PlayerSpottedByCamera:
 				Enemy.LastKnownPlayerPos = (Vector3)message.ExtraInfo;
 				StateMachine.RequestStateChange(Enemy.EnemyStates.StateCameraDetectedPlayer);
+				return true;
+
+			case MessageType.Msg_PlayerSpottedByGuard:
+				StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
 				return true;
 
 			case MessageType.Msg_Reset:
@@ -42,7 +54,8 @@ public class EnemyGlobalState : EnemyState
 
 			case MessageType.Msg_Sound:
 				SoundEmission sound = (SoundEmission)message.ExtraInfo;
-				Debug.Log($"Sound Heard... Volume: {sound.Volume}  |  Position: {sound.Position}  |  Distance Falloff: {sound.DistanceFalloff}");
+				Enemy.LastKnownPlayerPos = sound.Position;
+				StateMachine.RequestStateChange(Enemy.EnemyStates.StateInvestigate);
 				return true;
 
 			default:

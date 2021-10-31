@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 
 	private Vector3 _lastKnownPlayerPosition = Vector3.zero;
 	private GameManager _gameManager;
+	private EnemyWalkSpeed _walkState;
 
 	private void Awake()
 	{
@@ -81,6 +82,8 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 	public Vector3 LastKnownPlayerPos { get => _lastKnownPlayerPosition; set => _lastKnownPlayerPosition = value; }
 	public GameManager GameManager { get => _gameManager; set => _gameManager = value; }
 	public EnemyAnimator AnimationHandler { get => Animator; }
+	public EnemyWalkSpeed WalkState { get => _walkState; set => _walkState = value; }
+
 }
 
 public enum EnemyWalkSpeed

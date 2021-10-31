@@ -15,6 +15,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 	[SerializeField] private Color _lightColor = Color.red;
 	[SerializeField] private float _lightIntensity = 25.0f;
 	[SerializeField] private Light _spotLight = null;
+	[SerializeField] private DetectorType _detectorType;
 
 	private GameManager _gameManager;
 	private PlayerCharacter _player;
@@ -80,8 +81,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 				if (Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position) < _distance)
 				{
 					Debug.Log($"{gameObject.name} Spotted Player!");
-					//Do raycast
-					//_playerSeen = true;
+
 					return true;
 				}
 			}
@@ -123,8 +123,17 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 			for (int i = 0; i < recipients.Count; i++)
 			{
-				MessageDispatcher.Instance.DispatchMessage(0, this, recipients[i], MessageType.Msg_PlayerSpotted, _player.transform.position);
+				if (_detectorType == DetectorType.Guard)
+					MessageDispatcher.Instance.DispatchMessage(0, this, recipients[i], MessageType.Msg_PlayerSpottedByGuard, _player.transform.position);
+				else
+					MessageDispatcher.Instance.DispatchMessage(0, this, recipients[i], MessageType.Msg_PlayerSpottedByCamera, _player.transform.position);
 			}
 		}
 	}
+}
+
+public enum DetectorType
+{
+	Guard,
+	Camera
 }
