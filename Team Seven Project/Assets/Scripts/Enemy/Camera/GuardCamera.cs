@@ -3,9 +3,9 @@
 [RequireComponent(typeof(SimpleRotate))]
 public class GuardCamera : MonoBehaviour
 {
-	[SerializeField] private GameObject _pivotPoint;
-	[SerializeField] private Vector3 _pivotRotation;
-	[SerializeField] private Vector2 _ToFromRotation;
+	[SerializeField] private GameObject _pivotPoint = null;
+	[SerializeField] private Vector3 _pivotRotation = Vector3.zero;
+	[SerializeField] private Vector2 _ToFromRotation = Vector2.zero;
 
 	private void OnValidate()
 	{

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyGlobalState : EnemyState
 {
@@ -23,15 +24,40 @@ public class EnemyGlobalState : EnemyState
 	public override void OnUpdate(float deltaTime)
 	{
 		UpdateAnimations();
+		UpdateAlertness();
+		CheckPlayerInRange();
+	}
+
+	private void CheckPlayerInRange()
+	{
+		float distanceToPlayer = Vector3.Distance(Enemy.transform.position, GameManager.Instance.Player.transform.position);
+		
+		if(distanceToPlayer <= Enemy.Settings.AutoDetectRange)
+		{
+			StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
+		}
+
+		if(distanceToPlayer <= Enemy.Settings.AutoCatchRange)
+		{
+			Scene scene = SceneManager.GetActiveScene();
+			SceneManager.LoadScene(scene.name);
+		}
+	}
+
+	private void UpdateAlertness()
+	{
+		float awareness = Enemy.AudioDetector.Alertness;
+
+		if(StateMachine.StateCurrent == Enemy.EnemyStates.StatePatrol)
+		{
+			float flashSpeed = (awareness / 100) * 5;
+			Enemy.AlertnessState.PropertyBlock.SetProperties(0, flashSpeed);
+		}
 	}
 
 	private void UpdateAnimations()
 	{
 		//Set Enemy's walking animation
-		//if (StateMachine.StateCurrent == Enemy.EnemyStates.StatePatrol)
-		//	Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.normal);
-		//else if(StateMachine.StateCurrent == Enemy.EnemyStates.StateInvestigate)
-		//	Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.investigate);
 		Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, Enemy.WalkState);
 	}
 
@@ -47,6 +73,7 @@ public class EnemyGlobalState : EnemyState
 					return true;
 				}
 				return false;
+
 			case MessageType.Msg_PlayerSpottedByGuard:
 				StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
 				return true;
