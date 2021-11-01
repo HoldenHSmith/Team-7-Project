@@ -42,6 +42,7 @@ public class EnemySettings : MonoBehaviour
 	[Tooltip("Time until it randomizes another investigation location within radius.")]
 	public float InvestigationDelay = 1;
 
+	
 	//[Tooltip("Angle of the view Cone in which the guard can spot the player.")]
 	//public float ViewConeAngle = 25;
 }

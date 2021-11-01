@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(RecipientHandler))]
 public class VisualDetection : MonoBehaviour, IMessageSender
@@ -15,7 +16,8 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 	[SerializeField] private float _lightIntensity = 25.0f;
 	[SerializeField] private Light _spotLight = null;
 	[SerializeField] private DetectorType _detectorType = DetectorType.Camera;
-
+	[Tooltip("The distance in which the gaurd captures the player and the game ends.")]
+	[SerializeField] private float _catchDistance = 0.25f;
 	private GameManager _gameManager;
 	private PlayerCharacter _player;
 	private RecipientHandler _recipientHandler;
@@ -56,6 +58,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 		if (PlayerDetected())
 		{
 			SendMessage();
+
 		}
 	}
 
@@ -77,7 +80,8 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 			//Check if target is inside the cone
 			if (playerDotProd >= coneValue)
 			{
-				if (Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position) < _distance)
+				float distanceToPlayer  = Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position);
+				if (distanceToPlayer < _distance)
 				{
 					RaycastHit hit;
 					if (Physics.Raycast(_coneDetectionTransform.position + Vector3.up, directionToPlayer, out hit))
@@ -85,6 +89,11 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
 							Debug.Log($"{gameObject.name} Spotted Player!");
+							if(distanceToPlayer <= _catchDistance && _detectorType == DetectorType.Guard)
+							{
+								Scene scene = SceneManager.GetActiveScene();
+								SceneManager.LoadScene(scene.name);
+							}
 							return true;
 						}
 						Debug.Log($"{hit.collider.gameObject.name}");

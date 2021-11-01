@@ -5,10 +5,9 @@ public class SoundEmitter : MonoBehaviour, IMessageSender
 	[SerializeField] private float _volume = 100;
 	[SerializeField] private float _distanceFalloff = 0;
 
-
 	public void EmitSound()
 	{
-		SendMessage();		
+		SendMessage();
 	}
 
 	public void SendMessage()
