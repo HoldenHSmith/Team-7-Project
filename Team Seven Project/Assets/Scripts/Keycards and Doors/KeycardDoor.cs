@@ -6,6 +6,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 {
 	[SerializeField] private bool _unlocked = false;
 	[SerializeField] private AreaType _area = AreaType.Containment;
+	[SerializeField] private Transform _spawnPos;
 
 	private Animator _animator;
 	private int _openHash;
@@ -28,6 +29,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 	{
 		_unlocked = true;
 		_animator.SetTrigger(_openHash);
+		SaveManager.Save(_spawnPos.position);
 	}
 
 	private void OnEnable()
@@ -48,4 +50,5 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 	}
 
 	public bool Unlocked { get => _unlocked; }
+	public Vector3 SpawnPos { get => _spawnPos.position; } 
 }

@@ -13,7 +13,7 @@ public class SaveData
 	{
 		KeySaves = new KeySave[keyValues.Count];
 
-		for(int i = 0; i < keyValues.Count;i++)
+		for (int i = 0; i < keyValues.Count; i++)
 		{
 			KeySaves[i] = new KeySave((AreaType)i, keyValues[(AreaType)i]);
 		}
@@ -31,13 +31,25 @@ public class SaveData
 	{
 		List<bool> statuses = new List<bool>();
 
-		for(int i =0; i < DoorsUnlocked.Length;i++)
+		for (int i = 0; i < DoorsUnlocked.Length; i++)
 		{
 			statuses.Add(DoorsUnlocked[i]);
 		}
 
 		return statuses;
-		
+
+	}
+
+	public Dictionary<AreaType, bool> KeyDict()
+	{
+		Dictionary<AreaType, bool> dict = new Dictionary<AreaType, bool>();
+
+		for (int i = 0; i < KeySaves.Length; i++)
+		{
+			dict.Add(KeySaves[i].Area, KeySaves[i].Unlocked);
+		}
+
+		return dict;
 	}
 
 }

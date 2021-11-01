@@ -17,7 +17,20 @@ public class Keycard : MonoBehaviour, ICollectable, IInteractable
 
 	public void SetCollected(bool collected)
 	{
-
+		if (collected)
+			OnInteract(GameManager.Instance.Player);
 	}
+
+	private void OnEnable()
+	{
+		KeycardManager.RegisterKeycard(this);
+	}
+
+	private void OnDisable()
+	{
+		KeycardManager.RemoveKeycard(this);
+	}
+
+	public AreaType Area { get => _area; }
 }
 

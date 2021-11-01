@@ -30,18 +30,22 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		else
 			DestroyImmediate(this);
 
-		if (SaveManager.Load())
-		{
-			SaveData s = _saveManager.Current;
-			DoorManager.SetLockedStatuses(s.DoorStatusesToList());
-		}
-		else
-			Debug.Log("No Save Data Found");
+	
 
 	}
 
 	private void Start()
 	{
+		if (SaveManager.Load())
+		{
+			SaveData s = _saveManager.Current;
+			DoorManager.SetLockedStatuses(s.DoorStatusesToList());
+			_playerCharacter.transform.position = s.PosToVec3();
+			KeycardManager.LoadKeycards(s.KeyDict());
+		}
+		else
+			Debug.Log("No Save Data Found");
+
 		List<Enemy> enemies = EnemyManager.Enemies;
 
 		for (int i = 0; i < enemies.Count; i++)
@@ -54,7 +58,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	{
 		if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
 		{
-			SaveManager.Save();
+			SaveManager.Save(Player.transform.position);
 		}
 		if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
 		{

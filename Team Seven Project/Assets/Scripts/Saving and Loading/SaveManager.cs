@@ -13,9 +13,9 @@ public class SaveManager
 	private static string _fileName = "SaveData";
 	private static SaveData _currentSaveData;
 
-	public static void Save()
+	public static void Save(Vector3 position)
 	{
-		_currentSaveData = new SaveData(CollectionManager.Instance.KeysCollected, GameManager.Instance.Player.transform.position,DoorManager.GetLockedStatuses());
+		_currentSaveData = new SaveData(CollectionManager.Instance.KeysCollected, position, DoorManager.GetLockedStatuses());
 
 		//Check if the directory exists, if not, create it
 		if (!DirectoryExists())

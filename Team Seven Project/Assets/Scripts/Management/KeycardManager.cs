@@ -26,12 +26,20 @@ public class KeycardManager : MonoBehaviour
 		_keycards.Remove(keycard);
 	}
 
+	public static void LoadKeycards(Dictionary<AreaType, bool> keycardValues)
+	{
+		for(int i = 0; i < _keycards.Count;i++)
+		{
+			_keycards[i].SetCollected(keycardValues[_keycards[i].Area]);
+		}
+	}
+
 	public static List<Keycard> Keycards { get => _keycards; }
 
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()
 	{
-		foreach(Keycard obj in _keycards)
+		foreach (Keycard obj in _keycards)
 		{
 			Handles.DrawAAPolyLine(transform.position, obj.transform.position);
 		}
