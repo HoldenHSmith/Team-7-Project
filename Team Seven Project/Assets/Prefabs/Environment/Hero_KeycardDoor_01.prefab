@@ -274,6 +274,50 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &904273766305070290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6480992665843475325}
+  - component: {fileID: 4580940463324840865}
+  m_Layer: 0
+  m_Name: Door_Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6480992665843475325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904273766305070290}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3103868089798391869}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4580940463324840865
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904273766305070290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9589293, y: 2.0730886, z: 0.32425666}
+  m_Center: {x: 1.5037051, y: 1.0700376, z: 0.09907955}
 --- !u!1 &1843721451266376502
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +408,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3103868089798391869}
-  - component: {fileID: 5057333793698983230}
   m_Layer: 13
   m_Name: Hero_KeycardDoor_01
   m_TagString: Untagged
@@ -384,22 +427,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7494830952653509160}
+  - {fileID: 6480992665843475325}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5057333793698983230
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2330884634313368199}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.050137, y: 2.6221044, z: 0.48938262}
-  m_Center: {x: 1.4801657, y: 1.3037909, z: 0.032051384}
 --- !u!1 &2617378041562944830
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +801,9 @@ GameObject:
   - component: {fileID: 4221082680860806565}
   - component: {fileID: 5417683361664299832}
   - component: {fileID: 1705782806363633096}
+  - component: {fileID: 4353241434598258159}
+  - component: {fileID: 512588182541161918}
+  - component: {fileID: 7127198184705850883}
   m_Layer: 0
   m_Name: Hero_KeyCardWall_01
   m_TagString: Untagged
@@ -841,6 +875,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4353241434598258159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628764907922866261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5216179, y: 2.5984924, z: 0.5381391}
+  m_Center: {x: 18.260809, y: 1.2992462, z: 0.047028244}
+--- !u!65 &512588182541161918
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628764907922866261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5155029, y: 2.5984924, z: 0.5381391}
+  m_Center: {x: 20.742249, y: 1.2992462, z: 0.047028244}
+--- !u!65 &7127198184705850883
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628764907922866261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9605827, y: 0.50326824, z: 0.5381391}
+  m_Center: {x: 19.50257, y: 2.3468585, z: 0.047028244}
 --- !u!1 &7042492992235553472
 GameObject:
   m_ObjectHideFlags: 0
