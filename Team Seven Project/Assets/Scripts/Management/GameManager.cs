@@ -10,6 +10,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	private MessageDispatcher _messageDispatcher;
 	private PlayerCharacter _playerCharacter;
 	private CollectionManager _collectionManager;
+	private SaveManager _saveManager;
 
 	public void SendMessage()
 	{
@@ -21,12 +22,22 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		_playerCharacter = GameObject.Find("Player").GetComponent<PlayerCharacter>();
 		_enemyManager = GetComponentInChildren<EnemyManager>();
 		_messageDispatcher = MessageDispatcher.Instance;
+		_saveManager = SaveManager.Instance;
 		_collectionManager = new CollectionManager();
 
 		if (_instance == null)
 			_instance = this;
 		else
 			DestroyImmediate(this);
+
+		if (SaveManager.Load())
+		{
+			SaveData s = _saveManager.Current;
+			Debug.Log($"Player Pos: {s.PosToVec3()}");
+		}
+		else
+			Debug.Log("No Save Data Found");
+
 	}
 
 	private void Start()
@@ -43,7 +54,11 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	{
 		if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
 		{
-			SendMessage();
+			SaveManager.Save();
+		}
+		if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
+		{
+			SaveManager.ClearSave();
 		}
 	}
 

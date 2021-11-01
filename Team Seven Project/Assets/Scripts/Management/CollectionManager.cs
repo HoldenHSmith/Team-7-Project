@@ -29,4 +29,5 @@ public sealed class CollectionManager
 	}
 
 	public static CollectionManager Instance { get => _instance; }
+	public Dictionary<AreaType, bool> KeysCollected { get => _keysCollected; }
 }

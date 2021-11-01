@@ -5,7 +5,7 @@ using UnityEngine;
 public class KeycardDoor : MonoBehaviour, IInteractable
 {
 	[SerializeField] private bool _unlocked = false;
-	[SerializeField] private AreaType _area;
+	[SerializeField] private AreaType _area = AreaType.Containment;
 
 	private Animator _animator;
 	private int _openHash;

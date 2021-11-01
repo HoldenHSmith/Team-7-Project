@@ -2,7 +2,7 @@
 
 public class Keycard : MonoBehaviour, ICollectable, IInteractable
 {
-	[SerializeField] private AreaType _area;
+	[SerializeField] private AreaType _area = AreaType.Containment;
 
 	public void OnCollect()
 	{

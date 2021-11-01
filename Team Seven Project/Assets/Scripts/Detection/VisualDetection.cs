@@ -9,13 +9,12 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 	[SerializeField] private float _viewConeAngle = 25;
 	[SerializeField] private float _distance = 25;
-	[SerializeField] private float _maxFollowDistance = 5.0f;
 	[SerializeField] private float _messageDelay = 0.25f;
 	[SerializeField] private float _lightSoftness = 0.0f;
 	[SerializeField] private Color _lightColor = Color.red;
 	[SerializeField] private float _lightIntensity = 25.0f;
 	[SerializeField] private Light _spotLight = null;
-	[SerializeField] private DetectorType _detectorType;
+	[SerializeField] private DetectorType _detectorType = DetectorType.Camera;
 
 	private GameManager _gameManager;
 	private PlayerCharacter _player;
@@ -66,8 +65,6 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		for (int i = 0; i < samplePoints.Count; i++)
 		{
-			if (_detectorType == DetectorType.Camera)
-				Debug.Log("Test");
 			// Get the direction from the enemy to the player and normalize it.
 			Vector3 directionToPlayer = samplePoints[i].position - _coneDetectionTransform.position;
 			directionToPlayer.Normalize();
@@ -92,8 +89,6 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 						}
 						Debug.Log($"{hit.collider.gameObject.name}");
 					}
-						
-
 				}
 			}
 		}

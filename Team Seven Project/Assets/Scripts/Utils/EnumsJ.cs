@@ -5,6 +5,7 @@
 	Repeat
 }
 
+[System.Serializable]
 public enum AreaType
 {
 	Containment,
