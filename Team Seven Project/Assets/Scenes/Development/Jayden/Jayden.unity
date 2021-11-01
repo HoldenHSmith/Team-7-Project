@@ -1214,6 +1214,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2044642656773716204, guid: eb15307a44e30a74cb52d30b332e912b, type: 3}
   m_PrefabInstance: {fileID: 106924485}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &106941417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 154295749}
+    m_Modifications:
+    - target: {fileID: 2330884634313368199, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_Name
+      value: Hero_KeycardDoor_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0443916
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.039166
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.06337452
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+--- !u!4 &106941418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3103868089798391869, guid: e0306f3ce31512347a674a8f90b7b27e, type: 3}
+  m_PrefabInstance: {fileID: 106941417}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &111071366 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6858238506311817628, guid: 0bb52403204f2b64683f59835b3b4abf, type: 3}
@@ -1447,6 +1509,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2721375980768901974, guid: dda48131f463eb842b9ea467b34164f1, type: 3}
   m_PrefabInstance: {fileID: 153470936}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &154295747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154295749}
+  - component: {fileID: 154295748}
+  m_Layer: 0
+  m_Name: Keycard Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &154295748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154295747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e621e1753ff4ad4e898b17e5fe8b733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unlocked: 0
+  _area: 0
+--- !u!4 &154295749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154295747}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 42.563, y: 1.149166, z: -5.6840153}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 106941418}
+  m_Father: {fileID: 0}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &158702385
 PrefabInstance:
   m_ObjectHideFlags: 0
