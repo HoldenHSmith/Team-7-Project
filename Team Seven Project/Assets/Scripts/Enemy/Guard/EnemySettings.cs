@@ -22,8 +22,6 @@ public class EnemySettings : MonoBehaviour
 	public float WalkCameraAlertAcceleration;
 	public float WalkCameraAlertTurnSpeed = 420;
 
-
-
 	[Tooltip("Distance the Enemy can spot the player.")]
 	public float FollowPlayerDistance = 10f;
 
@@ -42,7 +40,9 @@ public class EnemySettings : MonoBehaviour
 	[Tooltip("Time until it randomizes another investigation location within radius.")]
 	public float InvestigationDelay = 1;
 
-	
-	//[Tooltip("Angle of the view Cone in which the guard can spot the player.")]
-	//public float ViewConeAngle = 25;
+	[Tooltip("The range in which the guard will automatically detect the player.")]
+	public float AutoDetectRange = 1;
+
+	[Tooltip("The range in which the guard will automatically catch the player.")]
+	public float AutoCatchRange = 0.25f;
 }

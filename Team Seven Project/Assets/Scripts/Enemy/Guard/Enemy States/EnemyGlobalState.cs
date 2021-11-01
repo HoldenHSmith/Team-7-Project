@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyGlobalState : EnemyState
 {
@@ -24,6 +25,23 @@ public class EnemyGlobalState : EnemyState
 	{
 		UpdateAnimations();
 		UpdateAlertness();
+		CheckPlayerInRange();
+	}
+
+	private void CheckPlayerInRange()
+	{
+		float distanceToPlayer = Vector3.Distance(Enemy.transform.position, GameManager.Instance.Player.transform.position);
+		
+		if(distanceToPlayer <= Enemy.Settings.AutoDetectRange)
+		{
+			StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
+		}
+
+		if(distanceToPlayer <= Enemy.Settings.AutoCatchRange)
+		{
+			Scene scene = SceneManager.GetActiveScene();
+			SceneManager.LoadScene(scene.name);
+		}
 	}
 
 	private void UpdateAlertness()
@@ -55,6 +73,7 @@ public class EnemyGlobalState : EnemyState
 					return true;
 				}
 				return false;
+
 			case MessageType.Msg_PlayerSpottedByGuard:
 				StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
 				return true;
