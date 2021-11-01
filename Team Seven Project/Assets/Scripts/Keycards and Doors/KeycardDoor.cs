@@ -45,7 +45,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 	public void SetUnlocked(bool unlocked)
 	{
 		_unlocked = unlocked;
-		if (_unlocked)
+		if (_unlocked && _animator != null)
 			_animator.Play("Is_Open");
 	}
 

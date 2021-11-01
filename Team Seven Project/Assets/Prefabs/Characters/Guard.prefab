@@ -145,24 +145,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bcc03ff6bf4c247bcb6f239923a531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 1
+  WalkSpeed: 2
   WalkAcceleration: 0.5
   WalkTurnSpeed: 810
-  WalkInspectSpeed: 1.5
-  InspectAcceleration: 1
-  InspectTurnSpeed: 810
+  WalkInspectSpeed: 2
+  InspectAcceleration: 4
+  InspectTurnSpeed: 2160
   RunSpeed: 3.5
   RunAcceleration: 5
-  RunTurnSpeed: 2160
+  RunTurnSpeed: 4320
   WalkCameraAlertSpeed: 3.5
   WalkCameraAlertAcceleration: 5
-  WalkCameraAlertTurnSpeed: 2160
+  WalkCameraAlertTurnSpeed: 4320
   FollowPlayerDistance: 10
   DistanceToWaypointSatisfaction: 0.1
   DistanceToLastKnownPlayerPosition: 0.5
   InvestigationTime: 15
   InvestigationRadius: 5
   InvestigationDelay: 1
+  AutoDetectRange: 2
+  AutoCatchRange: 0.5
 --- !u!114 &5853570717598125805
 MonoBehaviour:
   m_ObjectHideFlags: 0
