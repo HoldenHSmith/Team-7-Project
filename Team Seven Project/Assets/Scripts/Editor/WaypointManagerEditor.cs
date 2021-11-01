@@ -61,7 +61,7 @@ public class WaypointManagerEditor : Editor
 				if (i < m_WaypointManager.Waypoints.Count - 1)
 					DrawLineBetweenWaypoints(waypoint, m_WaypointManager.Waypoints[i + 1]);
 
-				if (m_WaypointManager.Type == EnumsJ.LoopType.Repeat && i == m_WaypointManager.Waypoints.Count - 1 && m_WaypointManager.Waypoints.Count > 1)
+				if (m_WaypointManager.Type == LoopType.Repeat && i == m_WaypointManager.Waypoints.Count - 1 && m_WaypointManager.Waypoints.Count > 1)
 					DrawLineBetweenWaypoints(waypoint, m_WaypointManager.Waypoints[0]);
 
 				if (CheckUpdateWaypoints(i))
@@ -155,7 +155,7 @@ public class WaypointManagerEditor : Editor
 					GUILayout.BeginHorizontal();
 					{
 						GUILayout.FlexibleSpace();
-						m_WaypointManager.Type = (EnumsJ.LoopType)EditorGUILayout.EnumPopup(m_WaypointManager.Type, GUILayout.Width(150));
+						m_WaypointManager.Type = (LoopType)EditorGUILayout.EnumPopup(m_WaypointManager.Type, GUILayout.Width(150));
 						GUILayout.FlexibleSpace();
 					}
 					GUILayout.EndHorizontal();

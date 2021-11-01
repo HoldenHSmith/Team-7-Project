@@ -2,11 +2,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameManager : MonoBehaviour, IMessageSender
+public sealed class GameManager : MonoBehaviour, IMessageSender
 {
+	//Singleton
+	private static GameManager _instance;
 	private EnemyManager _enemyManager;
 	private MessageDispatcher _messageDispatcher;
 	private PlayerCharacter _playerCharacter;
+	private CollectionManager _collectionManager;
 
 	public void SendMessage()
 	{
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour, IMessageSender
 		_playerCharacter = GameObject.Find("Player").GetComponent<PlayerCharacter>();
 		_enemyManager = GetComponentInChildren<EnemyManager>();
 		_messageDispatcher = MessageDispatcher.Instance;
+		_collectionManager = new CollectionManager();
 	}
 
 	private void Start()
@@ -37,6 +41,20 @@ public class GameManager : MonoBehaviour, IMessageSender
 			SendMessage();
 		}
 	}
+	
+	public static GameManager Instance 
+	{ 
+		get
+		{
+			if(_instance == null)
+			{
+				GameObject go = new GameObject();
+				_instance = go.AddComponent<GameManager>();
+			}
+			return _instance;
+		}
+	}
 
 	public PlayerCharacter Player { get => _playerCharacter; }
+	public CollectionManager Collections { get => _collectionManager; }
 }

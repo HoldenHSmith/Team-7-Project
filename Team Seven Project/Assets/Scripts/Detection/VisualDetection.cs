@@ -28,7 +28,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 	private void Start()
 	{
-		_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		_gameManager = GameManager.Instance;
 
 		if (_gameManager == null)
 			Debug.LogError("GameManager prefab was not found in the scene.");
@@ -111,7 +111,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		_spotLight.innerSpotAngle = _viewConeAngle - _lightSoftness;
 		_spotLight.spotAngle = _viewConeAngle;
-		_spotLight.range = _distance * 1.25f;
+		_spotLight.range = _distance * 1.1f;
 		_spotLight.color = _lightColor;
 		_spotLight.intensity = _lightIntensity;
 
