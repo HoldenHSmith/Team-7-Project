@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class SimpleRotate : MonoBehaviour
 {
-	[SerializeField] private Transform _objectTransform;
+	[SerializeField] private Transform _objectTransform = null;
 	[SerializeField] private float _rotationSpeed = 0.1f;
 	[SerializeField] private bool _active = true;
 
@@ -21,9 +21,12 @@ public class SimpleRotate : MonoBehaviour
 
 	private void Update()
 	{
-		float rY = Mathf.SmoothStep(_rotationAngleYStart, _rotationAngleYFinish, Mathf.PingPong(Time.time * _rotationSpeed, 1));
+		if (_active)
+		{
+			float rY = Mathf.SmoothStep(_rotationAngleYStart, _rotationAngleYFinish, Mathf.PingPong(Time.time * _rotationSpeed, 1));
 
-		_objectTransform.rotation = Quaternion.Euler(_startEuler.x, rY, _startEuler.z);
+			_objectTransform.rotation = Quaternion.Euler(_startEuler.x, rY, _startEuler.z);
+		}
 	}
 
 	public void SetRotationValues(Vector2 rotationValues)

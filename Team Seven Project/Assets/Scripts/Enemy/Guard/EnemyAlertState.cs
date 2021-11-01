@@ -45,4 +45,6 @@ public class EnemyAlertState : MonoBehaviour
 		_alertness = level;
 		OnAlertChanged();
 	}
+
+	public EnemyMaterialBlockHandler PropertyBlock { get => _propertyBlock; }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(RecipientHandler))]
 public class VisualDetection : MonoBehaviour, IMessageSender
@@ -9,14 +10,14 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 	[SerializeField] private float _viewConeAngle = 25;
 	[SerializeField] private float _distance = 25;
-	[SerializeField] private float _maxFollowDistance = 5.0f;
 	[SerializeField] private float _messageDelay = 0.25f;
 	[SerializeField] private float _lightSoftness = 0.0f;
 	[SerializeField] private Color _lightColor = Color.red;
 	[SerializeField] private float _lightIntensity = 25.0f;
 	[SerializeField] private Light _spotLight = null;
-	[SerializeField] private DetectorType _detectorType;
-
+	[SerializeField] private DetectorType _detectorType = DetectorType.Camera;
+	[Tooltip("The distance in which the gaurd captures the player and the game ends.")]
+	[SerializeField] private float _catchDistance = 0.25f;
 	private GameManager _gameManager;
 	private PlayerCharacter _player;
 	private RecipientHandler _recipientHandler;
@@ -57,6 +58,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 		if (PlayerDetected())
 		{
 			SendMessage();
+
 		}
 	}
 
@@ -66,8 +68,6 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		for (int i = 0; i < samplePoints.Count; i++)
 		{
-			if (_detectorType == DetectorType.Camera)
-				Debug.Log("Test");
 			// Get the direction from the enemy to the player and normalize it.
 			Vector3 directionToPlayer = samplePoints[i].position - _coneDetectionTransform.position;
 			directionToPlayer.Normalize();
@@ -80,7 +80,8 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 			//Check if target is inside the cone
 			if (playerDotProd >= coneValue)
 			{
-				if (Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position) < _distance)
+				float distanceToPlayer  = Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position);
+				if (distanceToPlayer < _distance)
 				{
 					RaycastHit hit;
 					if (Physics.Raycast(_coneDetectionTransform.position + Vector3.up, directionToPlayer, out hit))
@@ -88,12 +89,15 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
 							Debug.Log($"{gameObject.name} Spotted Player!");
+							if(distanceToPlayer <= _catchDistance && _detectorType == DetectorType.Guard)
+							{
+								Scene scene = SceneManager.GetActiveScene();
+								SceneManager.LoadScene(scene.name);
+							}
 							return true;
 						}
 						Debug.Log($"{hit.collider.gameObject.name}");
 					}
-						
-
 				}
 			}
 		}
