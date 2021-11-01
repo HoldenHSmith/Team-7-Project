@@ -10,5 +10,6 @@ public enum AreaType
 	Containment,
 	Biolab,
 	Surveillance,
-	MainFoyer
+	MainFoyer,
+	Count
 }
