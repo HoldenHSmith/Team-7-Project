@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class EnemyManager : MonoBehaviour
+public sealed class EnemyManager : MonoBehaviour
 {
+	private static EnemyManager _instance;
 	private static readonly List<Enemy> _enemyList = new List<Enemy>();
 
 	public static void RegisterEnemy(Enemy enemy)
@@ -43,4 +44,17 @@ public class EnemyManager : MonoBehaviour
 		}
 	}
 #endif
+
+	public static EnemyManager Instance 
+	{
+		get
+		{
+			if(_instance == null)
+			{
+				GameObject go = new GameObject();
+				_instance = go.AddComponent<EnemyManager>();
+			}
+			return _instance;
+		}
+	}
 }

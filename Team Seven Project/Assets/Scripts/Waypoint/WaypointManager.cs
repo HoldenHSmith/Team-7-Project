@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static EnumsJ;
 
 [Serializable]
 public class WaypointManager : MonoBehaviour

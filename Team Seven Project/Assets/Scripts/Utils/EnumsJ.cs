@@ -1,9 +1,15 @@
-﻿public static class EnumsJ 
+﻿public enum LoopType
 {
-	public enum LoopType
-	{
-		Once,
-		PingPong,
-		Repeat
-	}
+	Once,
+	PingPong,
+	Repeat
+}
+
+public enum AreaType
+{
+	Containment,
+	Biolab,
+	Surveillance,
+	MainFoyer,
+	Count
 }
