@@ -23,15 +23,23 @@ public class EnemyGlobalState : EnemyState
 	public override void OnUpdate(float deltaTime)
 	{
 		UpdateAnimations();
+		UpdateAlertness();
+	}
+
+	private void UpdateAlertness()
+	{
+		float awareness = Enemy.AudioDetector.Alertness;
+
+		if(StateMachine.StateCurrent == Enemy.EnemyStates.StatePatrol)
+		{
+			float flashSpeed = (awareness / 100) * 5;
+			Enemy.AlertnessState.PropertyBlock.SetProperties(0, flashSpeed);
+		}
 	}
 
 	private void UpdateAnimations()
 	{
 		//Set Enemy's walking animation
-		//if (StateMachine.StateCurrent == Enemy.EnemyStates.StatePatrol)
-		//	Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.normal);
-		//else if(StateMachine.StateCurrent == Enemy.EnemyStates.StateInvestigate)
-		//	Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.investigate);
 		Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, Enemy.WalkState);
 	}
 

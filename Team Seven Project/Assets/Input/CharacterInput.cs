@@ -173,7 +173,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ee3e1f53-30b6-401f-9e55-eb668c946951"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",

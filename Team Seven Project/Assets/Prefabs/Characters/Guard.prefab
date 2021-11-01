@@ -45,8 +45,8 @@ Light:
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 34.07
   m_Range: 6.6000004
-  m_SpotAngle: 56.08
-  m_InnerSpotAngle: 56.08
+  m_SpotAngle: 74.4
+  m_InnerSpotAngle: 74.4
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -202,8 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411078c9d48949842bf96ce05917bbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DetectRange: 0
-  DetectAngle: 0
 --- !u!195 &5853570717598125806
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -268,15 +266,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coneDetectionTransform: {fileID: 990360865}
-  _viewConeAngle: 56.08
+  _viewConeAngle: 74.4
   _distance: 6
-  _maxFollowDistance: 5
   _messageDelay: 0.25
   _lightSoftness: 0
   _lightColor: {r: 1, g: 0, b: 0, a: 1}
   _lightIntensity: 34.07
   _spotLight: {fileID: 990360864}
   _detectorType: 0
+  _catchDistance: 1
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &80831813

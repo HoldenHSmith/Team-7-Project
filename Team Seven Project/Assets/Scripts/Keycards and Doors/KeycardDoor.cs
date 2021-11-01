@@ -5,7 +5,8 @@ using UnityEngine;
 public class KeycardDoor : MonoBehaviour, IInteractable
 {
 	[SerializeField] private bool _unlocked = false;
-	[SerializeField] private AreaType _area;
+	[SerializeField] private AreaType _area = AreaType.Containment;
+	[SerializeField] private Transform _spawnPos;
 
 	private Animator _animator;
 	private int _openHash;
@@ -13,7 +14,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 	private void Awake()
 	{
 		_openHash = Animator.StringToHash("Open");
-		_animator = GetComponentInChildren<Animator>();
+		_animator = GetComponent<Animator>();
 	}
 
 	public void OnInteract(PlayerCharacter playerCharacter)
@@ -28,5 +29,26 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 	{
 		_unlocked = true;
 		_animator.SetTrigger(_openHash);
+		SaveManager.Save(_spawnPos.position);
 	}
+
+	private void OnEnable()
+	{
+		DoorManager.RegisterDoor(this);
+	}
+
+	private void OnDisable()
+	{
+		DoorManager.RemoveDoor(this);
+	}
+
+	public void SetUnlocked(bool unlocked)
+	{
+		_unlocked = unlocked;
+		if (_unlocked)
+			_animator.Play("Is_Open");
+	}
+
+	public bool Unlocked { get => _unlocked; }
+	public Vector3 SpawnPos { get => _spawnPos.position; } 
 }
