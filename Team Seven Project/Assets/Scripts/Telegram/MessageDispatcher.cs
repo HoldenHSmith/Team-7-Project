@@ -63,11 +63,5 @@ public sealed class MessageDispatcher
 		receiver.ReceiveMessage(telegram);
 	}
 
-	public static MessageDispatcher Instance
-	{
-		get
-		{
-			return _instance;
-		}
-	}
+	public static MessageDispatcher Instance { get => _instance; }
 }
