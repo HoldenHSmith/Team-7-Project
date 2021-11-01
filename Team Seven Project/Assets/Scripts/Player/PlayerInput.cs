@@ -23,7 +23,10 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void SetupInput()
 	{
-		pauseMenu = GameObject.Find("Pause Menu").GetComponent<PauseMenuHandler>();
+		//pauseMenu = GameObject.Find("Pause Menu").GetComponent<PauseMenuHandler>();
+		GameObject go = GameObject.Find("Pause Menu");
+		if (go != null)
+			go.TryGetComponent(out pauseMenu);
 
 		Input = new CharacterInput();
 
