@@ -33,7 +33,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		if (SaveManager.Load())
 		{
 			SaveData s = _saveManager.Current;
-			Debug.Log($"Player Pos: {s.PosToVec3()}");
+			DoorManager.SetLockedStatuses(s.DoorStatusesToList());
 		}
 		else
 			Debug.Log("No Save Data Found");

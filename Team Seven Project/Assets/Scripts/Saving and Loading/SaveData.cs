@@ -7,8 +7,9 @@ public class SaveData
 {
 	public KeySave[] KeySaves;
 	public SaveVector3 PlayerPosition;
+	public bool[] DoorsUnlocked;
 
-	public SaveData(Dictionary<AreaType, bool> keyValues, Vector3 playerPosition)
+	public SaveData(Dictionary<AreaType, bool> keyValues, Vector3 playerPosition, List<bool> doorsUnlocked)
 	{
 		KeySaves = new KeySave[keyValues.Count];
 
@@ -18,11 +19,25 @@ public class SaveData
 		}
 
 		PlayerPosition = new SaveVector3(playerPosition);
+		DoorsUnlocked = doorsUnlocked.ToArray();
 	}
 
 	public Vector3 PosToVec3()
 	{
 		return new Vector3(PlayerPosition.X, PlayerPosition.Y, PlayerPosition.Z);
+	}
+
+	public List<bool> DoorStatusesToList()
+	{
+		List<bool> statuses = new List<bool>();
+
+		for(int i =0; i < DoorsUnlocked.Length;i++)
+		{
+			statuses.Add(DoorsUnlocked[i]);
+		}
+
+		return statuses;
+		
 	}
 
 }

@@ -11,12 +11,13 @@ public sealed class CollectionManager
 	{
 		_keysCollected = new Dictionary<AreaType, bool>();
 
-		for(int i = 0; i < (int)AreaType.Count;i++)
+		for (int i = 0; i < (int)AreaType.Count; i++)
 		{
 			_keysCollected.Add((AreaType)i, false);
 		}
+
 	}
-	
+
 	public void SetKeyValue(AreaType area, bool value)
 	{
 		_keysCollected[area] = value;
@@ -30,4 +31,5 @@ public sealed class CollectionManager
 
 	public static CollectionManager Instance { get => _instance; }
 	public Dictionary<AreaType, bool> KeysCollected { get => _keysCollected; }
+	
 }

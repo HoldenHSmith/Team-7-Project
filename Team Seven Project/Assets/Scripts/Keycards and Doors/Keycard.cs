@@ -14,5 +14,10 @@ public class Keycard : MonoBehaviour, ICollectable, IInteractable
 		OnCollect();
 		this.gameObject.SetActive(false);
 	}
+
+	public void SetCollected(bool collected)
+	{
+
+	}
 }
 

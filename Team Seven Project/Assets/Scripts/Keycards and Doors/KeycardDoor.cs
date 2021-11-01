@@ -13,7 +13,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 	private void Awake()
 	{
 		_openHash = Animator.StringToHash("Open");
-		_animator = GetComponentInChildren<Animator>();
+		_animator = GetComponent<Animator>();
 	}
 
 	public void OnInteract(PlayerCharacter playerCharacter)
@@ -29,4 +29,23 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 		_unlocked = true;
 		_animator.SetTrigger(_openHash);
 	}
+
+	private void OnEnable()
+	{
+		DoorManager.RegisterDoor(this);
+	}
+
+	private void OnDisable()
+	{
+		DoorManager.RemoveDoor(this);
+	}
+
+	public void SetUnlocked(bool unlocked)
+	{
+		_unlocked = unlocked;
+		if (_unlocked)
+			_animator.Play("Is_Open");
+	}
+
+	public bool Unlocked { get => _unlocked; }
 }

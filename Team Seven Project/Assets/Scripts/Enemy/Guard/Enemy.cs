@@ -10,9 +10,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(AudioDetection))]
 public class Enemy : MonoBehaviour, IMessageReceiver
 {
-	public float DetectRange; //Move these to a radar type script
-	public float DetectAngle; //Move these to a radar type script
-
 	protected NavMeshAgent Agent;
 	protected EnemyStates States;
 	protected StateMachine StateMachine;

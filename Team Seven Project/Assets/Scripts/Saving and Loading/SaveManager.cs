@@ -15,7 +15,7 @@ public class SaveManager
 
 	public static void Save()
 	{
-		_currentSaveData = new SaveData(CollectionManager.Instance.KeysCollected, GameManager.Instance.Player.transform.position);
+		_currentSaveData = new SaveData(CollectionManager.Instance.KeysCollected, GameManager.Instance.Player.transform.position,DoorManager.GetLockedStatuses());
 
 		//Check if the directory exists, if not, create it
 		if (!DirectoryExists())
@@ -70,7 +70,7 @@ public class SaveManager
 
 	public static void CreateNewSave(Vector3 position,Dictionary<AreaType,bool> keyValues )
 	{
-		_currentSaveData = new SaveData(keyValues,position);
+		_currentSaveData = new SaveData(keyValues,position,DoorManager.GetLockedStatuses());
 		
 	}
 
