@@ -66,6 +66,8 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		for (int i = 0; i < samplePoints.Count; i++)
 		{
+			if (_detectorType == DetectorType.Camera)
+				Debug.Log("Test");
 			// Get the direction from the enemy to the player and normalize it.
 			Vector3 directionToPlayer = samplePoints[i].position - _coneDetectionTransform.position;
 			directionToPlayer.Normalize();
@@ -80,14 +82,17 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 			{
 				if (Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position) < _distance)
 				{
-					if (Physics.Raycast(transform.position + Vector3.up, directionToPlayer, out RaycastHit hit))
+					RaycastHit hit;
+					if (Physics.Raycast(_coneDetectionTransform.position + Vector3.up, directionToPlayer, out hit))
 					{
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
 							Debug.Log($"{gameObject.name} Spotted Player!");
 							return true;
 						}
+						Debug.Log($"{hit.collider.gameObject.name}");
 					}
+						
 
 				}
 			}
