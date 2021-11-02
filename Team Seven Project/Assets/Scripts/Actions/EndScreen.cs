@@ -37,7 +37,12 @@ public class EndScreen : MonoBehaviour
 			Time.timeScale = 0;
 			_quitTimer += Time.unscaledDeltaTime;
 			if (_quitTimer >= _timeUntilQuit)
+			{
 				SceneManager.LoadScene("MainMenu");
+				SaveManager.ClearSave();
+			}
+
+
 		}
 	}
 
