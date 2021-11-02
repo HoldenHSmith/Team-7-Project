@@ -31,13 +31,13 @@ public class EnemyGlobalState : EnemyState
 	private void CheckPlayerInRange()
 	{
 		float distanceToPlayer = Vector3.Distance(Enemy.transform.position, GameManager.Instance.Player.transform.position);
-		
-		if(distanceToPlayer <= Enemy.Settings.AutoDetectRange)
+
+		if (distanceToPlayer <= Enemy.Settings.AutoDetectRange)
 		{
 			StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
 		}
 
-		if(distanceToPlayer <= Enemy.Settings.AutoCatchRange)
+		if (distanceToPlayer <= Enemy.Settings.AutoCatchRange)
 		{
 			Scene scene = SceneManager.GetActiveScene();
 			SceneManager.LoadScene(scene.name);
@@ -48,9 +48,11 @@ public class EnemyGlobalState : EnemyState
 	{
 		float awareness = Enemy.AudioDetector.Alertness;
 
-		if(StateMachine.StateCurrent == Enemy.EnemyStates.StatePatrol)
+		if (StateMachine.StateCurrent == Enemy.EnemyStates.StatePatrol)
 		{
 			float flashSpeed = (awareness / 100) * 5;
+			if (flashSpeed >= 4)
+				flashSpeed = 4;
 			Enemy.AlertnessState.PropertyBlock.SetProperties(0, flashSpeed);
 		}
 	}
