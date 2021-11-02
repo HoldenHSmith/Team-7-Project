@@ -37,6 +37,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	private Vector3 _lastProjectileVelocity;
 	private bool _validThrow = false;
 
+	private Vector3 _finalPosition = Vector3.zero;
 
 	protected void SetupPlayerThrow()
 	{
@@ -61,7 +62,7 @@ public partial class PlayerCharacter : MonoBehaviour
 				_landingZoneSprite.transform.rotation = Quaternion.FromToRotation(Vector3.forward, rayHit.normal);
 				//Calculate the projectile velocity
 				_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(rayHit.point, _throwPoint.position, _travelDuration);
-
+				_finalPosition = rayHit.point;
 				//Visualize the trajectory
 				EnableThrowVisuals();
 				VisualizeTrajectory(_lastProjectileVelocity);
@@ -96,7 +97,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	public void SpawnProjectile()
 	{
 		Rigidbody obj = Instantiate(_projectile, _throwPoint.position, Quaternion.identity);
-		obj.velocity = _lastProjectileVelocity;
+		obj.velocity = MathJ.CalculateProjectileVelocity(_finalPosition, _throwPoint.position, _travelDuration);
 	}
 
 	private void DisableThrowVisuals()
@@ -113,7 +114,6 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	private void VisualizeTrajectory(Vector3 velocity)
 	{
-
 		for (int i = 0; i < _lineSegments; i++)
 		{
 			Vector3 position = MathJ.CalculatePositionInTime(velocity, _throwPoint.position, i / (float)_lineSegments);
@@ -122,5 +122,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	}
 
 	//Properties
-	public bool HasBeaker { get => HasBeaker; set => _hasBeaker = value; }
+	public bool HasBeaker { get => _hasBeaker; set => _hasBeaker = value; }
+
 }
+

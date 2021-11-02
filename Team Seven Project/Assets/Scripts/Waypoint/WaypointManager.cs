@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static EnumsJ;
 
 [Serializable]
 public class WaypointManager : MonoBehaviour
@@ -25,7 +24,6 @@ public class WaypointManager : MonoBehaviour
 
 	private void Initialize()
 	{
-
 		if (Waypoints == null)
 			Waypoints = new List<Waypoint>();
 	}

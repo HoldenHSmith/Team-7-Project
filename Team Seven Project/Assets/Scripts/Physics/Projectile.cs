@@ -49,7 +49,6 @@ public class Projectile : MonoBehaviour
 
 	private void Visualize(Vector3 velocity)
 	{
-
 		for (int i = 0; i < _lineSegments; i++)
 		{
 			Vector3 pos = MathJ.CalculatePositionInTime(velocity, _startPoint.position, i / (float)_lineSegments);

@@ -18,10 +18,15 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected Mouse CurrentMouse;
 
 	protected bool InteractKeyReleasedThisFrame;
-	
+
+	private PauseMenuHandler pauseMenu;
 
 	protected void SetupInput()
 	{
+		//pauseMenu = GameObject.Find("Pause Menu").GetComponent<PauseMenuHandler>();
+		GameObject go = GameObject.Find("Pause Menu");
+		if (go != null)
+			go.TryGetComponent(out pauseMenu);
 
 		Input = new CharacterInput();
 
@@ -47,6 +52,8 @@ public partial class PlayerCharacter : MonoBehaviour
 
 		Input.Player.Interaction.canceled += ctx => OnInteractionReleased(ctx);
 
+		Input.Player.Pause.started += ctx => OnPausePressed(ctx);
+
 		CurrentMouse = Mouse.current;
 	}
 
@@ -61,6 +68,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		if (CurrentMouse.leftButton.wasReleasedThisFrame)
 			LeftMouseDownTime = 0;
 	}
+
 
 
 	protected void ResetInputs()
@@ -84,6 +92,12 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected void OnInteractionKey(InputAction.CallbackContext context) => InteractionKeyPressed = context.ReadValueAsButton();
 
 	protected void OnInteractionReleased(InputAction.CallbackContext context) => InteractKeyReleasedThisFrame = !context.ReadValueAsButton();
+
+	protected void OnPausePressed(InputAction.CallbackContext context)
+	{
+		if (pauseMenu != null)
+			pauseMenu.TogglePauseMenu();
+	}
 
 	//Checks if movement input is pressed
 	public bool IsMoveInput

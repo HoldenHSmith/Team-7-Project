@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using static EnumsJ;
+
 
 #if UNITY_EDITOR
 using UnityEditor;

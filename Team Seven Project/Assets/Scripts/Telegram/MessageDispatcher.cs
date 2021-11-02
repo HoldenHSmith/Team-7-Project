@@ -3,8 +3,11 @@ using System.Collections.Generic;
 
 public enum MessageType
 {
-	Msg_PlayerSpotted,
-	Msg_Reset
+	Msg_PlayerSpottedByCamera,
+	Msg_PlayerSpottedByGuard,
+	Msg_Reset,
+	Msg_PlayerHeard,
+	Msg_Sound
 }
 
 public sealed class MessageDispatcher
@@ -60,11 +63,5 @@ public sealed class MessageDispatcher
 		receiver.ReceiveMessage(telegram);
 	}
 
-	public static MessageDispatcher Instance
-	{
-		get
-		{
-			return _instance;
-		}
-	}
+	public static MessageDispatcher Instance { get => _instance; }
 }
