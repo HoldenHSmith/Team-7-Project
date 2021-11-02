@@ -80,16 +80,16 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 			//Check if target is inside the cone
 			if (playerDotProd >= coneValue)
 			{
-				float distanceToPlayer  = Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position);
+				float distanceToPlayer = Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position);
 				if (distanceToPlayer < _distance)
 				{
 					RaycastHit hit;
-					if (Physics.Raycast(_coneDetectionTransform.position + Vector3.up, directionToPlayer, out hit))
+					if (Physics.Raycast((_coneDetectionTransform.position - (transform.forward * 0.1f)) + Vector3.up, directionToPlayer, out hit))
 					{
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
 							Debug.Log($"{gameObject.name} Spotted Player!");
-							if(distanceToPlayer <= _catchDistance && _detectorType == DetectorType.Guard)
+							if (distanceToPlayer <= _catchDistance && _detectorType == DetectorType.Guard)
 							{
 								Scene scene = SceneManager.GetActiveScene();
 								SceneManager.LoadScene(scene.name);
