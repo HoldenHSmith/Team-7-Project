@@ -44,6 +44,8 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		_recipientHandler = GetComponent<RecipientHandler>();
 
+		AdjustLight();
+
 	}
 
 	private void OnDrawGizmos()
@@ -84,7 +86,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 				if (distanceToPlayer < _distance)
 				{
 					RaycastHit hit;
-					if (Physics.Raycast((_coneDetectionTransform.position - (transform.forward * 0.5f)) + Vector3.up, directionToPlayer, out hit))
+					if (Physics.Raycast((_coneDetectionTransform.position) + Vector3.up, directionToPlayer, out hit))
 					{
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
@@ -97,6 +99,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 							return true;
 						}
 						Debug.Log($"{hit.collider.gameObject.name}");
+
 					}
 				}
 			}
