@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EndScreen : MonoBehaviour
 
 	private bool _active;
 	private float _fadeTimer;
+	[SerializeField] private float _timeUntilQuit = 3;
+	private float _quitTimer = 0;
 
 	private void Update()
 	{
@@ -32,6 +35,14 @@ public class EndScreen : MonoBehaviour
 		else if(_fadeTimer >= _fadeTime)
 		{
 			Time.timeScale = 0;
+			_quitTimer += Time.unscaledDeltaTime;
+			if (_quitTimer >= _timeUntilQuit)
+			{
+				SceneManager.LoadScene("MainMenu");
+				SaveManager.ClearSave();
+			}
+
+
 		}
 	}
 

@@ -16,6 +16,7 @@ public class MainMenuHandler : MonoBehaviour
 
 	private void Awake()
 	{
+		Time.timeScale = 1;
 		_continueButton.interactable = SaveManager.SaveExists();
 
 		SetTextColor(_newGameButton);
