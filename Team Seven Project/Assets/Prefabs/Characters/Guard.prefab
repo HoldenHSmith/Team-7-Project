@@ -177,19 +177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3acfd8692da23478de4f85d70fc1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 1
   Finished: 0
   Waypoints:
-  - Position: {x: 13.002457, y: 0, z: -23.000673}
+  - Position: {x: 16.25, y: 0.1, z: -43.25}
     HasWaitTime: 0
-    WaitTime: 3
-  - Position: {x: 12.999369, y: 0, z: -27.998352}
-    HasWaitTime: 0
-    WaitTime: 3
-  - Position: {x: 6.9987698, y: 0, z: -28.00828}
-    HasWaitTime: 0
-    WaitTime: 3
-  - Position: {x: 6.999929, y: 0, z: -23.006084}
+    WaitTime: 0
+  - Position: {x: 0, y: 0.1, z: -43}
     HasWaitTime: 0
     WaitTime: 0
 --- !u!114 &5853570717598125802
@@ -293,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recipients:
   - {fileID: 5853570717598125803}
+  - {fileID: 0}
 --- !u!114 &532837724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343f9b83f26fb424ab5c0ae2db4f59c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _detectionRange: 7
+  _detectionRange: 10
   _alertnessReductionPerSecond: 2.5
   _startReducingCooldown: 1
   _alertnessThreshold: 100
