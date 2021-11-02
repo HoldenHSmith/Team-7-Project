@@ -10,13 +10,20 @@ public class EnemyStatePatrol : EnemyState
 
 	public EnemyStatePatrol(StateMachine stateMachine, Enemy enemy, WaypointManager waypointManager) : base(stateMachine, enemy)
 	{
+		
 		_waypointManager = Enemy.GetComponent<WaypointManager>();
 		_navMeshAgent = Enemy.GetComponent<NavMeshAgent>();
-		
+
 	}
 
 	public override void OnEnter()
 	{
+		if (Enemy != null && Enemy.AudioDetector != null && Enemy.AlertnessState != null)
+		{
+			Enemy.AudioDetector.Alertness = 0;
+			Enemy.AlertnessState.SetAlertLevel(EnemyAlertState.AlertLevel.None);
+		}
+
 		Enemy.WalkState = EnemyWalkSpeed.normal;
 		Enemy.NavAgent.acceleration = Enemy.Settings.WalkAcceleration;
 		Enemy.NavAgent.angularSpeed = Enemy.Settings.WalkTurnSpeed;
@@ -63,7 +70,7 @@ public class EnemyStatePatrol : EnemyState
 			}
 		}
 
-		
+
 	}
 
 	private bool GetNextWaypoint()
