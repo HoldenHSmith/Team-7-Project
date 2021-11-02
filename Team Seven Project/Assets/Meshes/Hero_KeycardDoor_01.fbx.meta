@@ -3,7 +3,17 @@ guid: 6727ddb94622ec24b8c6e41313c86889
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: If_you_see_this_Lol
+    second: {fileID: 2100000, guid: 1082bd43818b19544a68cddbefa966ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Walls
+    second: {fileID: 2100000, guid: 1082bd43818b19544a68cddbefa966ec, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -56,13 +66,13 @@ ModelImporter:
     minBoneWeight: 0.001
     meshOptimizationFlags: -1
     indexFormat: 0
-    secondaryUVAngleDistortion: 17
-    secondaryUVAreaDistortion: 20
-    secondaryUVHardAngle: 97
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15
+    secondaryUVHardAngle: 88
     secondaryUVMarginMethod: 1
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
-    secondaryUVPackMargin: 10
+    secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
