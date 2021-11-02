@@ -44,7 +44,7 @@ public class DoorManager
 	{
 		for (int i = 0; i < _doors.Count; i++)
 		{
-			if (i > statuses.Count)
+			if (i >= statuses.Count)
 				break;
 
 			_doors[i].SetUnlocked(statuses[i]);
