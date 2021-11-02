@@ -84,7 +84,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 				if (distanceToPlayer < _distance)
 				{
 					RaycastHit hit;
-					if (Physics.Raycast(_coneDetectionTransform.position + Vector3.up, directionToPlayer, out hit))
+					if (Physics.Raycast(_coneDetectionTransform.position + Vector3.up - (Vector3.forward*0.5f), directionToPlayer, out hit))
 					{
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
