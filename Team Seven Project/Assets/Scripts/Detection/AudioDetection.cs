@@ -74,5 +74,5 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 		DebugEx.DrawCircle(transform.position, _detectionRange, Color.yellow);
 	}
 
-	public float Alertness { get => _alertness; }
+	public float Alertness { get => _alertness; set => _alertness = value; }
 }
