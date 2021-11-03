@@ -48,7 +48,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 	}
 
-	private void OnDrawGizmos()
+	private void OnDrawGizmosSelected()
 	{
 		if (_debugCone && _coneDetectionTransform != null)
 			DebugEx.DrawViewCone(_coneDetectionTransform.position, _coneDetectionTransform.rotation, _coneDetectionTransform.forward, _viewConeAngle * 0.5f, _distance, _debugColor);
