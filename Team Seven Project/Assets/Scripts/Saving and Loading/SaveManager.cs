@@ -49,8 +49,6 @@ public class SaveManager
 			}
 		}
 
-		_currentSaveData = saveData;
-		Debug.Log($"Save Data: {saveData.PosToVec3()}");
 		return (_currentSaveData!= null) ? true : false;
 	}
 

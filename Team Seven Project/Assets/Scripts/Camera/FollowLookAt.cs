@@ -10,7 +10,7 @@ public class FollowLookAt : MonoBehaviour
 	[Tooltip("How far offset the camera is from the Target")]
 	public Vector3 Offset;
 
-	private void Update()
+	private void LateUpdate()
 	{
 		if(Target != null)
 		{

@@ -32,14 +32,15 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		else
 			DestroyImmediate(this);
 
-		if (SaveManager.Load())
-		{
-			_saveData = _saveManager.Current;
-		}
+
 	}
 
 	private void Start()
 	{
+		if (SaveManager.Load())
+		{
+			_saveData = _saveManager.Current;
+		}
 		if (_saveData != null)
 		{
 			SaveData s = _saveManager.Current;

@@ -26,7 +26,8 @@ public partial class PlayerCharacter : MonoBehaviour
 	private void Start()
 	{
 		//transform.position = SaveManager.Instance.Current.PosToVec3();
-		CharacterController.transform.position = SaveManager.Instance.Current.PosToVec3();
+		if (SaveManager.Instance.Current != null)
+			CharacterController.transform.position = SaveManager.Instance.Current.PosToVec3();
 		//Debug.Log(transform.position);
 	}
 
@@ -45,7 +46,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		
+
 	}
 
 	//Reset is called automatically by Unity when the script is first added to a gameobject or is reset 
