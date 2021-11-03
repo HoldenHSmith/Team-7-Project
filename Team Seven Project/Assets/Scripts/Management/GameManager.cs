@@ -12,6 +12,8 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	private CollectionManager _collectionManager;
 	private SaveManager _saveManager;
 
+	private SaveData _saveData;
+
 	public void SendMessage()
 	{
 
@@ -30,18 +32,21 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		else
 			DestroyImmediate(this);
 
-	
-
+		if (SaveManager.Load())
+		{
+			_saveData = _saveManager.Current;
+		}
 	}
 
 	private void Start()
 	{
-		if (SaveManager.Load())
+		if (_saveData != null)
 		{
 			SaveData s = _saveManager.Current;
 			DoorManager.SetLockedStatuses(s.DoorStatusesToList());
-			_playerCharacter.transform.position = s.PosToVec3();
+			//_playerCharacter.transform.position = s.PosToVec3();
 			KeycardManager.LoadKeycards(s.KeyDict());
+			Debug.Log($"Game managers position read: {s.PosToVec3()}");
 		}
 		else
 			Debug.Log("No Save Data Found");

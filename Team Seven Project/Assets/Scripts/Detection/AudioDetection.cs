@@ -61,7 +61,6 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 			{
 				float distanceToSound = Vector3.Distance(transform.position, sound.Position);
 				float distanceToRayHit = Vector3.Distance(transform.position, hit.point);
-				Debug.Log($"Sound Raycast Hit {hit.collider.gameObject.name}");
 
 				if (hit.collider.gameObject.layer != _checkLayer )
 				{
@@ -76,7 +75,6 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 			}
 			else
 			{
-				Debug.Log("Collided with nothing apparently lel");
 				HeardSound(sound.Volume);
 				return true;
 			}
@@ -89,7 +87,6 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 
 	private void HeardSound(float volume)
 	{
-		Debug.Log($"{gameObject.name} Heard Sound!");
 		_alertness += volume;
 		_reductionCooldownTimer = _startReducingCooldown;
 	}
