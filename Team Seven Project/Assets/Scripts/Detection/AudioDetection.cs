@@ -56,7 +56,9 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 			RaycastHit hit;
 
 			Debug.DrawRay(transform.position, direction, Color.blue, 1);
-			if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
+			Debug.DrawLine(sound.Position - (Vector3.up * 0.25f), sound.Position + (Vector3.up * 0.25f), Color.white, 1);
+			Debug.DrawLine(sound.Position - (Vector3.right * 0.25f), sound.Position + (Vector3.right * 0.25f), Color.white, 1);
+			if (Physics.Raycast(transform.position, direction, out hit))
 			{
 				Debug.Log($"Sound Raycast Hit {hit.collider.gameObject.name}");
 				if (hit.collider.gameObject.layer != _checkLayer)
@@ -67,6 +69,7 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 			}
 			else
 			{
+				Debug.Log("Collided with nothing apparently lel");
 				HeardSound(sound.Volume);
 				return true;
 			}
