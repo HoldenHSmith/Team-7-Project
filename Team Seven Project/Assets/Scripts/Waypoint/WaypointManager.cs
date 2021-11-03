@@ -22,6 +22,7 @@ public class WaypointManager : MonoBehaviour
 		Initialize();
 	}
 
+	
 	private void Initialize()
 	{
 		if (Waypoints == null)
