@@ -19,7 +19,7 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 
 	private void Awake()
 	{
-		_checkLayer = (LayerMask.NameToLayer("Player"));
+		_checkLayer = (LayerMask.NameToLayer("Wall"));
 	}
 
 	private void Update()
@@ -55,24 +55,33 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 			Vector3 direction = sound.Position - transform.position;
 			RaycastHit hit;
 
-			Debug.DrawRay(transform.position, direction, Color.blue,1);
+			Debug.DrawRay(transform.position, direction, Color.blue, 1);
 			if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
 			{
 				Debug.Log($"Sound Raycast Hit {hit.collider.gameObject.name}");
-				if (hit.collider.gameObject.layer == _checkLayer)
+				if (hit.collider.gameObject.layer != _checkLayer)
 				{
-					Debug.Log($"{gameObject.name} Heard Player!");
-					_alertness += sound.Volume;
-					_reductionCooldownTimer = _startReducingCooldown;
+					HeardSound(sound.Volume);
 					return true;
 				}
-
+			}
+			else
+			{
+				HeardSound(sound.Volume);
+				return true;
 			}
 
 			return false;
 		}
 
 		return false;
+	}
+
+	private void HeardSound(float volume)
+	{
+		Debug.Log($"{gameObject.name} Heard Sound!");
+		_alertness += volume;
+		_reductionCooldownTimer = _startReducingCooldown;
 	}
 
 	private void OnDrawGizmosSelected()
