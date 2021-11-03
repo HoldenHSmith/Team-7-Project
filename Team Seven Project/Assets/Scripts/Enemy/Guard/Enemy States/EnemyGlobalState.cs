@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EnemyGlobalState : EnemyState
@@ -34,14 +32,32 @@ public class EnemyGlobalState : EnemyState
 
 		if (distanceToPlayer <= Enemy.Settings.AutoDetectRange)
 		{
-			StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
+			if (RaycheckPlayer())
+				StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
 		}
 
 		if (distanceToPlayer <= Enemy.Settings.AutoCatchRange)
 		{
-			Scene scene = SceneManager.GetActiveScene();
-			SceneManager.LoadScene(scene.name);
+			if (RaycheckPlayer())
+			{
+				Scene scene = SceneManager.GetActiveScene();
+				SceneManager.LoadScene(scene.name);
+			}
 		}
+	}
+
+	private bool RaycheckPlayer()
+	{
+		RaycastHit hit;
+		Vector3 directionToPlayer = GameManager.Instance.Player.transform.position - Enemy.transform.position;
+		if (Physics.Raycast(Enemy.transform.position + Vector3.up, directionToPlayer, out hit))
+		{
+			if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void UpdateAlertness()
@@ -53,6 +69,8 @@ public class EnemyGlobalState : EnemyState
 			float flashSpeed = (awareness / 100) * 5;
 			if (flashSpeed >= 4)
 				flashSpeed = 4;
+			if (flashSpeed <= 0.05)
+				flashSpeed = 0;
 			Enemy.AlertnessState.PropertyBlock.SetProperties(0, flashSpeed);
 		}
 	}

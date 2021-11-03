@@ -28,7 +28,6 @@ public class WaypointManagerEditor : Editor
 
 	private void OnSceneGUI()
 	{
-
 		DrawWaypoints();
 
 		if (!Application.isPlaying)
@@ -66,18 +65,13 @@ public class WaypointManagerEditor : Editor
 
 				if (CheckUpdateWaypoints(i))
 					m_SelectedIndex = i;
-
-
 			}
 		}
 	}
 
 	private void DrawLineBetweenWaypoints(Waypoint start, Waypoint end)
 	{
-		//Handles.color = new Color(1, 1, 0, 0.25f);
-		//Handles.DrawLine(start.Position, end.Position);
 		HandlesJ.DrawDirectionalLine(start.Position, end.Position, new Color(1, 1, 0, 0.25f));
-		//GizmosJ.DrawDirectionalLine(start.Position, end.Position, new Color(1, 1, 0, 0.25f));
 	}
 
 
