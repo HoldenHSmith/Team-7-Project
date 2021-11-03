@@ -71,6 +71,8 @@ public class EnemyGlobalState : EnemyState
 			float flashSpeed = (awareness / 100) * 5;
 			if (flashSpeed >= 4)
 				flashSpeed = 4;
+			if (flashSpeed <= 0.05)
+				flashSpeed = 0;
 			Enemy.AlertnessState.PropertyBlock.SetProperties(0, flashSpeed);
 		}
 	}
