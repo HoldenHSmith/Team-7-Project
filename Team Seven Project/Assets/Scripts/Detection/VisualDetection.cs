@@ -91,7 +91,6 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 					{
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
-							Debug.Log($"{gameObject.name} Spotted Player!");
 							if (distanceToPlayer <= _catchDistance && _detectorType == DetectorType.Guard)
 							{
 								Scene scene = SceneManager.GetActiveScene();

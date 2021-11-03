@@ -23,6 +23,13 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	}
 
+	private void Start()
+	{
+		//transform.position = SaveManager.Instance.Current.PosToVec3();
+		CharacterController.transform.position = SaveManager.Instance.Current.PosToVec3();
+		//Debug.Log(transform.position);
+	}
+
 	private void Update()
 	{
 		UpdateInputs();
