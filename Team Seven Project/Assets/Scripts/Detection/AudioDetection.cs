@@ -10,7 +10,7 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 
 	private float _alertness = 0;
 	private float _reductionCooldownTimer;
-	private LayerMask _ignoreLayer;
+	private LayerMask _checkLayer;
 
 	public void SendMessage()
 	{
@@ -19,7 +19,7 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 
 	private void Awake()
 	{
-		_ignoreLayer = ~(LayerMask.NameToLayer("Player"));
+		_checkLayer = (LayerMask.NameToLayer("Wall"));
 	}
 
 	private void Update()
@@ -48,19 +48,30 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 
 	public bool ProcessSound(SoundEmission sound)
 	{
-		float distance = Vector3.Distance(transform.position, sound.Position) - 1;
+		float distance = Vector3.Distance(transform.position, sound.Position);
 
 		if (distance <= _detectionRange)
 		{
 			Vector3 direction = sound.Position - transform.position;
+			RaycastHit hit;
 
-			if (!Physics.Raycast(transform.position + Vector3.up, direction, distance, _ignoreLayer, QueryTriggerInteraction.Ignore))
+			Debug.DrawRay(transform.position, direction, Color.blue, 1);
+			Debug.DrawLine(sound.Position - (Vector3.up * 0.25f), sound.Position + (Vector3.up * 0.25f), Color.white, 1);
+			Debug.DrawLine(sound.Position - (Vector3.right * 0.25f), sound.Position + (Vector3.right * 0.25f), Color.white, 1);
+			if (Physics.Raycast(transform.position, direction, out hit))
 			{
-				Debug.Log($"{gameObject.name} Heard Player!");
-				_alertness += sound.Volume;
-				_reductionCooldownTimer = _startReducingCooldown;
+				Debug.Log($"Sound Raycast Hit {hit.collider.gameObject.name}");
+				if (hit.collider.gameObject.layer != _checkLayer)
+				{
+					HeardSound(sound.Volume);
+					return true;
+				}
+			}
+			else
+			{
+				Debug.Log("Collided with nothing apparently lel");
+				HeardSound(sound.Volume);
 				return true;
-
 			}
 
 			return false;
@@ -69,10 +80,17 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 		return false;
 	}
 
+	private void HeardSound(float volume)
+	{
+		Debug.Log($"{gameObject.name} Heard Sound!");
+		_alertness += volume;
+		_reductionCooldownTimer = _startReducingCooldown;
+	}
+
 	private void OnDrawGizmosSelected()
 	{
 		DebugEx.DrawCircle(transform.position, _detectionRange, Color.yellow);
 	}
 
-	public float Alertness { get => _alertness; }
+	public float Alertness { get => _alertness; set => _alertness = value; }
 }

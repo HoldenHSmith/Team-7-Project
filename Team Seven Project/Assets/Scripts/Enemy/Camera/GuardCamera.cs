@@ -21,5 +21,18 @@ public class GuardCamera : MonoBehaviour
 
 	}
 
+	private void Awake()
+	{
+		if (_pivotPoint != null)
+		{
+			_pivotPoint.transform.eulerAngles = _pivotRotation;
+
+			if (TryGetComponent(out SimpleRotate rot))
+			{
+				rot.SetRotationValues(new Vector2(_pivotRotation.y + _ToFromRotation.x, _pivotRotation.y + _ToFromRotation.y));
+			}
+		}
+	}
+
 
 }

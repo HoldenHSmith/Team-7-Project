@@ -122,7 +122,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	}
 
 	//Properties
-	public bool HasBeaker { get => HasBeaker; set => _hasBeaker = value; }
+	public bool HasBeaker { get => _hasBeaker; set => _hasBeaker = value; }
 
 }
 

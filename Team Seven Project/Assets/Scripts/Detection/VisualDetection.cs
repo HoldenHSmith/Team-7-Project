@@ -44,6 +44,8 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		_recipientHandler = GetComponent<RecipientHandler>();
 
+		AdjustLight();
+
 	}
 
 	private void OnDrawGizmos()
@@ -80,16 +82,17 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 			//Check if target is inside the cone
 			if (playerDotProd >= coneValue)
 			{
-				float distanceToPlayer  = Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position);
+				float distanceToPlayer = Vector3.Distance(_coneDetectionTransform.position, samplePoints[i].position);
 				if (distanceToPlayer < _distance)
 				{
 					RaycastHit hit;
-					if (Physics.Raycast(_coneDetectionTransform.position + Vector3.up, directionToPlayer, out hit))
+					Debug.DrawRay(_coneDetectionTransform.position, directionToPlayer, Color.cyan, 0.01f);
+					if (Physics.Raycast((_coneDetectionTransform.position) + Vector3.up, directionToPlayer, out hit))
 					{
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
 							Debug.Log($"{gameObject.name} Spotted Player!");
-							if(distanceToPlayer <= _catchDistance && _detectorType == DetectorType.Guard)
+							if (distanceToPlayer <= _catchDistance && _detectorType == DetectorType.Guard)
 							{
 								Scene scene = SceneManager.GetActiveScene();
 								SceneManager.LoadScene(scene.name);
@@ -97,6 +100,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 							return true;
 						}
 						Debug.Log($"{hit.collider.gameObject.name}");
+
 					}
 				}
 			}
