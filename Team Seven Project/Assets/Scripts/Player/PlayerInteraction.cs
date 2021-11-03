@@ -2,7 +2,7 @@
 
 public partial class PlayerCharacter : MonoBehaviour
 {
-	[Space,Header("Interaction Mechanics")]
+	[Space, Header("Interaction Mechanics")]
 
 	[Tooltip("Range that a player can interact with objects.")]
 	[SerializeField] private float _interactionRange = 2.0f;
@@ -31,13 +31,17 @@ public partial class PlayerCharacter : MonoBehaviour
 
 		//Get an array of interactable colliders within interaction radius
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, _interactionRange, _interactionLayer);
-		foreach(Collider hitCollider in hitColliders)
+		foreach (Collider hitCollider in hitColliders)
 		{
-			if(hitCollider.TryGetComponent(out IInteractable interactable))
+			if (hitCollider.TryGetComponent(out IInteractable interactable))
 			{
 				interactable.OnInteract(this);
+				if (hitCollider.tag == "Door")
+					Animator.Play("Swipe");
+				else
+					Animator.Play("Collect");
 			}
-			
+
 		}
 	}
 }
