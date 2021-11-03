@@ -34,14 +34,32 @@ public class EnemyGlobalState : EnemyState
 
 		if (distanceToPlayer <= Enemy.Settings.AutoDetectRange)
 		{
-			StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
+			if (RaycheckPlayer())
+				StateMachine.RequestStateChange(Enemy.EnemyStates.StatePlayerDetected);
 		}
 
 		if (distanceToPlayer <= Enemy.Settings.AutoCatchRange)
 		{
-			Scene scene = SceneManager.GetActiveScene();
-			SceneManager.LoadScene(scene.name);
+			if (RaycheckPlayer())
+			{
+				Scene scene = SceneManager.GetActiveScene();
+				SceneManager.LoadScene(scene.name);
+			}
 		}
+	}
+
+	private bool RaycheckPlayer()
+	{
+		RaycastHit hit;
+		Vector3 directionToPlayer = GameManager.Instance.Player.transform.position - Enemy.transform.position;
+		if (Physics.Raycast(Enemy.transform.position + Vector3.up, directionToPlayer, out hit))
+		{
+			if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void UpdateAlertness()

@@ -10,7 +10,7 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 
 	private float _alertness = 0;
 	private float _reductionCooldownTimer;
-	private LayerMask _ignoreLayer;
+	private LayerMask _checkLayer;
 
 	public void SendMessage()
 	{
@@ -19,7 +19,7 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 
 	private void Awake()
 	{
-		_ignoreLayer = ~(LayerMask.NameToLayer("Player"));
+		_checkLayer = (LayerMask.NameToLayer("Player"));
 	}
 
 	private void Update()
@@ -48,18 +48,24 @@ public class AudioDetection : MonoBehaviour, IMessageSender
 
 	public bool ProcessSound(SoundEmission sound)
 	{
-		float distance = Vector3.Distance(transform.position, sound.Position) - 1;
+		float distance = Vector3.Distance(transform.position, sound.Position);
 
 		if (distance <= _detectionRange)
 		{
 			Vector3 direction = sound.Position - transform.position;
+			RaycastHit hit;
 
-			if (!Physics.Raycast(transform.position + Vector3.up, direction, distance, _ignoreLayer, QueryTriggerInteraction.Ignore))
+			Debug.DrawRay(transform.position, direction, Color.blue,1);
+			if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
 			{
-				Debug.Log($"{gameObject.name} Heard Player!");
-				_alertness += sound.Volume;
-				_reductionCooldownTimer = _startReducingCooldown;
-				return true;
+				Debug.Log($"Sound Raycast Hit {hit.collider.gameObject.name}");
+				if (hit.collider.gameObject.layer == _checkLayer)
+				{
+					Debug.Log($"{gameObject.name} Heard Player!");
+					_alertness += sound.Volume;
+					_reductionCooldownTimer = _startReducingCooldown;
+					return true;
+				}
 
 			}
 
