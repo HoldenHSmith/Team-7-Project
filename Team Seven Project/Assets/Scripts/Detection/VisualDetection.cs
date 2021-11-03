@@ -123,7 +123,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		_spotLight.innerSpotAngle = _viewConeAngle - _lightSoftness;
 		_spotLight.spotAngle = _viewConeAngle;
-		_spotLight.range = _distance * 1.1f;
+		_spotLight.range = _distance;
 		_spotLight.color = _lightColor;
 		_spotLight.intensity = _lightIntensity;
 
