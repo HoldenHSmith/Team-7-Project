@@ -12,6 +12,7 @@ public sealed class CollectionManager
     public CollectionManager()
     {
         _keysCollected = new Dictionary<AreaType, bool>();
+        _notesCollected = new Dictionary<PaperNote, bool>();
 
         for (int i = 0; i < (int)AreaType.Count; i++)
         {
@@ -29,7 +30,10 @@ public sealed class CollectionManager
 
     public void SetNotevalue(PaperNote note, bool value)
     {
-        _notesCollected[note] = value;
+        //if (!_notesCollected.ContainsKey(note))
+        //    _notesCollected.Add(note, value);
+        //else
+            _notesCollected[note] = value;
         if (value)
             Debug.Log($"Note Collected!");
     }

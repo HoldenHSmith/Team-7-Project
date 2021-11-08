@@ -3,7 +3,8 @@
 public class PaperNote : MonoBehaviour, ICollectable, IInteractable
 {
 
-    [SerializeField] private string _noteText;
+    [SerializeField] private string _noteTitle;
+    [SerializeField] private string _noteBody;
 
     public void OnCollect()
     {
