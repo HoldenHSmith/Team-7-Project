@@ -59,6 +59,7 @@ public class SaveManager
 			try
 			{
 				File.Delete(GetFullPath());
+				_currentSaveData = null;
 			}
 			catch(SerializationException e)
 			{
