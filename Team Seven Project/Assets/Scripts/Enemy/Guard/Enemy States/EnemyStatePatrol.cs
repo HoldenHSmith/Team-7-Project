@@ -10,7 +10,7 @@ public class EnemyStatePatrol : EnemyState
 
 	public EnemyStatePatrol(StateMachine stateMachine, Enemy enemy, WaypointManager waypointManager) : base(stateMachine, enemy)
 	{
-		
+
 		_waypointManager = Enemy.GetComponent<WaypointManager>();
 		_navMeshAgent = Enemy.GetComponent<NavMeshAgent>();
 
@@ -27,6 +27,7 @@ public class EnemyStatePatrol : EnemyState
 		Enemy.WalkState = EnemyWalkSpeed.normal;
 		Enemy.NavAgent.acceleration = Enemy.Settings.WalkAcceleration;
 		Enemy.NavAgent.angularSpeed = Enemy.Settings.WalkTurnSpeed;
+
 		if (!GetNextWaypoint())
 		{
 			StateMachine.RequestStateChange(Enemy.EnemyStates.StateIdle);

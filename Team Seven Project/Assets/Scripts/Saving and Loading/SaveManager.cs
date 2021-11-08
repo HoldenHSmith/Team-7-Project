@@ -49,7 +49,6 @@ public class SaveManager
 			}
 		}
 
-		_currentSaveData = saveData;
 		return (_currentSaveData!= null) ? true : false;
 	}
 
@@ -60,6 +59,7 @@ public class SaveManager
 			try
 			{
 				File.Delete(GetFullPath());
+				_currentSaveData = null;
 			}
 			catch(SerializationException e)
 			{

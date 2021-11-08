@@ -48,7 +48,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 	}
 
-	private void OnDrawGizmos()
+	private void OnDrawGizmosSelected()
 	{
 		if (_debugCone && _coneDetectionTransform != null)
 			DebugEx.DrawViewCone(_coneDetectionTransform.position, _coneDetectionTransform.rotation, _coneDetectionTransform.forward, _viewConeAngle * 0.5f, _distance, _debugColor);
@@ -86,11 +86,11 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 				if (distanceToPlayer < _distance)
 				{
 					RaycastHit hit;
+					Debug.DrawRay(_coneDetectionTransform.position, directionToPlayer, Color.cyan, 0.01f);
 					if (Physics.Raycast((_coneDetectionTransform.position) + Vector3.up, directionToPlayer, out hit))
 					{
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
-							Debug.Log($"{gameObject.name} Spotted Player!");
 							if (distanceToPlayer <= _catchDistance && _detectorType == DetectorType.Guard)
 							{
 								Scene scene = SceneManager.GetActiveScene();
@@ -123,7 +123,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		_spotLight.innerSpotAngle = _viewConeAngle - _lightSoftness;
 		_spotLight.spotAngle = _viewConeAngle;
-		_spotLight.range = _distance * 1.1f;
+		_spotLight.range = _distance;
 		_spotLight.color = _lightColor;
 		_spotLight.intensity = _lightIntensity;
 
