@@ -34,13 +34,13 @@ public sealed class EnemyManager : MonoBehaviour
 	{
 		foreach (Enemy obj in _enemyList)
 		{
-			//Handles.DrawAAPolyLine(transform.position, obj.transform.position);
-			Vector3 managerPos = transform.position;
-			Vector3 objPos = obj.transform.position;
-			float halfHeight = (managerPos.y - objPos.y) * 0.5f;
-			Vector3 offset = Vector3.up * halfHeight;
+			Handles.DrawAAPolyLine(transform.position, obj.transform.position);
+			//Vector3 managerPos = transform.position;
+			//Vector3 objPos = obj.transform.position;
+			//float halfHeight = (managerPos.y - objPos.y) * 0.5f;
+			//Vector3 offset = Vector3.up * halfHeight;
 
-			Handles.DrawBezier(managerPos, objPos, managerPos - offset, objPos + offset, Color.red, EditorGUIUtility.whiteTexture, 1f);
+			//Handles.DrawBezier(managerPos, objPos, managerPos - offset, objPos + offset, Color.red, EditorGUIUtility.whiteTexture, 1f);
 		}
 	}
 #endif
