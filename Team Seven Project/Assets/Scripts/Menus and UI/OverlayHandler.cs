@@ -18,8 +18,8 @@ public class OverlayHandler : MonoBehaviour
     private void Start()
     {
         _player = GameManager.Instance.Player;
-        _noteOverlay.SetActive(false);
         CollectionManager.Instance.OverlayHandler = this;
+        _noteOverlay.SetActive(false);
     }
 
     private void Update()
