@@ -43,16 +43,7 @@ public class MainMenuHandler : MonoBehaviour
 
 	public void NewGame()
 	{
-		//StartCoroutine(NewGameCoroutine());
 		SaveManager.ClearSave();
-		SceneManager.LoadScene(_sceneNameToLoad);
-	}
-
-	IEnumerator NewGameCoroutine()
-	{
-		SaveManager.ClearSave();
-
-		yield return new WaitForSeconds(0.01f);
 		SceneManager.LoadScene(_sceneNameToLoad);
 	}
 
