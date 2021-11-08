@@ -8,6 +8,7 @@ public sealed class CollectionManager
     private Dictionary<AreaType, bool> _keysCollected;
     private Dictionary<PaperNote, bool> _notesCollected;
 
+    private OverlayHandler _overlayHandler;
 
     public CollectionManager()
     {
@@ -28,14 +29,14 @@ public sealed class CollectionManager
             Debug.Log($"Key Collected: {area}");
     }
 
-    public void SetNotevalue(PaperNote note, bool value)
+    public void SetNoteValue(PaperNote note, bool value)
     {
-        //if (!_notesCollected.ContainsKey(note))
-        //    _notesCollected.Add(note, value);
-        //else
-            _notesCollected[note] = value;
+        _notesCollected[note] = value;
         if (value)
+        {
+            _overlayHandler.ReadNote(note);
             Debug.Log($"Note Collected!");
+        }
     }
 
     public bool CheckKeyCollected(AreaType area)
@@ -46,5 +47,7 @@ public sealed class CollectionManager
     public static CollectionManager Instance { get => _instance; }
     public Dictionary<AreaType, bool> KeysCollected { get => _keysCollected; }
     public Dictionary<PaperNote, bool> NotesCollected { get => _notesCollected; }
+
+    public OverlayHandler OverlayHandler { get => _overlayHandler; set => _overlayHandler = value; }
 
 }
