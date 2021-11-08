@@ -81,7 +81,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	public void MoveCharacter(Vector3 motion)
 	{
-		CharacterController.Move(motion * Time.deltaTime);
+		CharacterController.SimpleMove(motion);
 	}
 
 	
