@@ -49,7 +49,6 @@ public class SaveManager
 			}
 		}
 
-		_currentSaveData = saveData;
 		return (_currentSaveData!= null) ? true : false;
 	}
 

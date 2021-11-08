@@ -177,4 +177,13 @@ public static class DebugEx
 		}
 	}
 
+	//-------------------------------------------------------------------
+	//-------------------------------------------------------------------
+	public static void DrawHitMark(Vector3 v3Pos, Color color)
+	{
+		Debug.DrawLine(v3Pos - (Vector3.up * 0.25f), v3Pos + (Vector3.up * 0.25f), Color.white, 1);
+		Debug.DrawLine(v3Pos - (Vector3.right * 0.25f), v3Pos + (Vector3.right * 0.25f), Color.white, 1);
+		Debug.DrawLine(v3Pos - (Vector3.forward * 0.25f), v3Pos + (Vector3.forward * 0.25f), Color.white, 1);
+	}
+
 }
