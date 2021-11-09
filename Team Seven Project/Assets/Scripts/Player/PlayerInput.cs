@@ -106,7 +106,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	}
 
 	//Checks if the crouch input has been pressed
-	public bool IsCrouchInput
+	public bool IsSprintInput
 	{
 		get { return SprintPressed; }
 	}
