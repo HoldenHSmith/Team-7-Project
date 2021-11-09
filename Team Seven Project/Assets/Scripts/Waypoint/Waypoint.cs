@@ -4,14 +4,13 @@ using UnityEngine;
 [Serializable]
 public class Waypoint
 {
+	public Vector3 Offset;
 	public Vector3 Position;
-	public bool HasWaitTime;
 	public float WaitTime;
 
 	public Waypoint()
 	{
 		Position = new Vector3();
-		HasWaitTime = false;
 		WaitTime = 0f;
 	}
 
@@ -20,10 +19,15 @@ public class Waypoint
 		this.Position = position;
 	}
 
-	public Waypoint(Vector3 position, bool hasWaitTime, float waitTime)
+	public Waypoint(Vector3 position, float waitTime)
 	{
 		this.Position = position;
-		HasWaitTime = hasWaitTime;
 		WaitTime = waitTime;
+	}
+
+	public void SetOffset(Vector3 parentPosition, Vector3 waypointPosition)
+	{
+		Offset = waypointPosition - parentPosition;
+		Position = waypointPosition;
 	}
 }

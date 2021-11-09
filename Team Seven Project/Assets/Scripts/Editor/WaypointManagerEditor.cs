@@ -14,11 +14,14 @@ public class WaypointManagerEditor : Editor
 
 	private bool m_ShowWaypoint = true;
 	private bool m_ShowWaypointHandles = false;
-
+	private Vector3 _prevPosition;
 	private void OnEnable()
 	{
 		m_WaypointManager = (WaypointManager)target;
+
+		_prevPosition = m_WaypointManager.transform.position;
 		UpdateWaypoints();
+
 	}
 
 	public override void OnInspectorGUI()
@@ -28,6 +31,8 @@ public class WaypointManagerEditor : Editor
 
 	private void OnSceneGUI()
 	{
+		if (!Application.isPlaying)
+			CheckTargetMoved();
 		DrawWaypoints();
 
 		if (!Application.isPlaying)
@@ -36,6 +41,24 @@ public class WaypointManagerEditor : Editor
 		}
 	}
 
+
+	private void CheckTargetMoved()
+	{
+		if (m_WaypointManager.transform.position != _prevPosition)
+		{
+			if (m_WaypointManager && m_WaypointManager.Waypoints != null && m_WaypointManager.Waypoints.Count > 0)
+			{
+				for (int i = 0; i < m_WaypointManager.Waypoints.Count; i++)
+				{
+					Waypoint waypoint = m_WaypointManager.Waypoints[i];
+
+					waypoint.Position = m_WaypointManager.transform.position + waypoint.Offset;
+				}
+			}
+		}
+
+		_prevPosition = m_WaypointManager.transform.position;
+	}
 
 	private void DrawWaypoints()
 	{
@@ -83,14 +106,14 @@ public class WaypointManagerEditor : Editor
 	private void DrawWaypointHandle(Waypoint waypoint)
 	{
 		Handles.color = Color.yellow;
-		waypoint.Position = Handles.PositionHandle(waypoint.Position, Quaternion.identity);
+		//waypoint.Position = Handles.PositionHandle(waypoint.Position, Quaternion.identity);
+		waypoint.SetOffset(m_WaypointManager.gameObject.transform.position, Handles.PositionHandle(waypoint.Position, Quaternion.identity));
 	}
 
 	private bool CheckUpdateWaypoints(int index)
 	{
 		if (m_WaypointManager.Waypoints.Count != m_PreviousWaypoints.Count ||
 			m_WaypointManager.Waypoints[index].Position != m_PreviousWaypoints[index].Position ||
-			m_WaypointManager.Waypoints[index].HasWaitTime != m_PreviousWaypoints[index].HasWaitTime ||
 			m_WaypointManager.Waypoints[index].WaitTime != m_PreviousWaypoints[index].WaitTime)
 		{
 			UpdateWaypoints();
@@ -102,7 +125,7 @@ public class WaypointManagerEditor : Editor
 	private void UpdateWaypoints()
 	{
 		if (m_WaypointManager.Waypoints != null)
-			m_PreviousWaypoints = m_WaypointManager.Waypoints.Select(wp => new Waypoint(wp.Position, wp.HasWaitTime, wp.WaitTime)).ToList();
+			m_PreviousWaypoints = m_WaypointManager.Waypoints.Select(wp => new Waypoint(wp.Position, wp.WaitTime)).ToList();
 
 		EditorUtility.SetDirty(target);
 	}
@@ -182,18 +205,18 @@ public class WaypointManagerEditor : Editor
 						}
 						GUILayout.EndHorizontal();
 						GUILayout.Space(8);
-						GUILayout.BeginHorizontal();
-						{
-							GUILayout.FlexibleSpace();
-							GUILayout.Label("X:");
-							m_WaypointManager.Waypoints[m_SelectedIndex].Position.x = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.x, GUILayout.Width(35));
-							GUILayout.Label("Y:");
-							m_WaypointManager.Waypoints[m_SelectedIndex].Position.y = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.y, GUILayout.Width(35));
-							GUILayout.Label("Z:");
-							m_WaypointManager.Waypoints[m_SelectedIndex].Position.z = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.z, GUILayout.Width(35));
-							GUILayout.FlexibleSpace();
-						}
-						GUILayout.EndHorizontal();
+						//GUILayout.BeginHorizontal();
+						//{
+						//	GUILayout.FlexibleSpace();
+						//	GUILayout.Label("X:");
+						//	m_WaypointManager.Waypoints[m_SelectedIndex].Position.x = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.x, GUILayout.Width(35));
+						//	GUILayout.Label("Y:");
+						//	m_WaypointManager.Waypoints[m_SelectedIndex].Position.y = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.y, GUILayout.Width(35));
+						//	GUILayout.Label("Z:");
+						//	m_WaypointManager.Waypoints[m_SelectedIndex].Position.z = EditorGUILayout.FloatField(m_WaypointManager.Waypoints[m_SelectedIndex].Position.z, GUILayout.Width(35));
+						//	GUILayout.FlexibleSpace();
+						//}
+						//GUILayout.EndHorizontal();
 					}
 					GUILayout.EndVertical();
 				}
