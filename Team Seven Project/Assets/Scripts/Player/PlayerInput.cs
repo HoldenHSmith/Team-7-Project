@@ -11,7 +11,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected Vector2 MovementInput;                      //Stores movement input values by the player
 	protected bool ExternalInputBlocked;
-	protected bool CrouchPressed;
+	protected bool SprintPressed;
 	protected bool LeftMouseDown;
 	protected float LeftMouseDownTime;
 	protected bool InteractionKeyPressed;
@@ -36,9 +36,9 @@ public partial class PlayerCharacter : MonoBehaviour
 		Input.Player.Movement.canceled += ctx => OnMovementInput(ctx);
 
 		//Subscribe crouch movements
-		Input.Player.Crouch.started += ctx => OnCrouchInput(ctx);
-		Input.Player.Crouch.performed += ctx => OnCrouchInput(ctx);
-		Input.Player.Crouch.canceled += ctx => OnCrouchInput(ctx);
+		Input.Player.Crouch.started += ctx => OnSprintInput(ctx);
+		Input.Player.Crouch.performed += ctx => OnSprintInput(ctx);
+		Input.Player.Crouch.canceled += ctx => OnSprintInput(ctx);
 
 		//Subscribe to Left Mouse
 		Input.Player.AimingThrowing.started += ctx => OnLeftMouse(ctx);
@@ -80,7 +80,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected void OnMovementInput(InputAction.CallbackContext context) => MovementInput = context.ReadValue<Vector2>();
 
 	//Update crouch input
-	protected void OnCrouchInput(InputAction.CallbackContext context) => CrouchPressed = context.ReadValueAsButton();
+	protected void OnSprintInput(InputAction.CallbackContext context) => SprintPressed = context.ReadValueAsButton();
 
 	//Reads in the Players Movement Input
 	protected void OnInputMovement(InputAction.CallbackContext context) => MovementInput = context.ReadValue<Vector2>();
@@ -106,9 +106,9 @@ public partial class PlayerCharacter : MonoBehaviour
 	}
 
 	//Checks if the crouch input has been pressed
-	public bool IsCrouchInput
+	public bool IsSprintInput
 	{
-		get { return CrouchPressed; }
+		get { return SprintPressed; }
 	}
 
 	//Returns movement input vector. If movement is blocked, returns 0
