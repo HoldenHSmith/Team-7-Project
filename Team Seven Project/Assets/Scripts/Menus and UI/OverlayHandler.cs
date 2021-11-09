@@ -9,17 +9,17 @@ public class OverlayHandler : MonoBehaviour
     [SerializeField] private Image _beakerIcon = null;
 
     //Ui Elements for Note Overlay
-    [SerializeField] private GameObject _noteOverlay = null;
+    [SerializeField] private Canvas _noteOverlay = null;
     [SerializeField] private TextMeshProUGUI _noteTitle = null;
     [SerializeField] private TextMeshProUGUI _noteBody = null;
 
     private PlayerCharacter _player = null;
-
+    private bool _notePopup = false;
     private void Start()
     {
         _player = GameManager.Instance.Player;
-        _noteOverlay.SetActive(false);
         CollectionManager.Instance.OverlayHandler = this;
+        _noteOverlay.enabled = false;
     }
 
     private void Update()
@@ -27,17 +27,20 @@ public class OverlayHandler : MonoBehaviour
         if (_player != null)
             _beakerIcon.gameObject.SetActive(_player.HasBeaker);
 
-        if(_noteOverlay.activeInHierarchy && Keyboard.current.eKey.wasReleasedThisFrame )
+        if(_noteOverlay.enabled && Keyboard.current.eKey.wasReleasedThisFrame && !_notePopup )
         {
-            _noteOverlay.SetActive(false);
+           _noteOverlay.enabled = false;
         }
+
+        _notePopup = false;
     }
 
     public void ReadNote(PaperNote note)
     {
-        _noteOverlay.SetActive(true);
+        _noteOverlay.enabled = true;
         _noteTitle.text = note.Title;
         _noteBody.text = note.Body;
+        _notePopup = true;
 
     }
 

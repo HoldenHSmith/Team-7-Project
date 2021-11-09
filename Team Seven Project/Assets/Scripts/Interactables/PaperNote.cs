@@ -3,13 +3,13 @@
 public class PaperNote : MonoBehaviour, ICollectable, IInteractable
 {
 
-    [SerializeField] private string _noteTitle;
-    [SerializeField] private string _noteBody;
+	[SerializeField] private string _noteTitle = null;
+    [SerializeField] private string _noteBody = null;
 
-    private OverlayHandler _overlayHandler;
+   
     private void Awake()
     {
-        //Change this because its bad
+
      
     }
     public void OnCollect()
