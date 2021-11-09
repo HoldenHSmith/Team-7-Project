@@ -45,6 +45,7 @@ public class EnemyStateInvestigate : EnemyState
     {
         _investigationTimer = Enemy.Settings.InvestigationTime;
         _investigatePosition = Enemy.LastKnownPlayerPos;
+        Enemy.AudioDetector.Alertness = 50;
     }
 
     public override void OnExit()
