@@ -22,6 +22,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 	private PlayerCharacter _player;
 	private RecipientHandler _recipientHandler;
 	private float _messageDelayTimer;
+	[SerializeField] private LayerMask _collisionLayerMask;
 
 	//Debugging
 	[SerializeField] private bool _debugCone = true;
@@ -87,7 +88,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 				{
 					RaycastHit hit;
 					Debug.DrawRay(_coneDetectionTransform.position, directionToPlayer, Color.cyan, 0.01f);
-					if (Physics.Raycast((_coneDetectionTransform.position) + Vector3.up, directionToPlayer, out hit))
+					if (Physics.Raycast((_coneDetectionTransform.position) + Vector3.up, directionToPlayer, out hit, _distance,_collisionLayerMask, QueryTriggerInteraction.Ignore))
 					{
 						if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{
