@@ -31,11 +31,18 @@ public partial class PlayerCharacter : MonoBehaviour
     private float _deceleration; //Acceleration rate of the character
     private Vector3 _velocity; //Character's current velocity
 
+    [SerializeField] protected float Stamina; //Character's current stamina
+    private float _staminaRecoveryRate; //Characters stamina recovery rate based on Recovery Time
+    private float _staminaDepletionRate; //Characters stamina depletion rate based on max sprint time;
+
     protected void SetupMovement()
     {
         _acceleration = _maxVelocity / _timeToMaxSpeed;
         _deceleration = -_maxVelocity / _timeToZero;
         _velocity = Vector3.zero;
+
+        _staminaRecoveryRate = _maxStamina / _staminaRecoveryTime;
+        _staminaDepletionRate = _maxStamina / _maxSprintTime;
     }
 
     //Updates the character's velocity based on player input
@@ -54,7 +61,7 @@ public partial class PlayerCharacter : MonoBehaviour
         Vector3 targetVelocity = Vector3.zero;
 
         //Change this to use state machine for player
-        if (!SprintPressed)
+        if (!SprintPressed || Stamina <= 0)
             targetVelocity = direction * _maxVelocity;
         else
             targetVelocity = direction * _maxSprintVelocity;
@@ -77,14 +84,24 @@ public partial class PlayerCharacter : MonoBehaviour
             {
                 _velocity = _velocity.normalized * _maxVelocity;
             }
+            //Recover Stamina
+            if (Stamina < _maxStamina)
+            {
+                Stamina += _staminaRecoveryRate * Time.deltaTime;
+                if (Stamina > _maxStamina)
+                    Stamina = _maxStamina;
+
+            }
         }
-        else
+        else if (Stamina > 0 && SprintPressed)
         {
+            Stamina -= _staminaDepletionRate * Time.deltaTime;
             if (_velocity.magnitude > _maxSprintVelocity)
             {
                 _velocity = _velocity.normalized * _maxSprintVelocity;
             }
         }
+
 
     }
 
