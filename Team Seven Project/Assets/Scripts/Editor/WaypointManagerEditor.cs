@@ -125,7 +125,13 @@ public class WaypointManagerEditor : Editor
 	private void UpdateWaypoints()
 	{
 		if (m_WaypointManager.Waypoints != null)
+		{
+			for(int i = 0; i < m_WaypointManager.Waypoints.Count;i++)
+			{
+				m_WaypointManager.Waypoints[i].Position.y = 0.1f;
+			}
 			m_PreviousWaypoints = m_WaypointManager.Waypoints.Select(wp => new Waypoint(wp.Position, wp.WaitTime)).ToList();
+		}
 
 		EditorUtility.SetDirty(target);
 	}
