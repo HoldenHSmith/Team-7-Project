@@ -38,7 +38,7 @@ public class SimplePlaySound : MonoBehaviour
 		_input.Enable();
 	}
 
-	private void nDisable()
+	private void OnDisable()
 	{
 		_input.Disable();
 	}

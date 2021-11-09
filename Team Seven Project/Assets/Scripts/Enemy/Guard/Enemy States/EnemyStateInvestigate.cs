@@ -14,6 +14,10 @@ public class EnemyStateInvestigate : EnemyState
 
 	private Vector3 _investigateDirection;
 	private Vector3 _investigateDirectionRight;
+
+	private float _investigationStartDelay = 1.3f;
+	private float _investigationStartDelayTimer = 0;
+
 	public override void OnEnter()
 	{
 		//ChooseNextDestination();
@@ -25,7 +29,7 @@ public class EnemyStateInvestigate : EnemyState
 
 		_investigationTimer = Enemy.Settings.InvestigationTime;
 		_investigatePosition = Enemy.LastKnownPlayerPos;
-		Enemy.NavAgent.destination = _investigatePosition;
+		Enemy.NavAgent.enabled = false;
 		Enemy.WalkState = EnemyWalkSpeed.investigate;
 		Enemy.NavAgent.acceleration = Enemy.Settings.InspectAcceleration;
 		Enemy.NavAgent.angularSpeed = Enemy.Settings.InspectTurnSpeed;
@@ -33,35 +37,36 @@ public class EnemyStateInvestigate : EnemyState
 		_investigateDirection.Normalize();
 		_investigateDirectionRight = Vector3.Cross(_investigateDirection, Vector3.up.normalized);
 		_investigateDirectionRight.Normalize();
-		_investigationDelayTimer = Enemy.Settings.InvestigationDelay;
+		//_investigationDelayTimer = Enemy.Settings.InvestigationDelay;
+		_investigationStartDelayTimer = _investigationStartDelay;
+		Enemy.AnimationHandler.PlayAnimationOnce("Reaction");
 	}
 
 	public override void OnExit()
 	{
-
+		Enemy.NavAgent.enabled = true;
 	}
 
 	public override void OnUpdate(float deltaTime)
 	{
-		//if (_investigationTimer <= 0)
-		//{
-		//	StateMachine.RequestStateChange(Enemy.EnemyStates.StatePatrol);
-		//	return;
-		//}
 
-		if (Vector3.Distance(Enemy.transform.position, Enemy.NavAgent.destination) <= Enemy.Settings.DistanceToWaypointSatisfaction)
+		if (_investigationStartDelayTimer <= 0)
 		{
-			_investigationDelayTimer -= deltaTime;
+			Enemy.NavAgent.enabled = true;
+			Enemy.NavAgent.destination = _investigatePosition;
+			_investigationTimer -= deltaTime;
 
-			if (_investigationDelayTimer <= 0)
+			if (_investigationTimer <= 0)
 			{
-				_investigationDelayTimer = Enemy.Settings.InvestigationDelay;
+				_investigationTimer = Enemy.Settings.InvestigationDelay;
 				ChooseNextDestination();
 				_investigateState++;
 			}
-		}
 
-		Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.investigate);
+			Enemy.AnimationHandler.SetWalk(Enemy.NavAgent.velocity.magnitude, EnemyWalkSpeed.investigate);
+		}
+		else
+			_investigationStartDelayTimer -= Time.deltaTime;
 	}
 
 	private void ChooseNextDestination()
@@ -105,7 +110,7 @@ public class EnemyStateInvestigate : EnemyState
 	{
 		Vector3 sampledPos = Enemy.transform.position;
 		NavMeshHit hit;
-		NavMesh.SamplePosition(v3Pos, out hit, Enemy.Settings.InvestigationRadius+1, 1);
+		NavMesh.SamplePosition(v3Pos, out hit, Enemy.Settings.InvestigationRadius + 1, 1);
 		sampledPos = hit.position;
 		return sampledPos;
 	}
