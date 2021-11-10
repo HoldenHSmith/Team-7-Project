@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _volume: 30
-  _distanceFalloff: 0
+  _distanceFalloff: 10
   _positionOffset: {x: 0, y: 0.1, z: 0}
 --- !u!114 &1987438363
 MonoBehaviour:
@@ -601,16 +601,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   _maxVelocity: 2.5
-  _maxCrouchVelocity: 1.5
+  _maxSprintVelocity: 3.5
   _timeToMaxSpeed: 0.25
   _timeToZero: 0.1
+  _maxStamina: 100
+  _staminaRecoveryTime: 5
+  _maxSprintTime: 2
+  Stamina: 0
   _rotationSpeed: 10
   _throwEnabled: 0
-  _hasBeaker: 1
+  _hasBeaker: 0
   _travelDuration: 1
   _projectile: {fileID: 3226945056214041454, guid: 861eb60d4837ce541a3372006d104894, type: 3}
   _throwPoint: {fileID: 1476052262}
-  _minimumMouseHoldTime: 0.1
+  _minimumMouseHoldTime: 0.25
   _landingZoneSprite: {fileID: 0}
   _throwLayer:
     serializedVersion: 2
@@ -749,7 +753,7 @@ MonoBehaviour:
   - {fileID: 799177034}
   - {fileID: 1488070280}
   - {fileID: 198637491}
-  _hideSamplePoints: 0
+  _hideSamplePoints: 1
 --- !u!1001 &966932577073265467
 PrefabInstance:
   m_ObjectHideFlags: 0
