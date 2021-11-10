@@ -47,7 +47,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 			DoorManager.SetLockedStatuses(s.DoorStatusesToList());
 			//_playerCharacter.transform.position = s.PosToVec3();
 			KeycardManager.LoadKeycards(s.KeyDict());
-			Debug.Log($"Game managers position read: {s.PosToVec3()}");
+			Debug.Log($"Game managers position read: {s.GetPosition()}");
 		}
 		else
 			Debug.Log("No Save Data Found");
@@ -64,7 +64,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	{
 		if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
 		{
-			SaveManager.Save(Player.transform.position);
+			SaveManager.Save(Player.transform.position,Player.transform.rotation);
 		}
 		if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
 		{

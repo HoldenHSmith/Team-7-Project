@@ -27,7 +27,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		//transform.position = SaveManager.Instance.Current.PosToVec3();
 		if (SaveManager.Instance.Current != null)
-			CharacterController.transform.position = SaveManager.Instance.Current.PosToVec3();
+			CharacterController.transform.position = SaveManager.Instance.Current.GetPosition();
 		//Debug.Log(transform.position);
 	}
 
