@@ -7,7 +7,8 @@ public enum MessageType
 	Msg_PlayerSpottedByGuard,
 	Msg_Reset,
 	Msg_PlayerHeard,
-	Msg_Sound
+	Msg_Sound,
+	Msg_Activate
 }
 
 public sealed class MessageDispatcher

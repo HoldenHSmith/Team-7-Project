@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3809455171286208024}
   - component: {fileID: 3809455171286208025}
   - component: {fileID: 3809455171286208030}
+  - component: {fileID: 502781016}
   m_Layer: 0
   m_Name: Simple Checkpoint
   m_TagString: Untagged
@@ -44,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7749672, y: 3.351625, z: 2.105359}
-  m_Center: {x: 0.11343384, y: 0.5687821, z: 0.027584553}
+  m_Size: {x: 4.91, y: 2.2308512, z: 10.675536}
+  m_Center: {x: 0, y: 1.2005322, z: 0}
 --- !u!114 &3809455171286208025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,3 +87,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556d0b8638f1411418ba639b5d6d13ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offSet: {x: -0.6517315, y: 0.1, z: 0.9796338}
+  _saveRotation: {x: 0, y: 0, z: 0, w: 1}
+  _previewMesh: {fileID: 8346144707644284106, guid: 2b8d724500b41014a9bcf02fed8dbb76, type: 3}
+  _boxCollider: {fileID: 3809455171286208024}
+  DrawBox: 1
+  BoxColor: {r: 0, g: 1, b: 0.88977575, a: 0.050980393}
+  BoxOutlineColor: {r: 0.018116832, g: 1, b: 0, a: 0.07058824}
+--- !u!114 &502781016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809455171286208026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecee8f93b7f32e2468d5eac70884ffe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recipients: []
