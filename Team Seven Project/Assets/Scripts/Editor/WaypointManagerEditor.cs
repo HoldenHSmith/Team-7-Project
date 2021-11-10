@@ -31,6 +31,7 @@ public class WaypointManagerEditor : Editor
 
 	private void OnSceneGUI()
 	{
+		Undo.RecordObject(m_WaypointManager, m_WaypointManager.name);
 		if (!Application.isPlaying)
 			CheckTargetMoved();
 		DrawWaypoints();
@@ -126,7 +127,7 @@ public class WaypointManagerEditor : Editor
 	{
 		if (m_WaypointManager.Waypoints != null)
 		{
-			for(int i = 0; i < m_WaypointManager.Waypoints.Count;i++)
+			for (int i = 0; i < m_WaypointManager.Waypoints.Count; i++)
 			{
 				m_WaypointManager.Waypoints[i].Position.y = 0.1f;
 			}
