@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
-public class Checkpoint : MonoBehaviour
+[RequireComponent(typeof(RecipientHandler))]
+public class Checkpoint : MonoBehaviour, IMessageSender
 {
 
 	[SerializeField] private Vector3 _offSet = Vector3.zero;
 	[SerializeField] private Quaternion _saveRotation = Quaternion.identity;
 	[SerializeField] private Mesh _previewMesh = null;
 	public BoxCollider _boxCollider;
+	private RecipientHandler _recipientHandler;
+	private bool _doorsActivated = false;
 
 	private void OnEnable()
 	{
@@ -14,9 +17,30 @@ public class Checkpoint : MonoBehaviour
 		_boxCollider.isTrigger = true;
 	}
 
+	private void Awake()
+	{
+		_recipientHandler = GetComponent<RecipientHandler>();
+	}
+
 	public void SaveGame()
 	{
 		SaveManager.Save(transform.position + _offSet, _saveRotation);
+	}
+
+	public void SendMessage()
+	{
+		for (int i = 0; i < _recipientHandler.Recipients.Count; i++)
+		{
+			MessageDispatcher.Instance.DispatchMessage(0, this, _recipientHandler.Recipients[i], MessageType.Msg_Activate, null);
+		}
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (!_doorsActivated && other.tag == "Player")
+			SendMessage();
+
+		_doorsActivated = true;
 	}
 
 	public Vector3 Offset { get => _offSet; set => _offSet = value; }
@@ -60,5 +84,7 @@ public class Checkpoint : MonoBehaviour
 	{
 		_offSet = position - transform.position;
 	}
+
+
 #endif
 }

@@ -5,16 +5,16 @@
 using UnityEditor;
 #endif
 
-public class SimpleMove : MonoBehaviour
+public class SimpleMove : MonoBehaviour, IMessageReceiver
 {
-	
+
 	[SerializeField] private LoopType _loopType = LoopType.Repeat;
 	[SerializeField] private Vector3 _startPosition = Vector3.zero;
 	[SerializeField] private Vector3 _finalPosition = Vector3.zero;
 	[SerializeField] private float _travelTime = 1.0f;
 	[SerializeField] private AnimationCurve _accelerationCurve = null;
 	[SerializeField] private Rigidbody _objectToMove = null;
-	[SerializeField] private bool _active = false;
+	public bool _active = false;
 
 	[SerializeField, Range(0, 1)] public float PreviewPosition;
 
@@ -81,6 +81,17 @@ public class SimpleMove : MonoBehaviour
 
 		_objectToMove.MovePosition(nextPosition);
 
+	}
+
+	public bool ReceiveMessage(Telegram message)
+	{
+		if (message.MessageType == MessageType.Msg_Activate)
+		{
+			Activate();
+			return true;
+		}
+
+		return false;
 	}
 
 #if UNITY_EDITOR
