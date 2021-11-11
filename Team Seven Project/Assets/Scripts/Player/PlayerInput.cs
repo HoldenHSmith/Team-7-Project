@@ -8,6 +8,8 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	[Tooltip("Checks if the player's Input is blocked")]
 	[SerializeField] private bool _playerInputBlocked = false;
+	[SerializeField] private float _doorInteractBlockTime = 1.0f;
+	[SerializeField] private float _keycardInteractBlockTime = 1.0f;
 
 	protected Vector2 MovementInput;                      //Stores movement input values by the player
 	protected bool ExternalInputBlocked;
@@ -20,6 +22,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected bool InteractKeyReleasedThisFrame;
 
 	private PauseMenuHandler pauseMenu;
+	private float _inputBlockTime;
 
 	protected void SetupInput()
 	{
@@ -61,6 +64,14 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		if (LeftMouseDown)
 			LeftMouseDownTime += Time.deltaTime;
+
+		if (_inputBlockTime > 0)
+		{
+			_inputBlockTime -= Time.deltaTime;
+			_playerInputBlocked = true;
+		}
+		else
+			_playerInputBlocked = false;
 	}
 
 	protected void EndInputUpdate()
@@ -69,27 +80,30 @@ public partial class PlayerCharacter : MonoBehaviour
 			LeftMouseDownTime = 0;
 	}
 
-
-
 	protected void ResetInputs()
 	{
 		InteractKeyReleasedThisFrame = false;
 	}
 
+	protected void BlockInputForTime(float duration)
+	{
+		_inputBlockTime = duration;
+	}
+
 	//Update movement inputs
-	protected void OnMovementInput(InputAction.CallbackContext context) => MovementInput = context.ReadValue<Vector2>();
+	protected void OnMovementInput(InputAction.CallbackContext context) => MovementInput = (_playerInputBlocked || ExternalInputBlocked) ? Vector2.zero : context.ReadValue<Vector2>();
 
 	//Update crouch input
-	protected void OnSprintInput(InputAction.CallbackContext context) => SprintPressed = context.ReadValueAsButton();
+	protected void OnSprintInput(InputAction.CallbackContext context) => SprintPressed = (_playerInputBlocked || ExternalInputBlocked) ? false : context.ReadValueAsButton();
 
 	//Reads in the Players Movement Input
-	protected void OnInputMovement(InputAction.CallbackContext context) => MovementInput = context.ReadValue<Vector2>();
+	protected void OnInputMovement(InputAction.CallbackContext context) => MovementInput = (_playerInputBlocked || ExternalInputBlocked) ? Vector2.zero : context.ReadValue<Vector2>();
 
 	//Reads the Left Mouse Button Input
-	protected void OnLeftMouse(InputAction.CallbackContext context) => LeftMouseDown = context.ReadValueAsButton();
+	protected void OnLeftMouse(InputAction.CallbackContext context) => LeftMouseDown = (_playerInputBlocked || ExternalInputBlocked) ? false : context.ReadValueAsButton();
 
 	//Reads true if interaction key is pressed
-	protected void OnInteractionKey(InputAction.CallbackContext context) => InteractionKeyPressed = context.ReadValueAsButton();
+	protected void OnInteractionKey(InputAction.CallbackContext context) => InteractionKeyPressed = (_playerInputBlocked || ExternalInputBlocked) ? false : context.ReadValueAsButton();
 
 	protected void OnInteractionReleased(InputAction.CallbackContext context) => InteractKeyReleasedThisFrame = !context.ReadValueAsButton();
 
@@ -102,7 +116,13 @@ public partial class PlayerCharacter : MonoBehaviour
 	//Checks if movement input is pressed
 	public bool IsMoveInput
 	{
-		get { return !Mathf.Approximately(MovementInput.sqrMagnitude, 0f); }
+		get
+		{
+			if (_playerInputBlocked || ExternalInputBlocked)
+				return false;
+
+			return !Mathf.Approximately(MovementInput.sqrMagnitude, 0f);
+		}
 	}
 
 	//Checks if the crouch input has been pressed

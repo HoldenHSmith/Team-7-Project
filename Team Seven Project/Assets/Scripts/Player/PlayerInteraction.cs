@@ -40,9 +40,15 @@ public partial class PlayerCharacter : MonoBehaviour
 				if (interactable.OnInteract(this))
 				{
 					if (hitCollider.tag == "Door")
+					{
 						Animator.Play("Swipe");
-					else
+						BlockInputForTime(_doorInteractBlockTime);
+					}
+					else if (hitCollider.tag == "Keycard")
+					{
+						BlockInputForTime(_keycardInteractBlockTime);
 						Animator.Play("Collect");
+					}
 				}
 			}
 
