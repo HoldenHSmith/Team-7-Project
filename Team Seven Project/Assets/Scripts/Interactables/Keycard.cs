@@ -9,10 +9,11 @@ public class Keycard : MonoBehaviour, ICollectable, IInteractable
 		CollectionManager.Instance.SetKeyValue(_area, true);
 	}
 
-	public void OnInteract(PlayerCharacter playerCharacter)
+	public bool OnInteract(PlayerCharacter playerCharacter)
 	{
 		OnCollect();
 		this.gameObject.SetActive(false);
+		return true;
 	}
 
 	public void SetCollected(bool collected)

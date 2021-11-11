@@ -9,8 +9,9 @@ public class SaveData
 	public SaveVector3 PlayerPosition;
 	public SaveQuaternion PlayerRotation;
 	public bool[] DoorsUnlocked;
+	public bool[] MiniKeycardsCollected;
 
-	public SaveData(Dictionary<AreaType, bool> keyValues, Vector3 playerPosition, Quaternion rotation, List<bool> doorsUnlocked)
+	public SaveData(Dictionary<AreaType, bool> keyValues, bool[] miniKeycardsCollected, Vector3 playerPosition, Quaternion rotation, List<bool> doorsUnlocked)
 	{
 		KeySaves = new KeySave[keyValues.Count];
 
@@ -18,7 +19,7 @@ public class SaveData
 		{
 			KeySaves[i] = new KeySave((AreaType)i, keyValues[(AreaType)i]);
 		}
-
+		MiniKeycardsCollected = miniKeycardsCollected;
 		PlayerPosition = new SaveVector3(playerPosition);
 		PlayerRotation = new SaveQuaternion(rotation);
 		DoorsUnlocked = doorsUnlocked.ToArray();
@@ -28,7 +29,7 @@ public class SaveData
 	{
 		return new Vector3(PlayerPosition.X, PlayerPosition.Y, PlayerPosition.Z);
 	}
-	
+
 	public Quaternion GetRotation()
 	{
 		return new Quaternion(PlayerRotation.X, PlayerRotation.Y, PlayerRotation.Z, PlayerRotation.W);
