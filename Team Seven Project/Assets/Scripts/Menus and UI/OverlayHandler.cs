@@ -18,7 +18,7 @@ public class OverlayHandler : MonoBehaviour
     private void Start()
     {
         _player = GameManager.Instance.Player;
-        CollectionManager.Instance.OverlayHandler = this;
+        GameManager.Instance.CollectionManager.OverlayHandler = this;
         _noteOverlay.enabled = false;
     }
 

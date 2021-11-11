@@ -16,7 +16,7 @@ public class PaperNote : MonoBehaviour, ICollectable, IInteractable
     }
     public void OnCollect()
     {
-        CollectionManager.Instance.SetNoteValue(this, true);
+        GameManager.Instance.CollectionManager.SetNoteValue(this, true);
     }
 
     public bool OnInteract(PlayerCharacter playerCharacter)
