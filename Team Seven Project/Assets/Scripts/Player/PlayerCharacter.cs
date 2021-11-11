@@ -27,7 +27,11 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		//transform.position = SaveManager.Instance.Current.PosToVec3();
 		if (SaveManager.Instance.Current != null)
+		{
 			CharacterController.transform.position = SaveManager.Instance.Current.GetPosition();
+			_miniKeycards = SaveManager.Instance.Current.CurrentMiniKeycards;
+			Debug.Log($"Keycard count: {_miniKeycards}");
+		}
 		//Debug.Log(transform.position);
 	}
 

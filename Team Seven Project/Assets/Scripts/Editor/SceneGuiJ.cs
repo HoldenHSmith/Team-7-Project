@@ -154,7 +154,8 @@ public class SceneGuiJ : EditorWindow
 			for (int i = 0; i < _objects.Count; i++)
 			{
 				Handles.color = Color.yellow;
-				HandlesJ.DrawDirectionalLine(_objects[i].transform.position + (Vector3.up * 25), _objects[i].transform.position, Color.yellow);
+				if (_objects[i] != null)
+					HandlesJ.DrawDirectionalLine(_objects[i].transform.position + (Vector3.up * 25), _objects[i].transform.position, Color.yellow);
 			}
 		}
 

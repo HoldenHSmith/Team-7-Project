@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 {
 	[SerializeField] private bool _unlocked = false;
 	private Animation[] _animations;
-	
+
 	private void Awake()
 	{
 		_animations = GetComponentsInChildren<Animation>();
@@ -27,7 +28,7 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 
 	public bool OnInteract(PlayerCharacter playerCharacter)
 	{
-		if (playerCharacter.MiniKeycards > 0)
+		if (playerCharacter.MiniKeycards > 0 && !_unlocked)
 		{
 			playerCharacter.MiniKeycards--;
 
@@ -38,4 +39,26 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 		return false;
 	}
 
+	public void SetUnlocked(bool v)
+	{
+		_unlocked = v;
+
+		if (_unlocked && _animations != null)
+			foreach (Animation anim in _animations)
+			{
+				anim.Play();
+			}
+	}
+
+	private void OnEnable()
+	{
+		//DoorManager.RegisterMiniDoor(this);
+	}
+
+	private void OnDisable()
+	{
+		//DoorManager.RemoveMiniDoor(this);
+	}
+
+	public bool Unlocked { get => _unlocked; }
 }

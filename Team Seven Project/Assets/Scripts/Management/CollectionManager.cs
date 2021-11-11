@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class CollectionManager
+public sealed class CollectionManager : MonoBehaviour
 {
-	private static readonly CollectionManager _instance = new CollectionManager();
 
 	private Dictionary<AreaType, bool> _keysCollected;
 	private Dictionary<PaperNote, bool> _notesCollected;
@@ -66,7 +65,6 @@ public sealed class CollectionManager
 		return collected;
 	}
 
-	public static CollectionManager Instance { get => _instance; }
 	public Dictionary<AreaType, bool> KeysCollected { get => _keysCollected; }
 	public Dictionary<PaperNote, bool> NotesCollected { get => _notesCollected; }
 
