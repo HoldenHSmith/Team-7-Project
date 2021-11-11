@@ -74,8 +74,10 @@ public class SceneGuiJ : EditorWindow
 		if (_optionSelected == -1)
 		{
 			if (_prevOptionSelected != _optionSelected)
+			{
 				RepaintSceneView();
-			Selection.objects = null;
+				Selection.objects = null;
+			}
 			return;
 		}
 
@@ -143,8 +145,8 @@ public class SceneGuiJ : EditorWindow
 					}
 					break;
 			}
-
-			Selection.objects = _objects.ToArray();
+			if (_objects != null && _objects.Count > 0)
+				Selection.objects = _objects.ToArray();
 		}
 
 		if (_objects != null && _objects.Count > 0)

@@ -2,6 +2,7 @@
 
 public class MiniKeycard : MonoBehaviour, ICollectable, IInteractable
 {
+	private bool _collected = false;
 
 	public void OnCollect()
 	{
@@ -29,4 +30,6 @@ public class MiniKeycard : MonoBehaviour, ICollectable, IInteractable
 	{
 		KeycardManager.RemoveMiniKeycard(this);
 	}
+
+	public bool Collected { get => _collected; set => _collected = value; }
 }
