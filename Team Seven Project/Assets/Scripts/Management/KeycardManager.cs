@@ -9,6 +9,7 @@ public class KeycardManager : MonoBehaviour
 {
 	private static KeycardManager _instance;
 	private static readonly List<Keycard> _keycards = new List<Keycard>();
+	private static readonly List<MiniKeycard> _miniKeycards = new List<MiniKeycard>();
 
 	public static void RegisterKeycard(Keycard keycard)
 	{
@@ -24,6 +25,22 @@ public class KeycardManager : MonoBehaviour
 			return;
 
 		_keycards.Remove(keycard);
+	}
+
+	public static void RegisterMiniKeycard(MiniKeycard keycard)
+	{
+		if (_miniKeycards.Contains(keycard))
+			return;
+
+		_miniKeycards.Add(keycard);
+	}
+
+	public static void RemoveMiniKeycard(MiniKeycard keycard)
+	{
+		if (!_miniKeycards.Contains(keycard))
+			return;
+
+		_miniKeycards.Remove(keycard);
 	}
 
 	public static void LoadKeycards(Dictionary<AreaType, bool> keycardValues)

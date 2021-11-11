@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 83179764630105669}
   - component: {fileID: 141053081}
-  - component: {fileID: 141053082}
-  - component: {fileID: 141053083}
   m_Layer: 0
   m_Name: Env_Door_02
   m_TagString: Untagged
@@ -43,55 +41,13 @@ Animation:
   m_GameObject: {fileID: 751066646478025983}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 95e0e21a58f3cee4ab7ac1fab4cb2d2d, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 95e0e21a58f3cee4ab7ac1fab4cb2d2d, type: 2}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &141053082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751066646478025983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5248379dda3e8947bd5990c9632398c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _events:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 141053083}
-        m_TargetAssemblyTypeName: SimplePlayAnimation, Assembly-CSharp
-        m_MethodName: PlayAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!114 &141053083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751066646478025983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f995614e2bdf6d42baad5c3499a4bf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animation: {fileID: 141053081}
-  _delay: 1
-  _playOnStart: 0
 --- !u!1 &992706032084721629
 GameObject:
   m_ObjectHideFlags: 0
