@@ -15,7 +15,7 @@ public class SaveManager
 
 	public static void Save(Vector3 position, Quaternion rotation)
 	{
-		_currentSaveData = new SaveData(CollectionManager.Instance.KeysCollected, CollectionManager.Instance.MiniKeycardsCollected(), position, rotation, DoorManager.GetLockedStatuses());
+		_currentSaveData = new SaveData(GameManager.Instance.CollectionManager.KeysCollected, GameManager.Instance.CollectionManager.MiniKeycardsCollected(), position, rotation, GameManager.Instance.DoorManager.GetLockedStatuses(), GameManager.Instance.Player.MiniKeycards, GameManager.Instance.DoorManager.GetMiniLockedStatuses());
 
 		//Check if the directory exists, if not, create it
 		if (!DirectoryExists())
@@ -70,7 +70,7 @@ public class SaveManager
 
 	public static void CreateNewSave(Vector3 position, Dictionary<AreaType, bool> keyValues)
 	{
-		_currentSaveData = new SaveData(keyValues, CollectionManager.Instance.MiniKeycardsCollected(), position, Quaternion.identity, DoorManager.GetLockedStatuses());
+		_currentSaveData = new SaveData(keyValues, GameManager.Instance.CollectionManager.MiniKeycardsCollected(), position, Quaternion.identity, GameManager.Instance.DoorManager.GetLockedStatuses(), GameManager.Instance.Player.MiniKeycards, GameManager.Instance.DoorManager.GetMiniLockedStatuses());
 
 	}
 

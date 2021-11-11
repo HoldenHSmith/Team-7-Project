@@ -6,12 +6,14 @@ public class MiniKeycard : MonoBehaviour, ICollectable, IInteractable
 
 	public void OnCollect()
 	{
-		CollectionManager.Instance.SetMiniKeycardValue(this, true);
+		GameManager.Instance.CollectionManager.SetMiniKeycardValue(this, true);
+		_collected = true;
 	}
 
 	public bool OnInteract(PlayerCharacter playerCharacter)
 	{
 		OnCollect();
+
 		this.gameObject.SetActive(false);
 		playerCharacter.MiniKeycards++;
 		return true;
@@ -24,14 +26,20 @@ public class MiniKeycard : MonoBehaviour, ICollectable, IInteractable
 
 	}
 
+	public void LoadCollected(bool collected)
+	{
+		if (collected)
+			this.gameObject.SetActive(false);
+	}
+
 	private void OnEnable()
 	{
-		KeycardManager.RegisterMiniKeycard(this);
+		//KeycardManager.RegisterMiniKeycard(this);
 	}
 
 	private void OnDisable()
 	{
-		KeycardManager.RemoveMiniKeycard(this);
+		//KeycardManager.RemoveMiniKeycard(this);
 	}
 
 	public bool Collected { get => _collected; set => _collected = value; }
