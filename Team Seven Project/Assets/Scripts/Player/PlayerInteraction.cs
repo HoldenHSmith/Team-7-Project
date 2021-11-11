@@ -21,7 +21,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		_interactionTimer -= Time.deltaTime;
 
-		if (InteractKeyReleasedThisFrame && _interactionTimer <= 0)
+		if (_interactKeyReleasedThisFrame && _interactionTimer <= 0)
 		{
 			_interactionTimer = _interactionCooldown;
 			OnInteractionPressed();
@@ -41,13 +41,13 @@ public partial class PlayerCharacter : MonoBehaviour
 				{
 					if (hitCollider.tag == "Door")
 					{
-						Animator.Play("Swipe");
+						_animator.Play("Swipe");
 						BlockInputForTime(_doorInteractBlockTime);
 					}
 					else if (hitCollider.tag == "Keycard")
 					{
 						BlockInputForTime(_keycardInteractBlockTime);
-						Animator.Play("Collect");
+						_animator.Play("Collect");
 					}
 				}
 			}

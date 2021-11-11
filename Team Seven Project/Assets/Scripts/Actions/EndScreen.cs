@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour
 {
-	[SerializeField] private Image _fadeToBlack;
-	[SerializeField] private TextMeshProUGUI _text;
-	[SerializeField] private float _fadeTime;
+	[SerializeField] private Image _fadeToBlack = null;
+	[SerializeField] private TextMeshProUGUI _text = null;
+	[SerializeField] private float _fadeTime = 1.0f;
 
 	private bool _active;
 	private float _fadeTimer;

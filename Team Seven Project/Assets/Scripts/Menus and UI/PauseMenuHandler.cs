@@ -6,14 +6,7 @@ public class PauseMenuHandler : MonoBehaviour
 {
 	[SerializeField] private bool _paused = false;
 	[SerializeField] private GameObject _pauseMenu = null;
-
-	[SerializeField] private Button _continueButton;
-	[SerializeField] private Button _restartButton;
-	[SerializeField] private Button _settingsButton;
-	[SerializeField] private Button _mainMenuButton;
-	[SerializeField] private Button _quitButton;
-
-	[SerializeField] private string _mainMenuSceneName;
+	[SerializeField] private string _mainMenuSceneName = "";
 
 	public void TogglePauseMenu()
 	{

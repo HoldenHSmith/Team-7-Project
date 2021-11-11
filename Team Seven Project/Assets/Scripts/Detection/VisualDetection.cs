@@ -22,7 +22,7 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 	private PlayerCharacter _player;
 	private RecipientHandler _recipientHandler;
 	private float _messageDelayTimer;
-	[SerializeField] private LayerMask _collisionLayerMask;
+	[SerializeField] private LayerMask _collisionLayerMask = 0;
 
 	//Debugging
 	[SerializeField] private bool _debugCone = true;
