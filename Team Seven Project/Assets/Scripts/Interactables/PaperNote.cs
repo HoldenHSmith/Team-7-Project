@@ -19,11 +19,12 @@ public class PaperNote : MonoBehaviour, ICollectable, IInteractable
         CollectionManager.Instance.SetNoteValue(this, true);
     }
 
-    public void OnInteract(PlayerCharacter playerCharacter)
+    public bool OnInteract(PlayerCharacter playerCharacter)
     {
         OnCollect();
         this.gameObject.SetActive(false);
-        //Open up note on canvas UI and set text
+		//Open up note on canvas UI and set text
+		return true;
     }
 
     public string Title { get => _noteTitle; set => _noteTitle = value; }

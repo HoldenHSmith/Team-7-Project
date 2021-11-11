@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniKeycardDoor : MonoBehaviour
+public class MiniKeycardDoor : MonoBehaviour, IInteractable
 {
 	[SerializeField] private bool _unlocked = false;
 	private Animation[] _animations;
-
+	
 	private void Awake()
 	{
 		_animations = GetComponentsInChildren<Animation>();
@@ -24,4 +24,18 @@ public class MiniKeycardDoor : MonoBehaviour
 			}
 		}
 	}
+
+	public bool OnInteract(PlayerCharacter playerCharacter)
+	{
+		if (playerCharacter.MiniKeycards > 0)
+		{
+			playerCharacter.MiniKeycards--;
+
+			UnlockDoor();
+			return true;
+		}
+
+		return false;
+	}
+
 }

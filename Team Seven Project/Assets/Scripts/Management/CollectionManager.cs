@@ -15,6 +15,7 @@ public sealed class CollectionManager
 	{
 		_keysCollected = new Dictionary<AreaType, bool>();
 		_notesCollected = new Dictionary<PaperNote, bool>();
+		_miniKeycardsCollected = new Dictionary<MiniKeycard, bool>();
 
 		for (int i = 0; i < (int)AreaType.Count; i++)
 		{
@@ -50,6 +51,19 @@ public sealed class CollectionManager
 	public bool CheckKeyCollected(AreaType area)
 	{
 		return _keysCollected[area];
+	}
+
+	public bool[] MiniKeycardsCollected()
+	{
+		bool[] collected = new bool[_miniKeycardsCollected.Count];
+		int i = 0;
+		foreach (MiniKeycard card in _miniKeycardsCollected.Keys)
+		{
+			collected[i] = card.Collected;
+			i++;
+		}
+
+		return collected;
 	}
 
 	public static CollectionManager Instance { get => _instance; }
