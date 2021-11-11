@@ -34,6 +34,11 @@ public class EnemyAnimator
 
 	}
 
+	public void PlayAnimationOnce(string name)
+	{
+		_animator.Play(name);
+	}
+
 	public void SetWalk(float movementSpeed, EnemyWalkSpeed walkState)
 	{
 		switch (walkState)
