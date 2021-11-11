@@ -6,19 +6,22 @@ public class MiniKeycard : MonoBehaviour, ICollectable, IInteractable
 
 	public void OnCollect()
 	{
-		
+		CollectionManager.Instance.SetMiniKeycardValue(this, true);
 	}
 
-	public void OnInteract(PlayerCharacter playerCharacter)
+	public bool OnInteract(PlayerCharacter playerCharacter)
 	{
 		OnCollect();
 		this.gameObject.SetActive(false);
+		playerCharacter.MiniKeycards++;
+		return true;
 	}
 
 	public void SetCollected(bool collected)
 	{
 		if (collected)
 			OnInteract(GameManager.Instance.Player);
+
 	}
 
 	private void OnEnable()

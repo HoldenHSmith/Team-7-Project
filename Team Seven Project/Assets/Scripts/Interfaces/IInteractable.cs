@@ -1,4 +1,4 @@
 ﻿public interface IInteractable 
 {
-	void OnInteract(PlayerCharacter playerCharacter);
+	bool OnInteract(PlayerCharacter playerCharacter);
 }

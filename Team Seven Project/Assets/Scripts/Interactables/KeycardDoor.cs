@@ -25,12 +25,14 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 		}
 	}
 
-	public void OnInteract(PlayerCharacter playerCharacter)
+	public bool OnInteract(PlayerCharacter playerCharacter)
 	{
 		if (CollectionManager.Instance.CheckKeyCollected(_area))
 		{
 			Unlock();
+			return true;
 		}
+		return false;
 	}
 
 	public void Unlock()
