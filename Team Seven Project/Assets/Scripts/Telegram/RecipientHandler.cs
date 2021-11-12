@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 
 #endif
-
+[System.Serializable]
 public class RecipientHandler : MonoBehaviour
 {
 	[SerializeField, TypeConstraint(typeof(IMessageReceiver))]
