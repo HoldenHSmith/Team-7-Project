@@ -2,7 +2,6 @@
 
 public class SortTelegramDispatchTime : IComparer<Telegram>
 {
-
 	public int Compare(Telegram x, Telegram y)
 	{
 		if (x.DispatchTime > y.DispatchTime)

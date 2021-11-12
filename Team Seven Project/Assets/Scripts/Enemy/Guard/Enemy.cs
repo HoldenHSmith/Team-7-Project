@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 
 	private Vector3 _lastKnownPlayerPosition = Vector3.zero;
 	private GameManager _gameManager;
+
 	private EnemyWalkSpeed _walkState;
 
 	private void Awake()
@@ -30,7 +31,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		States = new EnemyStates();
 		StateMachine.SetGlobalState(new EnemyGlobalState(StateMachine, this));
 		States.OnStart(StateMachine, this);
-
+		_gameManager = GameManager.Instance;
 		EnemySettings = GetComponent<EnemySettings>();
 		AlertState = GetComponent<EnemyAlertState>();
 		Animator = new EnemyAnimator(EnemySettings, GetComponentInChildren<Animator>());

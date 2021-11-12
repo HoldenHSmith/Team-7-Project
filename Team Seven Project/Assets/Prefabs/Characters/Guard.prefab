@@ -49,7 +49,7 @@ Light:
   m_InnerSpotAngle: 74.4
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -160,7 +160,7 @@ MonoBehaviour:
   FollowPlayerDistance: 10
   DistanceToWaypointSatisfaction: 0.1
   DistanceToLastKnownPlayerPosition: 0.5
-  InvestigationTime: 15
+  InvestigationTime: 10
   InvestigationRadius: 5
   InvestigationDelay: 5
   AutoDetectRange: 2
@@ -180,11 +180,11 @@ MonoBehaviour:
   Type: 1
   Finished: 0
   Waypoints:
-  - Position: {x: 16.25, y: 0.1, z: -43.25}
-    HasWaitTime: 0
+  - Offset: {x: 0, y: 0, z: 0}
+    Position: {x: 16.25, y: 0.1, z: -43.25}
     WaitTime: 0
-  - Position: {x: 0, y: 0.1, z: -43}
-    HasWaitTime: 0
+  - Offset: {x: 0, y: 0, z: 0}
+    Position: {x: 0, y: 0.1, z: -43}
     WaitTime: 0
 --- !u!114 &5853570717598125802
 MonoBehaviour:
@@ -207,7 +207,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5853570717598125803}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.41
   m_Speed: 1.5
   m_Acceleration: 0.5
   avoidancePriority: 50
@@ -271,6 +271,9 @@ MonoBehaviour:
   _spotLight: {fileID: 990360864}
   _detectorType: 0
   _catchDistance: 1
+  _collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 24832
   _debugCone: 1
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &80831813

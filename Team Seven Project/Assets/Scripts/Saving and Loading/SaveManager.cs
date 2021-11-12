@@ -13,9 +13,9 @@ public class SaveManager
 	private static string _fileName = "SaveData";
 	private static SaveData _currentSaveData;
 
-	public static void Save(Vector3 position)
+	public static void Save(Vector3 position, Quaternion rotation)
 	{
-		_currentSaveData = new SaveData(CollectionManager.Instance.KeysCollected, position, DoorManager.GetLockedStatuses());
+		_currentSaveData = new SaveData(GameManager.Instance.CollectionManager.KeysCollected, GameManager.Instance.CollectionManager.MiniKeycardsCollected(), position, rotation, GameManager.Instance.DoorManager.GetLockedStatuses(), GameManager.Instance.Player.MiniKeycards, GameManager.Instance.DoorManager.GetMiniLockedStatuses());
 
 		//Check if the directory exists, if not, create it
 		if (!DirectoryExists())
@@ -32,7 +32,7 @@ public class SaveManager
 	{
 		SaveData saveData = null;
 
-		if(SaveExists())
+		if (SaveExists())
 		{
 			try
 			{
@@ -43,34 +43,35 @@ public class SaveManager
 				file.Close();
 
 			}
-			catch(SerializationException e)
+			catch (SerializationException e)
 			{
 				Debug.Log($"Error Loading File: {e.Message}");
 			}
 		}
 
-		return (_currentSaveData!= null) ? true : false;
+		return (_currentSaveData != null) ? true : false;
 	}
 
 	public static void ClearSave()
 	{
-		if(SaveExists())
+		if (SaveExists())
 		{
 			try
 			{
 				File.Delete(GetFullPath());
+				_currentSaveData = null;
 			}
-			catch(SerializationException e)
+			catch (SerializationException e)
 			{
 				Debug.Log($"Error Deleting File: {e.Message}");
 			}
 		}
 	}
 
-	public static void CreateNewSave(Vector3 position,Dictionary<AreaType,bool> keyValues )
+	public static void CreateNewSave(Vector3 position, Dictionary<AreaType, bool> keyValues)
 	{
-		_currentSaveData = new SaveData(keyValues,position,DoorManager.GetLockedStatuses());
-		
+		_currentSaveData = new SaveData(keyValues, GameManager.Instance.CollectionManager.MiniKeycardsCollected(), position, Quaternion.identity, GameManager.Instance.DoorManager.GetLockedStatuses(), GameManager.Instance.Player.MiniKeycards, GameManager.Instance.DoorManager.GetMiniLockedStatuses());
+
 	}
 
 	public static bool SaveExists()
@@ -85,7 +86,7 @@ public class SaveManager
 
 	private static string GetFullPath()
 	{
-		return Application.persistentDataPath + "/" + _directory + "/" + _fileName +  ".dat";
+		return Application.persistentDataPath + "/" + _directory + "/" + _fileName + ".dat";
 	}
 
 	public static SaveManager Instance { get => _instance; }

@@ -4,29 +4,45 @@ using UnityEngine.InputSystem;
 
 public partial class PlayerCharacter : MonoBehaviour
 {
-	[Space,Header("Movement Mechanics")]
+	[Space, Header("Movement Mechanics")]
 
-	[Tooltip("The maximum move speed that the character can move")]
+	[Tooltip("The maximum move speed that the character can move.")]
 	[SerializeField] private float _maxVelocity = 0;           //How fast the character can move
 
-	[Tooltip("The maximum move speed that the character can move while crouching")]
-	[SerializeField] private float _maxCrouchVelocity = 0;           //How fast the character can move while crouching
+	[Tooltip("The maximum move speed that the character can move while crouching.")]
+	[SerializeField] private float _maxSprintVelocity = 0;           //How fast the character can move while crouching
 
-	[Tooltip("Time in seconds it takes the character to reach max speed")]
+	[Tooltip("Time in seconds it takes the character to reach max speed.")]
 	[SerializeField] private float _timeToMaxSpeed = 0;        //Time in seconds to reach max speed
 
-	[Tooltip("Time in seconds it takes the character to stop")]
+	[Tooltip("Time in seconds it takes the character to stop.")]
 	[SerializeField] private float _timeToZero = 0;            //Time in seconds to stop
+
+	[Tooltip("The amount of stamina the player has.")]
+	[SerializeField] private float _maxStamina = 100;
+
+	[Tooltip("The amount of seconds it takes to fully recover stamina.")]
+	[SerializeField] private float _staminaRecoveryTime = 5;
+
+	[Tooltip("The amount of seconds the player can sprint for.")]
+	[SerializeField] private float _maxSprintTime = 2;
 
 	private float _acceleration; //Acceleration rate of the character
 	private float _deceleration; //Acceleration rate of the character
 	private Vector3 _velocity; //Character's current velocity
-	
+
+	[SerializeField] protected float Stamina; //Character's current stamina
+	private float _staminaRecoveryRate; //Characters stamina recovery rate based on Recovery Time
+	private float _staminaDepletionRate; //Characters stamina depletion rate based on max sprint time;
+
 	protected void SetupMovement()
 	{
 		_acceleration = _maxVelocity / _timeToMaxSpeed;
 		_deceleration = -_maxVelocity / _timeToZero;
 		_velocity = Vector3.zero;
+
+		_staminaRecoveryRate = _maxStamina / _staminaRecoveryTime;
+		_staminaDepletionRate = _maxStamina / _maxSprintTime;
 	}
 
 	//Updates the character's velocity based on player input
@@ -45,10 +61,10 @@ public partial class PlayerCharacter : MonoBehaviour
 		Vector3 targetVelocity = Vector3.zero;
 
 		//Change this to use state machine for player
-		if (!CrouchPressed)
+		if (!_sprintPressed || Stamina <= 0)
 			targetVelocity = direction * _maxVelocity;
 		else
-			targetVelocity = direction * _maxCrouchVelocity;
+			targetVelocity = direction * _maxSprintVelocity;
 
 		Vector3 difference = targetVelocity - _velocity;
 
@@ -62,28 +78,40 @@ public partial class PlayerCharacter : MonoBehaviour
 		}
 
 		//Limit the character's velocity
-		if (!CrouchPressed)
+		if (!_sprintPressed)
 		{
 			if (_velocity.magnitude > _maxVelocity)
 			{
 				_velocity = _velocity.normalized * _maxVelocity;
 			}
-		}
-		else
-		{
-			if(_velocity.magnitude > _maxCrouchVelocity)
+			//Recover Stamina
+			if (Stamina < _maxStamina)
 			{
-				_velocity = _velocity.normalized * _maxCrouchVelocity;
+				Stamina += _staminaRecoveryRate * Time.deltaTime;
+				if (Stamina > _maxStamina)
+					Stamina = _maxStamina;
+
 			}
 		}
+		else if (Stamina > 0 && _sprintPressed)
+		{
+			Stamina -= _staminaDepletionRate * Time.deltaTime;
+			if (_velocity.magnitude > _maxSprintVelocity)
+			{
+				_velocity = _velocity.normalized * _maxSprintVelocity;
+			}
+		}
+
+		if (Stamina < 0)
+			Stamina = 0;
 
 	}
 
 	public void MoveCharacter(Vector3 motion)
 	{
-		CharacterController.Move(motion * Time.deltaTime);
+		_characterController.SimpleMove(motion);
 	}
 
-	
+
 
 }

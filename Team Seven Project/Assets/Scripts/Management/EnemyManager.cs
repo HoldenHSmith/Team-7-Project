@@ -29,27 +29,41 @@ public sealed class EnemyManager : MonoBehaviour
 	public int EnemyCount { get => _enemyList.Count; }
 	public static List<Enemy> Enemies { get => _enemyList; }
 
+	public static List<GameObject> EnemiesAsGameObjects
+	{
+		get
+		{
+			List<GameObject> _objects = new List<GameObject>();
+			for (int i = 0; i < _enemyList.Count; i++)
+			{
+				_objects.Add(_enemyList[i].gameObject);
+			}
+
+			return _objects;
+		}
+	}
+
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()
 	{
 		foreach (Enemy obj in _enemyList)
 		{
-			//Handles.DrawAAPolyLine(transform.position, obj.transform.position);
-			Vector3 managerPos = transform.position;
-			Vector3 objPos = obj.transform.position;
-			float halfHeight = (managerPos.y - objPos.y) * 0.5f;
-			Vector3 offset = Vector3.up * halfHeight;
+			Handles.DrawAAPolyLine(transform.position, obj.transform.position);
+			//Vector3 managerPos = transform.position;
+			//Vector3 objPos = obj.transform.position;
+			//float halfHeight = (managerPos.y - objPos.y) * 0.5f;
+			//Vector3 offset = Vector3.up * halfHeight;
 
-			Handles.DrawBezier(managerPos, objPos, managerPos - offset, objPos + offset, Color.red, EditorGUIUtility.whiteTexture, 1f);
+			//Handles.DrawBezier(managerPos, objPos, managerPos - offset, objPos + offset, Color.red, EditorGUIUtility.whiteTexture, 1f);
 		}
 	}
 #endif
 
-	public static EnemyManager Instance 
+	public static EnemyManager Instance
 	{
 		get
 		{
-			if(_instance == null)
+			if (_instance == null)
 			{
 				GameObject go = new GameObject();
 				_instance = go.AddComponent<EnemyManager>();

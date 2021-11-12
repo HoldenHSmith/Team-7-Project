@@ -47,10 +47,10 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void UpdateThrow()
 	{
-		if (_throwEnabled && _hasBeaker &&LeftMouseDown && LeftMouseDownTime >= _minimumMouseHoldTime)
+		if (_throwEnabled && _hasBeaker &&_leftMouseDown && _leftMouseDownTime >= _minimumMouseHoldTime)
 		{
 			//Get ray from camera to mouse as a point;
-			Ray screenToPointRay = Camera.main.ScreenPointToRay(CurrentMouse.position.ReadValue());
+			Ray screenToPointRay = Camera.main.ScreenPointToRay(_currentMouse.position.ReadValue());
 			//Create a raycasthit
 			RaycastHit rayHit;
 
@@ -81,7 +81,7 @@ public partial class PlayerCharacter : MonoBehaviour
 			DisableThrowVisuals();
 		}
 
-		if (_validThrow && CurrentMouse.leftButton.wasReleasedThisFrame && _hasBeaker)
+		if (_validThrow && _currentMouse.leftButton.wasReleasedThisFrame && _hasBeaker)
 		{
 			ThrowObject();
 			_hasBeaker = false;
@@ -91,7 +91,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void ThrowObject()
 	{
-		Animator.Play("Throw");
+		_animator.Play("Throw");
 	}
 
 	public void SpawnProjectile()

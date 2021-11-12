@@ -1,15 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class CollectionManager
+public sealed class CollectionManager : MonoBehaviour
 {
-	private static readonly CollectionManager _instance = new CollectionManager();
 
 	private Dictionary<AreaType, bool> _keysCollected;
+	private Dictionary<PaperNote, bool> _notesCollected;
+	private Dictionary<MiniKeycard, bool> _miniKeycardsCollected;
+
+	private OverlayHandler _overlayHandler;
 
 	public CollectionManager()
 	{
 		_keysCollected = new Dictionary<AreaType, bool>();
+		_notesCollected = new Dictionary<PaperNote, bool>();
+		_miniKeycardsCollected = new Dictionary<MiniKeycard, bool>();
 
 		for (int i = 0; i < (int)AreaType.Count; i++)
 		{
@@ -21,7 +26,25 @@ public sealed class CollectionManager
 	public void SetKeyValue(AreaType area, bool value)
 	{
 		_keysCollected[area] = value;
-		Debug.Log($"Key Collected: {area}");
+		if (value)
+			Debug.Log($"Key Collected: {area}");
+	}
+
+	public void SetNoteValue(PaperNote note, bool value)
+	{
+		_notesCollected[note] = value;
+		if (value)
+		{
+			_overlayHandler.ReadNote(note);
+			Debug.Log($"Note Collected!");
+		}
+	}
+
+	public void SetMiniKeycardValue(MiniKeycard mini, bool value)
+	{
+		_miniKeycardsCollected[mini] = value;
+		if (value)
+			Debug.Log($"Mini Keycard Collected!");
 	}
 
 	public bool CheckKeyCollected(AreaType area)
@@ -29,7 +52,22 @@ public sealed class CollectionManager
 		return _keysCollected[area];
 	}
 
-	public static CollectionManager Instance { get => _instance; }
+	public bool[] MiniKeycardsCollected()
+	{
+		bool[] collected = new bool[_miniKeycardsCollected.Count];
+		int i = 0;
+		foreach (MiniKeycard card in _miniKeycardsCollected.Keys)
+		{
+			collected[i] = card.Collected;
+			i++;
+		}
+
+		return collected;
+	}
+
 	public Dictionary<AreaType, bool> KeysCollected { get => _keysCollected; }
-	
+	public Dictionary<PaperNote, bool> NotesCollected { get => _notesCollected; }
+
+	public OverlayHandler OverlayHandler { get => _overlayHandler; set => _overlayHandler = value; }
+
 }
