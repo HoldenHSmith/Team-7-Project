@@ -9,7 +9,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		if(IsMoveInput)
 		{
-			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(-MovementInput.x, 0, -MoveInput.y));
+			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(-_movementInput.x, 0, -MoveInput.y));
 			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
 		}
 	}

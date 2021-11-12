@@ -6,14 +6,14 @@ using System.Collections;
 
 public class MainMenuHandler : MonoBehaviour
 {
-	[SerializeField] private Button _newGameButton;
-	[SerializeField] private Button _continueButton;
-	[SerializeField] private Button _settingsButton;
-	[SerializeField] private Button _quitButton;
+	[SerializeField] private Button _newGameButton = null;
+	[SerializeField] private Button _continueButton = null;
+	[SerializeField] private Button _settingsButton = null;
+	[SerializeField] private Button _quitButton = null;
 
-	[SerializeField] private Color _enabledText;
-	[SerializeField] private Color _disabledText;
-	[SerializeField] private string _sceneNameToLoad;
+	[SerializeField] private Color _enabledText = Color.white;
+	[SerializeField] private Color _disabledText = Color.white;
+	[SerializeField] private string _sceneNameToLoad = "";
 
 	private void Awake()
 	{

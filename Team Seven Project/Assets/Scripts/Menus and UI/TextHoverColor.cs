@@ -3,7 +3,7 @@ using TMPro;
 
 public class TextHoverColor : MonoBehaviour
 {
-	[SerializeField] private Color _mouseOverColor;
+	[SerializeField] private Color _mouseOverColor = Color.white;
 
 	private TextMeshProUGUI _text;
 	private Color _defaultColor;

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SimplePlayAnimation : MonoBehaviour
 {
-	[SerializeField] private Animation _animation;
-	[SerializeField] private float _delay;
-	[SerializeField] private bool _playOnStart;
+	[SerializeField] private Animation _animation = null;
+	[SerializeField] private float _delay = 0;
+	[SerializeField] private bool _playOnStart = false;
 
 	private bool _activated = false;
 	private float _delayTimer;
