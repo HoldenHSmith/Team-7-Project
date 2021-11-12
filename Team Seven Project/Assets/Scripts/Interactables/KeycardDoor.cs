@@ -7,7 +7,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 {
 	[SerializeField] private bool _unlocked = false;
 	[SerializeField] private AreaType _area = AreaType.Containment;
-	[SerializeField] private Transform _spawnPos;
+	[SerializeField] private Transform _spawnPos = null;
 
 	private GameObject _interactableText;
 
