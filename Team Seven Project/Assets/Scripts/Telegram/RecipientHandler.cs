@@ -8,7 +8,7 @@ using UnityEditor;
 [System.Serializable]
 public class RecipientHandler : MonoBehaviour
 {
-	[SerializeField, TypeConstraint(typeof(IMessageReceiver))]
+	[SerializeField]
 	private List<GameObject> _recipients = new List<GameObject>();
 
 	private List<IMessageReceiver> _recipientInterfaceList = new List<IMessageReceiver>();
