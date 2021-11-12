@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		States = new EnemyStates();
 		StateMachine.SetGlobalState(new EnemyGlobalState(StateMachine, this));
 		States.OnStart(StateMachine, this);
-
+		_gameManager = GameManager.Instance;
 		EnemySettings = GetComponent<EnemySettings>();
 		AlertState = GetComponent<EnemyAlertState>();
 		Animator = new EnemyAnimator(EnemySettings, GetComponentInChildren<Animator>());
