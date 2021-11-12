@@ -29,6 +29,20 @@ public sealed class EnemyManager : MonoBehaviour
 	public int EnemyCount { get => _enemyList.Count; }
 	public static List<Enemy> Enemies { get => _enemyList; }
 
+	public static List<GameObject> EnemiesAsGameObjects
+	{
+		get
+		{
+			List<GameObject> _objects = new List<GameObject>();
+			for (int i = 0; i < _enemyList.Count; i++)
+			{
+				_objects.Add(_enemyList[i].gameObject);
+			}
+
+			return _objects;
+		}
+	}
+
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()
 	{
@@ -45,11 +59,11 @@ public sealed class EnemyManager : MonoBehaviour
 	}
 #endif
 
-	public static EnemyManager Instance 
+	public static EnemyManager Instance
 	{
 		get
 		{
-			if(_instance == null)
+			if (_instance == null)
 			{
 				GameObject go = new GameObject();
 				_instance = go.AddComponent<EnemyManager>();

@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4750025783564385122, guid: d79b6936060f9e9418bf0b7c6838c946, type: 3}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7571303822447203186, guid: d79b6936060f9e9418bf0b7c6838c946, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: af7ad1b718c0ece47814eece73b1bcc3, type: 2}
     - target: {fileID: 919132149155446097, guid: d79b6936060f9e9418bf0b7c6838c946, type: 3}
       propertyPath: m_Name
       value: Env_BunsenBurner_01

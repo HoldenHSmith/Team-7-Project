@@ -1,38 +1,55 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorManager
+public class DoorManager : MonoBehaviour
 {
-	private static readonly DoorManager _instance = new DoorManager();
 
-	private static List<KeycardDoor> _doors;
+	[SerializeField] private KeycardDoor[] _doors;
+	[SerializeField] private MiniKeycardDoor[] _miniDoors;
+
 
 	public DoorManager()
 	{
-		_doors = new List<KeycardDoor>();
-	}
-
-	public static void RegisterDoor(KeycardDoor door)
-	{
-		if (_doors.Contains(door))
-			return;
-
-		_doors.Add(door);
 
 	}
 
-	public static void RemoveDoor(KeycardDoor door)
-	{
-		if (!_doors.Contains(door))
-			return;
+	//public static void RegisterDoor(KeycardDoor door)
+	//{
+	//	if (_doors.Contains(door))
+	//		return;
 
-		_doors.Remove(door);
-	}
+	//	_doors.Add(door);
 
-	public static List<bool> GetLockedStatuses()
+	//}
+
+	//public static void RemoveDoor(KeycardDoor door)
+	//{
+	//	if (!_doors.Contains(door))
+	//		return;
+
+	//	_doors.Remove(door);
+	//}
+
+	//public static void RegisterMiniDoor(MiniKeycardDoor door)
+	//{
+	//	if (_miniDoors.Contains(door))
+	//		return;
+
+	//	_miniDoors.Add(door);
+	//}
+
+	//public static void RemoveMiniDoor(MiniKeycardDoor door)
+	//{
+	//	if (!_miniDoors.Contains(door))
+	//		return;
+
+	//	_miniDoors.Remove(door);
+	//}
+
+	public List<bool> GetLockedStatuses()
 	{
 		List<bool> statuses = new List<bool>();
-		for (int i = 0; i < _doors.Count; i++)
+		for (int i = 0; i < _doors.Length; i++)
 		{
 			statuses.Add(_doors[i].Unlocked);
 		}
@@ -40,9 +57,21 @@ public class DoorManager
 		return statuses;
 	}
 
-	public static void SetLockedStatuses(List<bool> statuses)
+	public bool[] GetMiniLockedStatuses()
 	{
-		for (int i = 0; i < _doors.Count; i++)
+		bool[] values = new bool[_miniDoors.Length];
+
+		for (int i = 0; i < _miniDoors.Length; i++)
+		{
+			values[i] = _miniDoors[i].Unlocked;
+		}
+
+		return values;
+	}
+
+	public void SetLockedStatuses(List<bool> statuses)
+	{
+		for (int i = 0; i < _doors.Length; i++)
 		{
 			if (i >= statuses.Count)
 				break;
@@ -51,6 +80,18 @@ public class DoorManager
 		}
 	}
 
-	public List<KeycardDoor> Doors { get => _doors; }
+	public void SetMiniLockedStatues(bool[] statuses)
+	{
+		for (int i = 0; i < _miniDoors.Length; i++)
+		{
+			if (i >= statuses.Length)
+				break;
+
+			_miniDoors[i].SetUnlocked(statuses[i]);
+		}
+	}
+
+	public KeycardDoor[] Doors { get => _doors; set => _doors = value; }
+	public MiniKeycardDoor[] MiniDoors { get => _miniDoors; set => _miniDoors = value; }
 
 }

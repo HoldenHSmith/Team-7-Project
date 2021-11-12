@@ -25,12 +25,14 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 		}
 	}
 
-	public void OnInteract(PlayerCharacter playerCharacter)
+	public bool OnInteract(PlayerCharacter playerCharacter)
 	{
-		if (CollectionManager.Instance.CheckKeyCollected(_area))
+		if (GameManager.Instance.CollectionManager.CheckKeyCollected(_area))
 		{
 			Unlock();
+			return true;
 		}
+		return false;
 	}
 
 	public void Unlock()
@@ -44,12 +46,12 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 
 	private void OnEnable()
 	{
-		DoorManager.RegisterDoor(this);
+		//DoorManager.RegisterDoor(this);
 	}
 
 	private void OnDisable()
 	{
-		DoorManager.RemoveDoor(this);
+		//DoorManager.RemoveDoor(this);
 	}
 
 	public void SetUnlocked(bool unlocked)

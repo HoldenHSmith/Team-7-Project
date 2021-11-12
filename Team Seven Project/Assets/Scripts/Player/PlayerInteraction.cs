@@ -13,6 +13,8 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Tooltip("Layers to interact with.")]
 	[SerializeField] private LayerMask _interactionLayer = 0;
 
+	private int _miniKeycards = 0;
+
 	private float _interactionTimer;
 
 	protected void UpdateInteractions()
@@ -35,14 +37,18 @@ public partial class PlayerCharacter : MonoBehaviour
 		{
 			if (hitCollider.TryGetComponent(out IInteractable interactable))
 			{
-				interactable.OnInteract(this);
-				if (hitCollider.tag == "Door")
-					Animator.Play("Swipe");
-				else
-					Animator.Play("Collect");
+				if (interactable.OnInteract(this))
+				{
+					if (hitCollider.tag == "Door")
+						Animator.Play("Swipe");
+					else
+						Animator.Play("Collect");
+				}
 			}
 
 		}
 	}
+
+	public int MiniKeycards { get => _miniKeycards; set => _miniKeycards = value; }
 }
 
