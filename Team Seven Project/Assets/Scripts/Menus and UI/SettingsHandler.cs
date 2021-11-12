@@ -57,7 +57,7 @@ public class SettingsHandler : MonoBehaviour
 
 	private void SetAspectRatio()
 	{
-		//Camera.main.aspect = (Screen.width / Screen.height);
+		Camera.main.aspect = (Screen.width / Screen.height);
 	}
 
 	private bool CheckIfCurrentResolution(int index)
