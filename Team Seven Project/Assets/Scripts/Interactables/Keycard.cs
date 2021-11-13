@@ -6,13 +6,14 @@ public class Keycard : MonoBehaviour, ICollectable, IInteractable
 
 	public void OnCollect()
 	{
-		CollectionManager.Instance.SetKeyValue(_area, true);
+		GameManager.Instance.CollectionManager.SetKeyValue(_area, true);
 	}
 
-	public void OnInteract(PlayerCharacter playerCharacter)
+	public bool OnInteract(PlayerCharacter playerCharacter)
 	{
 		OnCollect();
 		this.gameObject.SetActive(false);
+		return true;
 	}
 
 	public void SetCollected(bool collected)
@@ -23,12 +24,12 @@ public class Keycard : MonoBehaviour, ICollectable, IInteractable
 
 	private void OnEnable()
 	{
-		KeycardManager.RegisterKeycard(this);
+		//KeycardManager.RegisterKeycard(this);
 	}
 
 	private void OnDisable()
 	{
-		KeycardManager.RemoveKeycard(this);
+		//KeycardManager.RemoveKeycard(this);
 	}
 
 	public AreaType Area { get => _area; }

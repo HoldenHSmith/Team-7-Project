@@ -141,7 +141,7 @@ public class WaypointManagerEditor : Editor
 	{
 		Handles.BeginGUI();
 
-		GUILayout.BeginArea(new Rect(30, 30, 220, 740));
+		GUILayout.BeginArea(new Rect(50, 30, 220, 740));
 		GUILayout.BeginHorizontal();
 		{
 			Rect rect = EditorGUILayout.BeginVertical();

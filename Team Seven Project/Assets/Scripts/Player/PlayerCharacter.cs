@@ -6,12 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(PointSampler))]
 public partial class PlayerCharacter : MonoBehaviour
 {
-	public bool IsRespawning { get { return Respawning; } }
 
-	protected CharacterInput Input;                       //Reference to Input System
-	protected bool Respawning;                            //Whether the character is respawning
-	protected CharacterController CharacterController;    //Characters controller
-	protected PointSampler PointSampler;
+	private CharacterInput _input;                       //Reference to Input System
+	private CharacterController _characterController;    //Characters controller
+	private PointSampler _pointSampler;
 
 	private void Awake()
 	{
@@ -27,7 +25,11 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		//transform.position = SaveManager.Instance.Current.PosToVec3();
 		if (SaveManager.Instance.Current != null)
-			CharacterController.transform.position = SaveManager.Instance.Current.GetPosition();
+		{
+			_characterController.transform.position = SaveManager.Instance.Current.GetPosition();
+			_miniKeycards = SaveManager.Instance.Current.CurrentMiniKeycards;
+			Debug.Log($"Keycard count: {_miniKeycards}");
+		}
 		//Debug.Log(transform.position);
 	}
 
@@ -58,9 +60,9 @@ public partial class PlayerCharacter : MonoBehaviour
 	//Get the required components of the character controller
 	private void GetRequiredComponents()
 	{
-		CharacterController = GetComponent<CharacterController>();
-		PointSampler = GetComponent<PointSampler>();
+		_characterController = GetComponent<CharacterController>();
+		_pointSampler = GetComponent<PointSampler>();
 	}
 
-	public List<Transform> SamplePoints { get => PointSampler.SamplePoints; }
+	public List<Transform> SamplePoints { get => _pointSampler.SamplePoints; }
 }
