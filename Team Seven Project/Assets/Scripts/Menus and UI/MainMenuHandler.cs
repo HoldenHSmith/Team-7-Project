@@ -1,51 +1,96 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Collections;
+using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class MainMenuHandler : MonoBehaviour
 {
-	[SerializeField] private Button _newGameButton = null;
-	[SerializeField] private Button _continueButton = null;
-	[SerializeField] private Button _settingsButton = null;
-	[SerializeField] private Button _quitButton = null;
-
-	[SerializeField] private Color _enabledText = Color.white;
-	[SerializeField] private Color _disabledText = Color.white;
 	[SerializeField] private string _sceneNameToLoad = "";
+	[SerializeField] private CinemachineVirtualCamera _startCamera = null;
+	[SerializeField] private CinemachineVirtualCamera _mainMenuCamera = null;
+	[SerializeField] private CinemachineVirtualCamera _settingsCamera = null;
+	[SerializeField] private CinemachineVirtualCamera _playCamera = null;
+
+	private CinemachineTrackedDolly _mainDolly;
+	private CinemachineTrackedDolly _settingsDolly;
+	private CinemachineTrackedDolly _playDolly;
+
+	private MenuState _menuState = MenuState.Start;
+	private float _playAcceleration = 5;
+	[SerializeField] private TextMeshProUGUI _startText = null;
 
 	private void Awake()
 	{
 		Time.timeScale = 1;
-		_continueButton.interactable = SaveManager.SaveExists();
-
-		SetTextColor(_newGameButton);
-		SetTextColor(_continueButton);
-		SetTextColor(_settingsButton);
-		SetTextColor(_quitButton);
-		Camera.main.aspect = (Screen.width / Screen.height);
+		//Camera.main.aspect = (Screen.width / Screen.height);
+		_mainDolly = _mainMenuCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+		_settingsDolly = _settingsCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+		_playDolly = _playCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 	}
 
-
-	private void SetTextColor(Button button)
+	private void Update()
 	{
-		if (button == null)
-			return;
+		_startText.enabled = false;
+		switch (_menuState)
+		{
+			case MenuState.Start:
+				_startText.enabled = true;
+				HandleStart();
+				break;
+			case MenuState.Main:
+				HandleMain();
+				break;
+			case MenuState.Settings:
+				break;
+			case MenuState.Play:
+				HandlePlay();
+				break;
+			default:
+				break;
+		}
+	}
 
-		TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
+	private void HandleStart()
+	{
+		_startCamera.Priority = 100;
+		if (Keyboard.current.enterKey.wasReleasedThisFrame)
+		{
+			_mainMenuCamera.Priority = 0;
+			_menuState = MenuState.Main;
+			_mainDolly.m_PathPosition = 0;
+		}
+	}
 
-		if (button.interactable)
-			text.color = _enabledText;
-		else
-			text.color = _disabledText;
+	private void HandleMain()
+	{
+		_mainDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
+		_mainMenuCamera.Priority = 100;
+	}
+
+	private void HandleSettings()
+	{
 
 	}
 
-	public void NewGame()
+	private void HandlePlay()
 	{
+		_playAcceleration += Time.unscaledDeltaTime;
+		_mainMenuCamera.Priority = 0;
+		_playCamera.Priority = 100;
+		_playDolly.m_PathPosition += Time.unscaledDeltaTime * _playAcceleration;
+	}
+
+	public void NewGameClicked()
+	{
+		_menuState = MenuState.Play;
 		SaveManager.ClearSave();
-		SceneManager.LoadScene(_sceneNameToLoad);
+	}
+
+	public void LoadGame()
+	{
+		SceneManager.LoadSceneAsync(_sceneNameToLoad);
 	}
 
 	public void ContinueGame()
@@ -63,4 +108,14 @@ public class MainMenuHandler : MonoBehaviour
 		Application.Quit();
 	}
 
+	public MenuState CurrentState { get => _menuState; set => _menuState = value; }
+
+}
+
+public enum MenuState
+{
+	Start,
+	Main,
+	Settings,
+	Play
 }
