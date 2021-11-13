@@ -1,10 +1,11 @@
-﻿#if UNITY_EDITOR
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WallColour : MonoBehaviour
 {
+#if UNITY_EDITOR
 	private Renderer _renderer;
 	private MaterialPropertyBlock _matPropertyBlock;
 	[SerializeField] private AreaType _area = AreaType.Containment;
@@ -31,5 +32,5 @@ public class WallColour : MonoBehaviour
 		_matPropertyBlock.SetInt("_Value", (int)_area);
 		_renderer.SetPropertyBlock(_matPropertyBlock);
 	}
-}
 #endif
+}
