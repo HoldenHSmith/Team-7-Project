@@ -24,7 +24,7 @@ public class MainMenuHandler : MonoBehaviour
 		SetTextColor(_continueButton);
 		SetTextColor(_settingsButton);
 		SetTextColor(_quitButton);
-		Camera.main.aspect = (Screen.width / Screen.height);
+		//Camera.main.aspect = (Screen.width / Screen.height);
 	}
 
 
