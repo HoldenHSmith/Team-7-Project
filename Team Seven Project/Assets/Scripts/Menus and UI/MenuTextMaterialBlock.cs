@@ -4,12 +4,13 @@ using UnityEngine.InputSystem;
 
 public class MenuTextMaterialBlock : MonoBehaviour
 {
+	public MenuButtonType MenuButton;
 	private Renderer _renderer;
 	private MaterialPropertyBlock _matPropertyBlock;
 
 	private Camera _camera;
 	private bool _selected = false;
-
+	private bool _canSelect = true;
 	[SerializeField] private MainMenuHandler _menuHandler = null;
 
 	// Start is called before the first frame update
@@ -22,7 +23,8 @@ public class MenuTextMaterialBlock : MonoBehaviour
 
 	private void Update()
 	{
-
+		if (!_canSelect)
+			return;
 		//Check if mouse is over object
 		RaycastHit hit;
 		Vector3 currentMousePos = Vector3.zero;
@@ -47,7 +49,23 @@ public class MenuTextMaterialBlock : MonoBehaviour
 		}
 
 		if (_selected && Mouse.current.leftButton.wasReleasedThisFrame)
-			_menuHandler.NewGameClicked();
+			switch (MenuButton)
+			{
+				case MenuButtonType.Play:
+					_menuHandler.LoadGame();
+					break;
+				case MenuButtonType.New:
+					_menuHandler.NewGameClicked();
+					break;
+				case MenuButtonType.Settings:
+					break;
+				case MenuButtonType.Quit:
+					_menuHandler.QuitGame();
+					break;
+				default:
+					break;
+			}
+
 	}
 
 	public void SetProperties(float emissive)
@@ -57,5 +75,13 @@ public class MenuTextMaterialBlock : MonoBehaviour
 		_renderer.SetPropertyBlock(_matPropertyBlock);
 	}
 
+	public enum MenuButtonType
+	{
+		Play,
+		New,
+		Settings,
+		Quit
+	}
 
+	public bool CanSelect { get => _canSelect; set => _canSelect = value; }
 }

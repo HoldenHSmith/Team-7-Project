@@ -13,6 +13,11 @@ public class MainMenuHandler : MonoBehaviour
 	[SerializeField] private CinemachineVirtualCamera _settingsCamera = null;
 	[SerializeField] private CinemachineVirtualCamera _playCamera = null;
 
+	[SerializeField] private MenuTextMaterialBlock _newGameButton = null;
+	[SerializeField] private MenuTextMaterialBlock _playGameButton = null;
+	[SerializeField] private MenuTextMaterialBlock _settingsButton = null;
+	[SerializeField] private MenuTextMaterialBlock _quitButton = null;
+
 	private CinemachineTrackedDolly _mainDolly;
 	private CinemachineTrackedDolly _settingsDolly;
 	private CinemachineTrackedDolly _playDolly;
@@ -28,6 +33,11 @@ public class MainMenuHandler : MonoBehaviour
 		_mainDolly = _mainMenuCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 		_settingsDolly = _settingsCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 		_playDolly = _playCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+
+		_playGameButton.CanSelect = SaveManager.SaveExists();
+		_settingsButton.CanSelect = false;
+
+
 	}
 
 	private void Update()
@@ -86,6 +96,11 @@ public class MainMenuHandler : MonoBehaviour
 	{
 		_menuState = MenuState.Play;
 		SaveManager.ClearSave();
+	}
+
+	public void PlayGameClicked()
+	{
+		_menuState = MenuState.Play;
 	}
 
 	public void LoadGame()
