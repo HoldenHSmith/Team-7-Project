@@ -11,6 +11,7 @@ public class MenuTextMaterialBlock : MonoBehaviour
 	private Camera _camera;
 	private bool _selected = false;
 	private bool _canSelect = true;
+	private bool _buttonsDeactivated = true;
 	[SerializeField] private MainMenuHandler _menuHandler = null;
 
 	// Start is called before the first frame update
@@ -23,7 +24,7 @@ public class MenuTextMaterialBlock : MonoBehaviour
 
 	private void Update()
 	{
-		if (!_canSelect)
+		if (!_canSelect || _buttonsDeactivated)
 			return;
 		//Check if mouse is over object
 		RaycastHit hit;
@@ -58,6 +59,7 @@ public class MenuTextMaterialBlock : MonoBehaviour
 					_menuHandler.NewGameClicked();
 					break;
 				case MenuButtonType.Settings:
+					_menuHandler.SettingsClicked();
 					break;
 				case MenuButtonType.Quit:
 					_menuHandler.QuitGame();
@@ -66,6 +68,8 @@ public class MenuTextMaterialBlock : MonoBehaviour
 					break;
 			}
 
+		if (!_selected)
+			SetProperties(0.04f);
 	}
 
 	public void SetProperties(float emissive)
@@ -83,5 +87,11 @@ public class MenuTextMaterialBlock : MonoBehaviour
 		Quit
 	}
 
+	public void ActivateButton()
+	{
+		_buttonsDeactivated = false;
+	}
+
 	public bool CanSelect { get => _canSelect; set => _canSelect = value; }
+
 }

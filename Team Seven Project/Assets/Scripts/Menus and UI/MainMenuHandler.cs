@@ -24,6 +24,9 @@ public class MainMenuHandler : MonoBehaviour
 
 	private MenuState _menuState = MenuState.Start;
 	private float _playAcceleration = 5;
+
+	private bool _settingsReverse = false;
+
 	[SerializeField] private TextMeshProUGUI _startText = null;
 
 	private void Awake()
@@ -35,7 +38,7 @@ public class MainMenuHandler : MonoBehaviour
 		_playDolly = _playCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 
 		_playGameButton.CanSelect = SaveManager.SaveExists();
-		_settingsButton.CanSelect = false;
+		//_settingsButton.CanSelect = false;
 
 
 	}
@@ -53,6 +56,7 @@ public class MainMenuHandler : MonoBehaviour
 				HandleMain();
 				break;
 			case MenuState.Settings:
+				HandleSettings();
 				break;
 			case MenuState.Play:
 				HandlePlay();
@@ -81,7 +85,12 @@ public class MainMenuHandler : MonoBehaviour
 
 	private void HandleSettings()
 	{
-
+		if (!_settingsReverse && _settingsDolly.m_PathPosition < _settingsDolly.m_Path.PathLength)
+		{
+			_settingsDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
+			_settingsCamera.Priority = 100;
+			_mainMenuCamera.Priority = 0;
+		}
 	}
 
 	private void HandlePlay()
@@ -113,9 +122,9 @@ public class MainMenuHandler : MonoBehaviour
 		SceneManager.LoadScene(_sceneNameToLoad);
 	}
 
-	public void SettingsMenu()
+	public void SettingsClicked()
 	{
-
+		_menuState = MenuState.Settings;
 	}
 
 	public void QuitGame()
