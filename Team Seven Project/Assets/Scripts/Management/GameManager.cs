@@ -87,6 +87,11 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		{
 			SaveManager.ClearSave();
 		}
+
+		if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+		{
+			Application.Quit();
+		}
 	}
 
 	public static GameManager Instance
