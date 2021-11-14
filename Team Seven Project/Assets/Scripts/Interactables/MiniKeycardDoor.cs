@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MiniKeycardDoor : MonoBehaviour, IInteractable
 {
 	[SerializeField] private bool _unlocked = false;
+	[SerializeField] private bool _requireKeycard = true;
+	[SerializeField] private TextMeshPro _text = null;
+
 	private Animation[] _animations;
 
 	private void Awake()
 	{
 		_animations = GetComponentsInChildren<Animation>();
+
+
+		if (!_requireKeycard && _text != null)
+			_text.enabled = false;
 	}
 
 	public void UnlockDoor()
