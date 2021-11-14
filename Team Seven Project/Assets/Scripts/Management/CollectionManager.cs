@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
 public sealed class CollectionManager : MonoBehaviour
 {
 
