@@ -61,7 +61,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		Vector3 targetVelocity = Vector3.zero;
 
 		//Change this to use state machine for player
-		if (!SprintPressed || Stamina <= 0)
+		if (!_sprintPressed || Stamina <= 0)
 			targetVelocity = direction * _maxVelocity;
 		else
 			targetVelocity = direction * _maxSprintVelocity;
@@ -78,7 +78,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		}
 
 		//Limit the character's velocity
-		if (!SprintPressed)
+		if (!_sprintPressed)
 		{
 			if (_velocity.magnitude > _maxVelocity)
 			{
@@ -93,7 +93,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 			}
 		}
-		else if (Stamina > 0 && SprintPressed)
+		else if (Stamina > 0 && _sprintPressed)
 		{
 			Stamina -= _staminaDepletionRate * Time.deltaTime;
 			if (_velocity.magnitude > _maxSprintVelocity)
@@ -109,7 +109,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	public void MoveCharacter(Vector3 motion)
 	{
-		CharacterController.SimpleMove(motion);
+		_characterController.SimpleMove(motion);
 	}
 
 

@@ -10,7 +10,7 @@ public class Checkpoint : MonoBehaviour, IMessageSender
 	public BoxCollider _boxCollider;
 	private RecipientHandler _recipientHandler;
 	private bool _doorsActivated = false;
-
+	private bool _savedSinceEnter = false;
 	private void OnEnable()
 	{
 		_boxCollider = GetComponent<BoxCollider>();
@@ -25,6 +25,7 @@ public class Checkpoint : MonoBehaviour, IMessageSender
 	public void SaveGame()
 	{
 		SaveManager.Save(transform.position + _offSet, _saveRotation);
+		_savedSinceEnter = true;
 	}
 
 	public void SendMessage()
@@ -32,6 +33,8 @@ public class Checkpoint : MonoBehaviour, IMessageSender
 		for (int i = 0; i < _recipientHandler.Recipients.Count; i++)
 		{
 			MessageDispatcher.Instance.DispatchMessage(0, this, _recipientHandler.Recipients[i], MessageType.Msg_Activate, null);
+			if (!_savedSinceEnter)
+				SaveGame();
 		}
 	}
 
@@ -41,6 +44,12 @@ public class Checkpoint : MonoBehaviour, IMessageSender
 			SendMessage();
 
 		_doorsActivated = true;
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.tag == "Player")
+			_savedSinceEnter = false;
 	}
 
 	public Vector3 Offset { get => _offSet; set => _offSet = value; }

@@ -2,9 +2,10 @@
 
 public class BeakerSource : MonoBehaviour, IInteractable
 {
-	public void OnInteract(PlayerCharacter playerCharacter)
+	public bool OnInteract(PlayerCharacter playerCharacter)
 	{
 		playerCharacter.HasBeaker = true;
 		Debug.Log("You got a beaker!");
+		return true;
 	}
 }
