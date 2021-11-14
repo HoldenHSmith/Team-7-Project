@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class WallColour : MonoBehaviour
 {
-#if UNITY_EDITOR
 	private Renderer _renderer;
 	private MaterialPropertyBlock _matPropertyBlock;
 	[SerializeField] private AreaType _area = AreaType.Containment;
 
+#if UNITY_EDITOR
 	private void OnEnable()
 	{
 		_renderer = GetComponentInChildren<Renderer>();
