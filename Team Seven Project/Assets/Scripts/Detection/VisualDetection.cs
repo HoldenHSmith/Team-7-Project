@@ -99,8 +99,8 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 							}
 							return true;
 						}
+						Debug.DrawLine(_coneDetectionTransform.position, hit.transform.position);
 						Debug.Log($"{hit.collider.gameObject.name}");
-
 					}
 				}
 			}
