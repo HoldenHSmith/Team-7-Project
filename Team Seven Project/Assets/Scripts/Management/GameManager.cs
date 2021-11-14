@@ -108,6 +108,8 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		}
 	}
 
+	
+
 	public PlayerCharacter Player { get => _playerCharacter; }
 	public CollectionManager Collections { get => _collectionManager; }
 	public CollectionManager CollectionManager { get => _collectionManager; }

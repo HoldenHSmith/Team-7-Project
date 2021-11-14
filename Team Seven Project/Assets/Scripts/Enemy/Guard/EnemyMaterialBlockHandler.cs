@@ -11,7 +11,7 @@ public class EnemyMaterialBlockHandler : MonoBehaviour
 	private void Awake()
 	{
 		_materialPropertyBlock = new MaterialPropertyBlock();
-		_renderer = GetComponent<Renderer>();
+		//_renderer = GetComponent<Renderer>();
 	}
 
 	public void SetProperties(float evaluation, float speed)
