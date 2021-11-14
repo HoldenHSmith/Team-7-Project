@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MiniKeycardDoor : MonoBehaviour, IInteractable
 {
-	[SerializeField] private bool _unlocked = false;
+	private bool _unlocked = false;
 	[SerializeField] private bool _requireKeycard = true;
 	[SerializeField] private TextMeshPro _text = null;
 
