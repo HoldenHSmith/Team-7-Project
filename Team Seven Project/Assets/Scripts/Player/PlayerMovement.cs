@@ -37,6 +37,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void SetupMovement()
 	{
+		Stamina = _maxStamina;
 		_acceleration = _maxVelocity / _timeToMaxSpeed;
 		_deceleration = -_maxVelocity / _timeToZero;
 		_velocity = Vector3.zero;

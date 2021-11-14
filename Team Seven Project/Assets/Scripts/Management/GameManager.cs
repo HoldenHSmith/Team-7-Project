@@ -31,6 +31,12 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
 	private void Awake()
 	{
+
+		if (_instance == null)
+			_instance = this;
+		else
+			DestroyImmediate(this);
+
 		_playerCharacter = GameObject.Find("Player").GetComponent<PlayerCharacter>();
 		_messageDispatcher = MessageDispatcher.Instance;
 
@@ -41,13 +47,6 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		_noteManager = GetComponent<NoteManager>();
 		_keycardManager = GetComponent<KeycardManager>();
 		_doorManager = GetComponent<DoorManager>();
-
-		if (_instance == null)
-			_instance = this;
-		else
-			DestroyImmediate(this);
-
-
 
 	}
 
@@ -98,17 +97,9 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	{
 		get
 		{
-			if (_instance == null)
-			{
-				GameObject go = new GameObject();
-				_instance = go.AddComponent<GameManager>();
-				go.name = "Game Manager";
-			}
 			return _instance;
 		}
 	}
-
-	
 
 	public PlayerCharacter Player { get => _playerCharacter; }
 	public CollectionManager Collections { get => _collectionManager; }
