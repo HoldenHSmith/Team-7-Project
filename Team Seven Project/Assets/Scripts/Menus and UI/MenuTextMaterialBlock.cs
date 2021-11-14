@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 
 public class MenuTextMaterialBlock : MonoBehaviour
 {
+	public MenuButtonType MenuButton;
 	private Renderer _renderer;
 	private MaterialPropertyBlock _matPropertyBlock;
 
 	private Camera _camera;
 	private bool _selected = false;
-
+	private bool _canSelect = true;
+	private bool _buttonsDeactivated = true;
 	[SerializeField] private MainMenuHandler _menuHandler = null;
 
 	// Start is called before the first frame update
@@ -22,7 +24,8 @@ public class MenuTextMaterialBlock : MonoBehaviour
 
 	private void Update()
 	{
-
+		if (!_canSelect || _buttonsDeactivated)
+			return;
 		//Check if mouse is over object
 		RaycastHit hit;
 		Vector3 currentMousePos = Vector3.zero;
@@ -47,7 +50,26 @@ public class MenuTextMaterialBlock : MonoBehaviour
 		}
 
 		if (_selected && Mouse.current.leftButton.wasReleasedThisFrame)
-			_menuHandler.NewGameClicked();
+			switch (MenuButton)
+			{
+				case MenuButtonType.Play:
+					_menuHandler.LoadGame();
+					break;
+				case MenuButtonType.New:
+					_menuHandler.NewGameClicked();
+					break;
+				case MenuButtonType.Settings:
+					_menuHandler.SettingsClicked();
+					break;
+				case MenuButtonType.Quit:
+					_menuHandler.QuitGame();
+					break;
+				default:
+					break;
+			}
+
+		if (!_selected)
+			SetProperties(0.04f);
 	}
 
 	public void SetProperties(float emissive)
@@ -57,5 +79,19 @@ public class MenuTextMaterialBlock : MonoBehaviour
 		_renderer.SetPropertyBlock(_matPropertyBlock);
 	}
 
+	public enum MenuButtonType
+	{
+		Play,
+		New,
+		Settings,
+		Quit
+	}
+
+	public void ActivateButton()
+	{
+		_buttonsDeactivated = false;
+	}
+
+	public bool CanSelect { get => _canSelect; set => _canSelect = value; }
 
 }
