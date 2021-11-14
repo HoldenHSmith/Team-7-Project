@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5217278287897678510}
   - component: {fileID: 9207791272619728139}
   - component: {fileID: 6353543511574325697}
-  - component: {fileID: 6582426113385525842}
+  - component: {fileID: 3513397553410888475}
   m_Layer: 0
   m_Name: Env_OperationChair_01
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4840435398919292948}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000058114523}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &9207791272619728139
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 356cc68bdc5e3ed4f8e7639f11bf27c1, type: 2}
+  - {fileID: 633048460698230235, guid: 04d7ee8c1124765478f3d3211f92bffe, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6582426113385525842
+--- !u!65 &3513397553410888475
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,5 +93,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6173229, y: 1.6430098, z: 0.8578058}
-  m_Center: {x: 0.4029144, y: 0.8131415, z: 0}
+  m_Size: {x: 1.6173229, y: 1.6430098, z: 0.85780513}
+  m_Center: {x: -0.4029144, y: 0.8131415, z: 0}
