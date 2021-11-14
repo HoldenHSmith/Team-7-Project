@@ -11,6 +11,7 @@ public class Checkpoint : MonoBehaviour, IMessageSender
 	private RecipientHandler _recipientHandler;
 	private bool _doorsActivated = false;
 	private bool _savedSinceEnter = false;
+
 	private void OnEnable()
 	{
 		_boxCollider = GetComponent<BoxCollider>();
