@@ -6,7 +6,7 @@ public class PaperNote : MonoBehaviour, ICollectable, IInteractable
 {
 
     [SerializeField] private string _noteTitle = null;
-    [SerializeField, TextArea(10,2)] private string _noteBody = null;
+    [SerializeField, TextArea(5,50)] private string _noteBody = null;
 
 
     private void Awake()
