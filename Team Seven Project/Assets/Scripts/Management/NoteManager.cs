@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+[Serializable]
 public class NoteManager : MonoBehaviour
 {
 

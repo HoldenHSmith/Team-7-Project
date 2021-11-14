@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 [CustomEditor(typeof(GameManager))]
 public class GameManagerEditor : Editor
@@ -39,6 +41,11 @@ public class GameManagerEditor : Editor
 		gm.DoorManager.MiniDoors = (MiniKeycardDoor[])FindObjectsOfType(typeof(MiniKeycardDoor));
 		gm.KeycardManager.Keycards = (Keycard[])FindObjectsOfType(typeof(Keycard));
 		gm.KeycardManager.MiniKeycards = (MiniKeycard[])FindObjectsOfType(typeof(MiniKeycard));
+		EditorUtility.SetDirty(gm);
+		EditorUtility.SetDirty(gm.NoteManager);
+		EditorUtility.SetDirty(gm.DoorManager);
+		EditorUtility.SetDirty(gm.KeycardManager);
+		EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 
 	}
 }
