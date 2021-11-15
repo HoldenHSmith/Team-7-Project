@@ -94,7 +94,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 			}
 		}
-		else if (Stamina > 0 && _sprintPressed)
+		else if (Stamina > 0 && _sprintPressed && IsMoveInput)
 		{
 			Stamina -= _staminaDepletionRate * Time.deltaTime;
 			if (_velocity.magnitude > _maxSprintVelocity)
