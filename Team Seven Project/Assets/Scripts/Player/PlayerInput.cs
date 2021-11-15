@@ -109,8 +109,8 @@ public partial class PlayerCharacter : MonoBehaviour
 
     protected void OnPausePressed(InputAction.CallbackContext context)
     {
-        if (_pauseMenu != null)
-            _pauseMenu.TogglePauseMenu();
+       // if (_pauseMenu != null)
+          //  _pauseMenu.TogglePauseMenu();
     }
 
     //Checks if movement input is pressed
