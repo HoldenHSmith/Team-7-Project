@@ -107,7 +107,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
         //{
         //	Application.Quit();
         //}
-        _overlayHandler.SetMiniKeycardCount(Player.MiniKeycards);
+       
     }
 
     public static GameManager Instance
