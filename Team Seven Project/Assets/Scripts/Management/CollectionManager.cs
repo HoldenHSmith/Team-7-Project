@@ -11,7 +11,7 @@ public sealed class CollectionManager : MonoBehaviour
 
     private OverlayHandler _overlayHandler;
 
-    private void Awake()
+    public CollectionManager()
     {
 
         _keysCollected = new Dictionary<AreaType, bool>();

@@ -27,12 +27,10 @@ public class OverlayHandler : MonoBehaviour
 	private PlayerCharacter _player = null;
 	private bool _notePopup = false;
 
-
 	private void Start()
 	{
-		GameManager.Instance.OverlayHandler = this;
-		GameManager.Instance.CollectionManager.OverlayHandler = this;
 		_player = GameManager.Instance.Player;
+		GameManager.Instance.CollectionManager.OverlayHandler = this;
 		_noteOverlay.enabled = false;
 
 	}
