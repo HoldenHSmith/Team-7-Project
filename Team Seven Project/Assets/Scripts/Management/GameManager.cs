@@ -94,21 +94,21 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
     private void Update()
     {
-        //if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
-        //{
-        //	SaveManager.Save(Player.transform.position, Player.transform.rotation);
-        //}
-        //if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
-        //{
-        //	SaveManager.ClearSave();
-        //}
+		//if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
+		//{
+		//	SaveManager.Save(Player.transform.position, Player.transform.rotation);
+		//}
+		if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
+		{
+			SaveManager.ClearSave();
+		}
 
-        //if (Keyboard.current.escapeKey.wasReleasedThisFrame)
-        //{
-        //	Application.Quit();
-        //}
-       
-    }
+		//if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+		//{
+		//	Application.Quit();
+		//}
+
+	}
 
     public static GameManager Instance
     {
