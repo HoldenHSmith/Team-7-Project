@@ -20,6 +20,9 @@ public partial class PlayerCharacter : MonoBehaviour
             directionToThrow.Normalize();
             Quaternion lookRotation = Quaternion.LookRotation(directionToThrow);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
+
+            _movementblocked = true;
         }
+        else _movementblocked = false;
     }
 }
