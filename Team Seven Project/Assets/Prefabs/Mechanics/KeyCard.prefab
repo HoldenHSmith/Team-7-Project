@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 783383846935808548}
   - component: {fileID: 783383846935808553}
   - component: {fileID: 2243955065613489749}
+  - component: {fileID: 1079926671264351377}
   m_Layer: 14
   m_Name: KeyCard
   m_TagString: Keycard
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3075c44a882616d44ab38fc70fadd4c5, type: 2}
+  - {fileID: 2100000, guid: 3acee5347363f4f49913c6cf798873a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,6 +111,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: -0.2, y: 0, z: 0}
+--- !u!114 &1079926671264351377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783383846935808551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc41fec478105b4bb07423a0b22132d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _area: 0
 --- !u!65 &2875730402186554694
 BoxCollider:
   m_ObjectHideFlags: 0
