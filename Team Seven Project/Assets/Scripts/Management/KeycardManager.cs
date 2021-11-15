@@ -1,40 +1,69 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
+[Serializable]
 public class KeycardManager : MonoBehaviour
 {
-	private static KeycardManager _instance;
-	private static readonly List<Keycard> _keycards = new List<Keycard>();
+	[SerializeField] private Keycard[] _keycards;
+	[SerializeField] private MiniKeycard[] _miniKeycards;
 
-	public static void RegisterKeycard(Keycard keycard)
+	//public static void RegisterKeycard(Keycard keycard)
+	//{
+	//	if (_keycards.Contains(keycard))
+	//		return;
+
+	//	_keycards.Add(keycard);
+	//}
+
+	//public static void RemoveKeycard(Keycard keycard)
+	//{
+	//	if (!_keycards.Contains(keycard))
+	//		return;
+
+	//	_keycards.Remove(keycard);
+	//}
+
+	//public static void RegisterMiniKeycard(MiniKeycard keycard)
+	//{
+	//	if (_miniKeycards.Contains(keycard))
+	//		return;
+
+	//	_miniKeycards.Add(keycard);
+	//}
+
+	//public static void RemoveMiniKeycard(MiniKeycard keycard)
+	//{
+	//	if (!_miniKeycards.Contains(keycard))
+	//		return;
+
+	//	_miniKeycards.Remove(keycard);
+	//}
+
+	public void LoadKeycards(Dictionary<AreaType, bool> keycardValues)
 	{
-		if (_keycards.Contains(keycard))
-			return;
-
-		_keycards.Add(keycard);
-	}
-
-	public static void RemoveKeycard(Keycard keycard)
-	{
-		if (!_keycards.Contains(keycard))
-			return;
-
-		_keycards.Remove(keycard);
-	}
-
-	public static void LoadKeycards(Dictionary<AreaType, bool> keycardValues)
-	{
-		for(int i = 0; i < _keycards.Count;i++)
+		for (int i = 0; i < _keycards.Length; i++)
 		{
 			_keycards[i].SetCollected(keycardValues[_keycards[i].Area]);
 		}
 	}
 
-	public static List<Keycard> Keycards { get => _keycards; }
+	public void LoadMinikeycards(bool[] values)
+	{
+		for (int i = values.Length - 1; i >= 0; i--)
+		{
+			_miniKeycards[i].Collected = values[i];
+			_miniKeycards[i].LoadCollected(values[i]);
+		}
+
+	}
+
+	public  Keycard[] Keycards { get => _keycards; set => _keycards = value; }
+	public MiniKeycard[] MiniKeycards { get => _miniKeycards; set => _miniKeycards = value; }
 
 #if UNITY_EDITOR
 	private void OnDrawGizmosSelected()

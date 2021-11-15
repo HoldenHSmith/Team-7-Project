@@ -7,9 +7,13 @@ public class SaveData
 {
 	public KeySave[] KeySaves;
 	public SaveVector3 PlayerPosition;
+	public SaveQuaternion PlayerRotation;
 	public bool[] DoorsUnlocked;
+	public bool[] MiniKeycardsCollected;
+	public bool[] MiniKeycardDoorsUnlocked;
+	public int CurrentMiniKeycards;
 
-	public SaveData(Dictionary<AreaType, bool> keyValues, Vector3 playerPosition, List<bool> doorsUnlocked)
+	public SaveData(Dictionary<AreaType, bool> keyValues, bool[] miniKeycardsCollected, Vector3 playerPosition, Quaternion rotation, List<bool> doorsUnlocked, int currentMiniKeycards, bool[] miniKeycardDoorsUnlocked)
 	{
 		KeySaves = new KeySave[keyValues.Count];
 
@@ -18,13 +22,22 @@ public class SaveData
 			KeySaves[i] = new KeySave((AreaType)i, keyValues[(AreaType)i]);
 		}
 
+		MiniKeycardsCollected = miniKeycardsCollected;
 		PlayerPosition = new SaveVector3(playerPosition);
+		PlayerRotation = new SaveQuaternion(rotation);
 		DoorsUnlocked = doorsUnlocked.ToArray();
+		CurrentMiniKeycards = currentMiniKeycards;
+		MiniKeycardDoorsUnlocked = miniKeycardDoorsUnlocked;
 	}
 
-	public Vector3 PosToVec3()
+	public Vector3 GetPosition()
 	{
 		return new Vector3(PlayerPosition.X, PlayerPosition.Y, PlayerPosition.Z);
+	}
+
+	public Quaternion GetRotation()
+	{
+		return new Quaternion(PlayerRotation.X, PlayerRotation.Y, PlayerRotation.Z, PlayerRotation.W);
 	}
 
 	public List<bool> DoorStatusesToList()
@@ -86,5 +99,31 @@ public struct SaveVector3
 		X = vec3.x;
 		Y = vec3.y;
 		Z = vec3.z;
+	}
+}
+
+[Serializable]
+public struct SaveQuaternion
+{
+	public float X;
+	public float Y;
+	public float Z;
+	public float W;
+
+	public SaveQuaternion(float x, float y, float z, float w)
+	{
+		X = x;
+		Y = y;
+		Z = z;
+		W = w;
+	}
+
+	public SaveQuaternion(Quaternion q)
+	{
+		X = q.x;
+		Y = q.y;
+		Z = q.z;
+		W = q.w;
+
 	}
 }

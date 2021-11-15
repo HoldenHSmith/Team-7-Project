@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211930764767290105}
+  - component: {fileID: 7554713510134418028}
   m_Layer: 13
   m_Name: Env_FullJailWall_05
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7554713510134418028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701221532547823683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc41fec478105b4bb07423a0b22132d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _area: 0
 --- !u!1 &4803346610564777923
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,8 +136,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8398221583506066981, guid: 008c49900cad25548956bdbed2b1e6f6, type: 3}
-  - {fileID: -978160288850237216, guid: 008c49900cad25548956bdbed2b1e6f6, type: 3}
+  - {fileID: 2100000, guid: 2ac50e25e4117bb488f6cc228de85d7d, type: 2}
+  - {fileID: 2100000, guid: 846fa15ce2430ab469acda84575c00c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
