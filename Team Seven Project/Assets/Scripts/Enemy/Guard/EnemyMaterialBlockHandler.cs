@@ -5,9 +5,10 @@ using UnityEngine;
 public class EnemyMaterialBlockHandler : MonoBehaviour
 {
 
-	[SerializeField] private Renderer _renderer;
-	[SerializeField] private MaterialPropertyBlock _materialPropertyBlock;
-
+	[SerializeField] private Renderer _renderer = null;
+	[SerializeField] private MaterialPropertyBlock _materialPropertyBlock = null;
+	[SerializeField] private Light _glowLight = null;
+	[SerializeField] private Gradient _colorGradient;
 	private void Awake()
 	{
 		_materialPropertyBlock = new MaterialPropertyBlock();
@@ -20,6 +21,7 @@ public class EnemyMaterialBlockHandler : MonoBehaviour
 		_materialPropertyBlock.SetFloat("_Evaluation", evaluation);
 		_materialPropertyBlock.SetFloat("_Speed", speed);
 		_renderer.SetPropertyBlock(_materialPropertyBlock);
+		_glowLight.color = _colorGradient.Evaluate(evaluation);
 	}
 
 }
