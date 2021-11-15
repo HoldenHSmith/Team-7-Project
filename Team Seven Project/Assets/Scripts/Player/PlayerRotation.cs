@@ -7,13 +7,13 @@ public partial class PlayerCharacter : MonoBehaviour
 
     protected void UpdateRotation()
     {
-        if (IsMoveInput && !_leftMouseDown)
+        if (IsMoveInput)
         {
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(-_movementInput.x, 0, -MoveInput.y));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
         }
 
-        if (_leftMouseDown)
+        if (_leftMouseDown && !IsMoveInput)
         {
             Vector3 directionToThrow = transform.position - _landingZoneSprite.transform.position;
             directionToThrow.y = 0;
@@ -21,8 +21,8 @@ public partial class PlayerCharacter : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(directionToThrow);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
 
-            _movementblocked = true;
+            //_movementblocked = true;
         }
-        else _movementblocked = false;
+        //else _movementblocked = false;
     }
 }
