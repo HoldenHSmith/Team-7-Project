@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class PlayerSound : MonoBehaviour
+public class EnemySounds : MonoBehaviour
 {
     [SerializeField] List<AudioClip> _footstepClips = new List<AudioClip>();
     [SerializeField] List<AudioClip> _runningClips = new List<AudioClip>();
@@ -23,7 +23,8 @@ public class PlayerSound : MonoBehaviour
             return;
         _audioSource.pitch = Random.Range(_footStepPitchMin, _footStepPitchMax);
         int index = Random.Range(0, _footstepClips.Count);
-        _audioSource.PlayOneShot(_footstepClips[index]);
+        _audioSource.clip = _footstepClips[index];
+        _audioSource.Play();
         _audioSource.pitch = 1;
 
     }
@@ -34,7 +35,8 @@ public class PlayerSound : MonoBehaviour
             return;
         _audioSource.pitch = Random.Range(_footStepPitchMin, _footStepPitchMax);
         int index = Random.Range(0, _runningClips.Count);
-        _audioSource.PlayOneShot(_runningClips[index]);
+        _audioSource.clip = _runningClips[index];
+        _audioSource.Play();
         _audioSource.pitch = 1;
 
     }
