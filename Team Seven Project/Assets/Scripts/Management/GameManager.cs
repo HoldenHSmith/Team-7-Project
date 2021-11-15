@@ -31,6 +31,12 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
 	private void Awake()
 	{
+
+		if (_instance == null)
+			_instance = this;
+		else
+			DestroyImmediate(this);
+
 		_playerCharacter = GameObject.Find("Player").GetComponent<PlayerCharacter>();
 		_messageDispatcher = MessageDispatcher.Instance;
 
@@ -41,13 +47,6 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		_noteManager = GetComponent<NoteManager>();
 		_keycardManager = GetComponent<KeycardManager>();
 		_doorManager = GetComponent<DoorManager>();
-
-		if (_instance == null)
-			_instance = this;
-		else
-			DestroyImmediate(this);
-
-
 
 	}
 
@@ -79,36 +78,28 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
 	private void Update()
 	{
-		if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
-		{
-			SaveManager.Save(Player.transform.position, Player.transform.rotation);
-		}
-		if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
-		{
-			SaveManager.ClearSave();
-		}
+		//if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
+		//{
+		//	SaveManager.Save(Player.transform.position, Player.transform.rotation);
+		//}
+		//if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
+		//{
+		//	SaveManager.ClearSave();
+		//}
 
-		if (Keyboard.current.escapeKey.wasReleasedThisFrame)
-		{
-			Application.Quit();
-		}
+		//if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+		//{
+		//	Application.Quit();
+		//}
 	}
 
 	public static GameManager Instance
 	{
 		get
 		{
-			if (_instance == null)
-			{
-				GameObject go = new GameObject();
-				_instance = go.AddComponent<GameManager>();
-				go.name = "Game Manager";
-			}
 			return _instance;
 		}
 	}
-
-	
 
 	public PlayerCharacter Player { get => _playerCharacter; }
 	public CollectionManager Collections { get => _collectionManager; }

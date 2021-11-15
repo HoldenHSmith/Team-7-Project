@@ -71,9 +71,9 @@ public class MainMenuHandler : MonoBehaviour
 		_startCamera.Priority = 100;
 		if (Keyboard.current.enterKey.wasReleasedThisFrame)
 		{
-			_mainMenuCamera.Priority = 0;
-			_menuState = MenuState.Main;
-			_mainDolly.m_PathPosition = 0;
+			//_mainMenuCamera.Priority = 0;
+			//_menuState = MenuState.Main;
+			//_mainDolly.m_PathPosition = 0;
 		}
 	}
 
@@ -115,6 +115,12 @@ public class MainMenuHandler : MonoBehaviour
 	public void LoadGame()
 	{
 		SceneManager.LoadSceneAsync(_sceneNameToLoad);
+	}
+
+	public void OldNewGame()
+	{
+		SaveManager.ClearSave();
+		ContinueGame();
 	}
 
 	public void ContinueGame()

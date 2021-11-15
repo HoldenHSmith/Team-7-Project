@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-
+[Serializable]
 public class DoorManager : MonoBehaviour
 {
 
@@ -13,38 +14,6 @@ public class DoorManager : MonoBehaviour
 
 	}
 
-	//public static void RegisterDoor(KeycardDoor door)
-	//{
-	//	if (_doors.Contains(door))
-	//		return;
-
-	//	_doors.Add(door);
-
-	//}
-
-	//public static void RemoveDoor(KeycardDoor door)
-	//{
-	//	if (!_doors.Contains(door))
-	//		return;
-
-	//	_doors.Remove(door);
-	//}
-
-	//public static void RegisterMiniDoor(MiniKeycardDoor door)
-	//{
-	//	if (_miniDoors.Contains(door))
-	//		return;
-
-	//	_miniDoors.Add(door);
-	//}
-
-	//public static void RemoveMiniDoor(MiniKeycardDoor door)
-	//{
-	//	if (!_miniDoors.Contains(door))
-	//		return;
-
-	//	_miniDoors.Remove(door);
-	//}
 
 	public List<bool> GetLockedStatuses()
 	{
