@@ -13,7 +13,7 @@ public partial class PlayerCharacter : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
         }
 
-        if (_leftMouseDown && !IsMoveInput)
+        if (_leftMouseDown && !IsMoveInput && HasBeaker)
         {
             Vector3 directionToThrow = transform.position - _landingZoneSprite.transform.position;
             directionToThrow.y = 0;
