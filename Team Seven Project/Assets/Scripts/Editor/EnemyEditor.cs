@@ -44,7 +44,7 @@ public class EnemyEditor : Editor
 	private void OnDrawWindow()
 	{
 		Handles.BeginGUI();
-		GUILayout.BeginArea(new Rect(30, 30, 220, 740));
+		GUILayout.BeginArea(new Rect(50, 30, 220, 740));
 		{
 			Rect rect = EditorGUILayout.BeginVertical();
 			{

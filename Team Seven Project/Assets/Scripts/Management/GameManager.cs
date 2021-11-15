@@ -2,17 +2,27 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CollectionManager))]
+[RequireComponent(typeof(NoteManager))]
+[RequireComponent(typeof(KeycardManager))]
+[RequireComponent(typeof(DoorManager))]
 public sealed class GameManager : MonoBehaviour, IMessageSender
 {
 	//Singleton
 	private static GameManager _instance;
-	private EnemyManager _enemyManager;
 	private MessageDispatcher _messageDispatcher;
 	private PlayerCharacter _playerCharacter;
-	private CollectionManager _collectionManager;
-	private SaveManager _saveManager;
 
 	private SaveData _saveData;
+
+	// Managers.
+	private SaveManager _saveManager;
+	private EnemyManager _enemyManager;
+	private CollectionManager _collectionManager;
+	private NoteManager _noteManager;
+	private KeycardManager _keycardManager;
+	private DoorManager _doorManager;
+
 
 	public void SendMessage()
 	{
@@ -21,17 +31,22 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
 	private void Awake()
 	{
-		_playerCharacter = GameObject.Find("Player").GetComponent<PlayerCharacter>();
-		_enemyManager = GetComponentInChildren<EnemyManager>();
-		_messageDispatcher = MessageDispatcher.Instance;
-		_saveManager = SaveManager.Instance;
-		_collectionManager = new CollectionManager();
 
 		if (_instance == null)
 			_instance = this;
 		else
 			DestroyImmediate(this);
 
+		_playerCharacter = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+		_messageDispatcher = MessageDispatcher.Instance;
+
+		//Get Managers
+		_saveManager = SaveManager.Instance;
+		_enemyManager = GetComponentInChildren<EnemyManager>();
+		_collectionManager = GetComponent<CollectionManager>();
+		_noteManager = GetComponent<NoteManager>();
+		_keycardManager = GetComponent<KeycardManager>();
+		_doorManager = GetComponent<DoorManager>();
 
 	}
 
@@ -44,10 +59,11 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		if (_saveData != null)
 		{
 			SaveData s = _saveManager.Current;
-			DoorManager.SetLockedStatuses(s.DoorStatusesToList());
-			//_playerCharacter.transform.position = s.PosToVec3();
-			KeycardManager.LoadKeycards(s.KeyDict());
-			Debug.Log($"Game managers position read: {s.PosToVec3()}");
+			_doorManager.SetLockedStatuses(s.DoorStatusesToList());
+			_doorManager.SetMiniLockedStatues(s.MiniKeycardDoorsUnlocked);
+			_keycardManager.LoadKeycards(s.KeyDict());
+			_keycardManager.LoadMinikeycards(s.MiniKeycardsCollected);
+			//Load note stuff
 		}
 		else
 			Debug.Log("No Save Data Found");
@@ -62,30 +78,33 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
 	private void Update()
 	{
-		if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
-		{
-			SaveManager.Save(Player.transform.position);
-		}
-		if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
-		{
-			SaveManager.ClearSave();
-		}
+		//if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
+		//{
+		//	SaveManager.Save(Player.transform.position, Player.transform.rotation);
+		//}
+		//if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
+		//{
+		//	SaveManager.ClearSave();
+		//}
+
+		//if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+		//{
+		//	Application.Quit();
+		//}
 	}
 
 	public static GameManager Instance
 	{
 		get
 		{
-			if (_instance == null)
-			{
-				GameObject go = new GameObject();
-				_instance = go.AddComponent<GameManager>();
-				go.name = "Game Manager";
-			}
 			return _instance;
 		}
 	}
 
 	public PlayerCharacter Player { get => _playerCharacter; }
 	public CollectionManager Collections { get => _collectionManager; }
+	public CollectionManager CollectionManager { get => _collectionManager; }
+	public NoteManager NoteManager { get => _noteManager; set => _noteManager = value; }
+	public KeycardManager KeycardManager { get => _keycardManager; set => _keycardManager = value; }
+	public DoorManager DoorManager { get => _doorManager; set => _doorManager = value; }
 }
