@@ -20,7 +20,7 @@ public class OverlayHandler : MonoBehaviour
 	[SerializeField] private GameObject _keycardBlue = null;
 	[SerializeField] private GameObject _keycardMini = null;
 	[SerializeField] private TextMeshProUGUI _keycardCount = null;
-
+	[SerializeField] private Image _staminaBar = null;
 	[SerializeField] private List<AudioClip> _noteAudioClips = new List<AudioClip>();
 	[SerializeField] private AudioSource _audioSource = null;
 
@@ -33,6 +33,7 @@ public class OverlayHandler : MonoBehaviour
 		GameManager.Instance.CollectionManager.OverlayHandler = this;
 		GameManager.Instance.OverlayHandler = this;
 		_noteOverlay.enabled = false;
+		_player.OverlayHandler = this;
 
 	}
 
@@ -111,6 +112,11 @@ public class OverlayHandler : MonoBehaviour
 		_keycardCount.text = "" + amount;
 
 
+	}
+
+	public void UpdateStaminaBar(float fillAmount)
+	{
+		_staminaBar.fillAmount = fillAmount;
 	}
 
 
