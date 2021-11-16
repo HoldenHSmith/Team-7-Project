@@ -2,15 +2,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Audio;
 
 public class SettingsHandler : MonoBehaviour
 {
+    [SerializeField] private AudioMixer _audioMixer = null;
     [SerializeField] private Toggle _fullscreenToggle = null;
     [SerializeField] private TMP_Dropdown _resolutionDropdown = null;
     [SerializeField] private TMP_Dropdown _qualityDropdown = null;
     [SerializeField] private TMP_Dropdown _aaDropdown = null;
     [SerializeField] private TMP_Dropdown _vSyncDropdown = null;
-    [SerializeField] private Slider _audioSlider = null;
+
+    [SerializeField] private Slider _masterAudio = null;
+    [SerializeField] private Slider _ambienceAudio = null;
+    [SerializeField] private Slider _effectsAudio = null;
 
     private Resolution[] _resolutions = null;
     private Vector2 _selectedResolution;
@@ -20,6 +25,14 @@ public class SettingsHandler : MonoBehaviour
         GetResolutions();
         SetAspectRatio();
         _fullscreenToggle.isOn = Screen.fullScreen;
+
+        //float audioValue;
+        //_audioMixer.GetFloat("MasterVolume", out audioValue);
+        _masterAudio.value = 0;
+        //_audioMixer.GetFloat("MusicVolume", out audioValue);
+        _ambienceAudio.value = 0;
+        // _audioMixer.GetFloat("SoundEffectsVolume", out audioValue);
+        _effectsAudio.value = 0;
     }
 
     private void GetResolutions()
@@ -27,7 +40,7 @@ public class SettingsHandler : MonoBehaviour
         _resolutionDropdown.ClearOptions();
 
         _resolutions = Screen.resolutions;
-       
+
         List<string> options = new List<string>();
         int currentResolution = 0;
 
@@ -108,6 +121,16 @@ public class SettingsHandler : MonoBehaviour
 
     public void OnMasterAudioChanged()
     {
-        PlayerPrefs.SetFloat("Master Volum", _audioSlider.value);
+        _audioMixer.SetFloat("MasterVolume", _masterAudio.value);
+    }
+
+    public void OnAmbienceAudioChanged()
+    {
+        _audioMixer.SetFloat("MusicVolume", _ambienceAudio.value);
+    }
+
+    public void OnSoundEffectsAudioChanged()
+    {
+        _audioMixer.SetFloat("SoundEffectsVolume", _effectsAudio.value);
     }
 }
