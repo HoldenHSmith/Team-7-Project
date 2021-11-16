@@ -90,10 +90,10 @@ AudioSource:
   m_GameObject: {fileID: 2383937062225388334}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3833572749549569291, guid: ed58750d7f0fef2428f04e1654e3e3e6, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.201
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d07d30c255165344893ce6add2971cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volume: 20
+  _volume: 35
   _distanceFalloff: 10
   _positionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &940578037084262750
@@ -253,8 +253,8 @@ MonoBehaviour:
   _footstepClips:
   - {fileID: 8300000, guid: ecd4d0c4f8f258843bd627be02f6b017, type: 3}
   _runningClips:
+  - {fileID: 8300000, guid: ecd4d0c4f8f258843bd627be02f6b017, type: 3}
   - {fileID: 8300000, guid: 36cde7bad5750f54da7420ceb3f400b9, type: 3}
-  - {fileID: 8300000, guid: b946dade4a3b7fc44b060353a2dfbd69, type: 3}
   _footStepPitchMin: 0.95
   _footStepPitchMax: 1.05
 --- !u!1 &5429521055499291410
@@ -352,7 +352,6 @@ GameObject:
   - component: {fileID: 5651522275257965506}
   - component: {fileID: 5651522275257965507}
   - component: {fileID: 1061227274}
-  - component: {fileID: 6579217099482646157}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -428,7 +427,7 @@ MonoBehaviour:
   _travelDuration: 1
   _projectile: {fileID: 3226945056214041454, guid: 861eb60d4837ce541a3372006d104894, type: 3}
   _throwPoint: {fileID: 541499277072410617}
-  _minimumMouseHoldTime: 0.25
+  _minimumMouseHoldTime: 0.01
   _landingZoneSprite: {fileID: 0}
   _throwLayer:
     serializedVersion: 2
@@ -568,14 +567,6 @@ MonoBehaviour:
   - {fileID: 5815483559212658311}
   - {fileID: 198637491}
   _hideSamplePoints: 1
---- !u!81 &6579217099482646157
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5651522275257965510}
-  m_Enabled: 1
 --- !u!1 &5863340174681739357
 GameObject:
   m_ObjectHideFlags: 0
