@@ -17,6 +17,14 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] private Slider _ambienceAudio = null;
     [SerializeField] private Slider _effectsAudio = null;
 
+    private string _aaPrefStr = "_aa";
+    private string _resPrefStr = "_res";
+    private string _vSyncPrefStr = "_vsync";
+    private string _fullscreenPrefStr = "_fs";
+    private string _masterAudPrefStr = "_maud";
+    private string _ambientAudPrefStr = "_aaud";
+    private string _effectsAudPrefStr = "_eaud";
+
     private Resolution[] _resolutions = null;
     private Vector2 _selectedResolution;
 
@@ -33,6 +41,7 @@ public class SettingsHandler : MonoBehaviour
         _ambienceAudio.value = 0;
         // _audioMixer.GetFloat("SoundEffectsVolume", out audioValue);
         _effectsAudio.value = 0;
+        LoadSettings();
     }
 
     private void GetResolutions()
@@ -137,5 +146,45 @@ public class SettingsHandler : MonoBehaviour
     public void SaveSettings()
     {
 
+        PlayerPrefs.SetInt(_aaPrefStr, _aaDropdown.value);
+        PlayerPrefs.SetInt(_resPrefStr, _resolutionDropdown.value);
+        PlayerPrefs.SetInt(_vSyncPrefStr, _vSyncDropdown.value);
+        PlayerPrefs.SetInt(_fullscreenPrefStr, BoolToInt(_fullscreenToggle.isOn));
+        PlayerPrefs.SetFloat(_masterAudPrefStr, _masterAudio.value);
+        PlayerPrefs.SetFloat(_ambientAudPrefStr, _ambienceAudio.value);
+        PlayerPrefs.SetFloat(_effectsAudPrefStr, _effectsAudio.value);
+    }
+
+
+    public void LoadSettings()
+    {
+        _aaDropdown.value = PlayerPrefs.GetInt(_aaPrefStr, 0);
+        _resolutionDropdown.value = PlayerPrefs.GetInt(_aaPrefStr, 0);
+        _vSyncDropdown.value = PlayerPrefs.GetInt(_aaPrefStr, 0);
+        _fullscreenToggle.isOn = IntToBool(PlayerPrefs.GetInt(_aaPrefStr, 0));
+        _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
+        _ambienceAudio.value = PlayerPrefs.GetFloat(_ambientAudPrefStr, 0);
+        _effectsAudio.value = PlayerPrefs.GetFloat(_effectsAudPrefStr, 0);
+    }
+
+    public int BoolToInt(bool val)
+    {
+        if (val)
+            return 1;
+        else
+            return 0;
+    }
+
+    public bool IntToBool(int val)
+    {
+        if (val != 0)
+            return true;
+        else
+            return false;
+    }
+
+    private void OnDisable()
+    {
+        SaveSettings();
     }
 }
