@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class SettingsHandler : MonoBehaviour
 {
@@ -16,15 +18,29 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] private Slider _masterAudio = null;
     [SerializeField] private Slider _ambienceAudio = null;
     [SerializeField] private Slider _effectsAudio = null;
+    [SerializeField] private Slider _gammaSlider = null;
+
+    [SerializeField] private Volume _volume = null;
+    private LiftGammaGain _gamma;
+
+    private string _aaPrefStr = "_aa";
+    private string _resPrefStr = "_res";
+    private string _vSyncPrefStr = "_vsync";
+    private string _fullscreenPrefStr = "_fs";
+    private string _masterAudPrefStr = "_maud";
+    private string _ambientAudPrefStr = "_aaud";
+    private string _effectsAudPrefStr = "_eaud";
+    private string _gammaPrefStr = "_gamma";
+
 
     private Resolution[] _resolutions = null;
     private Vector2 _selectedResolution;
 
     private void Awake()
     {
+        _fullscreenToggle.isOn = Screen.fullScreen;
         GetResolutions();
         SetAspectRatio();
-        _fullscreenToggle.isOn = Screen.fullScreen;
 
         //float audioValue;
         //_audioMixer.GetFloat("MasterVolume", out audioValue);
@@ -33,6 +49,16 @@ public class SettingsHandler : MonoBehaviour
         _ambienceAudio.value = 0;
         // _audioMixer.GetFloat("SoundEffectsVolume", out audioValue);
         _effectsAudio.value = 0;
+        LoadSettings();
+
+        if (_volume.profile.TryGet(out _gamma))
+        {
+            Debug.Log("Found Gamma Setting");
+        }
+        else
+        {
+            Debug.LogError("Couldnt find Gamma setting");
+        }
     }
 
     private void GetResolutions()
@@ -134,8 +160,63 @@ public class SettingsHandler : MonoBehaviour
         _audioMixer.SetFloat("SoundEffectsVolume", _effectsAudio.value);
     }
 
+    public void OnGammaChange()
+    {
+        if (_gamma != null)
+        {
+            _gamma.gamma.Override(new Vector4(1f, 1f, 1f, _gammaSlider.value));
+        }
+    }
+
     public void SaveSettings()
     {
 
+        PlayerPrefs.SetInt(_aaPrefStr, _aaDropdown.value);
+        PlayerPrefs.SetInt(_resPrefStr, _resolutionDropdown.value);
+        PlayerPrefs.SetInt(_vSyncPrefStr, _vSyncDropdown.value);
+        PlayerPrefs.SetInt(_fullscreenPrefStr, BoolToInt(_fullscreenToggle.isOn));
+        PlayerPrefs.SetFloat(_masterAudPrefStr, _masterAudio.value);
+        PlayerPrefs.SetFloat(_ambientAudPrefStr, _ambienceAudio.value);
+        PlayerPrefs.SetFloat(_effectsAudPrefStr, _effectsAudio.value);
+        PlayerPrefs.SetFloat(_gammaPrefStr, _gammaSlider.value);
+    }
+
+
+    public void LoadSettings()
+    {
+        _aaDropdown.value = PlayerPrefs.GetInt(_aaPrefStr, 0);
+        _resolutionDropdown.value = PlayerPrefs.GetInt(_resPrefStr, 0);
+        _vSyncDropdown.value = PlayerPrefs.GetInt(_vSyncPrefStr, 0);
+        _fullscreenToggle.isOn = IntToBool(PlayerPrefs.GetInt(_fullscreenPrefStr, 0));
+        _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
+        _ambienceAudio.value = PlayerPrefs.GetFloat(_ambientAudPrefStr, 0);
+        _effectsAudio.value = PlayerPrefs.GetFloat(_effectsAudPrefStr, 0);
+        _gammaSlider.value = PlayerPrefs.GetFloat(_gammaPrefStr, 0);
+
+        OnSoundEffectsAudioChanged();
+        OnAmbienceAudioChanged();
+        OnMasterAudioChanged();
+        OnResolutionChanged();
+    }
+
+    public int BoolToInt(bool val)
+    {
+        if (val)
+            return 1;
+        else
+            return 0;
+    }
+
+    public bool IntToBool(int val)
+    {
+        if (val != 0)
+            return true;
+        else
+            return false;
+    }
+
+    private void OnDisable()
+    {
+        SaveSettings();
     }
 }
