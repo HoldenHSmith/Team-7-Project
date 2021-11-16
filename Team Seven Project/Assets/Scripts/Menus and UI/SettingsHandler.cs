@@ -30,6 +30,7 @@ public class SettingsHandler : MonoBehaviour
     private string _masterAudPrefStr = "_maud";
     private string _ambientAudPrefStr = "_aaud";
     private string _effectsAudPrefStr = "_eaud";
+    private string _gammaPrefStr = "_gamma";
 
 
     private Resolution[] _resolutions = null;
@@ -177,6 +178,7 @@ public class SettingsHandler : MonoBehaviour
         PlayerPrefs.SetFloat(_masterAudPrefStr, _masterAudio.value);
         PlayerPrefs.SetFloat(_ambientAudPrefStr, _ambienceAudio.value);
         PlayerPrefs.SetFloat(_effectsAudPrefStr, _effectsAudio.value);
+        PlayerPrefs.SetFloat(_gammaPrefStr, _gammaSlider.value);
     }
 
 
@@ -189,6 +191,7 @@ public class SettingsHandler : MonoBehaviour
         _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
         _ambienceAudio.value = PlayerPrefs.GetFloat(_ambientAudPrefStr, 0);
         _effectsAudio.value = PlayerPrefs.GetFloat(_effectsAudPrefStr, 0);
+        _gammaSlider.value = PlayerPrefs.GetFloat(_gammaPrefStr, 0);
 
         OnSoundEffectsAudioChanged();
         OnAmbienceAudioChanged();
