@@ -69,13 +69,12 @@ public partial class PlayerCharacter : MonoBehaviour
 				EnableThrowVisuals();
 				VisualizeTrajectory(_lastProjectileVelocity);
 				_validThrow = true;
-				_leftMouseDownTime = 0;
+				
 			}
 			else
 			{
 				DisableThrowVisuals();
 				_validThrow = false;
-				_leftMouseDownTime = 0;
 			}
 
 
@@ -89,6 +88,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		{
 			ThrowObject();
 			_hasBeaker = false;
+			_leftMouseDownTime = 0;
 		}
 
 	}
