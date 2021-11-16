@@ -4,7 +4,7 @@ public class SimpleScreenshot : MonoBehaviour
 {
 	void Update()
 	{
-		if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
+		if (Keyboard.current.pageUpKey.wasPressedThisFrame)
 		{
 			ScreenCapture.CaptureScreenshot("Screenshot " + System.DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".png", 2);
 		}
