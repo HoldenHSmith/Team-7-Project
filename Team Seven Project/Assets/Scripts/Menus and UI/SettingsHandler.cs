@@ -30,9 +30,9 @@ public class SettingsHandler : MonoBehaviour
 
     private void Awake()
     {
+        _fullscreenToggle.isOn = Screen.fullScreen;
         GetResolutions();
         SetAspectRatio();
-        _fullscreenToggle.isOn = Screen.fullScreen;
 
         //float audioValue;
         //_audioMixer.GetFloat("MasterVolume", out audioValue);
@@ -165,6 +165,10 @@ public class SettingsHandler : MonoBehaviour
         _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
         _ambienceAudio.value = PlayerPrefs.GetFloat(_ambientAudPrefStr, 0);
         _effectsAudio.value = PlayerPrefs.GetFloat(_effectsAudPrefStr, 0);
+
+        OnSoundEffectsAudioChanged();
+        OnAmbienceAudioChanged();
+        OnMasterAudioChanged();
     }
 
     public int BoolToInt(bool val)
