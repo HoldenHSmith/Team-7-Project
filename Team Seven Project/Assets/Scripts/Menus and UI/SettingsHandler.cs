@@ -133,4 +133,9 @@ public class SettingsHandler : MonoBehaviour
     {
         _audioMixer.SetFloat("SoundEffectsVolume", _effectsAudio.value);
     }
+
+    public void SaveSettings()
+    {
+
+    }
 }
