@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private Image _progressBar = null;
 	[SerializeField] private Image _backgroundImage = null;
 	[SerializeField] private TextMeshProUGUI _hintText = null;
-	[SerializeField] private List<string> _hints = new List<string>();
+	[SerializeField, TextArea(1, 5)] private List<string> _hints = new List<string>();
 	[SerializeField] private List<Sprite> _images = new List<Sprite>();
 
 	private float _target;
@@ -53,9 +53,9 @@ public class LevelManager : MonoBehaviour
 			_target = scene.progress + 0.1f;
 		} while (scene.progress < 0.9f);
 
-		await Task.Delay(200);
+		await Task.Delay(2000);
 		scene.allowSceneActivation = true;
-		
+
 	}
 
 	private void OnNewLoad()
@@ -69,6 +69,6 @@ public class LevelManager : MonoBehaviour
 
 	private void Update()
 	{
-		_progressBar.fillAmount = Mathf.MoveTowards(_progressBar.fillAmount, _target, 3 * Time.deltaTime);
+		_progressBar.fillAmount = Mathf.MoveTowards(_progressBar.fillAmount, _target, Time.deltaTime);
 	}
 }

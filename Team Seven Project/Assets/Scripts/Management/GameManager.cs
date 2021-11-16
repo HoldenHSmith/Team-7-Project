@@ -68,8 +68,8 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
             //Load note stuff
 
             _overlayHandler.SetKeycardActive(AreaType.Containment, s.KeyDict()[AreaType.Containment]);
-            _overlayHandler.SetKeycardActive(AreaType.Biolab, s.KeyDict()[AreaType.Containment]);
-            _overlayHandler.SetKeycardActive(AreaType.Surveillance, s.KeyDict()[AreaType.Containment]);
+            _overlayHandler.SetKeycardActive(AreaType.Biolab, s.KeyDict()[AreaType.Biolab]);
+            _overlayHandler.SetKeycardActive(AreaType.Surveillance, s.KeyDict()[AreaType.Surveillance]);
 
             _overlayHandler.SetMiniKeycardCount(Player.MiniKeycards);
         }
