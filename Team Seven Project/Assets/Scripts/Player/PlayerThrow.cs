@@ -43,7 +43,8 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		_throwEnabled = true;
 		_lineRenderer.positionCount = _lineSegments;
-		_hasBeaker = SaveManager.Instance.Current.HasBeaker;
+		if (SaveManager.Instance.Current != null)
+			_hasBeaker = SaveManager.Instance.Current.HasBeaker;
 	}
 
 	protected void UpdateThrow()

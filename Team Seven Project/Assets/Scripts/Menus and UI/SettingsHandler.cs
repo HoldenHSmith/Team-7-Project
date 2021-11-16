@@ -184,10 +184,10 @@ public class SettingsHandler : MonoBehaviour
 
     public void LoadSettings()
     {
-        _aaDropdown.value = PlayerPrefs.GetInt(_aaPrefStr, 0);
-        _resolutionDropdown.value = PlayerPrefs.GetInt(_resPrefStr, 0);
+        _aaDropdown.value = PlayerPrefs.GetInt(_aaPrefStr, 3);
+        _resolutionDropdown.value = PlayerPrefs.GetInt(_resPrefStr, _resolutions.Length-1);
         _vSyncDropdown.value = PlayerPrefs.GetInt(_vSyncPrefStr, 0);
-        _fullscreenToggle.isOn = IntToBool(PlayerPrefs.GetInt(_fullscreenPrefStr, 0));
+        _fullscreenToggle.isOn = IntToBool(PlayerPrefs.GetInt(_fullscreenPrefStr, 1));
         _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
         _ambienceAudio.value = PlayerPrefs.GetFloat(_ambientAudPrefStr, 0);
         _effectsAudio.value = PlayerPrefs.GetFloat(_effectsAudPrefStr, 0);
