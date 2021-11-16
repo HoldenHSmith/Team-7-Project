@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private GameObject _loaderCanvas;
 	[SerializeField] private Image _progressBar;
 
+	private float _target;
+
 	private void Awake()
 	{
 		if (Instance == null)
@@ -27,6 +29,9 @@ public class LevelManager : MonoBehaviour
 
 	public async void LoadScene(string sceneName)
 	{
+		_target = 0;
+		_progressBar.fillAmount = 0;
+
 		var scene = SceneManager.LoadSceneAsync(sceneName);
 		scene.allowSceneActivation = false;
 
@@ -34,10 +39,15 @@ public class LevelManager : MonoBehaviour
 
 		do
 		{
-			_progressBar.fillAmount = scene.progress;
+			_target = scene.progress + 0.1f;
 		} while (scene.progress < 0.9f);
 
 		scene.allowSceneActivation = true;
 		_loaderCanvas.SetActive(false);
+	}
+
+	private void Update()
+	{
+		_progressBar.fillAmount = Mathf.MoveTowards(_progressBar.fillAmount, _target, 3 * Time.deltaTime);
 	}
 }
