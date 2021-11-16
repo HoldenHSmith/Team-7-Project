@@ -43,11 +43,12 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		_throwEnabled = true;
 		_lineRenderer.positionCount = _lineSegments;
+		_hasBeaker = SaveManager.Instance.Current.HasBeaker;
 	}
 
 	protected void UpdateThrow()
 	{
-		if (_throwEnabled && _hasBeaker &&_leftMouseDown && _leftMouseDownTime >= _minimumMouseHoldTime)
+		if (_throwEnabled && _hasBeaker && _leftMouseDown && _leftMouseDownTime >= _minimumMouseHoldTime)
 		{
 			//Get ray from camera to mouse as a point;
 			Ray screenToPointRay = Camera.main.ScreenPointToRay(_currentMouse.position.ReadValue());
