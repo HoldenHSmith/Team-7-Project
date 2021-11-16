@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 52bc760929c16ab4db920c47536f1346, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: e9e640daeaa25d34a88ae94d61883e41, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: c8f90f3b608d2874986bdd2b3231e308, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2322,7 +2322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 286305358}
-  Offset: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 1, z: 0}
 --- !u!4 &811702706
 Transform:
   m_ObjectHideFlags: 0
@@ -3168,6 +3168,10 @@ PrefabInstance:
     - target: {fileID: 1061227274, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: _hideSamplePoints
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910759942269132116, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
+      propertyPath: m_Volume
+      value: 0.123
       objectReference: {fileID: 0}
     - target: {fileID: 5651522275257965508, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
       propertyPath: _landingZoneSprite
