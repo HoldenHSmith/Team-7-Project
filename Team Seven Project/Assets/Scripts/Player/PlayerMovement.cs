@@ -34,6 +34,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	[SerializeField] protected float Stamina; //Character's current stamina
 	private float _staminaRecoveryRate; //Characters stamina recovery rate based on Recovery Time
 	private float _staminaDepletionRate; //Characters stamina depletion rate based on max sprint time;
+	private OverlayHandler _overlayHander;
 
 	protected void SetupMovement()
 	{
@@ -44,6 +45,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 		_staminaRecoveryRate = _maxStamina / _staminaRecoveryTime;
 		_staminaDepletionRate = _maxStamina / _maxSprintTime;
+
 	}
 
 	//Updates the character's velocity based on player input
@@ -94,7 +96,7 @@ public partial class PlayerCharacter : MonoBehaviour
 
 			}
 		}
-		else if (Stamina > 0 && _sprintPressed)
+		else if (Stamina > 0 && _sprintPressed && IsMoveInput)
 		{
 			Stamina -= _staminaDepletionRate * Time.deltaTime;
 			if (_velocity.magnitude > _maxSprintVelocity)
@@ -106,6 +108,9 @@ public partial class PlayerCharacter : MonoBehaviour
 		if (Stamina < 0)
 			Stamina = 0;
 
+		if (_overlayHander != null)
+			_overlayHander.UpdateStaminaBar(Stamina / _maxStamina);
+
 	}
 
 	public void MoveCharacter(Vector3 motion)
@@ -113,6 +118,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		_characterController.SimpleMove(motion);
 	}
 
+	public OverlayHandler OverlayHandler { get => _overlayHander; set => _overlayHander = value; }
 
 
 }
