@@ -18,10 +18,10 @@ public class MainMenuHandler : MonoBehaviour
 	[SerializeField] private MenuTextMaterialBlock _playGameButton = null;
 	[SerializeField] private MenuTextMaterialBlock _settingsButton = null;
 	[SerializeField] private MenuTextMaterialBlock _quitButton = null;
-	[SerializeField] private Button _oldContinueButton = null;
+	//[SerializeField] private Button _oldContinueButton = null;
 
-	[SerializeField] private GameObject _settingsMenu = null;
-	[SerializeField] private GameObject _mainMenu = null;
+	//[SerializeField] private GameObject _settingsMenu = null;
+	//[SerializeField] private GameObject _mainMenu = null;
 
 	private CinemachineTrackedDolly _mainDolly;
 	private CinemachineTrackedDolly _settingsDolly;
@@ -42,8 +42,8 @@ public class MainMenuHandler : MonoBehaviour
 		_playDolly = _playCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 
 		_playGameButton.CanSelect = SaveManager.SaveExists();
-		if (SaveManager.SaveExists())
-			_oldContinueButton.interactable = true;
+		//if (SaveManager.SaveExists())
+			//_oldContinueButton.interactable = true;
 
 
 	}
@@ -71,21 +71,21 @@ public class MainMenuHandler : MonoBehaviour
 		}
 
 		//For Beta Menu
-		if (_settingsActivated)
-		{
-			_settingsMenu.SetActive(true);
+		//if (_settingsActivated)
+		//{
+		//	//_settingsMenu.SetActive(true);
 
-			if (Keyboard.current.escapeKey.wasReleasedThisFrame)
-				_settingsActivated = false;
+		//	if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+		//		_settingsActivated = false;
 
-			_mainMenu.SetActive(false);
+		//	//_mainMenu.SetActive(false);
 
-		}
-		else
-		{
-			_mainMenu.SetActive(true);
-			_settingsMenu.SetActive(false);
-		}
+		//}
+		//else
+		//{
+		//	_mainMenu.SetActive(true);
+		//	_settingsMenu.SetActive(false);
+		//}
 	}
 
 	private void HandleStart()
@@ -93,9 +93,9 @@ public class MainMenuHandler : MonoBehaviour
 		_startCamera.Priority = 100;
 		if (Keyboard.current.enterKey.wasReleasedThisFrame)
 		{
-			//_mainMenuCamera.Priority = 0;
-			//_menuState = MenuState.Main;
-			//_mainDolly.m_PathPosition = 0;
+			_mainMenuCamera.Priority = 0;
+			_menuState = MenuState.Main;
+			_mainDolly.m_PathPosition = 0;
 		}
 	}
 
