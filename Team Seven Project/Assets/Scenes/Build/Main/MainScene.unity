@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 911a4d27f4105a649a23b792051b5dfb, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: c8f90f3b608d2874986bdd2b3231e308, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -11905,6 +11905,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6668640617306225605, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: _offSet.x
+      value: 3.0766716
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668640617306225605, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: _offSet.z
+      value: 3.2725182
+      objectReference: {fileID: 0}
     - target: {fileID: 7121191205699647265, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
       propertyPath: m_SpotAngle
       value: 79.61261
@@ -21957,19 +21965,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: Waypoints.Array.data[3].Position.x
-      value: -55.01787
+      value: -55.13185
       objectReference: {fileID: 0}
     - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: Waypoints.Array.data[3].Position.z
-      value: 157.5007
+      value: 155.653
       objectReference: {fileID: 0}
     - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: Waypoints.Array.data[4].Position.x
-      value: -58.13185
+      value: -58.204994
       objectReference: {fileID: 0}
     - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: Waypoints.Array.data[4].Position.z
-      value: 156.29184
+      value: 155.78706
       objectReference: {fileID: 0}
     - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: Waypoints.Array.data[5].Position.x
@@ -21978,6 +21986,38 @@ PrefabInstance:
     - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: Waypoints.Array.data[5].Position.z
       value: 149.00243
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: Waypoints.Array.data[1].Offset.z
+      value: 9.93103
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: Waypoints.Array.data[2].Offset.x
+      value: 6.781906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: Waypoints.Array.data[2].Offset.z
+      value: 16.837723
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: Waypoints.Array.data[3].Offset.z
+      value: 19.53299
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: Waypoints.Array.data[4].Offset.x
+      value: 3.6250076
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: Waypoints.Array.data[4].Offset.z
+      value: 19.667053
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: Waypoints.Array.data[5].Offset.z
+      value: 12.882416
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236983953091, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: Waypoints.Array.data[3].Offset.x
+      value: 6.6981506
       objectReference: {fileID: 0}
     - target: {fileID: 2308419237278405964, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32810,9 +32850,13 @@ PrefabInstance:
       propertyPath: m_BoundingSphereOverride.w
       value: NaN
       objectReference: {fileID: 0}
+    - target: {fileID: 707595063374685280, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -50.01
+      objectReference: {fileID: 0}
     - target: {fileID: 707595063374685282, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[0].Position.x
-      value: -50.000107
+      value: -50.0101
       objectReference: {fileID: 0}
     - target: {fileID: 707595063374685282, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[0].Position.z
@@ -32820,11 +32864,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707595063374685282, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[1].Position.x
-      value: -49.986324
+      value: -49.99632
       objectReference: {fileID: 0}
     - target: {fileID: 707595063374685282, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[1].Position.z
       value: 88.99991
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063502389589, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 67.96
       objectReference: {fileID: 0}
     - target: {fileID: 707595063502389591, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[0].Position.x
@@ -32832,7 +32880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707595063502389591, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[0].Position.z
-      value: 76.99994
+      value: 76.95994
       objectReference: {fileID: 0}
     - target: {fileID: 707595063502389591, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[1].Position.x
@@ -32840,7 +32888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707595063502389591, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[1].Position.z
-      value: 76.99994
+      value: 76.95994
       objectReference: {fileID: 0}
     - target: {fileID: 707595063502389591, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[2].Position.x
@@ -32848,7 +32896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707595063502389591, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[2].Position.z
-      value: 80.99994
+      value: 80.95994
       objectReference: {fileID: 0}
     - target: {fileID: 707595063502389591, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[3].Position.x
@@ -32856,7 +32904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 707595063502389591, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[3].Position.z
-      value: 80.99377
+      value: 80.953766
       objectReference: {fileID: 0}
     - target: {fileID: 707595063639650413, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -32885,6 +32933,26 @@ PrefabInstance:
     - target: {fileID: 707595063717292248, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[0].Position.z
       value: 83.00645
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063717292248, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[0].Offset.x
+      value: -0.5395775
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063717292248, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[1].Offset.z
+      value: -7.0078354
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063717292248, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[1].Offset.x
+      value: -0.2964592
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063717292248, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[1].Position.x
+      value: -59.506924
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063717292248, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[1].Position.z
+      value: 75.96004
       objectReference: {fileID: 0}
     - target: {fileID: 707595063717292250, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -32977,6 +33045,42 @@ PrefabInstance:
     - target: {fileID: 707595064818672207, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[3].Position.z
       value: 72.48506
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115221, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 71.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115223, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[0].Position.x
+      value: -47.000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115223, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[0].Position.z
+      value: 80.29991
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115223, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[1].Position.x
+      value: -38.000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115223, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[1].Position.z
+      value: 80.29991
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115223, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[2].Position.x
+      value: -38.000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115223, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[2].Position.z
+      value: 76.29991
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115223, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[3].Position.x
+      value: -47.000023
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115223, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: Waypoints.Array.data[3].Position.z
+      value: 76.29991
       objectReference: {fileID: 0}
     - target: {fileID: 707595065119248472, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: Waypoints.Array.data[0].Position.x
@@ -33076,15 +33180,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1034945161696103036, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 2.565e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1034945161696103036, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -4.8125
       objectReference: {fileID: 0}
     - target: {fileID: 1034945161696103036, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 5.3615e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1160896708171976845, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -33148,15 +33252,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276241752260357, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 9.837e-42
       objectReference: {fileID: 0}
     - target: {fileID: 1204276241752260357, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276241752260357, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 6.0926e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276241858586833, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -33220,15 +33324,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242075424870, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 4.2891e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242075424870, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.10634e-40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242075424870, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -11.0625
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242355047421, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -33244,15 +33348,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242380866117, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 3.2364e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242380866117, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -3.921875
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242380866117, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 8.6104e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242398849098, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
@@ -33332,15 +33436,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242731218000, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 2.5818e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242731218000, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242731218000, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 6.4397e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276242798613478, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -33380,15 +33484,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243006008593, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 2.0302e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243006008593, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -33.25
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243006008593, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.08854e-40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243232894261, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -33396,15 +33500,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243232894261, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 1.6659e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243232894261, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -12.4375
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243232894261, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 7.9675e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243288090102, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -33428,15 +33532,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243340109515, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 3.2712e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243340109515, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -2.6875
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243340109515, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 9.2727e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243379465158, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -33444,15 +33548,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243379465158, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 1.5566e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243379465158, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 5.3458e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243379465158, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -0.08935547
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243385710410, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
@@ -33488,15 +33592,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243639554360, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 2.2819e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243639554360, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1204276243639554360, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.6436e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1263563912048044844, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
@@ -33516,15 +33620,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1414843129726914361, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 2.8934e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1414843129726914361, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 8.3034e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1414843129726914361, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1448354606294599675, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -33588,15 +33692,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1636641484081466772, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 4.575e-41
       objectReference: {fileID: 0}
     - target: {fileID: 1636641484081466772, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -510
       objectReference: {fileID: 0}
     - target: {fileID: 1636641484081466772, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.0631e-40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1641135795416820991, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
@@ -33904,15 +34008,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2538431177432019277, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 1.7836e-41
       objectReference: {fileID: 0}
     - target: {fileID: 2538431177432019277, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -1.6777216e+9
       objectReference: {fileID: 0}
     - target: {fileID: 2538431177432019277, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 5.334e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636037167953375390, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -34468,15 +34572,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3681423383930339175, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 3.2533e-41
       objectReference: {fileID: 0}
     - target: {fileID: 3681423383930339175, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3681423383930339175, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.6946e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3713713489382291628, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.x
@@ -37560,15 +37664,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6182036157388817608, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 3.714e-41
       objectReference: {fileID: 0}
     - target: {fileID: 6182036157388817608, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6182036157388817608, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 8.1965e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6201815050482180232, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: _area
@@ -37776,15 +37880,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7303460391999717547, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 7e-45
+      value: 3.9029e-41
       objectReference: {fileID: 0}
     - target: {fileID: 7303460391999717547, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: -14.875
       objectReference: {fileID: 0}
     - target: {fileID: 7303460391999717547, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 5.9795e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7345789362732997742, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
@@ -38156,15 +38260,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8831786053850698683, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-45
+      value: 2.253e-42
       objectReference: {fileID: 0}
     - target: {fileID: 8831786053850698683, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.9e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8831786053850698683, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.11456e-40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8971737898563833359, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_BoundingSphereOverride.y
