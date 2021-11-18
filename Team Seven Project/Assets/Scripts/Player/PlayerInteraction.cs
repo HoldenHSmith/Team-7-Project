@@ -44,7 +44,7 @@ public partial class PlayerCharacter : MonoBehaviour
 						_animator.Play("Swipe");
 						BlockInputForTime(_doorInteractBlockTime);
 					}
-					else if (hitCollider.tag == "Keycard")
+					else
 					{
 						BlockInputForTime(_keycardInteractBlockTime);
 						_animator.Play("Collect");
