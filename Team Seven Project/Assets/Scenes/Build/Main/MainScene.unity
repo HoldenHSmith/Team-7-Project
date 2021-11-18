@@ -444,7 +444,7 @@ ParticleSystemForceField:
     m_DirectionCurveX:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -550,7 +550,7 @@ ParticleSystemForceField:
     m_DirectionCurveZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -41186,15 +41186,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5590732814515353046, guid: 422cc0690cb4c294cbadd47b0a1a4018, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5590732814515353046, guid: 422cc0690cb4c294cbadd47b0a1a4018, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 5
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590732814515353046, guid: 422cc0690cb4c294cbadd47b0a1a4018, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 5590732814515353047, guid: 422cc0690cb4c294cbadd47b0a1a4018, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5590732814515353047, guid: 422cc0690cb4c294cbadd47b0a1a4018, type: 3}
       propertyPath: m_Materials.Array.data[1]
