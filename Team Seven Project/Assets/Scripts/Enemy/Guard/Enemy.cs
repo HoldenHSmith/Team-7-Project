@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour, IMessageReceiver
 		AlertState = GetComponent<EnemyAlertState>();
 		Animator = new EnemyAnimator(EnemySettings, GetComponentInChildren<Animator>());
 		AudioDetection = GetComponent<AudioDetection>();
+		Agent.avoidancePriority = Random.Range(0, 5);
 	}
 
 	private void OnDrawGizmos()
