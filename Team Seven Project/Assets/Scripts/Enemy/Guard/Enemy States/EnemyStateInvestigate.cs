@@ -49,7 +49,7 @@ public class EnemyStateInvestigate : EnemyState
 		Vector3 direction = _investigatePosition - Enemy.transform.position;
 		direction.Normalize();
 		_investigatePosition -= direction * Enemy.Settings.DistanceToLastKnownPlayerPosition;
-		NavMesh.SamplePosition(_investigatePosition, out NavMeshHit hit, 1, 1);
+		NavMesh.SamplePosition(_investigatePosition, out NavMeshHit hit, 3, 1);
 		_investigatePosition = hit.position;
 		Enemy.AudioDetector.Alertness = 50;
 		_reachedLocation = false;

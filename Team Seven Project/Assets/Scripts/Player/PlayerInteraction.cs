@@ -48,6 +48,7 @@ public partial class PlayerCharacter : MonoBehaviour
 				{
 					if (interactable.OnInteract(this))
 					{
+						Debug.Log($"Interact Collider: {hitCollider.gameObject.name}");
 						if (hitCollider.tag == "Door")
 						{
 							_animator.Play("Swipe");
@@ -61,6 +62,7 @@ public partial class PlayerCharacter : MonoBehaviour
 						break;
 					}
 				}
+				
 			}
 
 		}

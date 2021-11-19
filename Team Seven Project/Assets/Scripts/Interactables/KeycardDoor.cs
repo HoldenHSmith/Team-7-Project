@@ -37,7 +37,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 
 	public void Unlock()
 	{
-		if (_unlocked)
+		if (!_unlocked)
 		{
 			_unlocked = true;
 			_animator.SetTrigger(_openHash);
