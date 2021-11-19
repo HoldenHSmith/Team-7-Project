@@ -136,7 +136,6 @@ public class MainMenuHandler : MonoBehaviour
 
 	public void LoadGame()
 	{
-		//SceneManager.LoadSceneAsync(_sceneNameToLoad);
 		LevelManager.Instance.LoadScene(_sceneNameToLoad);
 	}
 
@@ -148,8 +147,7 @@ public class MainMenuHandler : MonoBehaviour
 
 	public void ContinueGame()
 	{
-		LevelManager.Instance.LoadScene(_sceneNameToLoad);
-		//SceneManager.LoadScene(_sceneNameToLoad);
+		_menuState = MenuState.Play;
 	}
 
 	public void OldSettingsClicked()
