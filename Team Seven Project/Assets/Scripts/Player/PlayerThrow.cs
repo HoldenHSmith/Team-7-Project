@@ -38,6 +38,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	private bool _validThrow = false;
 
 	private Vector3 _finalPosition = Vector3.zero;
+	private bool _throwDisabled = false;
 
 	protected void SetupPlayerThrow()
 	{
@@ -49,7 +50,10 @@ public partial class PlayerCharacter : MonoBehaviour
 
 	protected void UpdateThrow()
 	{
-		if (_throwEnabled && _hasBeaker && _leftMouseDown && _leftMouseDownTime >= _minimumMouseHoldTime)
+		if (_currentMouse.leftButton.wasPressedThisFrame)
+			_throwDisabled = false;
+
+		if (_throwEnabled && _hasBeaker && _leftMouseDown && !_throwDisabled)
 		{
 			//Get ray from camera to mouse as a point;
 			Ray screenToPointRay = Camera.main.ScreenPointToRay(_currentMouse.position.ReadValue());
@@ -69,7 +73,7 @@ public partial class PlayerCharacter : MonoBehaviour
 				EnableThrowVisuals();
 				VisualizeTrajectory(_lastProjectileVelocity);
 				_validThrow = true;
-				
+
 			}
 			else
 			{
@@ -84,12 +88,19 @@ public partial class PlayerCharacter : MonoBehaviour
 			DisableThrowVisuals();
 		}
 
-		if (_validThrow && _currentMouse.leftButton.wasReleasedThisFrame && _hasBeaker)
+		if (_rightMouseDown)
+		{
+			_validThrow = false;
+			_throwDisabled = true;
+		}
+
+		if (_validThrow && _currentMouse.leftButton.wasReleasedThisFrame && _hasBeaker && !_throwDisabled)
 		{
 			ThrowObject();
 			_hasBeaker = false;
 			_leftMouseDownTime = 0;
 		}
+
 
 	}
 
