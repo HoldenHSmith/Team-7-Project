@@ -37,11 +37,14 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 
 	public void Unlock()
 	{
-		_unlocked = true;
-		_animator.SetTrigger(_openHash);
-		SaveManager.Save(_spawnPos.position, transform.rotation);
-		if (_interactableText != null)
-			_interactableText.SetActive(false);
+		if (_unlocked)
+		{
+			_unlocked = true;
+			_animator.SetTrigger(_openHash);
+			SaveManager.Save(_spawnPos.position, transform.rotation);
+			if (_interactableText != null)
+				_interactableText.SetActive(false);
+		}
 	}
 
 	private void OnEnable()

@@ -1754,6 +1754,34 @@ PrefabInstance:
       propertyPath: m_MinValue
       value: -20
       objectReference: {fileID: 0}
+    - target: {fileID: 8685363816067996714, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685363816067996714, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685363816067996714, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685363816067996714, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2393935739832430161}
+    - target: {fileID: 8685363816067996714, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685363816067996714, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685363816067996714, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8730736067407568764, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
