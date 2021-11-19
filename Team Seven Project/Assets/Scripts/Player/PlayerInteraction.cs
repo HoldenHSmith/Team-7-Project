@@ -13,6 +13,9 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Tooltip("Layers to interact with.")]
 	[SerializeField] private LayerMask _interactionLayer = 0;
 
+	[Tooltip("Layers that block interactions.")]
+	[SerializeField] private LayerMask _interactionBlockLayer = 0;
+
 	private int _miniKeycards = 0;
 
 	private float _interactionTimer;
@@ -37,17 +40,25 @@ public partial class PlayerCharacter : MonoBehaviour
 		{
 			if (hitCollider.TryGetComponent(out IInteractable interactable))
 			{
-				if (interactable.OnInteract(this))
+				Vector3 direction = hitCollider.transform.position - transform.position;
+				float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
+				RaycastHit hit;
+				//Raycast
+				if (!Physics.Raycast(transform.position + Vector3.up, direction, out hit, distance - 1, _interactionBlockLayer, QueryTriggerInteraction.Ignore))
 				{
-					if (hitCollider.tag == "Door")
+					if (interactable.OnInteract(this))
 					{
-						_animator.Play("Swipe");
-						BlockInputForTime(_doorInteractBlockTime);
-					}
-					else
-					{
-						BlockInputForTime(_keycardInteractBlockTime);
-						_animator.Play("Collect");
+						if (hitCollider.tag == "Door")
+						{
+							_animator.Play("Swipe");
+							BlockInputForTime(_doorInteractBlockTime);
+						}
+						else
+						{
+							BlockInputForTime(_keycardInteractBlockTime);
+							_animator.Play("Collect");
+						}
+						break;
 					}
 				}
 			}

@@ -20,6 +20,7 @@ public partial class PlayerCharacter : MonoBehaviour
     private Mouse _currentMouse;
     private bool _movementblocked = false;
     protected bool _interactKeyReleasedThisFrame;
+	private bool _rightMouseDown;
 
     private PauseMenuHandler _pauseMenu;
     private float _inputBlockTime;
@@ -46,7 +47,12 @@ public partial class PlayerCharacter : MonoBehaviour
         //Subscribe to Left Mouse
         _input.Player.AimingThrowing.started += ctx => OnLeftMouse(ctx);
         _input.Player.AimingThrowing.performed += ctx => OnLeftMouse(ctx);
-        _input.Player.AimingThrowing.canceled += ctx => OnLeftMouse(ctx);
+		_input.Player.AimingThrowing.canceled += ctx => OnLeftMouse(ctx);
+
+		//Subscribe to Right Mouse
+		_input.Player.CancelThrow.started += ctx => OnRightMouse(ctx);
+		_input.Player.CancelThrow.performed += ctx => OnRightMouse(ctx);
+		_input.Player.CancelThrow.canceled += ctx => OnRightMouse(ctx);
 
         //Subscripe to interaction key
         _input.Player.Interaction.started += ctx => OnInteractionKey(ctx);
@@ -101,6 +107,9 @@ public partial class PlayerCharacter : MonoBehaviour
 
     //Reads the Left Mouse Button Input
     protected void OnLeftMouse(InputAction.CallbackContext context) => _leftMouseDown = (_playerInputBlocked || _externalInputBlocked) ? false : context.ReadValueAsButton();
+
+    //Reads the Right Mouse Button Input
+    protected void OnRightMouse(InputAction.CallbackContext context) => _rightMouseDown = (_playerInputBlocked || _externalInputBlocked) ? false : context.ReadValueAsButton();
 
     //Reads true if interaction key is pressed
     protected void OnInteractionKey(InputAction.CallbackContext context) => _interactionKeyPressed = (_playerInputBlocked || _externalInputBlocked) ? false : context.ReadValueAsButton();
