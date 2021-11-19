@@ -17,9 +17,10 @@ public class EnemyStateInvestigate : EnemyState
 
 	private float _investigationStartDelay = 1.3f;
 	private float _investigationStartDelayTimer = 0;
-
+	private bool _reachedLocation = false;
 	public override void OnEnter()
 	{
+		_reachedLocation = false;
 		//ChooseNextDestination();
 		_investigateState = 0;
 		Enemy.AudioDetector.Alertness = 50;
@@ -51,6 +52,7 @@ public class EnemyStateInvestigate : EnemyState
 		NavMesh.SamplePosition(_investigatePosition, out NavMeshHit hit, 1, 1);
 		_investigatePosition = hit.position;
 		Enemy.AudioDetector.Alertness = 50;
+		_reachedLocation = false;
 	}
 
 	public override void OnExit()
@@ -78,6 +80,12 @@ public class EnemyStateInvestigate : EnemyState
 		}
 		else
 			_investigationStartDelayTimer -= Time.deltaTime;
+
+		if (Vector3.Distance(Enemy.transform.position, _investigatePosition) <= 0)
+		{
+			_reachedLocation = true;
+			Enemy.AnimationHandler.PlayAnimationOnce("Reaction Slow");
+		}
 	}
 	public void HeardNewSound()
 	{

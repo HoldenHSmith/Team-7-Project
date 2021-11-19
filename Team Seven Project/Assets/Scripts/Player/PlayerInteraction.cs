@@ -44,7 +44,7 @@ public partial class PlayerCharacter : MonoBehaviour
 				float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
 				RaycastHit hit;
 				//Raycast
-				if (!Physics.Raycast(transform.position + Vector3.up, direction, out hit, distance-1, _interactionBlockLayer, QueryTriggerInteraction.Ignore))
+				if (!Physics.Raycast(transform.position + Vector3.up, direction, out hit, distance - 1, _interactionBlockLayer, QueryTriggerInteraction.Ignore))
 				{
 					if (interactable.OnInteract(this))
 					{
@@ -58,6 +58,7 @@ public partial class PlayerCharacter : MonoBehaviour
 							BlockInputForTime(_keycardInteractBlockTime);
 							_animator.Play("Collect");
 						}
+						break;
 					}
 				}
 			}
