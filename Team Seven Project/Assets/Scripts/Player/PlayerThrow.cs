@@ -34,6 +34,9 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Tooltip("Resolution of the drawn line.")]
 	[SerializeField] private int _lineSegments = 10;
 
+	[Tooltip("Max Throwing Distance.")]
+	[SerializeField] private float _maxThrowDistance = 10;
+
 	private Vector3 _lastProjectileVelocity;
 	private bool _validThrow = false;
 
@@ -64,11 +67,29 @@ public partial class PlayerCharacter : MonoBehaviour
 			if (Physics.Raycast(screenToPointRay, out rayHit, 100f, _throwLayer))
 			{
 				//Move landing zone sprite to position
-				_landingZoneSprite.transform.position = rayHit.point + (rayHit.normal * 0.1f);
-				_landingZoneSprite.transform.rotation = Quaternion.FromToRotation(Vector3.forward, rayHit.normal);
+				//_landingZoneSprite.transform.position = rayHit.point + (rayHit.normal * 0.1f);
 				//Calculate the projectile velocity
-				_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(rayHit.point, _throwPoint.position, _travelDuration);
-				_finalPosition = rayHit.point;
+
+				//Make max length
+				Vector3 direction = rayHit.point - transform.position;
+				Vector3 finalPosition = rayHit.point;
+				direction.y = 0;
+				if (direction.magnitude >= _maxThrowDistance)
+				{
+					direction.Normalize();
+					direction *= _maxThrowDistance;
+					finalPosition = transform.position + direction;
+				}
+
+				_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(finalPosition, _throwPoint.position, _travelDuration);
+				_finalPosition = finalPosition;
+				_landingZoneSprite.transform.position = finalPosition;
+				if (Physics.Raycast(finalPosition + (Vector3.up * 0.5f), Vector3.down, out RaycastHit hit,1))
+				{
+					_landingZoneSprite.transform.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
+				}
+
+				_landingZoneSprite.transform.position += _landingZoneSprite.transform.forward * 0.1f;
 				//Visualize the trajectory
 				EnableThrowVisuals();
 				VisualizeTrajectory(_lastProjectileVelocity);
@@ -88,7 +109,7 @@ public partial class PlayerCharacter : MonoBehaviour
 			DisableThrowVisuals();
 		}
 
-		if (_rightMouseDown)
+		if (_currentMouse.rightButton.wasPressedThisFrame)
 		{
 			_validThrow = false;
 			_throwDisabled = true;
@@ -99,6 +120,7 @@ public partial class PlayerCharacter : MonoBehaviour
 			ThrowObject();
 			_hasBeaker = false;
 			_leftMouseDownTime = 0;
+			_validThrow = false;
 		}
 
 
