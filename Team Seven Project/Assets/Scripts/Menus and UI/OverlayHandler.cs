@@ -23,7 +23,7 @@ public class OverlayHandler : MonoBehaviour
 	[SerializeField] private Image _staminaBar = null;
 	[SerializeField] private List<AudioClip> _noteAudioClips = new List<AudioClip>();
 	[SerializeField] private AudioSource _audioSource = null;
-
+	[SerializeField] private PauseMenuHandler _pauseMenuHandler = null;
 	private PlayerCharacter _player = null;
 	private bool _notePopup = false;
 
@@ -52,10 +52,11 @@ public class OverlayHandler : MonoBehaviour
 				_beakerIconOn.gameObject.SetActive(false);
 			}
 		}
-		if (_noteOverlay.enabled && Keyboard.current.eKey.wasReleasedThisFrame && !_notePopup)
+		if (_noteOverlay.enabled && (Keyboard.current.eKey.wasReleasedThisFrame || Keyboard.current.escapeKey.wasReleasedThisFrame) && !_notePopup)
 		{
 			_noteOverlay.enabled = false;
 			Time.timeScale = 1;
+			_pauseMenuHandler.CanToggle = true;
 		}
 		SetMiniKeycardCount(GameManager.Instance.Player.MiniKeycards);
 		_notePopup = false;
@@ -69,6 +70,7 @@ public class OverlayHandler : MonoBehaviour
 		_notePopup = true;
 		Time.timeScale = 0;
 		PlayNoteSound();
+		_pauseMenuHandler.CanToggle = false;
 	}
 
 	private void PlayNoteSound()
@@ -118,6 +120,7 @@ public class OverlayHandler : MonoBehaviour
 	{
 		_staminaBar.fillAmount = fillAmount;
 	}
+
 
 
 }

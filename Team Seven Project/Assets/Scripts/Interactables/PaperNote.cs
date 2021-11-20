@@ -22,7 +22,7 @@ public class PaperNote : MonoBehaviour, ICollectable, IInteractable
     public bool OnInteract(PlayerCharacter playerCharacter)
     {
         OnCollect();
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
 		//Open up note on canvas UI and set text
 		return true;
     }
