@@ -21,6 +21,12 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] private Slider _gammaSlider = null;
 
     [SerializeField] private Volume _volume = null;
+
+    [SerializeField] private GameObject _graphicsGroup = null;
+    [SerializeField] private GameObject _audioGroup = null;
+    [SerializeField] private GameObject _inputGroup = null;
+
+
     private LiftGammaGain _gamma;
 
     private string _aaPrefStr = "_aa";
@@ -185,7 +191,7 @@ public class SettingsHandler : MonoBehaviour
     public void LoadSettings()
     {
         _aaDropdown.value = PlayerPrefs.GetInt(_aaPrefStr, 3);
-        _resolutionDropdown.value = PlayerPrefs.GetInt(_resPrefStr, _resolutions.Length-1);
+        _resolutionDropdown.value = PlayerPrefs.GetInt(_resPrefStr, _resolutions.Length - 1);
         _vSyncDropdown.value = PlayerPrefs.GetInt(_vSyncPrefStr, 0);
         _fullscreenToggle.isOn = IntToBool(PlayerPrefs.GetInt(_fullscreenPrefStr, 1));
         _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
@@ -218,5 +224,30 @@ public class SettingsHandler : MonoBehaviour
     private void OnDisable()
     {
         SaveSettings();
+    }
+
+    public void ShowMainGraphics()
+    {
+        DisableAllGroups();
+        _graphicsGroup.SetActive(true);
+    }
+
+    public void ShowMainAudio()
+    {
+        DisableAllGroups();
+        _audioGroup.SetActive(true);
+    }
+
+    public void ShowMainControls()
+    {
+        DisableAllGroups();
+        _inputGroup.SetActive(true);
+    }
+
+    public void DisableAllGroups()
+    {
+        _graphicsGroup.SetActive(false);
+        _audioGroup.SetActive(false);
+        _inputGroup.SetActive(false);
     }
 }
