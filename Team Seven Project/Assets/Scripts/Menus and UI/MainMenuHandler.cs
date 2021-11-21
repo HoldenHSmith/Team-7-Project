@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MainMenuHandler : MonoBehaviour
 {
@@ -17,11 +18,15 @@ public class MainMenuHandler : MonoBehaviour
 	[SerializeField] private MenuTextMaterialBlock _playGameButton = null;
 	[SerializeField] private MenuTextMaterialBlock _settingsButton = null;
 	[SerializeField] private MenuTextMaterialBlock _quitButton = null;
+	//[SerializeField] private Button _oldContinueButton = null;
+
+	//[SerializeField] private GameObject _settingsMenu = null;
+	//[SerializeField] private GameObject _mainMenu = null;
 
 	private CinemachineTrackedDolly _mainDolly;
 	private CinemachineTrackedDolly _settingsDolly;
 	private CinemachineTrackedDolly _playDolly;
-
+	private bool _settingsActivated = false;
 	private MenuState _menuState = MenuState.Start;
 	private float _playAcceleration = 5;
 
@@ -32,13 +37,13 @@ public class MainMenuHandler : MonoBehaviour
 	private void Awake()
 	{
 		Time.timeScale = 1;
-		//Camera.main.aspect = (Screen.width / Screen.height);
 		_mainDolly = _mainMenuCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 		_settingsDolly = _settingsCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 		_playDolly = _playCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 
 		_playGameButton.CanSelect = SaveManager.SaveExists();
-		//_settingsButton.CanSelect = false;
+		//if (SaveManager.SaveExists())
+			//_oldContinueButton.interactable = true;
 
 
 	}
@@ -64,6 +69,23 @@ public class MainMenuHandler : MonoBehaviour
 			default:
 				break;
 		}
+
+		//For Beta Menu
+		//if (_settingsActivated)
+		//{
+		//	//_settingsMenu.SetActive(true);
+
+		//	if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+		//		_settingsActivated = false;
+
+		//	//_mainMenu.SetActive(false);
+
+		//}
+		//else
+		//{
+		//	_mainMenu.SetActive(true);
+		//	_settingsMenu.SetActive(false);
+		//}
 	}
 
 	private void HandleStart()
@@ -71,9 +93,9 @@ public class MainMenuHandler : MonoBehaviour
 		_startCamera.Priority = 100;
 		if (Keyboard.current.enterKey.wasReleasedThisFrame)
 		{
-			//_mainMenuCamera.Priority = 0;
-			//_menuState = MenuState.Main;
-			//_mainDolly.m_PathPosition = 0;
+			_mainMenuCamera.Priority = 0;
+			_menuState = MenuState.Main;
+			_mainDolly.m_PathPosition = 0;
 		}
 	}
 
@@ -114,7 +136,7 @@ public class MainMenuHandler : MonoBehaviour
 
 	public void LoadGame()
 	{
-		SceneManager.LoadSceneAsync(_sceneNameToLoad);
+		LevelManager.Instance.LoadScene(_sceneNameToLoad);
 	}
 
 	public void OldNewGame()
@@ -125,7 +147,12 @@ public class MainMenuHandler : MonoBehaviour
 
 	public void ContinueGame()
 	{
-		SceneManager.LoadScene(_sceneNameToLoad);
+		_menuState = MenuState.Play;
+	}
+
+	public void OldSettingsClicked()
+	{
+		_settingsActivated = true;
 	}
 
 	public void SettingsClicked()
