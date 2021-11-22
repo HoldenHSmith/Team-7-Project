@@ -22,9 +22,6 @@ public class SettingsHandler : MonoBehaviour
 
     [SerializeField] private Volume _volume = null;
 
-    [SerializeField] private GameObject _graphicsGroup = null;
-    [SerializeField] private GameObject _audioGroup = null;
-    [SerializeField] private GameObject _inputGroup = null;
 
 
     private LiftGammaGain _gamma;
@@ -80,6 +77,7 @@ public class SettingsHandler : MonoBehaviour
         {
             string option = _resolutions[i].ToString();
             option = option.Replace("@", "");
+            
 
             if (!options.Contains(option))
             {
@@ -226,28 +224,5 @@ public class SettingsHandler : MonoBehaviour
         SaveSettings();
     }
 
-    public void ShowMainGraphics()
-    {
-        DisableAllGroups();
-        _graphicsGroup.SetActive(true);
-    }
 
-    public void ShowMainAudio()
-    {
-        DisableAllGroups();
-        _audioGroup.SetActive(true);
-    }
-
-    public void ShowMainControls()
-    {
-        DisableAllGroups();
-        _inputGroup.SetActive(true);
-    }
-
-    public void DisableAllGroups()
-    {
-        _graphicsGroup.SetActive(false);
-        _audioGroup.SetActive(false);
-        _inputGroup.SetActive(false);
-    }
 }
