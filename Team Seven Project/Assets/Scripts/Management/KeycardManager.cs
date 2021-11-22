@@ -73,7 +73,7 @@ public class KeycardManager : MonoBehaviour
 	{
 		foreach (Keycard obj in _keycards)
 		{
-			Handles.DrawAAPolyLine(transform.position, obj.transform.position);
+			//Handles.DrawAAPolyLine(transform.position, obj.transform.position);
 		}
 	}
 #endif
