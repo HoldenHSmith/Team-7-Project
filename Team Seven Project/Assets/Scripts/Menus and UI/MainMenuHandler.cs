@@ -112,12 +112,11 @@ public class MainMenuHandler : MonoBehaviour
 
         if (!_settingsReverse && _settingsDolly.m_PathPosition < _settingsDolly.m_Path.PathLength)
         {
-            if (_settingsDolly.m_PathPosition < _settingsDolly.m_Path.PathLength)
-                _settingsDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
+            _settingsDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
             _settingsCamera.Priority = 100;
             _mainMenuCamera.Priority = 0;
         }
-        else
+        else if (_settingsReverse)
         {
             if (_settingsDolly.m_PathPosition > 0)
             {
