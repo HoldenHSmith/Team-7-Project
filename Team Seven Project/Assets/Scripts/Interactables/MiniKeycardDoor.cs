@@ -23,13 +23,16 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 
 	public void UnlockDoor()
 	{
-		_unlocked = true;
-
-		if (_animations != null)
+		if (!_unlocked)
 		{
-			foreach (Animation animation in _animations)
+			_unlocked = true;
+
+			if (_animations != null)
 			{
-				animation.Play();
+				foreach (Animation animation in _animations)
+				{
+					animation.Play();
+				}
 			}
 		}
 	}

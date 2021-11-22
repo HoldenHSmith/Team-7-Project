@@ -21,6 +21,9 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] private Slider _gammaSlider = null;
 
     [SerializeField] private Volume _volume = null;
+
+
+
     private LiftGammaGain _gamma;
 
     private string _aaPrefStr = "_aa";
@@ -74,6 +77,7 @@ public class SettingsHandler : MonoBehaviour
         {
             string option = _resolutions[i].ToString();
             option = option.Replace("@", "");
+            
 
             if (!options.Contains(option))
             {
@@ -185,7 +189,7 @@ public class SettingsHandler : MonoBehaviour
     public void LoadSettings()
     {
         _aaDropdown.value = PlayerPrefs.GetInt(_aaPrefStr, 3);
-        _resolutionDropdown.value = PlayerPrefs.GetInt(_resPrefStr, _resolutions.Length-1);
+        _resolutionDropdown.value = PlayerPrefs.GetInt(_resPrefStr, _resolutions.Length - 1);
         _vSyncDropdown.value = PlayerPrefs.GetInt(_vSyncPrefStr, 0);
         _fullscreenToggle.isOn = IntToBool(PlayerPrefs.GetInt(_fullscreenPrefStr, 1));
         _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
@@ -219,4 +223,6 @@ public class SettingsHandler : MonoBehaviour
     {
         SaveSettings();
     }
+
+
 }

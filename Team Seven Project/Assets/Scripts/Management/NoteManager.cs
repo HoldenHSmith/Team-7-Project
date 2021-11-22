@@ -35,7 +35,7 @@ public class NoteManager : MonoBehaviour
 	{
 		foreach (PaperNote obj in _noteList)
 		{
-			Handles.DrawAAPolyLine(transform.position, obj.transform.position);
+			//Handles.DrawAAPolyLine(transform.position, obj.transform.position);
 		}
 	}
 #endif
