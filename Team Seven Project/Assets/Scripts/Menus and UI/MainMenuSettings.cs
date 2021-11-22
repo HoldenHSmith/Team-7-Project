@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 
 public class MainMenuSettings : MonoBehaviour
 {
@@ -53,6 +54,8 @@ public class MainMenuSettings : MonoBehaviour
 
     [SerializeField] private Volume _volume = null;
 
+    [SerializeField] private AudioMixer _audioMixer = null;
+
     private List<Resolution> _resolutionOptions = new List<Resolution>();
 
 
@@ -66,14 +69,35 @@ public class MainMenuSettings : MonoBehaviour
     private string _effectsAudPrefStr = "_eaud";
     private string _gammaPrefStr = "_gamma";
 
+
     private void Awake()
     {
+        _masterAudio.value = 0;
+        _ambienceAudio.value = 0;
+        _effectsAudio.value = 0;
         GetResolutions();
         SubscribeButtons();
+        LoadSettings();
+    }
+
+    private void Start()
+    {
+        UpdateAudioAtStart();
+    }
+
+    private void UpdateAudioAtStart()
+    {
+        _audioMixer.SetFloat("MasterVolume", CalculateLogValue(_masterAudio.value));
+        _audioMixer.SetFloat("MusicVolume", CalculateLogValue(_ambienceAudio.value));
+        _audioMixer.SetFloat("SoundEffectsVolume", CalculateLogValue(_effectsAudio.value));
     }
 
     private void SubscribeButtons()
     {
+        _graphicsButton.onClick.AddListener(ShowGraphics);
+        _audioButton.onClick.AddListener(ShowAudio);
+        _inputsButton.onClick.AddListener(ShowControls);
+
         _fullscreenLeftButton.onClick.AddListener(OnFullscreenLeft);
         _fullscreenRightButton.onClick.AddListener(OnFullscreenRight);
 
@@ -107,20 +131,10 @@ public class MainMenuSettings : MonoBehaviour
 
             }
 
-
-
             _resolutionText.text = options[currentResolution];
             _resolutionSelected = currentResolution;
             _resolutionStrings = options.ToArray();
         }
-    }
-
-    private bool CheckIfCurrentResolution(int index)
-    {
-        if (_resolutionOptions[index].width == Screen.width && _resolutionOptions[index].height == Screen.height)
-            return true;
-
-        return false;
     }
 
     public void ShowGraphics()
@@ -197,6 +211,25 @@ public class MainMenuSettings : MonoBehaviour
         UpdateSelected(ref _vsyncOptions, _vsyncSelected, out _vsyncSelected, ref _vSyncText);
     }
 
+    public void OnMasterAudioChanged()
+    {
+        _audioMixer.SetFloat("MasterVolume", CalculateLogValue(_masterAudio.value));
+    }
+
+    public void OnAmbienceAudioChanged()
+    {
+        _audioMixer.SetFloat("MusicVolume", CalculateLogValue(_ambienceAudio.value));
+    }
+
+    public void OnSoundEffectsAudioChanged()
+    {
+        _audioMixer.SetFloat("SoundEffectsVolume", CalculateLogValue(_effectsAudio.value));
+    }
+
+    public void OnReturn()
+    {
+        LoadSettings();
+    }
 
 
     private void UpdateSelected(ref string[] options, int selection, out int finalSelection, ref TextMeshProUGUI textField)
@@ -231,16 +264,48 @@ public class MainMenuSettings : MonoBehaviour
         _vsyncSelected = PlayerPrefs.GetInt(_vSyncPrefStr, _vsyncOptions.Length - 1);
         _fullscreenSelected = PlayerPrefs.GetInt(_fullscreenPrefStr, 1);
         _qualitySelected = PlayerPrefs.GetInt(_qualityPrefStr, 2);
+
+        if (_resolutionSelected >= _resolutionStrings.Length)
+            _resolutionSelected = _resolutionStrings.Length - 1;
+
+        if (_vsyncSelected >= _vsyncOptions.Length)
+            _vsyncSelected = _vsyncOptions.Length - 1;
+
+        if (_fullscreenSelected >= _fullscreenOptions.Length)
+            _fullscreenSelected = _fullscreenOptions.Length - 1;
+
+        if (_qualitySelected >= _qualityOptions.Length)
+            _qualitySelected = _qualityOptions.Length - 1;
+
+        _resolutionText.text = _resolutionStrings[_resolutionSelected];
+        _vSyncText.text = _vsyncOptions[_vsyncSelected];
+        _fullscreenText.text = _fullscreenOptions[_fullscreenSelected];
+        _qualityText.text = _qualityOptions[_qualitySelected];
+
+        _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
+        _ambienceAudio.value = PlayerPrefs.GetFloat(_ambientAudPrefStr, 0);
+        _effectsAudio.value = PlayerPrefs.GetFloat(_effectsAudPrefStr, 0);
+
+        ApplyChanges();
+
+    }
+    private float CalculateLogValue(float rawValue)
+    {
+        return Mathf.Log10(rawValue) * 20;
     }
 
     public void ApplyChanges()
     {
-       // Screen.fullScreen = IntToBool(_fullscreenSelected);
-  
+        _audioMixer.SetFloat("MasterVolume", CalculateLogValue(_masterAudio.value));
+        _audioMixer.SetFloat("MusicVolume", CalculateLogValue(_ambienceAudio.value));
+        _audioMixer.SetFloat("SoundEffectsVolume", CalculateLogValue(_effectsAudio.value));
         QualitySettings.SetQualityLevel(_qualitySelected);
         QualitySettings.vSyncCount = _vsyncSelected;
         Resolution selected = _resolutionOptions[_resolutionSelected];
         Screen.SetResolution(selected.width, selected.height, IntToBool(_fullscreenSelected));
+        Debug.Log("applied");
+
+        SaveSettings();
     }
 
     public int BoolToInt(bool val)
