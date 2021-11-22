@@ -28,7 +28,7 @@ public class MainMenuHandler : MonoBehaviour
     private CinemachineTrackedDolly _playDolly;
     private bool _settingsActivated = false;
     private MenuState _menuState = MenuState.Start;
-    private float _playAcceleration = 5;
+    private float _playAcceleration = 7.5f;
 
     private bool _settingsReverse = false;
 
