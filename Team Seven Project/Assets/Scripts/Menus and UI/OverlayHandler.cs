@@ -20,10 +20,10 @@ public class OverlayHandler : MonoBehaviour
 	[SerializeField] private GameObject _keycardBlue = null;
 	[SerializeField] private GameObject _keycardMini = null;
 	[SerializeField] private TextMeshProUGUI _keycardCount = null;
-
+	[SerializeField] private Image _staminaBar = null;
 	[SerializeField] private List<AudioClip> _noteAudioClips = new List<AudioClip>();
 	[SerializeField] private AudioSource _audioSource = null;
-
+	[SerializeField] private PauseMenuHandler _pauseMenuHandler = null;
 	private PlayerCharacter _player = null;
 	private bool _notePopup = false;
 
@@ -33,6 +33,7 @@ public class OverlayHandler : MonoBehaviour
 		GameManager.Instance.CollectionManager.OverlayHandler = this;
 		GameManager.Instance.OverlayHandler = this;
 		_noteOverlay.enabled = false;
+		_player.OverlayHandler = this;
 
 	}
 
@@ -51,10 +52,11 @@ public class OverlayHandler : MonoBehaviour
 				_beakerIconOn.gameObject.SetActive(false);
 			}
 		}
-		if (_noteOverlay.enabled && Keyboard.current.eKey.wasReleasedThisFrame && !_notePopup)
+		if (_noteOverlay.enabled && (Keyboard.current.eKey.wasReleasedThisFrame || Keyboard.current.escapeKey.wasReleasedThisFrame) && !_notePopup)
 		{
 			_noteOverlay.enabled = false;
 			Time.timeScale = 1;
+			_pauseMenuHandler.CanToggle = true;
 		}
 		SetMiniKeycardCount(GameManager.Instance.Player.MiniKeycards);
 		_notePopup = false;
@@ -68,6 +70,7 @@ public class OverlayHandler : MonoBehaviour
 		_notePopup = true;
 		Time.timeScale = 0;
 		PlayNoteSound();
+		_pauseMenuHandler.CanToggle = false;
 	}
 
 	private void PlayNoteSound()
@@ -112,6 +115,12 @@ public class OverlayHandler : MonoBehaviour
 
 
 	}
+
+	public void UpdateStaminaBar(float fillAmount)
+	{
+		_staminaBar.fillAmount = fillAmount;
+	}
+
 
 
 }

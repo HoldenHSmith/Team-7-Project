@@ -4,148 +4,192 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MainMenuHandler : MonoBehaviour
 {
-	[SerializeField] private string _sceneNameToLoad = "";
-	[SerializeField] private CinemachineVirtualCamera _startCamera = null;
-	[SerializeField] private CinemachineVirtualCamera _mainMenuCamera = null;
-	[SerializeField] private CinemachineVirtualCamera _settingsCamera = null;
-	[SerializeField] private CinemachineVirtualCamera _playCamera = null;
+    [SerializeField] private string _sceneNameToLoad = "";
+    [SerializeField] private CinemachineVirtualCamera _startCamera = null;
+    [SerializeField] private CinemachineVirtualCamera _mainMenuCamera = null;
+    [SerializeField] private CinemachineVirtualCamera _settingsCamera = null;
+    [SerializeField] private CinemachineVirtualCamera _playCamera = null;
 
-	[SerializeField] private MenuTextMaterialBlock _newGameButton = null;
-	[SerializeField] private MenuTextMaterialBlock _playGameButton = null;
-	[SerializeField] private MenuTextMaterialBlock _settingsButton = null;
-	[SerializeField] private MenuTextMaterialBlock _quitButton = null;
+    [SerializeField] private MenuTextMaterialBlock _newGameButton = null;
+    [SerializeField] private MenuTextMaterialBlock _playGameButton = null;
+    [SerializeField] private MenuTextMaterialBlock _settingsButton = null;
+    [SerializeField] private MenuTextMaterialBlock _quitButton = null;
+    //[SerializeField] private Button _oldContinueButton = null;
 
-	private CinemachineTrackedDolly _mainDolly;
-	private CinemachineTrackedDolly _settingsDolly;
-	private CinemachineTrackedDolly _playDolly;
+    //[SerializeField] private GameObject _settingsMenu = null;
+    //[SerializeField] private GameObject _mainMenu = null;
 
-	private MenuState _menuState = MenuState.Start;
-	private float _playAcceleration = 5;
+    private CinemachineTrackedDolly _mainDolly;
+    private CinemachineTrackedDolly _settingsDolly;
+    private CinemachineTrackedDolly _playDolly;
+    private bool _settingsActivated = false;
+    private MenuState _menuState = MenuState.Start;
+    private float _playAcceleration = 7.5f;
 
-	private bool _settingsReverse = false;
+    private bool _settingsReverse = false;
 
-	[SerializeField] private TextMeshProUGUI _startText = null;
+    [SerializeField] private TextMeshProUGUI _startText = null;
 
-	private void Awake()
-	{
-		Time.timeScale = 1;
-		//Camera.main.aspect = (Screen.width / Screen.height);
-		_mainDolly = _mainMenuCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
-		_settingsDolly = _settingsCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
-		_playDolly = _playCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+    private void Awake()
+    {
+        Time.timeScale = 1;
+        _mainDolly = _mainMenuCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+        _settingsDolly = _settingsCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+        _playDolly = _playCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 
-		_playGameButton.CanSelect = SaveManager.SaveExists();
-		//_settingsButton.CanSelect = false;
+        _playGameButton.CanSelect = SaveManager.SaveExists();
+        //if (SaveManager.SaveExists())
+        //_oldContinueButton.interactable = true;
 
 
-	}
+    }
 
-	private void Update()
-	{
-		_startText.enabled = false;
-		switch (_menuState)
-		{
-			case MenuState.Start:
-				_startText.enabled = true;
-				HandleStart();
-				break;
-			case MenuState.Main:
-				HandleMain();
-				break;
-			case MenuState.Settings:
-				HandleSettings();
-				break;
-			case MenuState.Play:
-				HandlePlay();
-				break;
-			default:
-				break;
-		}
-	}
+    private void Update()
+    {
+        _startText.enabled = false;
+        switch (_menuState)
+        {
+            case MenuState.Start:
+                _startText.enabled = true;
+                HandleStart();
+                break;
+            case MenuState.Main:
+                HandleMain();
+                break;
+            case MenuState.Settings:
+                HandleSettings();
+                break;
+            case MenuState.Play:
+                HandlePlay();
+                break;
+            default:
+                break;
+        }
 
-	private void HandleStart()
-	{
-		_startCamera.Priority = 100;
-		if (Keyboard.current.enterKey.wasReleasedThisFrame)
-		{
-			//_mainMenuCamera.Priority = 0;
-			//_menuState = MenuState.Main;
-			//_mainDolly.m_PathPosition = 0;
-		}
-	}
+        //For Beta Menu
+        //if (_settingsActivated)
+        //{
+        //	//_settingsMenu.SetActive(true);
 
-	private void HandleMain()
-	{
-		_mainDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
-		_mainMenuCamera.Priority = 100;
-	}
+        //	if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+        //		_settingsActivated = false;
 
-	private void HandleSettings()
-	{
-		if (!_settingsReverse && _settingsDolly.m_PathPosition < _settingsDolly.m_Path.PathLength)
-		{
-			_settingsDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
-			_settingsCamera.Priority = 100;
-			_mainMenuCamera.Priority = 0;
-		}
-	}
+        //	//_mainMenu.SetActive(false);
 
-	private void HandlePlay()
-	{
-		_playAcceleration += Time.unscaledDeltaTime;
-		_mainMenuCamera.Priority = 0;
-		_playCamera.Priority = 100;
-		_playDolly.m_PathPosition += Time.unscaledDeltaTime * _playAcceleration;
-	}
+        //}
+        //else
+        //{
+        //	_mainMenu.SetActive(true);
+        //	_settingsMenu.SetActive(false);
+        //}
+    }
 
-	public void NewGameClicked()
-	{
-		_menuState = MenuState.Play;
-		SaveManager.ClearSave();
-	}
+    private void HandleStart()
+    {
+        _startCamera.Priority = 100;
+        if (Keyboard.current.enterKey.wasReleasedThisFrame)
+        {
+            _mainMenuCamera.Priority = 0;
+            _menuState = MenuState.Main;
+            _mainDolly.m_PathPosition = 0;
+        }
+    }
 
-	public void PlayGameClicked()
-	{
-		_menuState = MenuState.Play;
-	}
+    private void HandleMain()
+    {
+        _mainDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
+        _mainMenuCamera.Priority = 100;
+    }
 
-	public void LoadGame()
-	{
-		SceneManager.LoadSceneAsync(_sceneNameToLoad);
-	}
+    private void HandleSettings()
+    {
+        if (!_settingsReverse && Keyboard.current.escapeKey.wasReleasedThisFrame)
+            _settingsReverse = true;
 
-	public void OldNewGame()
-	{
-		SaveManager.ClearSave();
-		ContinueGame();
-	}
+        if (!_settingsReverse && _settingsDolly.m_PathPosition < _settingsDolly.m_Path.PathLength)
+        {
+            _settingsDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
+            _settingsCamera.Priority = 100;
+            _mainMenuCamera.Priority = 0;
+        }
+        else if (_settingsReverse)
+        {
+            if (_settingsDolly.m_PathPosition > 0)
+            {
+                _settingsDolly.m_PathPosition -= Time.unscaledDeltaTime * 3;
+                _settingsCamera.Priority = 100;
+                _mainMenuCamera.Priority = 0;
+            }
+            else
+            {
+                _settingsCamera.Priority = 0;
+                _mainMenuCamera.Priority = 100;
+                _menuState = MenuState.Main;
+            }
+        }
+    }
 
-	public void ContinueGame()
-	{
-		SceneManager.LoadScene(_sceneNameToLoad);
-	}
+    private void HandlePlay()
+    {
+        _playAcceleration += Time.unscaledDeltaTime;
+        _mainMenuCamera.Priority = 0;
+        _playCamera.Priority = 100;
+        _playDolly.m_PathPosition += Time.unscaledDeltaTime * _playAcceleration;
+    }
 
-	public void SettingsClicked()
-	{
-		_menuState = MenuState.Settings;
-	}
+    public void NewGameClicked()
+    {
+        _menuState = MenuState.Play;
+        SaveManager.ClearSave();
+    }
 
-	public void QuitGame()
-	{
-		Application.Quit();
-	}
+    public void PlayGameClicked()
+    {
+        _menuState = MenuState.Play;
+    }
 
-	public MenuState CurrentState { get => _menuState; set => _menuState = value; }
+    public void LoadGame()
+    {
+        LevelManager.Instance.LoadScene(_sceneNameToLoad);
+    }
+
+
+    public void ContinueGame()
+    {
+        _menuState = MenuState.Play;
+    }
+
+    public void OnReturnFromSettings()
+    {
+        //Need to go back to main menu
+        _settingsReverse = true;
+    }
+
+
+
+    public void SettingsClicked()
+    {
+        _settingsReverse = false;
+        _menuState = MenuState.Settings;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public MenuState CurrentState { get => _menuState; set => _menuState = value; }
 
 }
 
 public enum MenuState
 {
-	Start,
-	Main,
-	Settings,
-	Play
+    Start,
+    Main,
+    Settings,
+    Play
 }
