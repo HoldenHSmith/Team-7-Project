@@ -131,10 +131,11 @@ public class MainMenuSettings : MonoBehaviour
 
             }
 
-            _resolutionText.text = options[currentResolution];
-            _resolutionSelected = currentResolution;
-            _resolutionStrings = options.ToArray();
+           
         }
+        _resolutionText.text = options[currentResolution];
+        _resolutionSelected = currentResolution;
+        _resolutionStrings = options.ToArray();
     }
 
     public void ShowGraphics()
@@ -282,9 +283,9 @@ public class MainMenuSettings : MonoBehaviour
         _fullscreenText.text = _fullscreenOptions[_fullscreenSelected];
         _qualityText.text = _qualityOptions[_qualitySelected];
 
-        _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 0);
-        _ambienceAudio.value = PlayerPrefs.GetFloat(_ambientAudPrefStr, 0);
-        _effectsAudio.value = PlayerPrefs.GetFloat(_effectsAudPrefStr, 0);
+        _masterAudio.value = PlayerPrefs.GetFloat(_masterAudPrefStr, 1);
+        _ambienceAudio.value = PlayerPrefs.GetFloat(_ambientAudPrefStr, 1);
+        _effectsAudio.value = PlayerPrefs.GetFloat(_effectsAudPrefStr, 1);
 
         ApplyChanges();
 
