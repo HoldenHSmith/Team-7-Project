@@ -12,6 +12,9 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 
 	private Animation[] _animations;
 	private AudioSource _audioSource;
+	private bool _activated = false;
+	[SerializeField] private float _delay = 0.5f;
+	private GameObject _interactableText;
 
 	private void Awake()
 	{
@@ -20,6 +23,30 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 
 		if (!_requireKeycard && _text != null)
 			_text.enabled = false;
+
+		if (!UtilsJ.FindChildByName("Interactable Text", gameObject, out _interactableText))
+		{
+			Debug.LogWarning($"Interactable text child prefab expected on {gameObject} ");
+		}
+	}
+
+	private void Update()
+	{
+		if (_activated)
+		{
+			if (_delay > 0)
+				_delay -= Time.deltaTime;
+			else if (_animations != null)
+			{
+				foreach (Animation animation in _animations)
+				{
+					animation.Play();
+					_audioSource.Play();
+				}
+				_activated = false;
+			}
+
+		}
 	}
 
 	public void UnlockDoor()
@@ -28,14 +55,9 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 		{
 			_unlocked = true;
 
-			if (_animations != null)
-			{
-				foreach (Animation animation in _animations)
-				{
-					animation.Play();
-					_audioSource.Play();
-				}
-			}
+			_activated = true;
+			if (_interactableText != null)
+				_interactableText.SetActive(false);
 		}
 	}
 

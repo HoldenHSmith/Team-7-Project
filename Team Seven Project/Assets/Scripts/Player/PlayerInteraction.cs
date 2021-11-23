@@ -53,6 +53,7 @@ public partial class PlayerCharacter : MonoBehaviour
 						{
 							_animator.Play("Swipe");
 							BlockInputForTime(_doorInteractBlockTime);
+							_playerSound.PlayKeycardUsed();
 						}
 						else
 						{
@@ -62,7 +63,7 @@ public partial class PlayerCharacter : MonoBehaviour
 						break;
 					}
 				}
-				
+
 			}
 
 		}
