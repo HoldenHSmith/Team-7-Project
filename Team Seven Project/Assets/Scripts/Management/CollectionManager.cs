@@ -13,6 +13,7 @@ public sealed class CollectionManager : MonoBehaviour
 
 	public CollectionManager()
 	{
+
 		_keysCollected = new Dictionary<AreaType, bool>();
 		_notesCollected = new Dictionary<PaperNote, bool>();
 		_miniKeycardsCollected = new Dictionary<MiniKeycard, bool>();
@@ -24,11 +25,22 @@ public sealed class CollectionManager : MonoBehaviour
 
 	}
 
+	public void InitializeMinikeys(KeycardManager keycardManager)
+	{
+		MiniKeycard[] miniKeycards = keycardManager.MiniKeycards;
+		for (int i = 0; i < miniKeycards.Length; i++)
+		{
+			_miniKeycardsCollected.Add(miniKeycards[i], false);
+		}
+	}
+
 	public void SetKeyValue(AreaType area, bool value)
 	{
 		_keysCollected[area] = value;
 		if (value)
 			Debug.Log($"Key Collected: {area}");
+
+		_overlayHandler.SetKeycardActive(area, value);
 	}
 
 	public void SetNoteValue(PaperNote note, bool value)
@@ -46,6 +58,8 @@ public sealed class CollectionManager : MonoBehaviour
 		_miniKeycardsCollected[mini] = value;
 		if (value)
 			Debug.Log($"Mini Keycard Collected!");
+
+		_overlayHandler.SetMiniKeycardCount(GameManager.Instance.Player.MiniKeycards);
 	}
 
 	public bool CheckKeyCollected(AreaType area)

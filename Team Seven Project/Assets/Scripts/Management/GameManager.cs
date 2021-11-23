@@ -22,7 +22,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	private NoteManager _noteManager;
 	private KeycardManager _keycardManager;
 	private DoorManager _doorManager;
-
+	private OverlayHandler _overlayHandler;
 
 	public void SendMessage()
 	{
@@ -48,10 +48,14 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		_keycardManager = GetComponent<KeycardManager>();
 		_doorManager = GetComponent<DoorManager>();
 
+		_collectionManager.InitializeMinikeys(_keycardManager);
+
 	}
 
 	private void Start()
 	{
+		_overlayHandler = _collectionManager.OverlayHandler;
+
 		if (SaveManager.Load())
 		{
 			_saveData = _saveManager.Current;
@@ -64,9 +68,23 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 			_keycardManager.LoadKeycards(s.KeyDict());
 			_keycardManager.LoadMinikeycards(s.MiniKeycardsCollected);
 			//Load note stuff
+
+			_overlayHandler.SetKeycardActive(AreaType.Containment, s.KeyDict()[AreaType.Containment]);
+			_overlayHandler.SetKeycardActive(AreaType.Biolab, s.KeyDict()[AreaType.Biolab]);
+			_overlayHandler.SetKeycardActive(AreaType.Surveillance, s.KeyDict()[AreaType.Surveillance]);
+
+			_overlayHandler.SetMiniKeycardCount(Player.MiniKeycards);
 		}
 		else
+		{
+			_overlayHandler.SetKeycardActive(AreaType.Containment, false);
+			_overlayHandler.SetKeycardActive(AreaType.Biolab, false);
+			_overlayHandler.SetKeycardActive(AreaType.Surveillance, false);
+			_overlayHandler.SetMiniKeycardCount(Player.MiniKeycards);
 			Debug.Log("No Save Data Found");
+		}
+
+
 
 		List<Enemy> enemies = EnemyManager.Enemies;
 
@@ -78,19 +96,20 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
 	private void Update()
 	{
-		if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
-		{
-			SaveManager.Save(Player.transform.position, Player.transform.rotation);
-		}
+		//if (Keyboard.current.rightBracketKey.wasPressedThisFrame)
+		//{
+		//	SaveManager.Save(Player.transform.position, Player.transform.rotation);
+		//}
 		if (Keyboard.current.leftBracketKey.wasPressedThisFrame)
 		{
 			SaveManager.ClearSave();
 		}
 
-		if (Keyboard.current.escapeKey.wasReleasedThisFrame)
-		{
-			Application.Quit();
-		}
+		//if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+		//{
+		//	Application.Quit();
+		//}
+
 	}
 
 	public static GameManager Instance
@@ -107,4 +126,5 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	public NoteManager NoteManager { get => _noteManager; set => _noteManager = value; }
 	public KeycardManager KeycardManager { get => _keycardManager; set => _keycardManager = value; }
 	public DoorManager DoorManager { get => _doorManager; set => _doorManager = value; }
+	public OverlayHandler OverlayHandler { get => _overlayHandler; set => _overlayHandler = value; }
 }

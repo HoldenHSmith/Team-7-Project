@@ -35,14 +35,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Test"",
-                    ""type"": ""Button"",
-                    ""id"": ""8da09fef-520f-4deb-ade7-af5658d9dc12"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Aiming/Throwing"",
                     ""type"": ""Button"",
                     ""id"": ""5d725a3b-c425-4899-9a96-8ce2b003fae1"",
@@ -62,6 +54,14 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""c136dfb4-ccb9-4a90-b24f-cd3d86d3209f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c7257a1-5bfd-419b-9a60-1ca6762ea60f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -179,61 +179,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Number"",
-                    ""id"": ""bb822f89-9c07-4ed1-bb2b-cdb216a189dd"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""0530da90-251c-45e7-a8bc-859a0f5becaf"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""75651fc3-f53c-4180-b534-b83363aad1bd"",
-                    ""path"": ""<Keyboard>/5"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""2deb3b3f-21e1-46fa-ae59-d232d2069a85"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""8858bded-ccb0-418b-a521-0faab73d87a0"",
-                    ""path"": ""<Keyboard>/6"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""ee3e1f53-30b6-401f-9e55-eb668c946951"",
                     ""path"": ""<Keyboard>/leftShift"",
@@ -252,28 +197,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Controller"",
                     ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d9e6ebf7-2417-47e7-9b92-d32ef59069e0"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""76312871-187f-4eb5-a7ca-ba1769dc3600"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Test"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -301,23 +224,23 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4d185447-8dbc-48f1-8399-90e4a4f4b1eb"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interaction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8c2ec041-0acf-485e-b6a7-c1021b042358"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad1c01d2-b27b-40ce-8f9c-81a5631f4be0"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -358,10 +281,10 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
-        m_Player_Test = m_Player.FindAction("Test", throwIfNotFound: true);
         m_Player_AimingThrowing = m_Player.FindAction("Aiming/Throwing", throwIfNotFound: true);
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_CancelThrow = m_Player.FindAction("Cancel Throw", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -413,20 +336,20 @@ public class @CharacterInput : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Crouch;
-    private readonly InputAction m_Player_Test;
     private readonly InputAction m_Player_AimingThrowing;
     private readonly InputAction m_Player_Interaction;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_CancelThrow;
     public struct PlayerActions
     {
         private @CharacterInput m_Wrapper;
         public PlayerActions(@CharacterInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
-        public InputAction @Test => m_Wrapper.m_Player_Test;
         public InputAction @AimingThrowing => m_Wrapper.m_Player_AimingThrowing;
         public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @CancelThrow => m_Wrapper.m_Player_CancelThrow;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -442,9 +365,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
                 @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
-                @Test.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTest;
-                @Test.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTest;
-                @Test.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTest;
                 @AimingThrowing.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
                 @AimingThrowing.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
                 @AimingThrowing.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAimingThrowing;
@@ -454,6 +374,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @CancelThrow.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelThrow;
+                @CancelThrow.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelThrow;
+                @CancelThrow.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancelThrow;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -464,9 +387,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Crouch.started += instance.OnCrouch;
                 @Crouch.performed += instance.OnCrouch;
                 @Crouch.canceled += instance.OnCrouch;
-                @Test.started += instance.OnTest;
-                @Test.performed += instance.OnTest;
-                @Test.canceled += instance.OnTest;
                 @AimingThrowing.started += instance.OnAimingThrowing;
                 @AimingThrowing.performed += instance.OnAimingThrowing;
                 @AimingThrowing.canceled += instance.OnAimingThrowing;
@@ -476,6 +396,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @CancelThrow.started += instance.OnCancelThrow;
+                @CancelThrow.performed += instance.OnCancelThrow;
+                @CancelThrow.canceled += instance.OnCancelThrow;
             }
         }
     }
@@ -502,9 +425,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
-        void OnTest(InputAction.CallbackContext context);
         void OnAimingThrowing(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnCancelThrow(InputAction.CallbackContext context);
     }
 }

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[Serializable]
+[Serializable, ExecuteInEditMode]
 public class WaypointManager : MonoBehaviour
 {
 	public LoopType Type;
@@ -11,7 +12,9 @@ public class WaypointManager : MonoBehaviour
 
 	private bool _forward = true;
 	private int _currentIndex = 0;
-	
+	private List<Waypoint> m_PreviousWaypoints;
+	private Vector3 _prevPosition;
+
 	private void OnEnable()
 	{
 		Initialize();
@@ -22,13 +25,13 @@ public class WaypointManager : MonoBehaviour
 		Initialize();
 	}
 
-	
+
 	private void Initialize()
 	{
 		if (Waypoints == null)
 			Waypoints = new List<Waypoint>();
 	}
-	
+
 	public void AddNewWaypoint()
 	{
 		Waypoints.Add(new Waypoint(transform.position));
@@ -89,6 +92,49 @@ public class WaypointManager : MonoBehaviour
 					return false;
 			}
 		}
+	}
+
+	private void CheckTargetMoved()
+	{
+		if (transform.position != _prevPosition)
+		{
+			if (Waypoints != null && Waypoints.Count > 0)
+			{
+				for (int i = 0; i < Waypoints.Count; i++)
+				{
+					Waypoint waypoint = Waypoints[i];
+
+					waypoint.Position = transform.position + waypoint.Offset;
+				}
+			}
+		}
+
+		_prevPosition = transform.position;
+	}
+
+	private bool CheckUpdateWaypoints(int index)
+	{
+		if (Waypoints.Count != m_PreviousWaypoints.Count ||
+			Waypoints[index].Position != m_PreviousWaypoints[index].Position ||
+			Waypoints[index].WaitTime != m_PreviousWaypoints[index].WaitTime)
+		{
+			UpdateWaypoints();
+			return true;
+		}
+		return false;
+	}
+
+	private void UpdateWaypoints()
+	{
+		if (Waypoints != null)
+		{
+			for (int i = 0; i < Waypoints.Count; i++)
+			{
+				Waypoints[i].Position.y = 0.1f;
+			}
+			m_PreviousWaypoints = Waypoints.Select(wp => new Waypoint(wp.Position, wp.WaitTime)).ToList();
+		}
+
 	}
 
 	private bool GetNextWaypointPingPong(out Waypoint waypoint)
