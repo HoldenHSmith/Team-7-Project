@@ -13,7 +13,9 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 
 	private Animator _animator;
 	private int _openHash;
-
+	private AudioSource _audioSource;
+	private bool _activated = false;
+	[SerializeField] private float _delay = 0.5f;
 	private void Awake()
 	{
 		_openHash = Animator.StringToHash("Open");
@@ -23,6 +25,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 		{
 			Debug.LogWarning($"Interactable text child prefab expected on {gameObject} ");
 		}
+		_audioSource = GetComponent<AudioSource>();
 	}
 
 	public bool OnInteract(PlayerCharacter playerCharacter)
@@ -34,13 +37,28 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 		}
 		return false;
 	}
+	private void Update()
+	{
+		if (_activated)
+		{
+			if (_delay > 0)
+				_delay -= Time.deltaTime;
+			else if (_animator != null)
+			{
+				_animator.SetTrigger(_openHash);
+				_audioSource.Play();
 
+				_activated = false;
+			}
+
+		}
+	}
 	public void Unlock()
 	{
 		if (!_unlocked)
 		{
 			_unlocked = true;
-			_animator.SetTrigger(_openHash);
+			_activated = true;
 			SaveManager.Save(_spawnPos.position, transform.rotation);
 			if (_interactableText != null)
 				_interactableText.SetActive(false);
