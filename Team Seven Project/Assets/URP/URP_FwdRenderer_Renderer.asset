@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7268608870962771156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98903d0994d8ead49aeac84de76eb11b, type: 3}
+  m_Name: NewSSAO
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    renderPassEvent: 300
+    material: {fileID: 2100000, guid: 2de178adc44124b41aab0d348d6173ae, type: 2}
+    totalStrength: 1.09
+    brightnessCorrection: 0.322
+    area: 0.76
+    falloff: 0.1
+    radius: 0.24
+    debug: 0
 --- !u!114 &-1262480566858411663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,7 +78,8 @@ MonoBehaviour:
   - {fileID: 1514300243448249113}
   - {fileID: 4248912300343821714}
   - {fileID: 1642179935240789162}
-  m_RendererFeatureMap: 711192049dc47aee193b055e0ce003159205c8b7392bf73aaa1c4d51f331ca16
+  - {fileID: -7268608870962771156}
+  m_RendererFeatureMap: 711192049dc47aee193b055e0ce003159205c8b7392bf73aaa1c4d51f331ca162ccb021bbeb6209b
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -127,11 +150,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: NewRenderObjects
+  m_Name: Render Guard
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: NewRenderObjects
+    passTag: Render Guard
     Event: 300
     filterSettings:
       RenderQueueType: 0
