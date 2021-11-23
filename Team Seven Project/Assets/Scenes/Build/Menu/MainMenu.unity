@@ -8022,12 +8022,20 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 306025639006052572, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1155266706844465431, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1383880398883131545, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383880398883131545, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1485651482093386683, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
@@ -8066,12 +8074,20 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8394033266567886669, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8398753115409652566, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8990810417649343340, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8990810417649343340, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9165362293279389786, guid: 0e2cffcaf390987458766714b9ee6eef, type: 3}
@@ -19581,7 +19597,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5213933236386006193, guid: 316635394828a594594e7a6b90048fd9, type: 3}
       propertyPath: m_Intensity
-      value: 10.62
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5213933236386006193, guid: 316635394828a594594e7a6b90048fd9, type: 3}
       propertyPath: m_SpotAngle
@@ -19637,11 +19653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5213933236386006198, guid: 316635394828a594594e7a6b90048fd9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.079998
+      value: 3.203
       objectReference: {fileID: 0}
     - target: {fileID: 5213933236386006198, guid: 316635394828a594594e7a6b90048fd9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31.059998
+      value: -30.87
       objectReference: {fileID: 0}
     - target: {fileID: 5213933236386006198, guid: 316635394828a594594e7a6b90048fd9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -24355,17 +24371,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5079411953953156382, guid: 402ba4398ea5eb448ad2713f15a01f10, type: 3}
   m_PrefabInstance: {fileID: 640041625}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &643021117 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4742266944924705676, guid: 431c1abe404f1f542a0ac5e1aad0fa6f, type: 3}
-  m_PrefabInstance: {fileID: 574841899}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &643069674
 GameObject:
   m_ObjectHideFlags: 0
@@ -25577,7 +25582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3317703864818703871, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.619003
+      value: -29.591
       objectReference: {fileID: 0}
     - target: {fileID: 3317703864818703871, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_LocalRotation.x
@@ -25611,6 +25616,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3528337796735343234, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc2b8b7b7952a6a49929e2dbb74fe35e, type: 2}
     - target: {fileID: 6125410682516865134, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -25649,7 +25658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485943646479788331, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_Intensity
-      value: 1.08
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8578965493117685693, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -55195,7 +55204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485943646479788331, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_Intensity
-      value: 3.75
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8485943646479788331, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_BoundingSphereOverride.y
@@ -55224,6 +55233,10 @@ PrefabInstance:
     - target: {fileID: 8485943646479788331, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_Color.b
       value: 0.60784316
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485943646479788331, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8578965493117685693, guid: 8ea4b7d52798a9c458e0dfd0045f4e12, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -66482,7 +66495,6 @@ MonoBehaviour:
   _fullscreenToggle: {fileID: 1380331648}
   _resolutionDropdown: {fileID: 392961429}
   _qualityDropdown: {fileID: 612241990}
-  _aaDropdown: {fileID: 643021117}
   _vSyncDropdown: {fileID: 939110819}
   _masterAudio: {fileID: 1117960598}
   _ambienceAudio: {fileID: 2064478767}
