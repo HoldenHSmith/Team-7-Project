@@ -12,6 +12,7 @@ public class PauseMenuHandler : MonoBehaviour
 	[SerializeField] private string _mainMenuSceneName = "";
 	private PauseMenuState _state = PauseMenuState.Main;
 	private bool _toggledThisFrame = false;
+	private bool _canToggle = true;
 	private void Awake()
 	{
 		_pauseMenu.SetActive(false);
@@ -55,7 +56,7 @@ public class PauseMenuHandler : MonoBehaviour
 
 			}
 		}
-		else if (Keyboard.current.escapeKey.wasPressedThisFrame && !_paused)
+		else if (Keyboard.current.escapeKey.wasPressedThisFrame && !_paused && _canToggle)
 		{
 			_state = PauseMenuState.Main;
 			TogglePauseMenu();
@@ -132,4 +133,6 @@ public class PauseMenuHandler : MonoBehaviour
 		Main,
 		Settings
 	}
+
+	public bool CanToggle { get => _canToggle; set => _canToggle = value; }
 }

@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI _hintText = null;
 	[SerializeField, TextArea(1, 5)] private List<string> _hints = new List<string>();
 	[SerializeField] private List<Sprite> _images = new List<Sprite>();
+	private bool _loading = false;
 
 	private float _target;
 
@@ -35,13 +36,19 @@ public class LevelManager : MonoBehaviour
 	private void OnLevelWasLoaded(int level)
 	{
 		_loaderCanvas.SetActive(false);
+		_loading = false;
 	}
 
 	public async void LoadScene(string sceneName)
 	{
+		if (_loading == true)
+			return;
+		_loading = true;
+
 		_target = 0;
 		_progressBar.fillAmount = 0;
 		OnNewLoad();
+
 		var scene = SceneManager.LoadSceneAsync(sceneName);
 		scene.allowSceneActivation = false;
 

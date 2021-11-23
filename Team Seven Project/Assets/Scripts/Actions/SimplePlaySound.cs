@@ -19,7 +19,7 @@ public class SimplePlaySound : MonoBehaviour
 		_audioSource = GetComponent<AudioSource>();
 		_input = new CharacterInput();
 
-		_input.Player.Test.started += ctx => OnInputButton(ctx);
+		//_input.Player.Test.started += ctx => OnInputButton(ctx);
 	}
 
 	void OnInputButton(InputAction.CallbackContext context)

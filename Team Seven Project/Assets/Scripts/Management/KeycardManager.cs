@@ -56,13 +56,16 @@ public class KeycardManager : MonoBehaviour
 	{
 		for (int i = values.Length - 1; i >= 0; i--)
 		{
+			if (i >= _miniKeycards.Length)
+				break;
+
 			_miniKeycards[i].Collected = values[i];
 			_miniKeycards[i].LoadCollected(values[i]);
 		}
 
 	}
 
-	public  Keycard[] Keycards { get => _keycards; set => _keycards = value; }
+	public Keycard[] Keycards { get => _keycards; set => _keycards = value; }
 	public MiniKeycard[] MiniKeycards { get => _miniKeycards; set => _miniKeycards = value; }
 
 #if UNITY_EDITOR
@@ -70,7 +73,7 @@ public class KeycardManager : MonoBehaviour
 	{
 		foreach (Keycard obj in _keycards)
 		{
-			Handles.DrawAAPolyLine(transform.position, obj.transform.position);
+			//Handles.DrawAAPolyLine(transform.position, obj.transform.position);
 		}
 	}
 #endif
