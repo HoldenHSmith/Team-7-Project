@@ -11,11 +11,12 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 	[SerializeField] private TextMeshPro _text = null;
 
 	private Animation[] _animations;
+	private AudioSource _audioSource;
 
 	private void Awake()
 	{
 		_animations = GetComponentsInChildren<Animation>();
-
+		_audioSource = GetComponent<AudioSource>();
 
 		if (!_requireKeycard && _text != null)
 			_text.enabled = false;
@@ -32,6 +33,7 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 				foreach (Animation animation in _animations)
 				{
 					animation.Play();
+					_audioSource.Play();
 				}
 			}
 		}
