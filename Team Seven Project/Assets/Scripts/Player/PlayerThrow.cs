@@ -129,12 +129,14 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected void ThrowObject()
 	{
 		_animator.Play("Throw");
+		_throwDisabled = true;
 	}
 
 	public void SpawnProjectile()
 	{
 		Rigidbody obj = Instantiate(_projectile, _throwPoint.position, Quaternion.identity);
 		obj.velocity = MathJ.CalculateProjectileVelocity(_finalPosition, _throwPoint.position, _travelDuration);
+		_throwDisabled = false;
 	}
 
 	private void DisableThrowVisuals()
