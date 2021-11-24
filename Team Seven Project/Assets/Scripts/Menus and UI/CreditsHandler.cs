@@ -39,7 +39,7 @@ public class CreditsHandler : MonoBehaviour
 		"ANGELIKA RYE",
 		"KENT SUTER",
 		"SCOTT HANCOCK",
-		"STEVEN VANDERGRAAF",
+		"STEVEN VAN DER GRAAF-MASTERS",
 		"AIE MELBOURNE",
 		"USER TESTERS"
 	};
@@ -62,8 +62,8 @@ public class CreditsHandler : MonoBehaviour
 		}
 		else
 		{
-			_title.text = "";
-			_name.text = $"SUBJECT #{_subjectNumber++}";
+			_name.text = "";
+			_title.text = $"SUBJECT #{_subjectNumber++}";
 		}
 	}
 }
