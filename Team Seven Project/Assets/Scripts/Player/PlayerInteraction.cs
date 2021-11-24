@@ -48,7 +48,7 @@ public partial class PlayerCharacter : MonoBehaviour
 				{
 					if (hitCollider.tag == "Beaker")
 					{
-						if (_hasBeaker)
+						if (_hasBeaker || _throwDisabled)
 							return;
 					}
 
