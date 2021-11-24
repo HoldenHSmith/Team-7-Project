@@ -37,6 +37,8 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Tooltip("Max Throwing Distance.")]
 	[SerializeField] private float _maxThrowDistance = 10;
 
+	[SerializeField] private GameObject _glassVFX = null;
+
 	private Vector3 _lastProjectileVelocity;
 	private bool _validThrow = false;
 
@@ -84,7 +86,7 @@ public partial class PlayerCharacter : MonoBehaviour
 				_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(finalPosition, _throwPoint.position, _travelDuration);
 				_finalPosition = finalPosition;
 				_landingZoneSprite.transform.position = finalPosition;
-				if (Physics.Raycast(finalPosition + (Vector3.up * 0.5f), Vector3.down, out RaycastHit hit,1))
+				if (Physics.Raycast(finalPosition + (Vector3.up * 0.5f), Vector3.down, out RaycastHit hit, 1))
 				{
 					_landingZoneSprite.transform.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
 				}
