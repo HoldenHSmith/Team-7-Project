@@ -139,20 +139,20 @@ public class SettingsHandler : MonoBehaviour
 
     public void OnMasterAudioChanged()
     {
-        _audioMixer.SetFloat("MasterVolume", _masterAudio.value);
+        _audioMixer.SetFloat("MasterVolume", CalculateLogValue(_masterAudio.value));
     }
 
     public void OnAmbienceAudioChanged()
     {
-        _audioMixer.SetFloat("MusicVolume", _ambienceAudio.value);
+        _audioMixer.SetFloat("MusicVolume", CalculateLogValue(_ambienceAudio.value));
     }
 
     public void OnSoundEffectsAudioChanged()
     {
-        _audioMixer.SetFloat("SoundEffectsVolume", _effectsAudio.value);
+        _audioMixer.SetFloat("SoundEffectsVolume", CalculateLogValue(_effectsAudio.value));
     }
 
-    public void OnGammaChange()
+	public void OnGammaChange()
     {
         if (_gamma != null)
         {
