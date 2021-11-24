@@ -23,6 +23,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	private bool _rightMouseDown;
 	private PauseMenuHandler _pauseMenu;
 	private float _inputBlockTime;
+	private float _throwBlockTime;
 
 	protected void SetupInput()
 	{
@@ -77,6 +78,14 @@ public partial class PlayerCharacter : MonoBehaviour
 		}
 		else
 			_playerInputBlocked = false;
+
+		if (_throwBlockTime > 0)
+		{
+			_throwBlockTime -= Time.deltaTime;
+			_throwDisabled = true;
+		}
+		else
+			_throwDisabled = false;
 	}
 
 	protected void EndInputUpdate()
@@ -90,9 +99,14 @@ public partial class PlayerCharacter : MonoBehaviour
 		_interactKeyReleasedThisFrame = false;
 	}
 
-	protected void BlockInputForTime(float duration)
+	public void BlockInputForTime(float duration)
 	{
 		_inputBlockTime = duration;
+	}
+
+	public void BlockThrowForTime(float duration)
+	{
+		_throwBlockTime = duration;
 	}
 
 	//Update movement inputs
