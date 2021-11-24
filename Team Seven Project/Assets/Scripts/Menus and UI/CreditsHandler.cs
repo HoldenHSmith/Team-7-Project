@@ -78,7 +78,7 @@ public class CreditsHandler : MonoBehaviour
 	{
 		if (Keyboard.current.enterKey.wasReleasedThisFrame)
 		{
-			SceneManager.LoadScene("MainMenu");
+			LevelManager.Instance.LoadScene("MainMenu");
 		}
 	}
 }

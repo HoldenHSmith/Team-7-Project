@@ -58,7 +58,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		if (_currentMouse.leftButton.wasPressedThisFrame)
 			_throwDisabled = false;
 
-		if (_throwEnabled && _hasBeaker && _leftMouseDown && !_throwDisabled)
+		if (_throwEnabled && _hasBeaker && _leftMouseDown && !_throwDisabled && _throwEnabled)
 		{
 			//Get ray from camera to mouse as a point;
 			Ray screenToPointRay = Camera.main.ScreenPointToRay(_currentMouse.position.ReadValue());
@@ -117,7 +117,7 @@ public partial class PlayerCharacter : MonoBehaviour
 			_throwDisabled = true;
 		}
 
-		if (_validThrow && _currentMouse.leftButton.wasReleasedThisFrame && _hasBeaker && !_throwDisabled)
+		if (_validThrow && _currentMouse.leftButton.wasReleasedThisFrame && _hasBeaker && !_throwDisabled && _throwEnabled)
 		{
 			ThrowObject();
 			_hasBeaker = false;
