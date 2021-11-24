@@ -46,6 +46,12 @@ public partial class PlayerCharacter : MonoBehaviour
 				//Raycast
 				if (!Physics.Raycast(transform.position + Vector3.up, direction, out hit, distance - 1, _interactionBlockLayer, QueryTriggerInteraction.Ignore) || hit.collider.tag == "Door")
 				{
+					if (hitCollider.tag == "Beaker")
+					{
+						if (_hasBeaker)
+							return;
+					}
+
 					if (interactable.OnInteract(this))
 					{
 						Debug.Log($"Interact Collider: {hitCollider.gameObject.name}");
