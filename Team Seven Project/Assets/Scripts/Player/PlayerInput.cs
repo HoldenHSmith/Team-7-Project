@@ -82,10 +82,10 @@ public partial class PlayerCharacter : MonoBehaviour
 		if (_throwBlockTime > 0)
 		{
 			_throwBlockTime -= Time.deltaTime;
-			_throwDisabled = true;
+			_throwEnabled = false;
 		}
 		else
-			_throwDisabled = false;
+			_throwEnabled = true;
 	}
 
 	protected void EndInputUpdate()
