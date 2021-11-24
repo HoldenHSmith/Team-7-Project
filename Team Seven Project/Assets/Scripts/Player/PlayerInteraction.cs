@@ -57,9 +57,11 @@ public partial class PlayerCharacter : MonoBehaviour
 						}
 						else
 						{
-							BlockInputForTime(_keycardInteractBlockTime);
 							if (hitCollider.tag != "Note")
+							{
+								BlockInputForTime(_keycardInteractBlockTime);
 								_animator.Play("Collect");
+							}
 						}
 						break;
 					}
