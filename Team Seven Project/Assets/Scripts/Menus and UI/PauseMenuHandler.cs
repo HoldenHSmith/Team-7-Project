@@ -13,6 +13,7 @@ public class PauseMenuHandler : MonoBehaviour
 	private PauseMenuState _state = PauseMenuState.Main;
 	private bool _toggledThisFrame = false;
 	private bool _canToggle = true;
+
 	private void Awake()
 	{
 		_pauseMenu.SetActive(false);
@@ -28,7 +29,11 @@ public class PauseMenuHandler : MonoBehaviour
 			Time.timeScale = 1;
 
 			if (_pauseMenu != null)
+			{
 				_pauseMenu.SetActive(false);
+				GameManager.Instance.Player.BlockThrowForTime(0.05f);
+			}
+
 		}
 		else
 		{
@@ -36,7 +41,11 @@ public class PauseMenuHandler : MonoBehaviour
 			Time.timeScale = 0;
 
 			if (_pauseMenu != null)
-				_pauseMenu.SetActive(true);
+			{
+				_pauseMenu.SetActive(true); 
+				GameManager.Instance.Player.BlockThrowForTime(100);
+
+			}
 		}
 
 
