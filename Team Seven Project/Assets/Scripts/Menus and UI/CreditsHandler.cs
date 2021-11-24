@@ -38,7 +38,7 @@ public class CreditsHandler : MonoBehaviour
 		"FLYNN VAN STRYP",
 		"ZAC REICHELT",
 		"JAYDEN HUNTER",
-		"BEN LINDRIGE",
+		"BEN LINDRIDGE",
 		"ALLAN TRAN",
 		"ANGELIKA RYE",
 		"KENT SUTER",
