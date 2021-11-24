@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CreditsHandler : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI _title;
 	[SerializeField] private TextMeshProUGUI _name;
+	[SerializeField] private TextMeshProUGUI _exitText;
 	[SerializeField] private AudioClip _scanClip = null;
 	private AudioSource _audioSource;
 
 	private int _currentName = 0;
-	private int _subjectNumber = 3023;
+	private int _subjectNumber = 1996;
 
 	private string[] _titles =
 	{
@@ -28,6 +31,7 @@ public class CreditsHandler : MonoBehaviour
 		"SPECIAL THANKS",
 		"SPECIAL THANKS",
 	};
+
 	private string[] _names =
 {
 		"HOLDEN SMITH",
@@ -49,6 +53,8 @@ public class CreditsHandler : MonoBehaviour
 		_title.text = "";
 		_name.text = "";
 		_audioSource = GetComponent<AudioSource>();
+		Time.timeScale = 1;
+		_exitText.text = "";
 	}
 
 	public void NextName()
@@ -64,6 +70,15 @@ public class CreditsHandler : MonoBehaviour
 		{
 			_name.text = "";
 			_title.text = $"SUBJECT #{_subjectNumber++}";
+			_exitText.text = "Press ENTER to Return";
+		}
+	}
+
+	private void Update()
+	{
+		if (Keyboard.current.enterKey.wasReleasedThisFrame)
+		{
+			SceneManager.LoadScene("MainMenu");
 		}
 	}
 }
