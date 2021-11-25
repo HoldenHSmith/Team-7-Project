@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6714108648668480135}
   - component: {fileID: 7802837103770336315}
   - component: {fileID: 1998345682035213700}
+  - component: {fileID: 3354769912149465444}
   m_Layer: 9
   m_Name: ThrowingProjectile
   m_TagString: Projectile
@@ -155,6 +156,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3354769912149465444}
+        m_TargetAssemblyTypeName: SpawnObject, Assembly-CSharp
+        m_MethodName: CallSpawnObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1998345682035213700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +183,19 @@ MonoBehaviour:
   _volume: 100
   _distanceFalloff: 0
   _positionOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &3354769912149465444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226945056214041455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61529aaf0a8ca9d4a953f8238ec05770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToSpawn: {fileID: 7421517636340607518, guid: 4b15ddc0f68082c47b421939ab60b574, type: 3}
 --- !u!1001 &5709401206777870285
 PrefabInstance:
   m_ObjectHideFlags: 0
