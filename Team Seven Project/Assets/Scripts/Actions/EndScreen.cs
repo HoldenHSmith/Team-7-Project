@@ -10,15 +10,30 @@ public class EndScreen : MonoBehaviour
 	[SerializeField] private Image _fadeToBlack = null;
 	[SerializeField] private TextMeshProUGUI _text = null;
 	[SerializeField] private float _fadeTime = 1.0f;
+	[SerializeField] private AudioSource _audioSource = null;
 
 	private bool _active;
 	private float _fadeTimer;
 	[SerializeField] private float _timeUntilQuit = 3;
 	private float _quitTimer = 0;
+	private float _volume = 1;
+	private void Awake()
+	{
+
+	}
 
 	private void Update()
 	{
-		if(_active && _fadeTimer <= _fadeTime)
+		if (_active)
+		{
+			if (_volume > 0)
+				_volume -= Time.unscaledDeltaTime / (_timeUntilQuit + _fadeTime);
+			if (_volume < 0)
+				_volume = 0;
+
+			_audioSource.volume = _volume;
+		}
+		if (_active && _fadeTimer <= _fadeTime)
 		{
 			_fadeTimer += Time.deltaTime;
 
@@ -32,13 +47,17 @@ public class EndScreen : MonoBehaviour
 			color1.a = alpha;
 			_text.color = color1;
 		}
-		else if(_fadeTimer >= _fadeTime)
+		else if (_fadeTimer >= _fadeTime)
 		{
 			Time.timeScale = 0;
+
 			_quitTimer += Time.unscaledDeltaTime;
+
+
+
 			if (_quitTimer >= _timeUntilQuit)
 			{
-				SceneManager.LoadScene("MainMenu");
+				SceneManager.LoadScene("Credits");
 				SaveManager.ClearSave();
 			}
 

@@ -37,6 +37,8 @@ public partial class PlayerCharacter : MonoBehaviour
 	[Tooltip("Max Throwing Distance.")]
 	[SerializeField] private float _maxThrowDistance = 10;
 
+	[SerializeField] private GameObject _glassVFX = null;
+
 	private Vector3 _lastProjectileVelocity;
 	private bool _validThrow = false;
 
@@ -56,7 +58,7 @@ public partial class PlayerCharacter : MonoBehaviour
 		if (_currentMouse.leftButton.wasPressedThisFrame)
 			_throwDisabled = false;
 
-		if (_throwEnabled && _hasBeaker && _leftMouseDown && !_throwDisabled)
+		if (_throwEnabled && _hasBeaker && _leftMouseDown && !_throwDisabled && _throwEnabled)
 		{
 			//Get ray from camera to mouse as a point;
 			Ray screenToPointRay = Camera.main.ScreenPointToRay(_currentMouse.position.ReadValue());
@@ -84,7 +86,7 @@ public partial class PlayerCharacter : MonoBehaviour
 				_lastProjectileVelocity = MathJ.CalculateProjectileVelocity(finalPosition, _throwPoint.position, _travelDuration);
 				_finalPosition = finalPosition;
 				_landingZoneSprite.transform.position = finalPosition;
-				if (Physics.Raycast(finalPosition + (Vector3.up * 0.5f), Vector3.down, out RaycastHit hit,1))
+				if (Physics.Raycast(finalPosition + (Vector3.up * 0.5f), Vector3.down, out RaycastHit hit, 1))
 				{
 					_landingZoneSprite.transform.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
 				}
@@ -115,7 +117,7 @@ public partial class PlayerCharacter : MonoBehaviour
 			_throwDisabled = true;
 		}
 
-		if (_validThrow && _currentMouse.leftButton.wasReleasedThisFrame && _hasBeaker && !_throwDisabled)
+		if (_validThrow && _currentMouse.leftButton.wasReleasedThisFrame && _hasBeaker && !_throwDisabled && _throwEnabled)
 		{
 			ThrowObject();
 			_hasBeaker = false;
@@ -129,12 +131,14 @@ public partial class PlayerCharacter : MonoBehaviour
 	protected void ThrowObject()
 	{
 		_animator.Play("Throw");
+		_throwDisabled = true;
 	}
 
 	public void SpawnProjectile()
 	{
 		Rigidbody obj = Instantiate(_projectile, _throwPoint.position, Quaternion.identity);
 		obj.velocity = MathJ.CalculateProjectileVelocity(_finalPosition, _throwPoint.position, _travelDuration);
+		_throwDisabled = false;
 	}
 
 	private void DisableThrowVisuals()
