@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7138587899974577928}
   - component: {fileID: 1605671096503227894}
   - component: {fileID: 867406027145056521}
-  - component: {fileID: 1254504106838695931}
   m_Layer: 0
   m_Name: Water leak
   m_TagString: Untagged
@@ -31,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7981186545005737835}
+  - {fileID: 2955914892706164272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.858, y: 199.522, z: 4.38}
@@ -130,27 +130,58 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!82 &1254504106838695931
+--- !u!1 &2905328096885549710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2955914892706164272}
+  - component: {fileID: 2889699830019825272}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2955914892706164272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2905328096885549710}
+  m_LocalRotation: {x: -0.033264775, y: -0.9376455, z: -0.020239064, w: 0.34540534}
+  m_LocalPosition: {x: -0.119, y: -1.753, z: 0.442}
+  m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999964}
+  m_Children: []
+  m_Father: {fileID: 7138587899974577928}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &2889699830019825272
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662874771748742747}
+  m_GameObject: {fileID: 2905328096885549710}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3833572749549569291, guid: ed58750d7f0fef2428f04e1654e3e3e6, type: 2}
   m_audioClip: {fileID: 8300000, guid: b268afd904535664ea07fec8a8cee53e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.19
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
+  DopplerLevel: 1.33
+  MinDistance: 0.57
   MaxDistance: 4
   Pan2D: 0
   rolloffMode: 2
@@ -186,7 +217,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.4
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -201,7 +232,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.28055555
       inSlope: 0
       outSlope: 0
       tangentMode: 0

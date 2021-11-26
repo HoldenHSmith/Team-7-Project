@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 0bb160450ad4b6a4ba84d591e67d037b, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: c8f90f3b608d2874986bdd2b3231e308, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -1256,6 +1256,18 @@ PrefabInstance:
     - target: {fileID: 1254504106838695931, guid: 8135d4d1903219f43b3c2b315411182b, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2889699830019825272, guid: 8135d4d1903219f43b3c2b315411182b, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2889699830019825272, guid: 8135d4d1903219f43b3c2b315411182b, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2889699830019825272, guid: 8135d4d1903219f43b3c2b315411182b, type: 3}
+      propertyPath: Pan2D
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7138587899974577928, guid: 8135d4d1903219f43b3c2b315411182b, type: 3}
       propertyPath: m_LocalPosition.x
