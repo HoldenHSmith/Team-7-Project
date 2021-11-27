@@ -67,6 +67,7 @@ public partial class PlayerCharacter : MonoBehaviour
 							{
 								BlockInputForTime(_keycardInteractBlockTime);
 								_animator.Play("Collect");
+								_playerSound.PlayInteract();
 							}
 						}
 						break;
