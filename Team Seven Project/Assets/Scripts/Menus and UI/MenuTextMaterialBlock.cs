@@ -13,6 +13,9 @@ public class MenuTextMaterialBlock : MonoBehaviour
 	private bool _canSelect = true;
 	private bool _buttonsDeactivated = true;
 	[SerializeField] private MainMenuHandler _menuHandler = null;
+	[SerializeField] private AudioClip _hoverClip = null;
+	[SerializeField] private AudioClip _clickedClip = null;
+	private AudioSource _audioSource;
 
 	// Start is called before the first frame update
 	void Awake()
@@ -20,6 +23,7 @@ public class MenuTextMaterialBlock : MonoBehaviour
 		_matPropertyBlock = new MaterialPropertyBlock();
 		_renderer = GetComponent<Renderer>();
 		_camera = Camera.main;
+		_audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Update()
@@ -34,6 +38,9 @@ public class MenuTextMaterialBlock : MonoBehaviour
 		{
 			if (hit.transform == this.transform)
 			{
+				if (!_selected)
+					PlayHoverSound();
+
 				SetProperties(1);
 				_selected = true;
 			}
@@ -50,6 +57,7 @@ public class MenuTextMaterialBlock : MonoBehaviour
 		}
 
 		if (_selected && Mouse.current.leftButton.wasReleasedThisFrame)
+		{
 			switch (MenuButton)
 			{
 				case MenuButtonType.Play:
@@ -67,6 +75,10 @@ public class MenuTextMaterialBlock : MonoBehaviour
 				default:
 					break;
 			}
+
+			PlayClickedSound();
+		}
+
 
 		if (!_selected)
 			SetProperties(0.04f);
@@ -90,6 +102,23 @@ public class MenuTextMaterialBlock : MonoBehaviour
 	public void ActivateButton()
 	{
 		_buttonsDeactivated = false;
+	}
+
+	public void PlayHoverSound()
+	{
+		RandomPitch();
+		_audioSource.PlayOneShot(_hoverClip);
+	}
+
+	public void PlayClickedSound()
+	{
+		RandomPitch();
+		_audioSource.PlayOneShot(_clickedClip);
+	}
+
+	private void RandomPitch()
+	{
+		_audioSource.pitch = Random.Range(0.9f, 1.1f);
 	}
 
 	public bool CanSelect { get => _canSelect; set => _canSelect = value; }
