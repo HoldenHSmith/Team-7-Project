@@ -10,9 +10,11 @@ public class PlayerSound : MonoBehaviour
 	[Range(0, 2), SerializeField] private float _footStepPitchMin = 0.5f;
 	[Range(0, 2), SerializeField] private float _footStepPitchMax = 1.5f;
 	[SerializeField] AudioClip _keycardUsedClip = null;
+	[SerializeField] AudioClip _interactClip = null;
 
 	private AudioSource _audioSource;
 	private float _volume = 0;
+
 	private void Awake()
 	{
 		_audioSource = GetComponent<AudioSource>();
@@ -49,5 +51,12 @@ public class PlayerSound : MonoBehaviour
 		_audioSource.pitch = 1;
 		_audioSource.PlayOneShot(_keycardUsedClip);
 
+	}
+
+	public void PlayInteract()
+	{
+		_audioSource.volume = 0.10f;
+		_audioSource.pitch = 1;
+		_audioSource.PlayOneShot(_interactClip);
 	}
 }
