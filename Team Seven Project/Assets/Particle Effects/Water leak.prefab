@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 2955914892706164272}
   - component: {fileID: 2889699830019825272}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -3833572749549569291, guid: ed58750d7f0fef2428f04e1654e3e3e6, type: 2}
   m_audioClip: {fileID: 8300000, guid: b268afd904535664ea07fec8a8cee53e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.757
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -182,9 +182,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1.22
   MinDistance: 0.48
-  MaxDistance: 1.37
+  MaxDistance: 5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -192,10 +192,19 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.94617844
-      value: 0.6416817
-      inSlope: -1.250498
-      outSlope: -1.250498
+      time: 0
+      value: 0.99378586
+      inSlope: -2.855308
+      outSlope: -2.855308
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.8315435
+      value: 0.1084671
+      inSlope: -0.713827
+      outSlope: -0.713827
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -203,11 +212,11 @@ AudioSource:
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -5.0318737
-      outSlope: -5.0318737
+      inSlope: -0.35050437
+      outSlope: -0.35050437
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.26912177
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
