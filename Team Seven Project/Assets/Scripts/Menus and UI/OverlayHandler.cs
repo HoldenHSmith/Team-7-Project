@@ -24,8 +24,11 @@ public class OverlayHandler : MonoBehaviour
 	[SerializeField] private List<AudioClip> _noteAudioClips = new List<AudioClip>();
 	[SerializeField] private AudioSource _audioSource = null;
 	[SerializeField] private PauseMenuHandler _pauseMenuHandler = null;
+	[SerializeField] private TextMeshProUGUI _toolTip = null;
+	[SerializeField] private float _toolTipTime = 4f;
 	private PlayerCharacter _player = null;
 	private bool _notePopup = false;
+	private float _toolTipCounter;
 
 	private void Start()
 	{
@@ -60,6 +63,14 @@ public class OverlayHandler : MonoBehaviour
 		}
 		SetMiniKeycardCount(GameManager.Instance.Player.MiniKeycards);
 		_notePopup = false;
+
+		if (_toolTipCounter > 0)
+			_toolTipCounter -= Time.deltaTime;
+		if (_toolTipCounter <= 0)
+		{
+			_toolTipCounter = 0;
+			_toolTip.enabled = false;
+		}
 	}
 
 	public void ReadNote(PaperNote note)
@@ -121,6 +132,12 @@ public class OverlayHandler : MonoBehaviour
 		_staminaBar.fillAmount = fillAmount;
 	}
 
+	public void DisplayToolTip(string text)
+	{
+		_toolTip.enabled = true;
+		_toolTip.text = text;
+		_toolTipCounter = _toolTipTime;
 
+	}
 
 }
