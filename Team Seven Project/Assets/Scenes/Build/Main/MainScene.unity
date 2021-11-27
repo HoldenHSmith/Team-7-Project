@@ -333,6 +333,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5651522275257965510, guid: df224987400ae3444a2b2e4b82eb1352, type: 3}
   m_PrefabInstance: {fileID: 1370569728}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &363339410 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8767488527666702809, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+  m_PrefabInstance: {fileID: 521019537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead9866b34ea5ca44bdb736ac8f95109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &451060303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5411,6 +5422,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4865913423912443072, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865913423912443072, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4876970109232087038, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7501,13 +7520,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811702703}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -34.55416, y: 11.9451685, z: 130.58168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!82 &811702707
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7518,7 +7537,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1369791355136923264, guid: ed58750d7f0fef2428f04e1654e3e3e6, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0f9665252255cfa478f88ec2b9e69c65, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3cc9aeaf254d42f4f994bdcca7308fff, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.34
   m_Pitch: 1
@@ -7838,17 +7857,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &945549097 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1646409581633836299, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
-  m_PrefabInstance: {fileID: 521019537}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ead9866b34ea5ca44bdb736ac8f95109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1054641515 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8928962302554214117, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
@@ -9142,6 +9150,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2044642656773716204, guid: eb15307a44e30a74cb52d30b332e912b, type: 3}
   m_PrefabInstance: {fileID: 1412321632}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1426068018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5367095437289594905, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+  m_PrefabInstance: {fileID: 2093895875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdadcdcc618e65a458b0dded4df20830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1433656862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9172,7 +9191,7 @@ PrefabInstance:
     - target: {fileID: 1288752167, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _miniKeycards.Array.data[0]
       value: 
-      objectReference: {fileID: 945549097}
+      objectReference: {fileID: 363339410}
     - target: {fileID: 1288752167, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _miniKeycards.Array.data[1]
       value: 
@@ -9288,27 +9307,27 @@ PrefabInstance:
     - target: {fileID: 1288752170, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _noteList.Array.data[0]
       value: 
-      objectReference: {fileID: 256895513}
+      objectReference: {fileID: 1426068018}
     - target: {fileID: 1288752170, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _noteList.Array.data[1]
       value: 
-      objectReference: {fileID: 521019538}
+      objectReference: {fileID: 256895513}
     - target: {fileID: 1288752170, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _noteList.Array.data[2]
       value: 
-      objectReference: {fileID: 521019539}
+      objectReference: {fileID: 521019538}
     - target: {fileID: 1288752170, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _noteList.Array.data[3]
       value: 
-      objectReference: {fileID: 521019540}
+      objectReference: {fileID: 521019539}
     - target: {fileID: 1288752170, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _noteList.Array.data[4]
       value: 
-      objectReference: {fileID: 521019541}
+      objectReference: {fileID: 521019540}
     - target: {fileID: 1288752170, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _noteList.Array.data[5]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 521019541}
     - target: {fileID: 1288752170, guid: 935244e6a34e49e4c805c6678031e7c1, type: 3}
       propertyPath: _noteList.Array.data[6]
       value: 
@@ -16932,6 +16951,14 @@ PrefabInstance:
     - target: {fileID: 4784633578280869790, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: m_BoundingSphereOverride.y
       value: 1.4994441e-32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931034479024195508, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931034480511555322, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4940379204750511445, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: m_BoundingSphereOverride.x
