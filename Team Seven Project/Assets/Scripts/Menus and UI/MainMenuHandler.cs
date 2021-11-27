@@ -18,14 +18,17 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] private MenuTextMaterialBlock _playGameButton = null;
     [SerializeField] private MenuTextMaterialBlock _settingsButton = null;
     [SerializeField] private MenuTextMaterialBlock _quitButton = null;
-    [SerializeField] private Button _oldContinueButton = null;
+    //[SerializeField] private Button _oldContinueButton = null;
+
+    //[SerializeField] private GameObject _settingsMenu = null;
+    //[SerializeField] private GameObject _mainMenu = null;
 
     private CinemachineTrackedDolly _mainDolly;
     private CinemachineTrackedDolly _settingsDolly;
     private CinemachineTrackedDolly _playDolly;
-
+    private bool _settingsActivated = false;
     private MenuState _menuState = MenuState.Start;
-    private float _playAcceleration = 5;
+    private float _playAcceleration = 7.5f;
 
     private bool _settingsReverse = false;
 
@@ -34,15 +37,13 @@ public class MainMenuHandler : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1;
-        //Camera.main.aspect = (Screen.width / Screen.height);
         _mainDolly = _mainMenuCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
         _settingsDolly = _settingsCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
         _playDolly = _playCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
 
         _playGameButton.CanSelect = SaveManager.SaveExists();
-        //_settingsButton.CanSelect = false;
-        if (SaveManager.SaveExists())
-            _oldContinueButton.interactable = true;
+        //if (SaveManager.SaveExists())
+        //_oldContinueButton.interactable = true;
 
 
     }
@@ -68,6 +69,23 @@ public class MainMenuHandler : MonoBehaviour
             default:
                 break;
         }
+
+        //For Beta Menu
+        //if (_settingsActivated)
+        //{
+        //	//_settingsMenu.SetActive(true);
+
+        //	if (Keyboard.current.escapeKey.wasReleasedThisFrame)
+        //		_settingsActivated = false;
+
+        //	//_mainMenu.SetActive(false);
+
+        //}
+        //else
+        //{
+        //	_mainMenu.SetActive(true);
+        //	_settingsMenu.SetActive(false);
+        //}
     }
 
     private void HandleStart()
@@ -75,9 +93,9 @@ public class MainMenuHandler : MonoBehaviour
         _startCamera.Priority = 100;
         if (Keyboard.current.enterKey.wasReleasedThisFrame)
         {
-            //_mainMenuCamera.Priority = 0;
-            //_menuState = MenuState.Main;
-            //_mainDolly.m_PathPosition = 0;
+            _mainMenuCamera.Priority = 0;
+            _menuState = MenuState.Main;
+            _mainDolly.m_PathPosition = 0;
         }
     }
 
@@ -89,11 +107,29 @@ public class MainMenuHandler : MonoBehaviour
 
     private void HandleSettings()
     {
+        if (!_settingsReverse && Keyboard.current.escapeKey.wasReleasedThisFrame)
+            _settingsReverse = true;
+
         if (!_settingsReverse && _settingsDolly.m_PathPosition < _settingsDolly.m_Path.PathLength)
         {
             _settingsDolly.m_PathPosition += Time.unscaledDeltaTime * 2;
             _settingsCamera.Priority = 100;
             _mainMenuCamera.Priority = 0;
+        }
+        else if (_settingsReverse)
+        {
+            if (_settingsDolly.m_PathPosition > 0)
+            {
+                _settingsDolly.m_PathPosition -= Time.unscaledDeltaTime * 3;
+                _settingsCamera.Priority = 100;
+                _mainMenuCamera.Priority = 0;
+            }
+            else
+            {
+                _settingsCamera.Priority = 0;
+                _mainMenuCamera.Priority = 100;
+                _menuState = MenuState.Main;
+            }
         }
     }
 
@@ -118,22 +154,26 @@ public class MainMenuHandler : MonoBehaviour
 
     public void LoadGame()
     {
-        SceneManager.LoadSceneAsync(_sceneNameToLoad);
+        LevelManager.Instance.LoadScene(_sceneNameToLoad);
     }
 
-    public void OldNewGame()
-    {
-        SaveManager.ClearSave();
-        ContinueGame();
-    }
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene(_sceneNameToLoad);
+        _menuState = MenuState.Play;
     }
+
+    public void OnReturnFromSettings()
+    {
+        //Need to go back to main menu
+        _settingsReverse = true;
+    }
+
+
 
     public void SettingsClicked()
     {
+        _settingsReverse = false;
         _menuState = MenuState.Settings;
     }
 

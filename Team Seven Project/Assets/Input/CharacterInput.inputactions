@@ -22,14 +22,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Test",
-                    "type": "Button",
-                    "id": "8da09fef-520f-4deb-ade7-af5658d9dc12",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Aiming/Throwing",
                     "type": "Button",
                     "id": "5d725a3b-c425-4899-9a96-8ce2b003fae1",
@@ -49,6 +41,14 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "c136dfb4-ccb9-4a90-b24f-cd3d86d3209f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Cancel Throw",
+                    "type": "Button",
+                    "id": "8c7257a1-5bfd-419b-9a60-1ca6762ea60f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -166,61 +166,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Number",
-                    "id": "bb822f89-9c07-4ed1-bb2b-cdb216a189dd",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "0530da90-251c-45e7-a8bc-859a0f5becaf",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "75651fc3-f53c-4180-b534-b83363aad1bd",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "2deb3b3f-21e1-46fa-ae59-d232d2069a85",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "8858bded-ccb0-418b-a521-0faab73d87a0",
-                    "path": "<Keyboard>/6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "ee3e1f53-30b6-401f-9e55-eb668c946951",
                     "path": "<Keyboard>/leftShift",
@@ -239,28 +184,6 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d9e6ebf7-2417-47e7-9b92-d32ef59069e0",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "76312871-187f-4eb5-a7ca-ba1769dc3600",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Test",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -288,23 +211,23 @@
                 },
                 {
                     "name": "",
-                    "id": "4d185447-8dbc-48f1-8399-90e4a4f4b1eb",
-                    "path": "<Mouse>/middleButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8c2ec041-0acf-485e-b6a7-c1021b042358",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad1c01d2-b27b-40ce-8f9c-81a5631f4be0",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
