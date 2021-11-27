@@ -50,7 +50,8 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 
 				_activated = false;
 			}
-
+			if (_interactableText != null)
+				_interactableText.SetActive(false);
 		}
 	}
 	public void Unlock()
@@ -60,8 +61,7 @@ public class KeycardDoor : MonoBehaviour, IInteractable
 			_unlocked = true;
 			_activated = true;
 			SaveManager.Save(_spawnPos.position, transform.rotation);
-			if (_interactableText != null)
-				_interactableText.SetActive(false);
+			
 		}
 	}
 
