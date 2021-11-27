@@ -71,7 +71,7 @@ public class MainMenuSettings : MonoBehaviour
 	private string _ambientAudPrefStr = "_aaud";
 	private string _effectsAudPrefStr = "_eaud";
 	private string _gammaPrefStr = "_gamma";
-	private float _version = 0.5f;
+	private float _version = 0.6f;
 
 	public void SendMessage()
 	{

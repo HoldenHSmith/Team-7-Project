@@ -30,6 +30,7 @@ public class CreditsHandler : MonoBehaviour
 		"SPECIAL THANKS",
 		"SPECIAL THANKS",
 		"SPECIAL THANKS",
+		"SOUND SOURCE"
 	};
 
 	private string[] _names =
@@ -45,7 +46,8 @@ public class CreditsHandler : MonoBehaviour
 		"SCOTT HANCOCK",
 		"STEVEN VAN DER GRAAF-MASTERS",
 		"AIE MELBOURNE",
-		"USER TESTERS"
+		"USER TESTERS",
+		"SOUNDSNAP"
 	};
 
 	private void Awake()
