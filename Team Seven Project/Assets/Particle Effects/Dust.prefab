@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4931034480252012594}
-  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 5.3, y: 1.21, z: -44.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -48,10 +48,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 500
+      - m_Value: 100
         m_Name: Spawn Rate
         m_Overridden: 1
-      - m_Value: 0.09
+      - m_Value: 0.15
         m_Name: Size
         m_Overridden: 1
       - m_Value: 0
@@ -73,12 +73,12 @@ VisualEffect:
       - m_Value: {x: 5.69, y: 3.14, z: 17}
         m_Name: Spawn position
         m_Overridden: 1
-      - m_Value: {x: 0, y: -0.002, z: 0}
+      - m_Value: {x: 0, y: -0.025, z: 0}
         m_Name: Gravity
         m_Overridden: 1
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.09433961, y: 0.09433961, z: 0.09433961, w: 0}
+      - m_Value: {x: 0.16037738, y: 0.16037738, z: 0.16037738, w: 0.007843138}
         m_Name: Colour
         m_Overridden: 1
     m_Uint:
@@ -88,7 +88,42 @@ VisualEffect:
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: -0.0066662277
+            outSlope: -0.0066662277
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.5638886
+          - serializedVersion: 3
+            time: 0.49540132
+            value: 0.07860714
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: Alpha Over LifeTime
+        m_Overridden: 1
     m_Gradient:
       m_Array: []
     m_NamedObject:

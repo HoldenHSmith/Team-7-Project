@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5164341224585026491}
   m_Layer: 14
   m_Name: Note_03
-  m_TagString: Untagged
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,11 +131,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _noteTitle: Guard Security Implementation
   _noteBody: 'After many failed attempts, we have managed to successfully integrate
-    the security system into the guard''s programming.
+    the security system into the guards'' programming.
 
 
     Now whenever cameras
-    spot intruders guards will be instantly alerted of their presence. '
+    spot intruders, guards will be instantly alerted of their presence. '
 --- !u!65 &5164341224585026491
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -410,6 +410,22 @@ PrefabInstance:
     - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_text
       value: Read Note [E]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.7137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4292725430
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}

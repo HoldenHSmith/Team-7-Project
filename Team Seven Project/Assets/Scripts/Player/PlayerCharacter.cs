@@ -10,6 +10,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	private CharacterInput _input;                       //Reference to Input System
 	private CharacterController _characterController;    //Characters controller
 	private PointSampler _pointSampler;
+	private PlayerSound _playerSound;
 
 	private void Awake()
 	{
@@ -62,6 +63,7 @@ public partial class PlayerCharacter : MonoBehaviour
 	{
 		_characterController = GetComponent<CharacterController>();
 		_pointSampler = GetComponent<PointSampler>();
+		_playerSound = GetComponentInChildren<PlayerSound>();
 	}
 
 	public List<Transform> SamplePoints { get => _pointSampler.SamplePoints; }

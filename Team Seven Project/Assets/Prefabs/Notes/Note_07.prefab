@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2480435875747727488}
   m_Layer: 14
   m_Name: Note_07
-  m_TagString: Untagged
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,10 +143,10 @@ MonoBehaviour:
   _noteBody: "I have been keeping watch over everything in this facility for a while
     now and have started to piece together its purpose. \n\nFrom what I can conclude,
     strange experiments are being conducted here. The prisoners all look the same,
-    they do not permit employees to leave for months and I've even caught sight of
+    employees are not permitted to leave for months and I've even caught sight of
     strange tanks being moved through the hallways. \n\nI've documented the things
     I've found thoroughly and plan to leave as soon as I can. If you are reading
-    this and need a place to lay low after leaving too, you can find me at the address
+    this and need a place to lay low after leaving, you can find me at the address
     on the back of this note. \n\nEx Surveillance Manager, Jim"
 --- !u!65 &2480435875747727488
 BoxCollider:
@@ -333,6 +333,22 @@ PrefabInstance:
     - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_text
       value: Read Note [E]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.7137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.8666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4292725430
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
