@@ -12,20 +12,26 @@ public class EndScreen : MonoBehaviour
 	[SerializeField] private float _fadeTime = 1.0f;
 	[SerializeField] private AudioSource _audioSource = null;
 
+	private GameObject _gameOverlay;
+
 	private bool _active;
 	private float _fadeTimer;
 	[SerializeField] private float _timeUntilQuit = 3;
 	private float _quitTimer = 0;
 	private float _volume = 1;
-	private void Awake()
-	{
 
+	private void Start()
+	{
+		_gameOverlay = GameManager.Instance.OverlayHandler.gameObject;
 	}
 
 	private void Update()
 	{
 		if (_active)
 		{
+			if (_gameOverlay.activeInHierarchy)
+				_gameOverlay.SetActive(false);
+
 			if (_volume > 0)
 				_volume -= Time.unscaledDeltaTime / (_timeUntilQuit + _fadeTime);
 			if (_volume < 0)
@@ -33,6 +39,7 @@ public class EndScreen : MonoBehaviour
 
 			_audioSource.volume = _volume;
 		}
+
 		if (_active && _fadeTimer <= _fadeTime)
 		{
 			_fadeTimer += Time.deltaTime;
