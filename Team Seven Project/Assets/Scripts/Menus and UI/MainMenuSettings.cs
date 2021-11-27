@@ -56,6 +56,9 @@ public class MainMenuSettings : MonoBehaviour
 
 	[SerializeField] private AudioMixer _audioMixer = null;
 
+	[SerializeField] private AudioClip _clickClip = null;
+	[SerializeField] private AudioSource _audioSource = null;
+
 	private List<Resolution> _resolutionOptions = new List<Resolution>();
 
 
@@ -78,6 +81,7 @@ public class MainMenuSettings : MonoBehaviour
 
 	private void Awake()
 	{
+		_audioSource = GetComponent<AudioSource>();
 		float version = PlayerPrefs.GetFloat("_vs", 0);
 
 		if (version != _version)
@@ -158,12 +162,15 @@ public class MainMenuSettings : MonoBehaviour
 	{
 		DisableAllGroups();
 		_graphicsGroup.SetActive(true);
+		PlayInteractSound();
+
 	}
 
 	public void ShowAudio()
 	{
 		DisableAllGroups();
 		_audioGroup.SetActive(true);
+		PlayInteractSound();
 	}
 
 	public void ShowControls()
@@ -183,12 +190,14 @@ public class MainMenuSettings : MonoBehaviour
 	{
 		_fullscreenSelected--;
 		UpdateSelected(ref _fullscreenOptions, _fullscreenSelected, out _fullscreenSelected, ref _fullscreenText);
+		PlayInteractSound();
 	}
 
 	public void OnFullscreenRight()
 	{
 		_fullscreenSelected++;
 		UpdateSelected(ref _fullscreenOptions, _fullscreenSelected, out _fullscreenSelected, ref _fullscreenText);
+		PlayInteractSound();
 
 	}
 
@@ -196,36 +205,42 @@ public class MainMenuSettings : MonoBehaviour
 	{
 		_resolutionSelected--;
 		UpdateSelected(ref _resolutionStrings, _resolutionSelected, out _resolutionSelected, ref _resolutionText);
+		PlayInteractSound();
 	}
 
 	public void OnResButtonRight()
 	{
 		_resolutionSelected++;
 		UpdateSelected(ref _resolutionStrings, _resolutionSelected, out _resolutionSelected, ref _resolutionText);
+		PlayInteractSound();
 	}
 
 	public void OnQualityButtonLeft()
 	{
 		_qualitySelected--;
 		UpdateSelected(ref _qualityOptions, _qualitySelected, out _qualitySelected, ref _qualityText);
+		PlayInteractSound();
 	}
 
 	public void OnQualityButtonRight()
 	{
 		_qualitySelected++;
 		UpdateSelected(ref _qualityOptions, _qualitySelected, out _qualitySelected, ref _qualityText);
+		PlayInteractSound();
 	}
 
 	public void OnVSyncButtonLeft()
 	{
 		_vsyncSelected--;
 		UpdateSelected(ref _vsyncOptions, _vsyncSelected, out _vsyncSelected, ref _vSyncText);
+		PlayInteractSound();
 	}
 
 	public void OnVSyncButtonRight()
 	{
 		_vsyncSelected++;
 		UpdateSelected(ref _vsyncOptions, _vsyncSelected, out _vsyncSelected, ref _vSyncText);
+		PlayInteractSound();
 	}
 
 	public void OnMasterAudioChanged()
@@ -246,8 +261,15 @@ public class MainMenuSettings : MonoBehaviour
 	public void OnReturn()
 	{
 		LoadSettings();
+
+		PlayInteractSound();
 	}
 
+	public void PlayInteractSound()
+	{
+		_audioSource.pitch = Random.Range(0.95f, 1.05f);
+		_audioSource.PlayOneShot(_clickClip);
+	}
 
 	private void UpdateSelected(ref string[] options, int selection, out int finalSelection, ref TextMeshProUGUI textField)
 	{
@@ -324,6 +346,7 @@ public class MainMenuSettings : MonoBehaviour
 		Debug.Log("applied");
 
 		SaveSettings();
+		PlayInteractSound();
 	}
 
 	public int BoolToInt(bool val)
