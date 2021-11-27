@@ -63,6 +63,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
 		_collectionManager.InitializeMinikeys(_keycardManager);
 		_audioSource = GetComponent<AudioSource>();
+		_audioSource.enabled = false;
 
 	}
 
@@ -132,6 +133,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	{
 		if (_alerted)
 		{
+			_audioSource.enabled = true;
 			_audioSource.clip = _siren;
 			_audioSource.loop = true;
 			if (!_audioSource.isPlaying)
