@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _requireKeycard: 1
   _text: {fileID: 6251856327057087676}
+  _delay: 0.5
 --- !u!114 &4877963799401587140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,10 +267,10 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 99
   DopplerLevel: 3.23
-  MinDistance: 1
-  MaxDistance: 10
+  MinDistance: 4.40631
+  MaxDistance: 5.5998936
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 1
@@ -328,7 +329,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.32222223
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

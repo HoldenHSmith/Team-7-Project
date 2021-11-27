@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(CollectionManager))]
 [RequireComponent(typeof(NoteManager))]
@@ -8,6 +10,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(DoorManager))]
 public sealed class GameManager : MonoBehaviour, IMessageSender
 {
+	[SerializeField] private Volume _volume = null;
+	[SerializeField] private AudioClip _siren = null;
+	[SerializeField] private AudioSource _audioSource = null;
+	[SerializeField] private Gradient _alarmGradient;
+
 	//Singleton
 	private static GameManager _instance;
 	private MessageDispatcher _messageDispatcher;
@@ -23,7 +30,10 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	private KeycardManager _keycardManager;
 	private DoorManager _doorManager;
 	private OverlayHandler _overlayHandler;
+	private ColorAdjustments _colorAdjustments;
+	private float _time;
 
+	private bool _alerted = false;
 	public void SendMessage()
 	{
 
@@ -31,6 +41,9 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 
 	private void Awake()
 	{
+
+		_volume.profile.TryGet<ColorAdjustments>(out _colorAdjustments);
+
 
 		if (_instance == null)
 			_instance = this;
@@ -49,6 +62,7 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		_doorManager = GetComponent<DoorManager>();
 
 		_collectionManager.InitializeMinikeys(_keycardManager);
+		_audioSource = GetComponent<AudioSource>();
 
 	}
 
@@ -110,6 +124,24 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 		//	Application.Quit();
 		//}
 
+		HandleAlarm();
+
+	}
+
+	private void HandleAlarm()
+	{
+		if (_alerted)
+		{
+			_audioSource.clip = _siren;
+			_audioSource.loop = true;
+			if (!_audioSource.isPlaying)
+				_audioSource.Play();
+
+			float t = Mathf.PingPong(_time, 1);
+			_colorAdjustments.colorFilter.Override(_alarmGradient.Evaluate(t));
+			Debug.Log(t);
+			_time += Time.deltaTime * 2;
+		}
 	}
 
 	public static GameManager Instance
@@ -127,4 +159,5 @@ public sealed class GameManager : MonoBehaviour, IMessageSender
 	public KeycardManager KeycardManager { get => _keycardManager; set => _keycardManager = value; }
 	public DoorManager DoorManager { get => _doorManager; set => _doorManager = value; }
 	public OverlayHandler OverlayHandler { get => _overlayHandler; set => _overlayHandler = value; }
+	public bool Alerted { get => _alerted; set => _alerted = value; }
 }
