@@ -75,6 +75,5 @@ public class EndScreen : MonoBehaviour
 	public void Activate()
 	{
 		_active = true;
-		Debug.Log("Activate End Scene Called");
 	}
 }

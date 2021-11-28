@@ -100,7 +100,6 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 							return true;
 						}
 						Debug.DrawLine(_coneDetectionTransform.position, hit.transform.position);
-						Debug.Log($"{hit.collider.gameObject.name}");
 					}
 				}
 			}
@@ -136,7 +135,6 @@ public class VisualDetection : MonoBehaviour, IMessageSender
 
 		if (_messageDelayTimer <= 0)
 		{
-			Debug.Log("Message sent!");
 			_messageDelayTimer = _messageDelay;
 			List<IMessageReceiver> recipients = _recipientHandler.Recipients;
 

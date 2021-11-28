@@ -8,7 +8,6 @@ public class DeactivateOnCollision : MonoBehaviour
     {
         if (collision.gameObject != gameObject)
         {
-            Debug.Log($"Collision with: {collision.gameObject.name}");
             this.gameObject.SetActive(false);
 
 
