@@ -66,7 +66,7 @@ public class AudioDetection : MonoBehaviour, IMessageSender
                 if (sound.DistanceFalloff != 0)
                     heardVolume -= (distance /sound.DistanceFalloff) * sound.Volume;
 
-                Debug.Log($"Volume Heard: {heardVolume}");
+            
                 if (hit.collider.gameObject.layer != _checkLayer)
                 {
                     HeardSound(heardVolume);

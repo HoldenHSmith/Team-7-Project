@@ -107,7 +107,6 @@ public class SimpleMove : MonoBehaviour, IMessageReceiver
 				{
 					var pt = target as SimpleMove;
 					pt.PerformTransform(pt.PreviewPosition);
-					Debug.Log("Performing Transform");
 				}
 			}
 		}

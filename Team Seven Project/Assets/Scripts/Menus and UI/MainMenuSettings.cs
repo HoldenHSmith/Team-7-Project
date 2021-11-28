@@ -343,7 +343,6 @@ public class MainMenuSettings : MonoBehaviour
 		QualitySettings.vSyncCount = _vsyncSelected;
 		Resolution selected = _resolutionOptions[_resolutionSelected];
 		Screen.SetResolution(selected.width, selected.height, IntToBool(_fullscreenSelected));
-		Debug.Log("applied");
 
 		SaveSettings();
 		PlayInteractSound();

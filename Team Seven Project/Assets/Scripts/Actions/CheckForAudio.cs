@@ -12,21 +12,4 @@ public class CheckForAudio : MonoBehaviour
 		_sources = GameObject.FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
 	}
 
-	private void Update()
-	{
-		if (Keyboard.current.yKey.wasReleasedThisFrame)
-		{
-			foreach (AudioSource audioSource in _sources)
-			{
-				if (audioSource != null && audioSource.isPlaying)
-				{
-					if (audioSource.clip != null)
-						Debug.Log($"{audioSource.name} is playing {audioSource.clip.name}");
-					else
-						Debug.Log($"{audioSource.name} is playing no clip");
-
-				}
-			}
-		}
-	}
 }
