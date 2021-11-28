@@ -28,7 +28,6 @@ public class SaveManager
 		formatter.Serialize(file, _currentSaveData);
 		file.Close();
 		
-		Debug.Log("Saved Game");
 	}
 
 	public static bool Load()
