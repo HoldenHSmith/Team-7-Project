@@ -8,6 +8,7 @@ public class MiniKeycard : MonoBehaviour, ICollectable, IInteractable
 	{
 		GameManager.Instance.CollectionManager.SetMiniKeycardValue(this, true);
 		_collected = true;
+		GameManager.Instance.OverlayHandler.DisplayToolTip("You picked up a Mini Keycard");
 	}
 
 	public bool OnInteract(PlayerCharacter playerCharacter)

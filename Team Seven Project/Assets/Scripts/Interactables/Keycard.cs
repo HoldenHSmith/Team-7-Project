@@ -7,6 +7,7 @@ public class Keycard : MonoBehaviour, ICollectable, IInteractable
 	public void OnCollect()
 	{
 		GameManager.Instance.CollectionManager.SetKeyValue(_area, true);
+		GameManager.Instance.OverlayHandler.DisplayToolTip("You picked up a Keycard");
 	}
 
 	public bool OnInteract(PlayerCharacter playerCharacter)
