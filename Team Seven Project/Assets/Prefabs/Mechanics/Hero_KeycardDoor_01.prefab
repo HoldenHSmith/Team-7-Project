@@ -981,6 +981,7 @@ GameObject:
   - component: {fileID: 1434463604}
   - component: {fileID: 1434463602}
   - component: {fileID: 1434463603}
+  - component: {fileID: 2384971928570242870}
   m_Layer: 14
   m_Name: Hero_KeycardDoor_01
   m_TagString: Door
@@ -1054,6 +1055,112 @@ MonoBehaviour:
   _unlocked: 0
   _area: 0
   _spawnPos: {fileID: 552900320453135934}
+  _delay: 0.5
+--- !u!82 &2384971928570242870
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938130369858025035}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -3833572749549569291, guid: ed58750d7f0fef2428f04e1654e3e3e6, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 3374f19bf414cf4449eff6b029d4c545, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.799
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 3.23
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 1
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.9983978
+      inSlope: -0.58617145
+      outSlope: -0.58617145
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.5454527
+    - serializedVersion: 3
+      time: 0.542216
+      value: 0.41683045
+      inSlope: -0.18382852
+      outSlope: -0.18382852
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.47402772
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.33346638
+      outSlope: -0.33346638
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.32222223
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.75
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7662812095527435829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,18 +1636,18 @@ PrefabInstance:
     - target: {fileID: 6689704063480168684, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+      objectReference: {fileID: 7344753601914251984, guid: a36eef183570e2b42aeead8f4580991f, type: 2}
     - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_text
       value: Containment Door [E]
       objectReference: {fileID: 0}
     - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_fontSize
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_fontSizeBase
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_fontColor.r
@@ -1565,11 +1672,11 @@ PrefabInstance:
     - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+      objectReference: {fileID: 11400000, guid: a36eef183570e2b42aeead8f4580991f, type: 2}
     - target: {fileID: 6689704063480168687, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+      objectReference: {fileID: 7344753601914251984, guid: a36eef183570e2b42aeead8f4580991f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b16fba46d71cd442aed5bb3feff3951, type: 3}
 --- !u!4 &8557602517636010993 stripped
