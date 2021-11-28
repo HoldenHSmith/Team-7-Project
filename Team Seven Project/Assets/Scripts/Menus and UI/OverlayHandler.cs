@@ -60,6 +60,12 @@ public class OverlayHandler : MonoBehaviour
 			_noteOverlay.enabled = false;
 			Time.timeScale = 1;
 			_pauseMenuHandler.CanToggle = true;
+
+		}
+
+		if (_noteOverlay.enabled)
+		{
+			GameManager.Instance.Player.BlockThrowForTime(1);
 		}
 		SetMiniKeycardCount(GameManager.Instance.Player.MiniKeycards);
 		_notePopup = false;
