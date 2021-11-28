@@ -22,15 +22,15 @@ public class EndScreen : MonoBehaviour
 
 	private void Start()
 	{
-		_gameOverlay = GameManager.Instance.OverlayHandler.gameObject;
+		//_gameOverlay = GameManager.Instance.OverlayHandler.gameObject;
 	}
 
 	private void Update()
 	{
 		if (_active)
 		{
-			if (_gameOverlay.activeInHierarchy)
-				_gameOverlay.SetActive(false);
+			if (GameManager.Instance.OverlayHandler.gameObject.activeInHierarchy)
+				GameManager.Instance.OverlayHandler.gameObject.SetActive(false);
 
 			if (_volume > 0)
 				_volume -= Time.unscaledDeltaTime / (_timeUntilQuit + _fadeTime);
@@ -75,5 +75,6 @@ public class EndScreen : MonoBehaviour
 	public void Activate()
 	{
 		_active = true;
+		Debug.Log("Activate End Scene Called");
 	}
 }
