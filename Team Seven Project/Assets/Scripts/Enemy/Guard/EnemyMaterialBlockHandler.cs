@@ -17,6 +17,10 @@ public class EnemyMaterialBlockHandler : MonoBehaviour
 
 	public void SetProperties(float evaluation, float speed)
 	{
+		if (speed <= 0.15f)
+			speed = 0f;
+		if (speed > 15)
+			speed = 15;
 		_renderer.GetPropertyBlock(_materialPropertyBlock);
 		_materialPropertyBlock.SetFloat("_Evaluation", evaluation);
 		_materialPropertyBlock.SetFloat("_Speed", speed);
