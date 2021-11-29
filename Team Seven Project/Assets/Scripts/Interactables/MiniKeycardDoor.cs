@@ -45,6 +45,8 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 				}
 				_activated = false;
 			}
+			if (_interactableText != null)
+				_interactableText.SetActive(false);
 
 		}
 	}
@@ -56,8 +58,7 @@ public class MiniKeycardDoor : MonoBehaviour, IInteractable
 			_unlocked = true;
 
 			_activated = true;
-			if (_interactableText != null)
-				_interactableText.SetActive(false);
+
 		}
 	}
 

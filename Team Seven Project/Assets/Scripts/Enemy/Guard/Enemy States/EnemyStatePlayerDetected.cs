@@ -13,6 +13,7 @@ public class EnemyStatePlayerDetected : EnemyState
 		Enemy.NavAgent.speed = Enemy.Settings.RunSpeed;
 		Enemy.NavAgent.acceleration = Enemy.Settings.RunAcceleration;
 		Enemy.NavAgent.angularSpeed = Enemy.Settings.RunTurnSpeed;
+		GameManager.Instance.Alerted = true;
 	}
 
 	public override void OnExit()
