@@ -514,7 +514,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 314745856}
-  - component: {fileID: 314745857}
   m_Layer: 0
   m_Name: AudioDetector
   m_TagString: Untagged
@@ -536,18 +535,6 @@ Transform:
   m_Father: {fileID: 1584906212}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &314745857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314745855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f571b0060a092e14cb15674154028c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &343603569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1240,6 +1227,54 @@ PrefabInstance:
     - target: {fileID: 4133659477622552285, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169274263980683, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169274277086181, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169274535862982, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169274580723919, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169274759572774, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169275059828669, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169275141905934, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169275341483119, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169275753631894, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169275816709893, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169276041796730, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137169276101726646, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4218954867888257898, guid: 424d871d1aa60674ea94fa75a0421aec, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5566,6 +5601,42 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 707595063374685283, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063502389590, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063639650414, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063717292249, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595063776208355, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595064582391163, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595064818672206, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065106115222, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 707595065119248473, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 930755801447123079, guid: 63e0600e5361d834ca405c079e7f2c9e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7941,6 +8012,26 @@ PrefabInstance:
       propertyPath: DopplerLevel
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2308419236139373670, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419236190332411, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419237278405967, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419237669073876, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308419237924383790, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: WalkInspectSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3080940914535583329, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.9
@@ -8045,6 +8136,14 @@ PrefabInstance:
       propertyPath: DopplerLevel
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8978467025915533911, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: m_Volume
+      value: 0.391
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978467025915533911, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1369791355136923264, guid: ed58750d7f0fef2428f04e1654e3e3e6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b4159e623ecad44a0b03fcc1f65d12, type: 3}
 --- !u!1001 &7626730692944392571
