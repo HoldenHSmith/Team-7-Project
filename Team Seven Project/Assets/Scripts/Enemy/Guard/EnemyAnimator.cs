@@ -8,7 +8,7 @@ public class EnemyAnimator
 	private float _walkMapFromValue;
 	private float _walkMapToValue = 0.5f;
 	private float _walkInspectMapFromValue;
-	private float _walkInspectMapToValue = 0.5f;
+	private float _walkInspectMapToValue = 0.6f;
 	private float _runMapFromValue;
 	private float _runMapToValue = 1.0f;
 
